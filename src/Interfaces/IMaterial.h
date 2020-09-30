@@ -10,6 +10,8 @@ class RandomGenerator;
 
 class IMaterial {
 public:
+    virtual ~IMaterial() NOEXCEPT = default;
+
     virtual bool scatter(
         RandomGenerator &rng,   // In
         const Ray &r_in,        // In
