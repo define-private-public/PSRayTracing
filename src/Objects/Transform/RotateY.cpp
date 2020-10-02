@@ -45,6 +45,13 @@ RotateY::RotateY(const shared_ptr<IHittable> &obj, const rreal angle) NOEXCEPT :
     _bbox = AABB(lower, upper);
 }
 
+std::shared_ptr<IHittable> RotateY::deep_copy() const NOEXCEPT {
+    auto trans = make_shared<RotateY>(*this);
+    trans->_obj = _obj->deep_copy();
+
+    return trans;
+}
+
 bool RotateY::hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT {
     // Need to modify the direction and orientation of the ray
 

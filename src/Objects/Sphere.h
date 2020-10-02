@@ -11,8 +11,10 @@ public:
     std::shared_ptr<IMaterial> _mat_ptr = nullptr;
 
 public:
-    explicit Sphere() = default;
+    explicit Sphere() NOEXCEPT = default;
     explicit Sphere(const Vec3 &cen, const rreal r, const std::shared_ptr<IMaterial> &mat) NOEXCEPT;
+
+    virtual std::shared_ptr<IHittable> deep_copy() const NOEXCEPT override;
 
     virtual bool hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT override;
     virtual bool bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT override;

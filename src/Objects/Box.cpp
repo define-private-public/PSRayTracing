@@ -34,6 +34,20 @@ Box::Box(const Vec3 &point_min, const Vec3 &point_max, const shared_ptr<IMateria
 #endif  // USE_BOOK_BOX
 }
 
+shared_ptr<IHittable> Box::deep_copy() const NOEXCEPT {
+    auto box = make_shared<Box>(*this);
+
+#ifdef USE_BOOK_BOX
+    // This nasty line creates a deep copy of all the sides (doing a deep copy of all the elements in the list)
+    // then we have to cast it up to `HittableList`, and then finally do a copy-assignment into the deep copied Box
+    box->_sides = *(dynamic_pointer_cast<HittableList>(_sides.deep_copy()));
+#else
+    box->_mat = _mat->deep_copy();
+#endif
+
+    return box;
+}
+
 bool Box::hit(
     [[maybe_unused]] RandomGenerator &rng,
     const Ray &r,

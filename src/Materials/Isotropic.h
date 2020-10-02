@@ -14,6 +14,8 @@ public:
     explicit Isotropic(const Vec3 &clr) NOEXCEPT;
     explicit Isotropic(const std::shared_ptr<ITexture> &albedo) NOEXCEPT;
 
+    virtual std::shared_ptr<IMaterial> deep_copy() const NOEXCEPT override;
+
     virtual bool scatter(
         RandomGenerator &rng,
         const Ray &r_in,        // In

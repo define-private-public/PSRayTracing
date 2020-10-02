@@ -18,6 +18,10 @@ MotionBlurCamera::MotionBlurCamera(
     _time0(t0), _time1(t1)
 { }
 
+std::shared_ptr<ICamera> MotionBlurCamera::deep_copy() const NOEXCEPT  {
+    return std::make_shared<MotionBlurCamera>(*this);
+}
+
 Ray MotionBlurCamera::get_ray(RandomGenerator &rng, const rreal s, const rreal t) const NOEXCEPT {
     const Vec3 rd = _lens_radius * rng.get_in_unit_disk();
     const Vec3 offset = (_u * rd.x) + (_v * rd.y);

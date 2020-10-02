@@ -4,6 +4,8 @@
 #include <stdexcept>
 #include <algorithm>
 
+using namespace std;
+
 
 const int BytesPerPixel = 3;
 
@@ -23,6 +25,10 @@ ImageTexture::ImageTexture(const char *filename) {
     _bytes_per_scanline = num_channels * _width;
 
     stbi_image_free(tmp);
+}
+
+shared_ptr<ITexture> ImageTexture::deep_copy() const NOEXCEPT {
+    return make_shared<ImageTexture>(*this);
 }
 
 Vec3 ImageTexture::value(

@@ -29,9 +29,9 @@ find_package(Boost 1.65 REQUIRED COMPONENTS program_options)
 # Copy over assets to the build directory
 file(COPY "${CMAKE_SOURCE_DIR}/../assets" DESTINATION ${CMAKE_BINARY_DIR})
 
-
 # Define the executable
 add_executable(PSRayTracing ${sources} ${third_party_sources})
+
 
 # Configurable options
 option(WITH_SINGLE_PRECISION_REAL "Use `float` for `rreal type`" OFF)
@@ -51,6 +51,8 @@ option(WITH_BOOK_SCHLICK "Use the Book's method for `schlick()` computation (slo
 option(WITH_BOOK_PERLIN "Use the Book's Perlin class" OFF)
 option(WITH_BOOK_COMPUTE_PIXEL_COLOR "Use the book's method for computing the color of a pixel" OFF)
 option(WITH_NOEXCEPT "Use the `noexcept` annotation for various functions (faster)" ON)
+option(WITH_DEEP_COPY_PER_THREAD "Have each thread create it's own copy of the scene by doing a deep copy (faster)" ON)
+
 
 
 if (WITH_SINGLE_PRECISION_REAL)
@@ -148,6 +150,17 @@ if (WITH_NOEXCEPT)
   target_compile_definitions(PSRayTracing PUBLIC USE_NOEXCEPT)
 else()
   message(STATUS "Turned off use of `noexcept` (slower)")
+endif()
+
+if (WITH_DEEP_COPY_PER_THREAD)
+  message(STATUS "Each thread will create it's own copy of the scene via a deep copy (faster)")
+
+  # The book perlin has a defined deconstructor, which can complicate things
+  if (WITH_BOOK_PERLIN)
+    message(STATUS "    Note that if `WTIH_BOOK_PERLIN` is on, then this might cause a segfault")
+  endif()
+
+  target_compile_definitions(PSRayTracing PUBLIC USE_DEEP_COPY_PER_THREAD)
 endif()
 
 

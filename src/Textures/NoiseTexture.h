@@ -34,5 +34,7 @@ public:
     explicit NoiseTexture(const std::shared_ptr<PerlinReal> &noise) NOEXCEPT;
     explicit NoiseTexture(const std::shared_ptr<PerlinReal> &noise, const rreal scale) NOEXCEPT;
 
+    virtual std::shared_ptr<ITexture> deep_copy() const NOEXCEPT override;
+
     virtual Vec3 value(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
 };

@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     argsDesc.add_options()
         ("help,h",                                                                      "Help screen (this message)")
         ("list-scenes",                                                                 "List all of the available scenes to render")
-        ("scene",             po::value<string>()->default_value("book2::final_scene"), "Scene to render")
+        ("scene",             po::value<string>()->default_value(Book2_FinalScene),     "Scene to render")
         ("size,s",            po::value<string>()->default_value("960x540"),            "Render size")
         ("num-samples,n",     po::value<int32_t>()->default_value(10),                  "Samples per pixel")
         ("num-threads,j",     po::value<int>()->default_value(1),                       "How many threads to render with")

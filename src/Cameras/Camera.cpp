@@ -4,6 +4,7 @@
 #include "Ray.h"
 #include "RandomGenerator.h"
 
+using namespace std;
 using namespace util;
 
 
@@ -28,6 +29,10 @@ Camera::Camera(
     _lower_left_corner = _origin - (_horizontal / static_cast<rreal>(2)) - (_vertical / static_cast<rreal>(2)) - (focus_dist *_w);
 
     _lens_radius = aperature / 2;
+}
+
+shared_ptr<ICamera> Camera::deep_copy() const NOEXCEPT {
+    return make_shared<Camera>(*this);
 }
 
 Ray Camera::get_ray(RandomGenerator &rng, const rreal s, const rreal t) const NOEXCEPT {

@@ -5,10 +5,16 @@
 #include "Util.h"
 #include "RandomGenerator.h"
 
+using namespace std;
+
 
 Dielectric::Dielectric(const rreal refractive_index) NOEXCEPT :
     _refractive_index(refractive_index)
 { }
+
+shared_ptr<IMaterial> Dielectric::deep_copy() const NOEXCEPT {
+    return make_shared<Dielectric>(*this);
+}
 
 bool Dielectric::scatter(
     RandomGenerator &rng,

@@ -12,6 +12,14 @@ DiffuseLight::DiffuseLight(const Vec3 &clr) NOEXCEPT :
     _emit(make_shared<SolidColor>(clr))
 { }
 
+shared_ptr<IMaterial> DiffuseLight::deep_copy() const NOEXCEPT {
+    // Do deep copy
+    auto dl = make_shared<DiffuseLight>(*this);
+    dl->_emit = _emit->deep_copy();
+
+    return dl;
+}
+
 bool DiffuseLight::scatter(
     [[maybe_unused]] RandomGenerator &rng,
     [[maybe_unused]] const Ray &r_in,

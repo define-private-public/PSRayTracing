@@ -102,12 +102,12 @@ public:
     }
 
     inline Vec3 reflect(const Vec3 &n) const NOEXCEPT {
-        const Vec3 v = *this;
+        const Vec3 v(*this);
         return v - (2 * v.dot(n) * n);
     }
 
     Vec3 refract(const Vec3 &n, const rreal etai_over_etat) const NOEXCEPT {
-        const Vec3 uv = *this;
+        const Vec3 uv(*this);
         const rreal cos_theta = (-uv).dot(n);
         const Vec3 r_out_perp = etai_over_etat * (uv + (cos_theta * n));
         const Vec3 r_out_parallel = -util::sqrt(std::fabs(1 - r_out_perp.length_squared())) * n;
