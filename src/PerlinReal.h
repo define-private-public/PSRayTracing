@@ -39,7 +39,7 @@ private:
     #endif // USE_BOOK_PERLIN
 
 public:
-    PerlinReal(RandomGenerator &rng, const InterpolationType interpMethod) NOEXCEPT;
+    explicit PerlinReal(RandomGenerator &rng, const InterpolationType interpMethod) NOEXCEPT;
 
     #ifdef USE_BOOK_PERLIN
         ~PerlinReal() NOEXCEPT;

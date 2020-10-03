@@ -12,8 +12,8 @@ public:
     std::vector<std::shared_ptr<IHittable>> _objects;
 
 public:
-    HittableList() NOEXCEPT = default;
-    HittableList(const std::shared_ptr<IHittable> &object) NOEXCEPT;
+    explicit HittableList() NOEXCEPT = default;
+    explicit HittableList(const std::shared_ptr<IHittable> &object) NOEXCEPT;
 
     void clear() NOEXCEPT;
     void add(const std::shared_ptr<IHittable> &object) NOEXCEPT;

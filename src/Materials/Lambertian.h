@@ -11,8 +11,8 @@ private:
     std::shared_ptr<ITexture> _albedo;
 
 public:
-    Lambertian(const Vec3 &solid_color) NOEXCEPT;
-    Lambertian(const std::shared_ptr<ITexture> &tex) NOEXCEPT;
+    explicit Lambertian(const Vec3 &solid_color) NOEXCEPT;
+    explicit Lambertian(const std::shared_ptr<ITexture> &tex) NOEXCEPT;
 
     virtual bool scatter(
         RandomGenerator &rng,

@@ -29,10 +29,10 @@ public:
     // options for regular `Perlin`
     NoiseStyle style = NoiseStyle::Marble;
 
-    NoiseTexture(const std::shared_ptr<Perlin> &noise) NOEXCEPT;
-    NoiseTexture(const std::shared_ptr<Perlin> &noise, const rreal scale) NOEXCEPT;
-    NoiseTexture(const std::shared_ptr<PerlinReal> &noise) NOEXCEPT;
-    NoiseTexture(const std::shared_ptr<PerlinReal> &noise, const rreal scale) NOEXCEPT;
+    explicit NoiseTexture(const std::shared_ptr<Perlin> &noise) NOEXCEPT;
+    explicit NoiseTexture(const std::shared_ptr<Perlin> &noise, const rreal scale) NOEXCEPT;
+    explicit NoiseTexture(const std::shared_ptr<PerlinReal> &noise) NOEXCEPT;
+    explicit NoiseTexture(const std::shared_ptr<PerlinReal> &noise, const rreal scale) NOEXCEPT;
 
     virtual Vec3 value(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
 };

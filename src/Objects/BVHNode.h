@@ -14,9 +14,9 @@ public:
     AABB _box;
 
 public:
-    BVHNode() = default;
-    BVHNode(RandomGenerator &rng, const HittableList &list, const rreal time0, const rreal time1);
-    BVHNode(
+    explicit BVHNode() = default;
+    explicit BVHNode(RandomGenerator &rng, const HittableList &list, const rreal time0, const rreal time1);
+    explicit BVHNode(
         RandomGenerator &rng,
         std::vector<std::shared_ptr<IHittable>> objects,
         const size_t start,

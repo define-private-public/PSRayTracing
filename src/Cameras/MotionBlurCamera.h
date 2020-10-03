@@ -10,7 +10,7 @@ private:
     rreal _time0, _time1;        // Shutter open/close times
 
 public:
-    MotionBlurCamera(
+    explicit MotionBlurCamera(
         const Vec3 &look_from,
         const Vec3 &look_at,
         const Vec3 &v_up,

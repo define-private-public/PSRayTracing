@@ -10,7 +10,7 @@ public:
     rreal _refractive_index;
 
 public:
-    Dielectric(const rreal refractive_index) NOEXCEPT;
+    explicit Dielectric(const rreal refractive_index) NOEXCEPT;
 
     virtual bool scatter(
         RandomGenerator &rng,

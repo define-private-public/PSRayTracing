@@ -34,7 +34,7 @@ namespace util {
 
     public:
 
-        ProgressBar(const uint64_t total_ticks, const uint16_t bar_width, const std::string &prefix="");
+        explicit ProgressBar(const uint64_t total_ticks, const uint16_t bar_width, const std::string &prefix="");
 
         // Start the process (start time keeping too)
         // Will put  everything on a new line first

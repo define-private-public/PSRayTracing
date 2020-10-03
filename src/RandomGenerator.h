@@ -33,7 +33,7 @@ private:
     RNG _rng;
 
 public:
-    _GeneralizedRandomGenerator(const std::string &rng_seed) NOEXCEPT :
+    explicit _GeneralizedRandomGenerator(const std::string &rng_seed) NOEXCEPT :
         _rng_distribution(0, 1),
         _seed(rng_seed.begin(), rng_seed.end()),
         _rng(_seed)
@@ -162,7 +162,7 @@ public:
  */
 class RandomGenerator : public _GeneralizedRandomGenerator<std::uniform_real_distribution, rreal, RNG_ENGINE> {
 public:
-    RandomGenerator(const std::string &rng_seed) :
+    explicit RandomGenerator(const std::string &rng_seed) :
         _GeneralizedRandomGenerator(rng_seed)
     { }
 };

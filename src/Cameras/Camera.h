@@ -16,7 +16,7 @@ protected:
     rreal _lens_radius;
 
 public:
-    Camera(
+    explicit Camera(
         const Vec3 &look_from,
         const Vec3 &look_at,
         const Vec3 &v_up,

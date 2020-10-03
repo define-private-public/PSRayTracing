@@ -16,7 +16,7 @@ private:
     std::shared_ptr<IMaterial> _mat_ptr;
 
 public:
-    XYRect(
+    explicit XYRect(
         const rreal x0,
         const rreal x1,
         const rreal y0,
@@ -39,7 +39,7 @@ private:
     std::shared_ptr<IMaterial> _mat_ptr;
 
 public:
-    XZRect(
+    explicit XZRect(
         const rreal x0,
         const rreal x1,
         const rreal z0,
@@ -62,7 +62,7 @@ private:
     std::shared_ptr<IMaterial> _mat_ptr;
 
 public:
-    YZRect(
+    explicit YZRect(
         const rreal y0,
         const rreal y1,
         const rreal z0,

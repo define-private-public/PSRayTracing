@@ -11,8 +11,8 @@ private:
     std::shared_ptr<ITexture> _albedo;
 
 public:
-    Isotropic(const Vec3 &clr) NOEXCEPT;
-    Isotropic(const std::shared_ptr<ITexture> &albedo) NOEXCEPT;
+    explicit Isotropic(const Vec3 &clr) NOEXCEPT;
+    explicit Isotropic(const std::shared_ptr<ITexture> &albedo) NOEXCEPT;
 
     virtual bool scatter(
         RandomGenerator &rng,

@@ -21,7 +21,7 @@ private:
 
 
 public:
-    Box(RandomGenerator &rng, const Vec3 &point_min, const Vec3 &point_max, const std::shared_ptr<IMaterial> &mat) NOEXCEPT;
+    explicit Box(RandomGenerator &rng, const Vec3 &point_min, const Vec3 &point_max, const std::shared_ptr<IMaterial> &mat) NOEXCEPT;
 
     virtual bool hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT override;
     virtual bool bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT override;

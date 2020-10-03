@@ -9,11 +9,11 @@ private:
     Vec3 _colour_value = Vec3(0);   // Default is black
 
 public:
-    SolidColor(const Vec3 &c) NOEXCEPT :
+    explicit SolidColor(const Vec3 &c) NOEXCEPT :
         _colour_value(c)
     { }
 
-    SolidColor(const rreal red, const rreal green, const rreal blue) NOEXCEPT :
+    explicit SolidColor(const rreal red, const rreal green, const rreal blue) NOEXCEPT :
         SolidColor(Vec3(red, green, blue))
     { }
 

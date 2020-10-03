@@ -12,8 +12,8 @@ public:
     rreal time;
 
 public:
-    Ray() NOEXCEPT = default;
-    Ray(const Vec3 &origin_, const Vec3 &direction_, const rreal time_=0) NOEXCEPT :
+    explicit Ray() NOEXCEPT = default;
+    explicit Ray(const Vec3 &origin_, const Vec3 &direction_, const rreal time_=0) NOEXCEPT :
         origin(origin_),
         direction(direction_),
         time(time_)

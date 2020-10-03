@@ -29,7 +29,7 @@ private:
 
 
 public:
-    Perlin(RandomGenerator &rng) NOEXCEPT;
+    explicit Perlin(RandomGenerator &rng) NOEXCEPT;
 
     #ifdef USE_BOOK_PERLIN
         ~Perlin() NOEXCEPT;

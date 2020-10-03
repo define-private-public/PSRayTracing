@@ -13,13 +13,13 @@ private:
     rreal _neg_inv_intensity = 0;
 
 public:
-    ConstantMedium(
+    explicit ConstantMedium(
         const std::shared_ptr<IHittable> &boundary,
         const rreal density,
         const std::shared_ptr<ITexture> &phase
     ) NOEXCEPT;
 
-    ConstantMedium(
+    explicit ConstantMedium(
         const std::shared_ptr<IHittable> &boundary,
         const rreal density,
         const Vec3 &clr

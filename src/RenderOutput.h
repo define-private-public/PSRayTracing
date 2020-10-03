@@ -19,7 +19,7 @@ struct RenderOutput {
     const uint32_t row_byte_size;
     const size_t total_byte_size;
 
-    RenderOutput(const uint16_t width_, const uint16_t height_, const uint8_t num_channels_=4) NOEXCEPT :
+    explicit RenderOutput(const uint16_t width_, const uint16_t height_, const uint8_t num_channels_=4) NOEXCEPT :
         width(width_),
         height(height_),
         num_channels(num_channels_),

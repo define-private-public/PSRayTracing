@@ -11,8 +11,8 @@ public:
     rreal saturation = 0.75;
 
 public:
-    SurfaceNormal() NOEXCEPT = default;
-    SurfaceNormal(const rreal brightness_, const rreal saturation_) NOEXCEPT;
+    explicit SurfaceNormal() NOEXCEPT = default;
+    explicit SurfaceNormal(const rreal brightness_, const rreal saturation_) NOEXCEPT;
 
     virtual bool scatter(
         RandomGenerator &rng,

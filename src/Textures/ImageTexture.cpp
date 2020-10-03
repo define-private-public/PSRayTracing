@@ -18,8 +18,7 @@ ImageTexture::ImageTexture(const char *filename) {
 
     // Copy into a vector
     const auto num_bytes = static_cast<size_t>(_width * _height * num_channels);
-    _img_data.reserve(num_bytes);
-    copy(tmp, tmp + num_bytes, _img_data.begin());
+    _img_data.assign(tmp, tmp + num_bytes);
 
     _bytes_per_scanline = num_channels * _width;
 

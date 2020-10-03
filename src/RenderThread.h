@@ -85,8 +85,8 @@ private:
     std::atomic_uint64_t _pixels_completed;     // How many pixels have been completed thus far
 
 public:
-    RenderThread(const RenderContext &render_context) NOEXCEPT;
-    RenderThread(RenderThread &&other) noexcept;
+    explicit RenderThread(const RenderContext &render_context) NOEXCEPT;
+    explicit RenderThread(RenderThread &&other) noexcept;
 
     bool run() NOEXCEPT;
 
@@ -146,7 +146,7 @@ private:
     std::vector<RenderThread> _threads;
 
 public:
-    RenderThreadPool(const RenderContext &render_context, const uint16_t num_threads) NOEXCEPT;
+    explicit RenderThreadPool(const RenderContext &render_context, const uint16_t num_threads) NOEXCEPT;
 
     void setup_render(const std::string &main_rng_seed, const uint32_t samples_per_pixel, const uint16_t max_ray_depth);
     void start_render();
