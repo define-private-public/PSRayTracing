@@ -19,15 +19,15 @@ int main(int argc, char *argv[]) {
     po::options_description argsDesc{"Options"};
     argsDesc.add_options()
         ("help,h",                                                                      "Help screen (this message)")
-        ("list_scenes",                                                                 "List all of the available scenes to render")
+        ("list-scenes",                                                                 "List all of the available scenes to render")
         ("scene",             po::value<string>()->default_value("book2::final_scene"), "Scene to render")
         ("size,s",            po::value<string>()->default_value("960x540"),            "Render size")
-        ("num_samples,n",     po::value<int32_t>()->default_value(10),                  "Samples per pixel")
-        ("num_threads,j",     po::value<int>()->default_value(1),                       "How many threads to render with")
+        ("num-samples,n",     po::value<int32_t>()->default_value(10),                  "Samples per pixel")
+        ("num-threads,j",     po::value<int>()->default_value(1),                       "How many threads to render with")
         ("depth,d",           po::value<int16_t>()->default_value(50),                  "Maximum ray bounce depth")
-        ("random_seed,r",     po::value<string>()->default_value("ASDF"),               "Seed string for the RNG")
-        ("output_filename,o", po::value<string>()->default_value("render.png"),         "Filename to save render to (PNG only)")
-        ("no_progress_bar",   po::bool_switch()->default_value(false),                  "Don't show the progress bar when rendering");
+        ("random-seed,r",     po::value<string>()->default_value("ASDF"),               "Seed string for the RNG")
+        ("output-filename,o", po::value<string>()->default_value("render.png"),         "Filename to save render to (PNG only)")
+        ("no-progress-bar",   po::bool_switch()->default_value(false),                  "Don't show the progress bar when rendering");
 
     try {
         po::store(po::parse_command_line(argc, argv, argsDesc), args);
@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Show available scense? (Exit Early)
-    if (args.count("list_scenes")) {
+    if (args.count("list-scenes")) {
         cout << "Available Scenes:" << endl;
         for (const string &s_id: AllSceneIds)
             cout << "  " << s_id << endl;
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Parse the output name, make sure there is at least one character
-    const auto output_filename = args["output_filename"].as<string>();
+    const auto output_filename = args["output-filename"].as<string>();
     if (output_filename.empty()) {
         cerr << "Output filename must have at least one character" << endl;
         return 1;
@@ -72,11 +72,11 @@ int main(int argc, char *argv[]) {
 
     // Get configuration options from command line, `max(1, n)` calls are here to prevent sneaky users from inputing negative values
     const auto scene_id = args["scene"].as<string>();
-    const auto samples_per_pixel = static_cast<uint32_t>(std::max(static_cast<int32_t>(1), args["num_samples"].as<int32_t>()));
+    const auto samples_per_pixel = static_cast<uint32_t>(std::max(static_cast<int32_t>(1), args["num-samples"].as<int32_t>()));
     const auto max_depth = static_cast<uint16_t>(std::max(static_cast<int16_t>(1), args["depth"].as<int16_t>()));
-    const auto num_threads = std::max(args["num_threads"].as<int>(), 1);
-    const auto show_progress = !args["no_progress_bar"].as<bool>();
-    const auto seed_str = args["random_seed"].as<string>();
+    const auto num_threads = std::max(args["num-threads"].as<int>(), 1);
+    const auto show_progress = !args["no-progress-bar"].as<bool>();
+    const auto seed_str = args["random-seed"].as<string>();
 
     // Other vars
     const rreal aspect_ratio = static_cast<rreal>(render_desc.width) / static_cast<rreal>(render_desc.height);
