@@ -42,25 +42,7 @@ public:
         y(y_),
         z(z_)
     { }
-/*
-    explicit Vec3(const Vec3 &other) NOEXCEPT :
-        x(other.x),
-        y(other.y),
-        z(other.z)
-    { }
 
-    inline Vec3 &operator=(const Vec3 &other) NOEXCEPT {
-        // Samsies check?
-        if (this == &other)
-            return *this;
-
-        x = other.x;
-        y = other.y;
-        z = other.z;
-
-        return *this;
-    }
-*/
     // Negation
     inline Vec3 operator-() const NOEXCEPT {
         return Vec3(-x, -y, -z);
