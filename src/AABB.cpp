@@ -10,9 +10,11 @@ AABB::AABB(const Vec3 &a, const Vec3 &b) NOEXCEPT  :
     max(b)
 { }
 
+/*
 AABB::AABB(const AABB &other) NOEXCEPT  :
     AABB(other.min, other.max)
 { }
+*/
 
 AABB AABB::surrounding(const AABB &box0, const AABB &box1) NOEXCEPT  {
     const Vec3 small(
@@ -30,6 +32,7 @@ AABB AABB::surrounding(const AABB &box0, const AABB &box1) NOEXCEPT  {
     return AABB(small, big);
 }
 
+/*
 AABB &AABB::operator=(const AABB &other) NOEXCEPT  {
     // Samsies?
     if (this == &other)
@@ -40,6 +43,7 @@ AABB &AABB::operator=(const AABB &other) NOEXCEPT  {
     max = other.max;
     return *this;
 }
+*/
 
 bool AABB::hit(const Ray &r, rreal tmin, rreal tmax) const NOEXCEPT {
 #ifdef USE_BOOK_AABB_HIT
