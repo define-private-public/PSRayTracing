@@ -6,7 +6,7 @@ Peter Shirley Ray Tracing (in C++ 17)
 
 
 The official place where I do most of the work for this is `over on GitLab <https://gitlab.com/define-private-public/PSRayTracing>`_
-Though I do field questions on the `GitHub mirror <https://gitlab.com/define-private-public/PSRayTracing/>`_
+Though I do field questions on the `GitHub mirror <https://github.com/define-private-public/PSRayTracing/>`_
 To contact me, you can always @ me `on Twitter as @DefPriPub <https://twitter.com/DefPriPub>`_  (`Or my personal website <https://16bpp.net/>`_)
 
 
