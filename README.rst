@@ -35,6 +35,12 @@ have my code reproduce every step, due to many structural changes in critical se
 it would be best to keep book 3 as its own separate thing for a later date.  But on top of that, I
 think there are more points of optimization to talk about for Books 1 & 2.
 
+I've decided to license this implementation under the ``Apache License (2.0)``.  The full text is in the
+file ``LICENSE.txt``.  The only exception to this is ``src/third_party``, as those are externally provided
+projects.  Check those files for their licenses.  Note that the books (and the book code) is under
+``CC0 1.0 Universal``.  If you end up using any of this, a shout out would be appreciated (and telling me
+too).
+
 
 
 ****
