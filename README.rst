@@ -35,6 +35,12 @@ have my code reproduce every step, due to many structural changes in critical se
 it would be best to keep book 3 as its own separate thing for a later date.  But on top of that, I
 think there are more points of optimization to talk about for Books 1 & 2.
 
+I've decided to license this implementation under the ``Apache License (2.0)``.  The full text is in the
+file ``LICENSE.txt``.  The only exception to this is ``src/third_party``, as those are externally provided
+projects.  Check those files for their licenses.  Note that the books (and the book code) is under
+``CC0 1.0 Universal``.  If you end up using any of this, a shout out would be appreciated (and telling me
+too).
+
 
 
 ****
@@ -227,7 +233,7 @@ There were many parts of the code and can be rewritten and moved around with hav
 but computed in a more efficient manner.  I’m finding it a little hard to correctly explain how this works,
 so I think it would be best to go in and look at the code differences.  In some places, I actually had the
 result of an ``if`` body computed right before that ``if``, hoping that the compiler would reorder instructions
-and pack computations together via auto-vectorization.
+and pack computations together via auto-vectorization.  This is what I did in a lot of ``*::hit()`` functions.
 
 Branching (i.e. ``if`` statements for you non-assembly people) can be a real performance killer.  Only do
 branching if you need to for the correctness of an algorithm, or to save time on an expensive computation
@@ -275,9 +281,9 @@ program we express Pi as ``3.1415926535``; that’s an approximation, not the ac
 that, any approximation is fair game to use as long as the viewer has no idea it’s different.
 
 
-======================
-Using BVHNode In a Box
-======================
+================
+BVHNode In a Box
+================
 
 In this ray tracer, the ``Box`` object is actually made up of six others.  Two ``XYRect`` , two ``XZRect`` ,
 and two ``YZRect``.  Using a ``HittableList`` to store them all, and then loop through it for the ``hit()``
@@ -293,9 +299,9 @@ to compute a hit.  This would also have the added benefits of reducing the memor
 object.  I didn’t implement this since it would probably take a significant amount of time and I wanted to move
 onto other parts of the project.  I’ll leave this up as an exercise to anyone who wants to submit a PR.
 
-===========================
-PCG Random & and RNG Object
-===========================
+=========================
+PCG Random & a RNG Object
+=========================
 
 When doing random number generation, you’re not limited to what’s provided out of the box in C++.  As a
 replacement for the Mersenne twister engine from the standard, `PCG <https://www.pcg-random.org>`_ provides a
@@ -407,7 +413,7 @@ bit more of an impact on this project.
 * `Nic Taylor <https://twitter.com/NicTVG>`_ for his ``atan2()`` approximation
 
 * `Roman Wiche (a.k.a. Bromanz) <https://twitter.com/romanwiche>`_ for his Ray-AABB intersection article
-  (and code) 
+  (and code)
 
 * The folks over on Reddit’s C++ community answering my questions (`/r/cpp <https://reddit.com/r/cpp>`_ and
   `/r/cpp_questions <https://reddit.com/r/cpp_questions>`_)
