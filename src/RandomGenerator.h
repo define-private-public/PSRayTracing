@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vec3.h"
+#include "SimplePool.h"
 #include <string>
 #include <random>
 #include <vector>
@@ -13,8 +14,6 @@
 
 
 const std::string DefaultRNGSeed = "ASDF";
-constexpr uint32_t DefaultUnitSpherePoolSize = 1000;
-constexpr uint32_t LargestUnitSpherePoolSize = 100000;   // TODO use a power of 2
 
 /*!
  * This is an RNG where you can plug in different types of distrubtions, generators
@@ -35,23 +34,27 @@ private:
     std::seed_seq _seed;
     RNG _rng;
 
+    SimplePool<Vec3> _unit_sphere_pool;
     // Pool data (for the `in_unit_sphre` function)
-    size_t _next_unit_sphere_vec = 0;           // Which vector we should use next in the pool
-    uint32_t _next_pool_size = 0;               // How big the pool should be on the next allocation step
-    std::vector<Vec3> _unit_sphere_pool;
+//    size_t _next_unit_sphere_vec = 0;           // Which vector we should use next in the pool
+//    uint32_t _next_pool_size = 0;               // How big the pool should be on the next allocation step
+//    std::vector<Vec3> _unit_sphere_pool;
 
 public:
     explicit _GeneralizedRandomGenerator(
         const std::string &rng_seed,
-        const uint32_t initial_unit_sphere_pool_size=DefaultUnitSpherePoolSize
+        const size_t initial_pool_size=DefaultInitialPoolSize,
+        const size_t max_pool_size=DefaultMaxPoolSize
     ) NOEXCEPT :
         _rng_distribution(0, 1),
         _seed(rng_seed.begin(), rng_seed.end()),
         _rng(_seed),
-        _next_pool_size(initial_unit_sphere_pool_size)
-    {
-        _alloc_in_unit_sphere_pool();
-    }
+        _unit_sphere_pool(
+            [&]() { return _gen_in_unit_sphere_vec3(); },
+            initial_pool_size,
+            max_pool_size
+        )
+    { }
 
     inline Type get_real() NOEXCEPT {
         return _rng_distribution(_rng);
@@ -80,6 +83,7 @@ public:
         );
     }
 
+/*
     void _alloc_in_unit_sphere_pool() NOEXCEPT {
         // Clear out the old pool (and realloc)
         _unit_sphere_pool.clear();
@@ -102,14 +106,28 @@ public:
         // For next time
         _next_pool_size = std::min(_next_pool_size * 2, LargestUnitSpherePoolSize);
     }
+    */
+
+    inline Vec3 _gen_in_unit_sphere_vec3() NOEXCEPT {
+        while (true) {
+            Vec3 p = get_vec3(-1, 1);
+            if (p.length_squared() >= 1)
+                continue;
+
+            return p;
+        }
+    }
 
     inline Vec3 get_in_unit_sphere() NOEXCEPT {
+        return _unit_sphere_pool.get_next();
+        /*
         // First make sure we haven't exhausted the pool.  If we have, then realloc
         if (_next_unit_sphere_vec >= _unit_sphere_pool.size())
             _alloc_in_unit_sphere_pool();
 
         // Now return a vector
         return _unit_sphere_pool[_next_unit_sphere_vec++];
+        */
 
 /*
         // BOOK CODE: (loop, super bad...)
