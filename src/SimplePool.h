@@ -5,8 +5,8 @@
 #include <functional>
 #include <iostream>
 
-constexpr size_t DefaultInitialPoolSize = 1000; // TODO should be power of 2
-constexpr size_t DefaultMaxPoolSize = 100000;   // TODO should be power of 2
+constexpr size_t DefaultInitialPoolSize = 4096;
+constexpr size_t DefaultMaxPoolSize = 65536;
 
 
 // TODO document
