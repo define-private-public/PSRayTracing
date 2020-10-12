@@ -35,6 +35,7 @@ private:
     RNG _rng;
 
     SimplePool<Vec3> _unit_sphere_pool;
+    SimplePool<Vec3> _unit_disk_pool;
 
 public:
     explicit _GeneralizedRandomGenerator(
@@ -47,6 +48,11 @@ public:
         _rng(_seed),
         _unit_sphere_pool(
             [&]() { return _gen_in_unit_sphere(); },
+            initial_pool_size,
+            max_pool_size
+        ),
+        _unit_disk_pool(
+            [&]() { return _gen_in_unit_disk(); },
             initial_pool_size,
             max_pool_size
         )
@@ -92,14 +98,7 @@ public:
     inline Vec3 get_in_unit_sphere() NOEXCEPT {
         return _unit_sphere_pool.get_next();
 /*
-        // BOOK CODE: (loop, super bad...)
-        while (true) {
-            Vec3 p = get_vec3(-1, 1);
-            if (p.length_squared() >= 1)
-                continue;
-
-            return p;
-        }
+        return _gen_in_unit_sphere();
 */
 
 /*
@@ -123,8 +122,7 @@ public:
         return (in_unit_sphere.dot(normal) > 0) ? in_unit_sphere : -in_unit_sphere;
     }
 
-    inline Vec3 get_in_unit_disk() NOEXCEPT {
-        // BOOK CODE: (loop, super bad...)
+    inline Vec3 _gen_in_unit_disk() NOEXCEPT {
         while (true) {
             Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
             if (p.length_squared() >= 1)
@@ -132,6 +130,12 @@ public:
 
             return p;
         }
+    }
+
+    inline Vec3 get_in_unit_disk() NOEXCEPT {
+//        return _gen_in_unit_disk();
+
+        return _unit_disk_pool.get_next();
     }
 
     inline Vec3 get_unit_vector() NOEXCEPT {
