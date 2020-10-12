@@ -67,23 +67,6 @@ public:
     }
 
     inline Vec3 get_in_unit_sphere() NOEXCEPT {
-        // TODO find a function to smooth this out (so we don't have to loop!)
-//        constexpr auto magic_num = static_cast<real>(0.57735);       // Ensures that we dont go above or below [-1, 1] for the dot product
-//        return get_vec3(-magic_num, magic_num);
-//        return get_vec3(-1, 1).unit_vector();         // Was bad...  We were guarteened a unit vector,
-
-        // We want something that could be UP TO a unit vector, but not quite
-        // maybe first generate the above,  and if it's length_squared is >1, then make it so that it
-        // isn't?  This introduceds branching, but I think it's better than loop & branching
-
-        // TODO maybe precompute (pool) a bunch of these?
-        //      the issue arrises when the pool is exhausted though...
-
-//        Vec3 p = get_vec3(-1, 1);
-//        if (p.length_squared() >= 1)
-//            return p.one_over();
-//
-//        return p;
 
         // BOOK CODE: (loop, super bad...)
         while (true) {
@@ -93,6 +76,22 @@ public:
 
             return p;
         }
+
+
+/*
+        // This isn't working either, it's coming out more specular than the book code
+        // Generate a vector in spherical coordinates
+        const Type r = get_real(0, 1);
+        const Type theta = get_real(0, Pi);
+        const Type phi = get_real(0, TwoPi);
+
+        // Convert to the cartesian space
+        return Vec3(
+            r * util::sin(theta) * util::cos(phi),
+            r * util::sin(theta) * util::sin(phi),
+            r * util::cos(theta)
+        );
+        */
     }
 
     inline Vec3 get_in_unit_hemisphere(const Vec3 &normal) NOEXCEPT {
@@ -101,20 +100,6 @@ public:
     }
 
     inline Vec3 get_in_unit_disk() NOEXCEPT {
-        // TODO find a function to smooth this out (so we don't have to loop!)
-//        constexpr auto magic_num = static_cast<real>(0.707107);
-//        return Vec3(
-//            get_real(-magic_num, magic_num),
-//            get_real(-magic_num, magic_num),
-//            0
-//        );
-
-//        Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
-//        if (p.length_squared() >= 1)
-//            return p.one_over();
-//
-//        return p;
-
         // BOOK CODE: (loop, super bad...)
         while (true) {
             Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
