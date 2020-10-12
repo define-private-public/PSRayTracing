@@ -46,7 +46,7 @@ public:
         _seed(rng_seed.begin(), rng_seed.end()),
         _rng(_seed),
         _unit_sphere_pool(
-            [&]() { return _gen_in_unit_sphere_vec3(); },
+            [&]() { return _gen_in_unit_sphere(); },
             initial_pool_size,
             max_pool_size
         )
@@ -79,7 +79,7 @@ public:
         );
     }
 
-    inline Vec3 _gen_in_unit_sphere_vec3() NOEXCEPT {
+    inline Vec3 _gen_in_unit_sphere() NOEXCEPT {
         while (true) {
             Vec3 p = get_vec3(-1, 1);
             if (p.length_squared() >= 1)
