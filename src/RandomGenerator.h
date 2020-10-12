@@ -35,10 +35,6 @@ private:
     RNG _rng;
 
     SimplePool<Vec3> _unit_sphere_pool;
-    // Pool data (for the `in_unit_sphre` function)
-//    size_t _next_unit_sphere_vec = 0;           // Which vector we should use next in the pool
-//    uint32_t _next_pool_size = 0;               // How big the pool should be on the next allocation step
-//    std::vector<Vec3> _unit_sphere_pool;
 
 public:
     explicit _GeneralizedRandomGenerator(
@@ -83,31 +79,6 @@ public:
         );
     }
 
-/*
-    void _alloc_in_unit_sphere_pool() NOEXCEPT {
-        // Clear out the old pool (and realloc)
-        _unit_sphere_pool.clear();
-        _unit_sphere_pool.reserve(_next_pool_size);
-
-        for (uint32_t i = 0; i < _next_pool_size; i++){
-            // Loop until we find a vector in the unit sphere
-            // Since the distributor we use should be uniform, we'll eventualy get one that fall into this category, though it's slow
-            Vec3 p = get_vec3(-1, 1);
-            while (p.length_squared() >= 1)
-                p = get_vec3(-1, 1);
-
-            // Store it
-            _unit_sphere_pool.emplace_back(p);
-        }
-
-        // Reset the cursor
-        _next_unit_sphere_vec = 0;
-
-        // For next time
-        _next_pool_size = std::min(_next_pool_size * 2, LargestUnitSpherePoolSize);
-    }
-    */
-
     inline Vec3 _gen_in_unit_sphere_vec3() NOEXCEPT {
         while (true) {
             Vec3 p = get_vec3(-1, 1);
@@ -120,15 +91,6 @@ public:
 
     inline Vec3 get_in_unit_sphere() NOEXCEPT {
         return _unit_sphere_pool.get_next();
-        /*
-        // First make sure we haven't exhausted the pool.  If we have, then realloc
-        if (_next_unit_sphere_vec >= _unit_sphere_pool.size())
-            _alloc_in_unit_sphere_pool();
-
-        // Now return a vector
-        return _unit_sphere_pool[_next_unit_sphere_vec++];
-        */
-
 /*
         // BOOK CODE: (loop, super bad...)
         while (true) {
@@ -139,7 +101,6 @@ public:
             return p;
         }
 */
-
 
 /*
         // This isn't working either, it's coming out more specular than the book code
