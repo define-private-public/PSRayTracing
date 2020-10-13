@@ -47,12 +47,12 @@ public:
         _seed(rng_seed.begin(), rng_seed.end()),
         _rng(_seed),
         _unit_sphere_pool(
-            [&]() { return _gen_in_unit_sphere(); },
+            [&]() { return _mk_in_unit_sphere(); },
             initial_pool_size,
             max_pool_size
         ),
         _unit_disk_pool(
-            [&]() { return _gen_in_unit_disk(); },
+            [&]() { return _mk_in_unit_disk(); },
             initial_pool_size,
             max_pool_size
         )
@@ -85,21 +85,9 @@ public:
         );
     }
 
-    inline Vec3 _gen_in_unit_sphere() NOEXCEPT {
-        while (true) {
-            Vec3 p = get_vec3(-1, 1);
-            if (p.length_squared() >= 1)
-                continue;
-
-            return p;
-        }
-    }
-
     inline Vec3 get_in_unit_sphere() NOEXCEPT {
+        return _mk_in_unit_sphere();
         return _unit_sphere_pool.get_next();
-/*
-        return _gen_in_unit_sphere();
-*/
 
 /*
         // This isn't working either, it's coming out more specular than the book code
@@ -122,19 +110,8 @@ public:
         return (in_unit_sphere.dot(normal) > 0) ? in_unit_sphere : -in_unit_sphere;
     }
 
-    inline Vec3 _gen_in_unit_disk() NOEXCEPT {
-        while (true) {
-            Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
-            if (p.length_squared() >= 1)
-                continue;
-
-            return p;
-        }
-    }
-
     inline Vec3 get_in_unit_disk() NOEXCEPT {
 //        return _gen_in_unit_disk();
-
         return _unit_disk_pool.get_next();
     }
 
@@ -157,6 +134,27 @@ public:
             s = _RandomStringChars[static_cast<size_t>(get_int(0, max))];
 
         return str;
+    }
+
+private:
+    inline Vec3 _mk_in_unit_sphere() NOEXCEPT {
+        while (true) {
+            Vec3 p = get_vec3(-1, 1);
+            if (p.length_squared() >= 1)
+                continue;
+
+            return p;
+        }
+    }
+
+    inline Vec3 _mk_in_unit_disk() NOEXCEPT {
+        while (true) {
+            Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
+            if (p.length_squared() >= 1)
+                continue;
+
+            return p;
+        }
     }
 };
 
