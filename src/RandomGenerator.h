@@ -34,18 +34,21 @@ private:
     std::seed_seq _seed;
     RNG _rng;
 
+    const bool _use_pool;
     SimplePool<Vec3> _unit_sphere_pool;
     SimplePool<Vec3> _unit_disk_pool;
 
 public:
     explicit _GeneralizedRandomGenerator(
         const std::string &rng_seed,
+        const bool use_pooling=true,
         const size_t initial_pool_size=DefaultInitialPoolSize,
         const size_t max_pool_size=DefaultMaxPoolSize
     ) NOEXCEPT :
         _rng_distribution(0, 1),
         _seed(rng_seed.begin(), rng_seed.end()),
         _rng(_seed),
+        _use_pool(use_pooling),
         _unit_sphere_pool(
             [&]() { return _mk_in_unit_sphere(); },
             initial_pool_size,
@@ -86,8 +89,7 @@ public:
     }
 
     inline Vec3 get_in_unit_sphere() NOEXCEPT {
-        return _mk_in_unit_sphere();
-        return _unit_sphere_pool.get_next();
+        return (_use_pool ? _unit_sphere_pool.get_next() : _mk_in_unit_sphere());
 
 /*
         // This isn't working either, it's coming out more specular than the book code
@@ -111,8 +113,7 @@ public:
     }
 
     inline Vec3 get_in_unit_disk() NOEXCEPT {
-//        return _gen_in_unit_disk();
-        return _unit_disk_pool.get_next();
+        return (_use_pool ? _unit_disk_pool.get_next() : _mk_in_unit_disk());
     }
 
     inline Vec3 get_unit_vector() NOEXCEPT {
