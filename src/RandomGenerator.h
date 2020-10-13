@@ -90,6 +90,7 @@ public:
 
     inline Vec3 get_in_unit_sphere() NOEXCEPT {
         return (_use_pool ? _unit_sphere_pool.get_next() : _mk_in_unit_sphere());
+//        return _mk_in_unit_sphere();
 
 /*
         // This isn't working either, it's coming out more specular than the book code
@@ -114,6 +115,7 @@ public:
 
     inline Vec3 get_in_unit_disk() NOEXCEPT {
         return (_use_pool ? _unit_disk_pool.get_next() : _mk_in_unit_disk());
+//        return _mk_in_unit_disk();
     }
 
     inline Vec3 get_unit_vector() NOEXCEPT {
@@ -174,7 +176,12 @@ private:
  */
 class RandomGenerator : public _GeneralizedRandomGenerator<std::uniform_real_distribution, rreal, RNG_ENGINE> {
 public:
-    explicit RandomGenerator(const std::string &rng_seed) :
-        _GeneralizedRandomGenerator(rng_seed)
+    explicit RandomGenerator(
+        const std::string &rng_seed,
+        const bool use_pooling=true,
+        const size_t initial_pool_size=DefaultInitialPoolSize,
+        const size_t max_pool_size=DefaultMaxPoolSize
+        ) :
+        _GeneralizedRandomGenerator(rng_seed, use_pooling, initial_pool_size, max_pool_size)
     { }
 };

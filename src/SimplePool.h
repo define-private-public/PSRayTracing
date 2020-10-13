@@ -6,7 +6,7 @@
 #include <iostream>
 
 constexpr size_t DefaultInitialPoolSize = 4096;
-constexpr size_t DefaultMaxPoolSize = 65536;
+constexpr size_t DefaultMaxPoolSize = 65536 * 2 * 2 * 2 * 2;
 
 
 // TODO document

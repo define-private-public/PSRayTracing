@@ -68,7 +68,7 @@ SceneDescriptor _bouncing_spheres_common(const rreal aspect_ratio, const shared_
 
     // The RNG that's used to setup the scene
     // We don't use `rreal` here since we want the generated scene to be the same regardless of `rreal`'s precision
-    _GeneralizedRandomGenerator<uniform_real_distribution, double, mt19937> rng(DefaultRNGSeed);
+    _GeneralizedRandomGenerator<uniform_real_distribution, double, mt19937> rng(DefaultRNGSeed, false);
 
     for (int a = -11; a < 11; a++) {
         for (int b = -11; b < 11; b++) {
@@ -115,7 +115,7 @@ SceneDescriptor _bouncing_spheres_common(const rreal aspect_ratio, const shared_
     world.add(make_shared<Sphere>(Vec3(4, 1, 0), 1, material3));
 
     if (use_bvh_node) {
-        RandomGenerator bvhRNG(DefaultRNGSeed);
+        RandomGenerator bvhRNG(DefaultRNGSeed, false);
         sd.scene = make_shared<BVHNode>(bvhRNG, world, 0, 1);
     } else
         sd.scene = make_shared<HittableList>(world);
@@ -170,7 +170,7 @@ SceneDescriptor perlin_sphere(const rreal aspect_ratio, const PerlinReal::Interp
     if (interp_type == PerlinReal::InterpolationType::TriLinearHermiteCubic)
         noise_scale = 4;                    // Noise was bumped up in scale later on
 
-    RandomGenerator perlin_rng(DefaultRNGSeed);
+    RandomGenerator perlin_rng(DefaultRNGSeed, false);
 
     const auto noise_tex = make_shared<NoiseTexture>(make_shared<PerlinReal>(perlin_rng, interp_type), noise_scale);
     return _perlin_sphere_common(aspect_ratio, noise_tex);
@@ -179,7 +179,7 @@ SceneDescriptor perlin_sphere(const rreal aspect_ratio, const PerlinReal::Interp
 SceneDescriptor perlin_sphere(const rreal aspect_ratio, const NoiseTexture::NoiseStyle noise_style) {
     // There are kind of a few perlin noise scenes, this one uses the `PerlinVec` varaiant, which is the final one of the book
 
-    RandomGenerator perlin_rng(DefaultRNGSeed);
+    RandomGenerator perlin_rng(DefaultRNGSeed, false);
 
     auto noise_tex = make_shared<NoiseTexture>(make_shared<Perlin>(perlin_rng), 4);
     noise_tex->style = noise_style;
@@ -200,7 +200,7 @@ SceneDescriptor earth(const rreal aspect_ratio) {
 }
 
 SceneDescriptor simple_light(const rreal aspect_ratio, const bool overhead_sphere_light) {
-    RandomGenerator perlin_rng(DefaultRNGSeed);
+    RandomGenerator perlin_rng(DefaultRNGSeed, false);
 
     // The world (and objects)
     const auto noise_tex = make_shared<NoiseTexture>(make_shared<Perlin>(perlin_rng), 4);
@@ -286,10 +286,10 @@ SceneDescriptor cornell_box(const rreal aspect_ratio, const CornellBoxConfigurat
 SceneDescriptor final_scene(const rreal aspect_ratio) {
     // The RNG that's used to setup the scene
     // We don't use `rreal` here since we want the generated scene to be the same regardless of `rreal`'s precision
-    _GeneralizedRandomGenerator<uniform_real_distribution, double, mt19937> scene_rng(DefaultRNGSeed);
+    _GeneralizedRandomGenerator<uniform_real_distribution, double, mt19937> scene_rng(DefaultRNGSeed, false);
 
-    // But we also need an RNG for other construction (e.g. BVHNode)
-    RandomGenerator req_rng(DefaultRNGSeed);
+    // But we also need an RNG for Box construction and the BVH node (it's required!)
+    RandomGenerator req_rng(DefaultRNGSeed, false);
 
     HittableList objects;
 

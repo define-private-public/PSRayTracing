@@ -228,7 +228,7 @@ SceneDescriptor final_scene(const rreal aspect_ratio) {
 
     // The RNG that's used to setup the scene
     // We don't use `rreal` here since we want the generated scene to be the same regardless of `rreal`'s precision
-    _GeneralizedRandomGenerator<uniform_real_distribution, double, mt19937> rng(DefaultRNGSeed);
+    _GeneralizedRandomGenerator<uniform_real_distribution, double, mt19937> rng(DefaultRNGSeed, false);
 
     for (int a = -11; a < 11; a++) {
         for (int b = -11; b < 11; b++) {
