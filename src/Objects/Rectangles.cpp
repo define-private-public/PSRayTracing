@@ -127,6 +127,7 @@ bool XZRect::hit(
     const rreal x = r.origin.x + (t * r.direction.x);
     const rreal z = r.origin.z + (t * r.direction.z);
 
+    // TODO [performance] would it be faster to compute this result after the branch?
     const rreal u = (x - _x0) / (_x1 - _x0);
     const rreal v = (z - _z0) / (_z1 - _z0);
     const Vec3 p = r.at(t);
@@ -204,6 +205,7 @@ bool YZRect::hit(
     const rreal y = r.origin.y + (t * r.direction.y);
     const rreal z = r.origin.z + (t * r.direction.z);
 
+    // TODO [performance] would it be faster to compute this result after the branch?
     const rreal u = (y - _y0) / (_y1 - _y0);
     const rreal v = (z - _z0) / (_z1 - _z0);
     const Vec3 p = r.at(t);

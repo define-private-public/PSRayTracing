@@ -12,16 +12,18 @@ private:
     // Data
     Vec3 _box_min = Vec3(0);
     Vec3 _box_max = Vec3(0);
+
+#ifdef USE_BOOK_BOX
+    // The book's implementation uses a `HittableList` to store objects
     HittableList _sides{};
-
-#ifndef USE_BOOK_BOX_HEIARCHY
-    // It's slightly more optimized to use a BVH node in the `box` instead of a hittable list
-    std::shared_ptr<BVHNode> _heiarchy;
-#endif
-
+#else
+    // In out implementation, we need to store an AABB and the material pointer ourselves
+    AABB _aabb;
+    std::shared_ptr<IMaterial> _mat;
+#endif // USE_BOOK_BOX
 
 public:
-    explicit Box(RandomGenerator &rng, const Vec3 &point_min, const Vec3 &point_max, const std::shared_ptr<IMaterial> &mat) NOEXCEPT;
+    explicit Box(const Vec3 &point_min, const Vec3 &point_max, const std::shared_ptr<IMaterial> &mat) NOEXCEPT;
 
     virtual bool hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT override;
     virtual bool bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT override;
