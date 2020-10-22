@@ -30,14 +30,14 @@ public:
     };
 
 public:
-    explicit Vec3() NOEXCEPT = default;
+    explicit constexpr Vec3() NOEXCEPT = default;
 
     // Create a vector w/ the same value for each component
-    explicit Vec3(const rreal value) NOEXCEPT :
+    explicit constexpr Vec3(const rreal value) NOEXCEPT :
         Vec3(value, value, value)
     { }
 
-    explicit Vec3(const rreal x_, const rreal y_, const rreal z_) NOEXCEPT :
+    explicit constexpr Vec3(const rreal x_, const rreal y_, const rreal z_) NOEXCEPT :
         x(x_),
         y(y_),
         z(z_)
