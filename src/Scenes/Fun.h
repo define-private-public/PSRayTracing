@@ -13,5 +13,8 @@ namespace Scenes {
         // One of the famous images from Turner Whitted's "An improved illumination model for shaded display" (1980)
         // With a mirror sphere, a glass one, and the red/yell checkboard floor
         SceneDescriptor whitted_1980(const rreal aspect_ratio);
+
+        // A cornel box filled with glass cubes
+        SceneDescriptor cornell_glass_boxes(const rreal aspect_ratio);
     }
 }
