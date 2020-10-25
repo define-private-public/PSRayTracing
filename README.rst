@@ -281,23 +281,47 @@ program we express Pi as ``3.1415926535``; that’s an approximation, not the ac
 that, any approximation is fair game to use as long as the viewer has no idea it’s different.
 
 
-================
-BVHNode In a Box
-================
+=====================
+Building a Better Box
+=====================
 
-In this ray tracer, the ``Box`` object is actually made up of six others.  Two ``XYRect`` , two ``XZRect`` ,
+In this ray tracer, the ``Box`` object is actually made up of six components.  Two ``XYRect``, two ``XZRect``,
 and two ``YZRect``.  Using a ``HittableList`` to store them all, and then loop through it for the ``hit()``
-detection.
+detection.  While this is pretty simple, it can be done better.
 
-Now, in a prior chapter, we actually made a ``BVHNode`` object.  Having ``Box` actually use that to
-store the rectangles (and perform the ``hit()``) was much faster.  The only complication from this is now
-construction of a ``Box`` object requires an RNG, but it’s really a small price to pay.
+Take for example this stress test.  It is a 5x5x5 matrix of glass cubes in a Cornell Box.  Using the book's
+method on my machine,  it took around 8 minutes and 28 seconds (528 sec); 600x600 with 100 samples per pixel
+(single threaded).  Its scene id is ``fun::cornell_glass_boxes``
 
-To push this even further, it should be possible to take out all of the ``hit()`` code for the rectangles, and
-then put it inside of ``Box::hit()`` itself, then do some code rewriting to further reduce the time it takes
-to compute a hit.  This would also have the added benefits of reducing the memory requirements for the ``Box``
-object.  I didn’t implement this since it would probably take a significant amount of time and I wanted to move
-onto other parts of the project.  I’ll leave this up as an exercise to anyone who wants to submit a PR.
+|cornell_glass_boxes|
+
+---------------------------
+Using BVHNode (2nd Fastest)
+---------------------------
+
+Now, in a prior chapter, we actually made a ``BVHNode`` object.  Having ``Box`` actually use that to store the
+rectangles (and perform the ``hit()``) was much faster.  The only complication from this is now construction of
+a ``Box`` object requires an RNG, but it’s really a small price to pay.
+
+With the use of the ``BVHNode``, this dropped down to 6 minutes and 5 seconds (365 sec).  That's already a speedup
+of ~30%.
+
+  I've removed this implementation of ``Box`` from the current revision because the method mentioned below is more
+  performant.  If you wish to see this one though, checkout commit tagged ``r1``.
+
+-------------------------------------------
+Writing a Proper ``hit()`` Method (Fastest)
+-------------------------------------------
+
+To push this even further, it's better to give the Box object its own ``hit()`` implementation, rather than relying
+on that of the ``*Rect`` children.  To do this we simply take the code for each individual ``*Rect::hit()`` function,
+place it in ``Box::hit()``, and then rewrite it to take better advantage of SIMD instructions.  This way the ray-side
+hit intersection is being computed in parallel.  And since we don't need to store a list of pointers to more objects,
+this also helps us trim down on memory usage.
+
+This reduced the render time of the "Cornell Glass Boxes" down to 5 minutes and 34 seconds (334 sec).  That's an extra
+~10% upon the BVHNode method, but ~40% on the book's method!
+
 
 =========================
 PCG Random & a RNG Object
@@ -433,6 +457,7 @@ bit more of an impact on this project.
 .. |asin_ground_truth| image:: https://gitlab.com/define-private-public/PSRayTracing/-/raw/master/images/asin_ground_truth.png
 .. |asin_approx_no_ec| image:: https://gitlab.com/define-private-public/PSRayTracing/-/raw/master/images/asin_approx_no_ec.png
 .. |asin_approx_with_ec| image:: https://gitlab.com/define-private-public/PSRayTracing/-/raw/master/images/asin_approx_with_ec.png
+.. |cornell_glass_boxes| image:: https://gitlab.com/define-private-public/PSRayTracing/-/raw/master/images/cornell_glass_boxes.png
 
 .. _`Ray Tracing mini-books`: https://raytracing.github.io
 .. _`an exercise to learn Nim`: https://16bpp.net/blog/post/ray-tracing-book-series-review-nim-first-impressions/
