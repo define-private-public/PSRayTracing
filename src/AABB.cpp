@@ -10,12 +10,6 @@ AABB::AABB(const Vec3 &a, const Vec3 &b) NOEXCEPT  :
     max(b)
 { }
 
-/*
-AABB::AABB(const AABB &other) NOEXCEPT  :
-    AABB(other.min, other.max)
-{ }
-*/
-
 AABB AABB::surrounding(const AABB &box0, const AABB &box1) NOEXCEPT  {
     const Vec3 small(
         std::min(box0.min.x, box1.min.x),
@@ -31,19 +25,6 @@ AABB AABB::surrounding(const AABB &box0, const AABB &box1) NOEXCEPT  {
 
     return AABB(small, big);
 }
-
-/*
-AABB &AABB::operator=(const AABB &other) NOEXCEPT  {
-    // Samsies?
-    if (this == &other)
-        return *this;
-
-    // Assing
-    min = other.min;
-    max = other.max;
-    return *this;
-}
-*/
 
 bool AABB::hit(const Ray &r, rreal tmin, rreal tmax) const NOEXCEPT {
 #ifdef USE_BOOK_AABB_HIT
@@ -88,7 +69,7 @@ bool AABB::hit(const Ray &r, rreal tmin, rreal tmax) const NOEXCEPT {
     return true;
 #else
     // This method is a bit faster because of modern CPUs (vector instructions)
-    // and newer compilers (doining auto-vectorization)
+    // and newer compilers (doing auto-vectorization)
 
     // Adapted from: https://medium.com/@bromanz/another-view-on-the-classic-ray-aabb-intersection-algorithm-for-bvh-traversal-41125138b525
     const rreal t0[3] = {
