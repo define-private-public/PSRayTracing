@@ -1,5 +1,6 @@
 #include "Scenes/Fun.h"
 #include <memory>
+#include "RandomGenerator.h"
 #include "Materials/Lambertian.h"
 #include "Materials/SurfaceNormal.h"
 #include "Materials/Metal.h"
@@ -9,10 +10,16 @@
 #include "Objects/Sphere.h"
 #include "Objects/HittableList.h"
 #include "Objects/Rectangles.h"
+#include "Objects/Box.h"
 #include "Objects/BVHNode.h"
+#include "Objects/Transform/RotateY.h"
+#include "Objects/Transform/Translate.h"
 #include "Cameras/Camera.h"
 
 using namespace std;
+
+
+constexpr rreal glass_refractive_index = 1.5;
 
 
 namespace Scenes { namespace Fun {
@@ -21,7 +28,6 @@ SceneDescriptor three_spheres(const rreal aspect_ratio) {
     const Vec3 ground_yellow(static_cast<rreal>(0.8), static_cast<rreal>(0.8), static_cast<rreal>(0));
     const Vec3 gold(static_cast<rreal>(0.8), static_cast<rreal>(0.6), static_cast<rreal>(0.2));
     const Vec3 blue(static_cast<rreal>(0.1), static_cast<rreal>(0.2), 2);
-    const rreal glass_refractive_index = 1.5;
     const auto ground_mat = make_shared<Lambertian>(ground_yellow);
     const auto blue_mat   = make_shared<Lambertian>(blue);
     const auto left_mat   = make_shared<Dielectric>(glass_refractive_index);
@@ -115,6 +121,65 @@ SceneDescriptor whitted_1980(const rreal aspect_ratio) {
     sd.background = sky;
     sd.scene = make_shared<HittableList>(world);
     sd.cameras.push_back(cam);
+
+    return sd;
+}
+
+SceneDescriptor cornell_glass_boxes(const rreal aspect_ratio) {
+    constexpr rreal light_intensity = 5;
+
+    const auto red   = make_shared<Lambertian>(Vec3(static_cast<rreal>(0.65), static_cast<rreal>(0.05), static_cast<rreal>(0.05)));
+    const auto white = make_shared<Lambertian>(Vec3(static_cast<rreal>(0.73)));
+    const auto green = make_shared<Lambertian>(Vec3(static_cast<rreal>(0.12), static_cast<rreal>(0.45), static_cast<rreal>(0.15)));
+    const auto light = make_shared<DiffuseLight>(Vec3(static_cast<rreal>(light_intensity)));
+    const auto glass = make_shared<Dielectric>(glass_refractive_index);
+
+    // The walls (and light)
+    HittableList world;
+    world.add(make_shared<YZRect>(  0, 555,   0, 555, 555, green));     // Left
+    world.add(make_shared<YZRect>(  0, 555,   0, 555,   0, red));       // Right
+    world.add(make_shared<XZRect>(150, 410, 150, 400,   5, light));
+    world.add(make_shared<XZRect>(  0, 555,   0, 555,   0, white));     // Floor
+    world.add(make_shared<XZRect>(  0, 555,   0, 555, 555, white));     // Roof
+    world.add(make_shared<XYRect>(  0, 555,   0, 555, 555, white));     // Back
+
+    constexpr int cube_depth = 5;           // Makes NxN cubes
+    constexpr rreal box_size = 50;
+    constexpr rreal box_spacing = 50;
+    constexpr rreal box_offset = 45;
+
+    // Make the NxN cubs
+    for (int z = 0; z < cube_depth; z++) {
+        for (int y = 0; y < cube_depth; y++) {
+            for (int x = 0; x < cube_depth; x++) {
+                // Figure out a location and orientation
+                const Vec3 loc(
+                    box_offset + ((box_size + box_spacing) * x),
+                    box_offset + ((box_size + box_spacing) * y),
+                    -42.5      + ((box_size + box_spacing) * z)
+                );
+                const rreal rot = (23 * x) + (13 * y) + (3 * z);
+
+                // Add it in
+                shared_ptr<IHittable> box = make_shared<Box>(Vec3(0), Vec3(box_size), glass);
+                box = make_shared<RotateY>(box, rot);
+                box = make_shared<Translate>(box, loc);
+                world.add(box);
+            }
+        }
+    }
+
+    RandomGenerator rng(DefaultRNGSeed);
+    SceneDescriptor sd{};
+    sd.scene = make_shared<BVHNode>(rng, world, 0, 0);
+    sd.background = 0.8 * sky_blue;
+
+    const Vec3 look_from(278, 278, -800);
+    const Vec3 look_at(278, 278, 0);
+    const Vec3 v_up(0, 1, 0);
+    const rreal dist_to_focus = (look_from - look_at).length();
+    const rreal aperture = 0;
+    sd.cameras.push_back(make_shared<Camera>(look_from, look_at, v_up, 40, aspect_ratio, aperture, dist_to_focus));
 
     return sd;
 }

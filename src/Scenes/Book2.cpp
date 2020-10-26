@@ -221,8 +221,6 @@ SceneDescriptor simple_light(const rreal aspect_ratio, const bool overhead_spher
 }
 
 SceneDescriptor cornell_box(const rreal aspect_ratio, const CornellBoxConfiguration config) {
-    RandomGenerator box_rng(DefaultRNGSeed);
-
     const rreal light_intensity = (config == CornellBoxConfiguration::TwoSmokeBoxes) ? 7 : 15;
 
     const auto red = make_shared<Lambertian>(Vec3(static_cast<rreal>(0.65), static_cast<rreal>(0.05), static_cast<rreal>(0.05)));
@@ -243,14 +241,14 @@ SceneDescriptor cornell_box(const rreal aspect_ratio, const CornellBoxConfigurat
     world.add(make_shared<XYRect>(  0, 555,   0, 555, 555, white));     // Back
 
     if (config == CornellBoxConfiguration::TwoBoxes) {
-        world.add(make_shared<Box>(box_rng, Vec3(130, 0,  64), Vec3(295, 165, 240), white));     // Left box
-        world.add(make_shared<Box>(box_rng, Vec3(265, 0, 295), Vec3(430, 330, 460), white));     // Right box
+        world.add(make_shared<Box>(Vec3(130, 0,  64), Vec3(295, 165, 240), white));     // Left box
+        world.add(make_shared<Box>(Vec3(265, 0, 295), Vec3(430, 330, 460), white));     // Right box
     } else if ((config == CornellBoxConfiguration::TwoRotatedBoxes) || (config == CornellBoxConfiguration::TwoSmokeBoxes)) {
-        shared_ptr<IHittable> left_box = make_shared<Box>(box_rng, Vec3(0), Vec3(165, 330, 165), white);
+        shared_ptr<IHittable> left_box = make_shared<Box>(Vec3(0), Vec3(165, 330, 165), white);
         left_box = make_shared<RotateY>(left_box, 15);
         left_box = make_shared<Translate>(left_box, Vec3(265, 0, 295));
 
-        shared_ptr<IHittable> right_box = make_shared<Box>(box_rng, Vec3(0), Vec3(165), white);
+        shared_ptr<IHittable> right_box = make_shared<Box>(Vec3(0), Vec3(165), white);
         right_box = make_shared<RotateY>(right_box, -18);
         right_box = make_shared<Translate>(right_box, Vec3(130, 0, 65));
 
@@ -281,7 +279,7 @@ SceneDescriptor final_scene(const rreal aspect_ratio) {
     // We don't use `rreal` here since we want the generated scene to be the same regardless of `rreal`'s precision
     _GeneralizedRandomGenerator<uniform_real_distribution, double, mt19937> scene_rng(DefaultRNGSeed);
 
-    // But we also need an RNG for Box construction and the BVH node (it's required!)
+    // But we also need an RNG for other construction (e.g. BVHNode)
     RandomGenerator req_rng(DefaultRNGSeed);
 
     HittableList objects;
@@ -305,7 +303,7 @@ SceneDescriptor final_scene(const rreal aspect_ratio) {
             const rreal y1 = scene_rng.get_real(1, 101);
             const rreal z1 = z0 + w;
 
-            boxes1.add(make_shared<Box>(req_rng, Vec3(x0, y0, z0), Vec3(x1, y1, z1), ground));
+            boxes1.add(make_shared<Box>(Vec3(x0, y0, z0), Vec3(x1, y1, z1), ground));
         }
     }
 
