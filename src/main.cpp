@@ -20,14 +20,15 @@ int main(int argc, char *argv[]) {
     argsDesc.add_options()
         ("help,h",                                                                      "Help screen (this message)")
         ("list-scenes",                                                                 "List all of the available scenes to render")
-        ("scene",             po::value<string>()->default_value(Book2_FinalScene),     "Scene to render")
-        ("size,s",            po::value<string>()->default_value("960x540"),            "Render size")
-        ("num-samples,n",     po::value<int32_t>()->default_value(10),                  "Samples per pixel")
-        ("num-threads,j",     po::value<int>()->default_value(1),                       "How many threads to render with")
-        ("depth,d",           po::value<int16_t>()->default_value(50),                  "Maximum ray bounce depth")
-        ("random-seed,r",     po::value<string>()->default_value("ASDF"),               "Seed string for the RNG")
-        ("output-filename,o", po::value<string>()->default_value("render.png"),         "Filename to save render to (PNG only)")
-        ("no-progress-bar",   po::bool_switch()->default_value(false),                  "Don't show the progress bar when rendering");
+        ("scene",              po::value<string>()->default_value(Book2_FinalScene),     "Scene to render")
+        ("size,s",             po::value<string>()->default_value("960x540"),            "Render size")
+        ("num-samples,n",      po::value<int32_t>()->default_value(10),                  "Samples per pixel")
+        ("num-threads,j",      po::value<int>()->default_value(1),                       "How many threads to render with")
+        ("depth,d",            po::value<int16_t>()->default_value(50),                  "Maximum ray bounce depth")
+        ("random-seed,r",      po::value<string>()->default_value("ASDF"),               "Seed string for the RNG")
+        ("output-filename,o",  po::value<string>()->default_value("render.png"),         "Filename to save render to (PNG only)")
+        ("no-progress-bar",    po::bool_switch()->default_value(false),                  "Don't show the progress bar when rendering")
+        ("no-copy-per-thread", po::bool_switch()->default_value(false),                  "Don't make a copy of scene per thread");
 
     try {
         po::store(po::parse_command_line(argc, argv, argsDesc), args);
@@ -75,8 +76,19 @@ int main(int argc, char *argv[]) {
     const auto samples_per_pixel = static_cast<uint32_t>(std::max(static_cast<int32_t>(1), args["num-samples"].as<int32_t>()));
     const auto max_depth = static_cast<uint16_t>(std::max(static_cast<int16_t>(1), args["depth"].as<int16_t>()));
     const auto num_threads = std::max(args["num-threads"].as<int>(), 1);
-    const auto show_progress = !args["no-progress-bar"].as<bool>();
     const auto seed_str = args["random-seed"].as<string>();
+    const auto show_progress = !args["no-progress-bar"].as<bool>();
+    const auto deep_copy_per_thread = !args["no-copy-per-thread"].as<bool>();
+
+    // If we use the book's perlin implementation, but also use `copy-per-thread`, errors could happen
+#ifdef USE_BOOK_PERLIN
+    if (deep_copy_per_thread) {
+        cout << "[!! WARNING]  This was compiled to use the Book's method for Perlin noise." << endl
+             << "              having `copy-per-thread` enabled may cause segfaults when using" << endl
+             << "              Perlin noise.  Please either disable this flag or re-compile with" << endl
+             << "              `USE_BOOK_PERLIN=OFF`" << endl;
+    }
+#endif
 
     // Other vars
     const rreal aspect_ratio = static_cast<rreal>(render_desc.width) / static_cast<rreal>(render_desc.height);
@@ -97,6 +109,7 @@ int main(int argc, char *argv[]) {
     cout << "Samples per pixel: " << samples_per_pixel << endl;
     cout << "Max number of ray bounces: " << max_depth << endl;
     cout << "Number of render threads: " << num_threads << endl;
+    cout << "  Copy per thread: " << (deep_copy_per_thread ? "on" : "off")<< endl;
     cout << "Saving to: " << output_filename << endl;
     cout << "Seed: `" << seed_str << "`" << endl;
 
@@ -111,6 +124,7 @@ int main(int argc, char *argv[]) {
     r_ctx.background = scene_desc.background;
     r_ctx.width = render_desc.width;
     r_ctx.height = render_desc.height;
+    r_ctx.deep_copy_per_thread = deep_copy_per_thread;
 
     // Create the thread pool (and renderer)
     RenderThreadPool pool(r_ctx, static_cast<uint16_t>(num_threads));
