@@ -101,28 +101,20 @@ public:
     }
 
     inline Vec3 get_in_unit_disk() NOEXCEPT {
-        // TODO find a function to smooth this out (so we don't have to loop!)
-//        constexpr auto magic_num = static_cast<real>(0.707107);
-//        return Vec3(
-//            get_real(-magic_num, magic_num),
-//            get_real(-magic_num, magic_num),
-//            0
-//        );
+        //// BOOK CODE: (loop, super bad...)
+        //while (true) {
+        //    Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
+        //    if (p.length_squared() >= 1)
+        //        continue;
 
-//        Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
-//        if (p.length_squared() >= 1)
-//            return p.one_over();
-//
-//        return p;
+        //    return p;
+        //}
 
-        // BOOK CODE: (loop, super bad...)
-        while (true) {
-            Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
-            if (p.length_squared() >= 1)
-                continue;
+        const rreal x = get_real(-1, 1);
+        const rreal y_range = util::sqrt(1 - (x * x));
+        const rreal y = get_real(-y_range, y_range);
 
-            return p;
-        }
+        return Vec3(x, y, 0);
     }
 
     inline Vec3 get_unit_vector() NOEXCEPT {
