@@ -53,10 +53,10 @@ SceneDescriptor three_spheres(const rreal aspect_ratio) {
 
     const auto cam = make_shared<Camera>(look_from, look_at, v_up, 25, aspect_ratio, 0.5, dist_to_focus);
 
+    RandomGenerator rng(DefaultRNGSeed);
     SceneDescriptor sd;
     sd.background = sky_blue;
-    // TODO [bug] putting this in a BVH node changes how the scene is rendered
-    sd.scene = make_shared<HittableList>(world);//make_shared<BVHNode>(world, 0, 0);
+    sd.scene = make_shared<BVHNode>(rng, world, 0, 0);
     sd.cameras.push_back(cam);
 
     return sd;

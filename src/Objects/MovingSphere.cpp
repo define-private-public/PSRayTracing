@@ -99,7 +99,7 @@ bool MovingSphere::hit(
 }
 
 bool MovingSphere::bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT {
-    const Vec3 r(_radius);
+    const Vec3 r(abs(_radius));
     const Vec3 c0 = center(t0);
     const Vec3 c1 = center(t1);
 

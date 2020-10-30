@@ -112,7 +112,7 @@ bool Sphere::bounding_box(
     [[maybe_unused]] const rreal t1,
     AABB &output_box
 ) const NOEXCEPT {
-    const Vec3 r(_radius);
+    const Vec3 r(abs(_radius));
     output_box = AABB(_center - r, _center + r);
     return true;
 }
