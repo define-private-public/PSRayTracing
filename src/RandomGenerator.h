@@ -67,32 +67,22 @@ public:
     }
 
     inline Vec3 get_in_unit_sphere() NOEXCEPT {
-        // TODO find a function to smooth this out (so we don't have to loop!)
-//        constexpr auto magic_num = static_cast<real>(0.57735);       // Ensures that we dont go above or below [-1, 1] for the dot product
-//        return get_vec3(-magic_num, magic_num);
-//        return get_vec3(-1, 1).unit_vector();         // Was bad...  We were guarteened a unit vector,
-
-        // We want something that could be UP TO a unit vector, but not quite
-        // maybe first generate the above,  and if it's length_squared is >1, then make it so that it
-        // isn't?  This introduceds branching, but I think it's better than loop & branching
-
-        // TODO maybe precompute (pool) a bunch of these?
-        //      the issue arrises when the pool is exhausted though...
-
-//        Vec3 p = get_vec3(-1, 1);
-//        if (p.length_squared() >= 1)
-//            return p.one_over();
+//        // BOOK CODE: (loop, super bad...)
+//        while (true) {
+//            Vec3 p = get_vec3(-1, 1);
+//            if (p.length_squared() >= 1)
+//                continue;
 //
-//        return p;
+//            return p;
+//        }
 
-        // BOOK CODE: (loop, super bad...)
-        while (true) {
-            Vec3 p = get_vec3(-1, 1);
-            if (p.length_squared() >= 1)
-                continue;
+        const rreal x = get_real(-1, 1);
+        const rreal y_range = util::sqrt(1 - (x * x));
+        const rreal y = get_real(-y_range, y_range);
+        const rreal z_range = util::sqrt(1 - (x * x) - (y * y));
+        const rreal z = get_real(-z_range, z_range);
 
-            return p;
-        }
+        return Vec3(x, y, z);
     }
 
     inline Vec3 get_in_unit_hemisphere(const Vec3 &normal) NOEXCEPT {
