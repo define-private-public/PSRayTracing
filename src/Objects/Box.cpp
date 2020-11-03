@@ -1,6 +1,5 @@
 #include "Objects/Box.h"
 #include "Objects/Rectangles.h"
-#include "BVHNode.h"
 #include "RandomGenerator.h"
 
 using namespace std;
