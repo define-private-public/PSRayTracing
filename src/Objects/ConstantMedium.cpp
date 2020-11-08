@@ -27,6 +27,14 @@ ConstantMedium::ConstantMedium(
     _neg_inv_intensity(static_cast<rreal>(-1) / density)
 { }
 
+std::shared_ptr<IHittable> ConstantMedium::deep_copy() const NOEXCEPT {
+    auto cm = make_shared<ConstantMedium>(*this);
+    cm->_boundary = _boundary->deep_copy();
+    cm->_phase_function = _phase_function->deep_copy();
+
+    return cm;
+}
+
 bool ConstantMedium::hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT {
     HitRecord rec1, rec2;
 

@@ -1,5 +1,7 @@
 #include "Objects/Rectangles.h"
 
+using namespace std;
+
 
 // the bounding box must have non-zero width in each dimension, so pad the Z dimension a small amount
 constexpr auto ThinPadding = static_cast<rreal>(0.0001);
@@ -11,7 +13,7 @@ XYRect::XYRect(
     const rreal y0,
     const rreal y1,
     const rreal k,
-    std::shared_ptr<IMaterial> mat
+    shared_ptr<IMaterial> mat
 ) NOEXCEPT :
     _x0(x0),
     _x1(x1),
@@ -20,6 +22,13 @@ XYRect::XYRect(
     _k(k),
     _mat_ptr(mat)
 { }
+
+shared_ptr<IHittable> XYRect::deep_copy() const NOEXCEPT {
+    auto r = make_shared<XYRect>(*this);
+    r->_mat_ptr = _mat_ptr->deep_copy();
+
+    return r;
+}
 
 bool XYRect::hit(
     [[maybe_unused]] RandomGenerator &rng,
@@ -91,7 +100,7 @@ XZRect::XZRect(
     const rreal z0,
     const rreal z1,
     const rreal k,
-    std::shared_ptr<IMaterial> mat
+    shared_ptr<IMaterial> mat
 ) NOEXCEPT :
     _x0(x0),
     _x1(x1),
@@ -100,6 +109,13 @@ XZRect::XZRect(
     _k(k),
     _mat_ptr(mat)
 { }
+
+shared_ptr<IHittable> XZRect::deep_copy() const NOEXCEPT {
+    auto r = make_shared<XZRect>(*this);
+    r->_mat_ptr = _mat_ptr->deep_copy();
+
+    return r;
+}
 
 bool XZRect::hit(
     [[maybe_unused]] RandomGenerator &rng,
@@ -169,7 +185,7 @@ YZRect::YZRect(
     const rreal z0,
     const rreal z1,
     const rreal k,
-    std::shared_ptr<IMaterial> mat
+    shared_ptr<IMaterial> mat
 ) NOEXCEPT :
     _y0(y0),
     _y1(y1),
@@ -178,6 +194,13 @@ YZRect::YZRect(
     _k(k),
     _mat_ptr(mat)
 { }
+
+shared_ptr<IHittable> YZRect::deep_copy() const NOEXCEPT {
+    auto r = make_shared<YZRect>(*this);
+    r->_mat_ptr = _mat_ptr->deep_copy();
+
+    return r;
+}
 
 bool YZRect::hit(
     [[maybe_unused]] RandomGenerator &rng,

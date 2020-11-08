@@ -12,6 +12,8 @@ public:
 public:
     explicit Metal(const Vec3 &albedo, const rreal fuzz) NOEXCEPT;
 
+    virtual std::shared_ptr<IMaterial> deep_copy() const NOEXCEPT override;
+
     virtual bool scatter(
         RandomGenerator &rng,
         const Ray &r_in,        // In

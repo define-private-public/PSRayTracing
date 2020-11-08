@@ -8,6 +8,17 @@ HittableList::HittableList(const shared_ptr<IHittable> &object) NOEXCEPT {
     add(object);
 }
 
+shared_ptr<IHittable> HittableList::deep_copy() const NOEXCEPT {
+    auto hl = make_shared<HittableList>(*this);
+
+    // Need to clear out the list and then do a deep copy on all objects
+    hl->clear();
+    for (const auto &obj : _objects)
+        hl->add(obj->deep_copy());
+
+    return hl;
+}
+
 void HittableList::clear() NOEXCEPT {
     _objects.clear();
 }

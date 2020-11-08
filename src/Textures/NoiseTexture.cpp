@@ -3,6 +3,8 @@
 #include "PerlinReal.h"
 #include "Util.h"
 
+using namespace std;
+
 
 NoiseTexture::NoiseTexture(const std::shared_ptr<Perlin> &noise) NOEXCEPT :
     _noise(noise)
@@ -21,6 +23,20 @@ NoiseTexture::NoiseTexture(const std::shared_ptr<PerlinReal> &noise, const rreal
     _scale(scale),
     _noise_real(noise)
 { }
+
+shared_ptr<ITexture> NoiseTexture::deep_copy() const NOEXCEPT {
+    // Deep copy all shared pointers
+    auto nt = make_shared<NoiseTexture>(*this);
+
+    // TODO: if using the Book's perlin implementation, I think this would fail since there is no compiler
+    //       implemented copy constructors, test it!
+    if (_noise)
+        nt->_noise = make_shared<Perlin>(*_noise);
+    if (_noise_real)
+        nt->_noise_real = make_shared<PerlinReal>(*_noise_real);
+
+    return nt;
+}
 
 Vec3 NoiseTexture::value(
         [[maybe_unused]] const rreal u,

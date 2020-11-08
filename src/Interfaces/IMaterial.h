@@ -3,14 +3,17 @@
 #include "Common.h"
 #include "Vec3.h"
 #include "Ray.h"
+#include "Interfaces/IDeepCopyable.h"
 
 struct HitRecord;
 class RandomGenerator;
 
 
-class IMaterial {
+class IMaterial : public IDeepCopyable<IMaterial> {
 public:
     virtual ~IMaterial() NOEXCEPT = default;
+
+    virtual std::shared_ptr<IMaterial> deep_copy() const NOEXCEPT = 0;
 
     virtual bool scatter(
         RandomGenerator &rng,   // In

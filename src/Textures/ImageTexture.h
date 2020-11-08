@@ -15,6 +15,7 @@ private:
 public:
     explicit ImageTexture(const char *filename);
 
-    virtual Vec3 value(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
+    virtual std::shared_ptr<ITexture> deep_copy() const NOEXCEPT override;
 
+    virtual Vec3 value(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
 };

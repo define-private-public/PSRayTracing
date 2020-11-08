@@ -23,5 +23,7 @@ public:
     ) NOEXCEPT;
     explicit CheckerTexture(const Vec3 &even_clr, const Vec3 &odd_clr) NOEXCEPT;
 
+    virtual std::shared_ptr<ITexture> deep_copy() const NOEXCEPT override;
+
     virtual Vec3 value(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
 };

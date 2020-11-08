@@ -14,6 +14,8 @@ public:
     explicit Lambertian(const Vec3 &solid_color) NOEXCEPT;
     explicit Lambertian(const std::shared_ptr<ITexture> &tex) NOEXCEPT;
 
+    virtual std::shared_ptr<IMaterial> deep_copy() const NOEXCEPT override;
+
     virtual bool scatter(
         RandomGenerator &rng,
         const Ray &r_in,        // In

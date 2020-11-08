@@ -11,6 +11,10 @@ SurfaceNormal::SurfaceNormal(const rreal brightness_, const rreal saturation_) N
     saturation(saturation_)
 { }
 
+shared_ptr<IMaterial> SurfaceNormal::deep_copy() const NOEXCEPT {
+    return make_shared<SurfaceNormal>(*this);
+}
+
 bool SurfaceNormal::scatter(
     RandomGenerator &rng,
     const Ray &r_in,

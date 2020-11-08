@@ -14,6 +14,14 @@ Lambertian::Lambertian(const shared_ptr<ITexture> &tex) NOEXCEPT :
     _albedo(tex)
 { }
 
+shared_ptr<IMaterial> Lambertian::deep_copy() const NOEXCEPT {
+    // Do deep copy
+    auto lamb = make_shared<Lambertian>(*this);
+    lamb->_albedo = _albedo->deep_copy();
+
+    return lamb;
+}
+
 bool Lambertian::scatter(
     RandomGenerator &rng,
     const Ray &r_in,

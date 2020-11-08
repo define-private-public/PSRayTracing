@@ -3,11 +3,17 @@
 #include "HitRecord.h"
 #include "RandomGenerator.h"
 
+using namespace std;
+
 
 Metal::Metal(const Vec3 &albedo, const rreal fuzz) NOEXCEPT :
     _albedo(albedo),
     _fuzz(std::min(fuzz, static_cast<rreal>(1)))
 { }
+
+shared_ptr<IMaterial> Metal::deep_copy() const NOEXCEPT {
+    return make_shared<Metal>(*this);
+}
 
 bool Metal::scatter(
     RandomGenerator &rng,

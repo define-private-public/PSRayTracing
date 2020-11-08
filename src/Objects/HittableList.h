@@ -15,6 +15,8 @@ public:
     explicit HittableList() NOEXCEPT = default;
     explicit HittableList(const std::shared_ptr<IHittable> &object) NOEXCEPT;
 
+    virtual std::shared_ptr<IHittable> deep_copy() const NOEXCEPT override;
+
     void clear() NOEXCEPT;
     void add(const std::shared_ptr<IHittable> &object) NOEXCEPT;
 

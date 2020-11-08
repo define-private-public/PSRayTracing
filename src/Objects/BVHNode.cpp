@@ -63,6 +63,14 @@ BVHNode::BVHNode(
     _box = AABB::surrounding(box_left, box_right);
 }
 
+shared_ptr<IHittable> BVHNode::deep_copy() const NOEXCEPT {
+    auto node = make_shared<BVHNode>(*this);
+    node->_left = _left->deep_copy();
+    node->_right = _right->deep_copy();
+
+    return node;
+}
+
 bool BVHNode::hit(
     RandomGenerator &rng,
     const Ray &r,

@@ -26,5 +26,7 @@ public:
         const rreal focus_dist
     ) NOEXCEPT;
 
+    virtual std::shared_ptr<ICamera> deep_copy() const NOEXCEPT override;
+
     virtual Ray get_ray(RandomGenerator &rng, const rreal s, const rreal t) const NOEXCEPT override;
 };

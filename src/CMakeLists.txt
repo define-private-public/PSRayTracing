@@ -29,9 +29,9 @@ find_package(Boost 1.65 REQUIRED COMPONENTS program_options)
 # Copy over assets to the build directory
 file(COPY "${CMAKE_SOURCE_DIR}/../assets" DESTINATION ${CMAKE_BINARY_DIR})
 
-
 # Define the executable
 add_executable(PSRayTracing ${sources} ${third_party_sources})
+
 
 # Configurable options
 option(WITH_SINGLE_PRECISION_REAL "Use `float` for `rreal type`" OFF)
@@ -51,6 +51,7 @@ option(WITH_BOOK_SCHLICK "Use the Book's method for `schlick()` computation (slo
 option(WITH_BOOK_PERLIN "Use the Book's Perlin class" OFF)
 option(WITH_BOOK_COMPUTE_PIXEL_COLOR "Use the book's method for computing the color of a pixel" OFF)
 option(WITH_NOEXCEPT "Use the `noexcept` annotation for various functions (faster)" ON)
+
 
 
 if (WITH_SINGLE_PRECISION_REAL)

@@ -13,6 +13,14 @@ Isotropic::Isotropic(const shared_ptr<ITexture> &albedo) NOEXCEPT :
     _albedo(albedo)
 { }
 
+shared_ptr<IMaterial> Isotropic::deep_copy() const NOEXCEPT {
+    // Do deep copy
+    auto iso = make_shared<Isotropic>(*this);
+    iso->_albedo = _albedo->deep_copy();
+
+    return iso;
+}
+
 bool Isotropic::scatter(
     RandomGenerator &rng,
     const Ray &r_in,        // In

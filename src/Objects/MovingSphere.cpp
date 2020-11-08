@@ -23,6 +23,13 @@ MovingSphere::MovingSphere(
     _mat_ptr(mat_ptr)
 { }
 
+std::shared_ptr<IHittable> MovingSphere::deep_copy() const NOEXCEPT {
+    auto ms = make_shared<MovingSphere>(*this);
+    ms->_mat_ptr = _mat_ptr->deep_copy();
+
+    return ms;
+}
+
 bool MovingSphere::hit(
     [[maybe_unused]] RandomGenerator &rng,
     const Ray &r,

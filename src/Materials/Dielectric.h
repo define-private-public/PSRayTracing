@@ -12,6 +12,8 @@ public:
 public:
     explicit Dielectric(const rreal refractive_index) NOEXCEPT;
 
+    virtual std::shared_ptr<IMaterial> deep_copy() const NOEXCEPT override;
+
     virtual bool scatter(
         RandomGenerator &rng,
         const Ray &r_in,        // In

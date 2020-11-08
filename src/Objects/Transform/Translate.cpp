@@ -9,6 +9,13 @@ Translate::Translate(const shared_ptr<IHittable> &obj, const Vec3 &displacement)
     _offset(displacement)
 { }
 
+std::shared_ptr<IHittable> Translate::deep_copy() const NOEXCEPT {
+    auto trans = make_shared<Translate>(*this);
+    trans->_obj = _obj->deep_copy();
+
+    return trans;
+}
+
 bool Translate::hit(
     [[maybe_unused]] RandomGenerator &rng,
     const Ray &r,
