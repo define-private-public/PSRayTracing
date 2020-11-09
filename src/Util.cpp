@@ -185,7 +185,16 @@ rreal _cos_approx_private(rreal x) NOEXCEPT {
 #ifndef USE_BOOK_SQRT
 // I've been trying to figure out a fast square root approximation and none of the tweaks I've made (including the
 // babylonian method have actually performed better)... Right recommendation at the moment is to use std::sqrt()
+
+// For the instrinsics method
+//#include <x86intrin.h>
+
 rreal _sqrt_approx_private(const rreal x) NOEXCEPT {
+//    // Using x86 intrinsics
+//    const __m128d reg = _mm_set1_pd(x);
+//    return _mm_cvtsd_f64(_mm_sqrt_sd(reg, reg));
+
+
     // Uses method 7: https://www.codeproject.com/Articles/69941/Best-Square-Root-Method-Algorithm-Function-Precisi
 
     // TODO there is some loss of precision with the convertion from (possibly) double -> float.  There should be version
