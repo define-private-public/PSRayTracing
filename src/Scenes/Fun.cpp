@@ -12,11 +12,20 @@
 #include "Objects/Rectangles.h"
 #include "Objects/Box.h"
 #include "Objects/BVHNode.h"
+#include "Objects/BVHNode_MorePerformant.h"
 #include "Objects/Transform/RotateY.h"
 #include "Objects/Transform/Translate.h"
 #include "Cameras/Camera.h"
 
 using namespace std;
+
+
+// Are we to use the book's BVH node, or our more performant one?
+#if WITH_BOOK_BVH_NODE
+    using BVHNode_Implementation = BVHNode;
+#else
+    using BVHNode_Implementation = BVHNode_MorePerformant;
+#endif
 
 
 constexpr rreal glass_refractive_index = 1.5;
@@ -56,7 +65,7 @@ SceneDescriptor three_spheres(const rreal aspect_ratio) {
     RandomGenerator rng(DefaultRNGSeed);
     SceneDescriptor sd;
     sd.background = sky_blue;
-    sd.scene = make_shared<BVHNode>(rng, world, 0, 0);
+    sd.scene = make_shared<BVHNode_Implementation>(rng, world, 0, 0);
     sd.cameras.push_back(cam);
 
     return sd;
@@ -171,7 +180,7 @@ SceneDescriptor cornell_glass_boxes(const rreal aspect_ratio) {
 
     RandomGenerator rng(DefaultRNGSeed);
     SceneDescriptor sd{};
-    sd.scene = make_shared<BVHNode>(rng, world, 0, 0);
+    sd.scene = make_shared<BVHNode_Implementation>(rng, world, 0, 0);
     sd.background = 0.8 * sky_blue;
 
     const Vec3 look_from(278, 278, -800);

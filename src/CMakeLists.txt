@@ -50,6 +50,7 @@ option(WITH_BOOK_SQRT "Use the Book's method (std::sqrt) for `sqrt()` computatio
 option(WITH_BOOK_SCHLICK "Use the Book's method for `schlick()` computation (slower)" OFF)
 option(WITH_BOOK_PERLIN "Use the Book's Perlin class" OFF)
 option(WITH_BOOK_COMPUTE_PIXEL_COLOR "Use the book's method for computing the color of a pixel" OFF)
+option(WITH_BOOK_BVH_NODE "Use the book's method for BVH Nodes (slower)" OFF)
 option(WITH_NOEXCEPT "Use the `noexcept` annotation for various functions (faster)" ON)
 
 
@@ -132,6 +133,11 @@ endif()
 if (WITH_BOOK_COMPUTE_PIXEL_COLOR)
   message(STATUS "Using the book's method for computing the color of a pixel")
   target_compile_definitions(PSRayTracing PUBLIC USE_BOOK_COMPUTE_PIXEL_COLOR)
+endif()
+
+if (WITH_BOOK_BVH_NODE)
+  message(STATUS "Using the book's method for BVH Nodes (slower)")
+  target_compile_definitions(PSRayTracing PUBLIC USE_BOOK_BVH_NODE)
 endif()
 
 #if (WITH_BOOK_CONSTANT_MEDIUM_HIT)

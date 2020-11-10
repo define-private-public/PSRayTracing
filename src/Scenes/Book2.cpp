@@ -12,6 +12,7 @@
 #include "Objects/HittableList.h"
 #include "Objects/Rectangles.h"
 #include "Objects/BVHNode.h"
+#include "Objects/BVHNode_MorePerformant.h"
 #include "Objects/Box.h"
 #include "Objects/Transform/Translate.h"
 #include "Objects/Transform/RotateY.h"
@@ -24,6 +25,14 @@
 #include "RandomGenerator.h"
 
 using namespace std;
+
+
+// Are we to use the book's BVH node, or our more performant one?
+#if WITH_BOOK_BVH_NODE
+    using BVHNode_Implementation = BVHNode;
+#else
+    using BVHNode_Implementation = BVHNode_MorePerformant;
+#endif
 
 
 namespace Scenes { namespace Book2 {
@@ -307,7 +316,7 @@ SceneDescriptor final_scene(const rreal aspect_ratio) {
         }
     }
 
-    objects.add(make_shared<BVHNode>(req_rng, boxes1, 0, 1));
+    objects.add(make_shared<BVHNode_Implementation>(req_rng, boxes1, 0, 1));
 
     // Illumination source
     const auto light = make_shared<DiffuseLight>(Vec3(7));
@@ -368,7 +377,7 @@ SceneDescriptor final_scene(const rreal aspect_ratio) {
 
     objects.add(make_shared<Translate>(
         make_shared<RotateY>(
-            make_shared<BVHNode>(req_rng, boxes2, 0, 1),
+            make_shared<BVHNode_Implementation>(req_rng, boxes2, 0, 1),
             15
         ),
         Vec3(-100, 270, 395)
@@ -382,7 +391,7 @@ SceneDescriptor final_scene(const rreal aspect_ratio) {
     const rreal aperture = 0;
 
     SceneDescriptor sd{};
-    sd.scene = make_shared<BVHNode>(req_rng, objects, 0, 1);
+    sd.scene = make_shared<BVHNode_Implementation>(req_rng, objects, 0, 1);
     sd.cameras.push_back(make_shared<MotionBlurCamera>(look_from, look_at, v_up, 40, aspect_ratio, aperture, dist_to_focus, 0, 1));
 
     return sd;
