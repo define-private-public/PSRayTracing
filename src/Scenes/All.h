@@ -52,9 +52,10 @@ const std::string Book2_FinalScene                             = "book2::final_s
 const std::string Fun_ThreeSpheres                             = "fun::three_spheres";
 const std::string Fun_Whitted1980                              = "fun::whitted_1980";
 const std::string Fun_CornellGlassBoxes                        = "fun::cornell_glass_boxes";
+const std::string Fun_WaveOfSpheres                            = "fun::wave_of_spheres";
 
 // All of the scenes (in order)
-const std::array<std::string, 34> AllSceneIds = {
+const std::array<std::string, 35> AllSceneIds = {
     Book1_SurfaceNormalSphere,
     Book1_GreySphere,
     Book1_ShinyMetalSphere,
@@ -89,6 +90,7 @@ const std::array<std::string, 34> AllSceneIds = {
     Fun_ThreeSpheres,
     Fun_Whitted1980,
     Fun_CornellGlassBoxes,
+    Fun_WaveOfSpheres,
 };
 
 
@@ -267,6 +269,11 @@ const std::unordered_map<std::string, std::function<SceneCameraPair(rreal)>> Ava
     {Fun_CornellGlassBoxes, [](const rreal aspect_ratio) {
         SceneCameraPair scp;
         scp.scene = Scenes::Fun::cornell_glass_boxes(aspect_ratio);
+        return scp;
+    }},
+    {Fun_WaveOfSpheres, [](const rreal aspect_ratio) {
+        SceneCameraPair scp;
+        scp.scene = Scenes::Fun::wave_of_spheres(aspect_ratio);
         return scp;
     }},
 };

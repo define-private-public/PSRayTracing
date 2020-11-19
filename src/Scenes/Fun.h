@@ -16,5 +16,8 @@ namespace Scenes {
 
         // A cornel box filled with glass cubes
         SceneDescriptor cornell_glass_boxes(const rreal aspect_ratio);
+
+        // Spheres, that are in a wavy-pattern
+        SceneDescriptor wave_of_spheres(const rreal aspect_ratio);
     }
 }

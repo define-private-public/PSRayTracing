@@ -11,6 +11,7 @@
 #include "Objects/HittableList.h"
 #include "Objects/Rectangles.h"
 #include "Objects/Box.h"
+#include "Objects/ConstantMedium.h"
 #include "Objects/BVHNode.h"
 #include "Objects/BVHNode_MorePerformant.h"
 #include "Objects/Transform/RotateY.h"
@@ -191,6 +192,66 @@ SceneDescriptor cornell_glass_boxes(const rreal aspect_ratio) {
     sd.cameras.push_back(make_shared<Camera>(look_from, look_at, v_up, 40, aspect_ratio, aperture, dist_to_focus));
 
     return sd;
+}
+
+SceneDescriptor wave_of_spheres(const rreal aspect_ratio) {
+    RandomGenerator rng(DefaultRNGSeed);
+    HittableList objects;
+
+    // Camera
+    const Vec3 look_from(1.5, 5, 8);
+    const Vec3 look_at(-1.5, 1, 0);
+    const Vec3 v_up(0, 1, 0);
+    const rreal dist_to_focus = (look_from - look_at).length();
+    const rreal aperture = 0;
+
+    // Illumination source
+    const auto light = make_shared<DiffuseLight>(Vec3(8));
+    objects.add(make_shared<XZRect>(-10, 3, -10, 3, 5, light));
+
+    // The spheres
+    constexpr int dim = 50;
+
+    auto compute_loc = [](const rreal percentage) { return (percentage * (dim / 2) - (dim / 2.75)); };
+
+    for (int i = 0; i < dim; i++) {
+        for (int j = 0; j < dim; j++) {
+
+            // Depedant upon their percentage along, displace them on the Y using trig
+            const rreal x_percentage = static_cast<rreal>(i) / static_cast<rreal>(dim - 1);
+            const rreal z_percentage = static_cast<rreal>(j) / static_cast<rreal>(dim - 1);
+
+            const rreal y = 1.3 * util::sin(1.25 * x_percentage * TwoPi) * util::cos(z_percentage * TwoPi);
+
+            objects.add(
+                make_shared<Sphere>(Vec3(           // The Sphere (and it's location)
+                    compute_loc(x_percentage),
+                    y,
+                    compute_loc(z_percentage)
+                ), 0.15f,
+                make_shared<Lambertian>(Vec3(       // Modulate the color
+                    pow(x_percentage * 0.65, 2),
+                    pow(0.45, 2),
+                    pow(z_percentage * 0.95, 2)
+                ))
+            ));
+        }
+    }
+
+    // Add some mirrors
+    const rreal lower = compute_loc(0);
+    const rreal upper = compute_loc(1);
+    auto mirror_mat = make_shared<Metal>(Vec3(1), 0);
+    objects.add(make_shared<XYRect>(lower, upper, lower, upper, lower, mirror_mat));     // Back
+    objects.add(make_shared<YZRect>(lower, upper, lower, upper, lower, mirror_mat));     // Left
+    objects.add(make_shared<YZRect>(lower, upper, lower, upper, upper, mirror_mat));     // Right
+
+    SceneDescriptor sd{};
+    sd.scene = make_shared<BVHNode_Implementation>(rng, objects, 0, 0);
+    sd.cameras.push_back(make_shared<Camera>(look_from, look_at, v_up, 40, aspect_ratio, aperture, dist_to_focus));
+
+    return sd;
+
 }
 
 }}  // Scenes::Fun
