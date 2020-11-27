@@ -21,6 +21,14 @@
 #endif
 
 
+#ifdef USE_BOOK_RNG
+    // The Book uses the built-in meresenne twister engine to generate random numbers, it's a little slower
+    #define RNG_ENGINE std::mt19937
+#else
+    #define RNG_ENGINE pcg32
+#endif
+
+
 constexpr auto Infinity = std::numeric_limits<rreal>::infinity();
 constexpr auto Pi = static_cast<rreal>(3.1415926535897932385);
 constexpr rreal HalfPi = Pi / static_cast<rreal>(2);

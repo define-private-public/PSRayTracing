@@ -3,7 +3,9 @@
 #include "Vec3.h"
 #include <string>
 #include <random>
+#include <memory>
 #include "Util.h"
+#include "CachedPool.h"
 
 #ifndef USE_BOOK_RNG
     // We use the PCG random family to generate random numbers, it's faster
@@ -66,25 +68,7 @@ public:
         );
     }
 
-    inline Vec3 get_in_unit_sphere() NOEXCEPT {
-        // TODO find a function to smooth this out (so we don't have to loop!)
-//        constexpr auto magic_num = static_cast<real>(0.57735);       // Ensures that we dont go above or below [-1, 1] for the dot product
-//        return get_vec3(-magic_num, magic_num);
-//        return get_vec3(-1, 1).unit_vector();         // Was bad...  We were guarteened a unit vector,
-
-        // We want something that could be UP TO a unit vector, but not quite
-        // maybe first generate the above,  and if it's length_squared is >1, then make it so that it
-        // isn't?  This introduceds branching, but I think it's better than loop & branching
-
-        // TODO maybe precompute (pool) a bunch of these?
-        //      the issue arrises when the pool is exhausted though...
-
-//        Vec3 p = get_vec3(-1, 1);
-//        if (p.length_squared() >= 1)
-//            return p.one_over();
-//
-//        return p;
-
+    virtual inline Vec3 get_in_unit_sphere() NOEXCEPT {
         // BOOK CODE: (loop, super bad...)
         while (true) {
             Vec3 p = get_vec3(-1, 1);
@@ -100,21 +84,7 @@ public:
         return (in_unit_sphere.dot(normal) > 0) ? in_unit_sphere : -in_unit_sphere;
     }
 
-    inline Vec3 get_in_unit_disk() NOEXCEPT {
-        // TODO find a function to smooth this out (so we don't have to loop!)
-//        constexpr auto magic_num = static_cast<real>(0.707107);
-//        return Vec3(
-//            get_real(-magic_num, magic_num),
-//            get_real(-magic_num, magic_num),
-//            0
-//        );
-
-//        Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
-//        if (p.length_squared() >= 1)
-//            return p.one_over();
-//
-//        return p;
-
+    virtual inline Vec3 get_in_unit_disk() NOEXCEPT {
         // BOOK CODE: (loop, super bad...)
         while (true) {
             Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
@@ -149,20 +119,31 @@ public:
 
 
 
-#ifdef USE_BOOK_RNG
-    // The Book uses the built-in meresenne twister engine to generate random numbers, it's a little slower
-    #define RNG_ENGINE std::mt19937
-#else
-    #define RNG_ENGINE pcg32
-#endif
-
-
 /*!
  * The random generator that should actually be used by the app in general places.
  */
 class RandomGenerator : public _GeneralizedRandomGenerator<std::uniform_real_distribution, rreal, RNG_ENGINE> {
+    using _PoolType = CachedPool<Vec3, 8 * DefaultPoolSize>;
+
+    // Data
+    std::unique_ptr<_PoolType> _in_unit_sphere_pool;
+    std::unique_ptr<_PoolType> _in_unit_disk_pool;
+
 public:
     explicit RandomGenerator(const std::string &rng_seed) :
         _GeneralizedRandomGenerator(rng_seed)
-    { }
+    {
+        // Need to fill the pools.  We use a separate RNG (same seed though), as to keep compatability with how scences currently look
+        _GeneralizedRandomGenerator<std::uniform_real_distribution, rreal, RNG_ENGINE> rng_for_pools(rng_seed);
+        _in_unit_sphere_pool = std::make_unique<_PoolType>([&]() { return rng_for_pools.get_in_unit_sphere(); });
+        _in_unit_disk_pool   = std::make_unique<_PoolType>([&]() { return rng_for_pools.get_in_unit_disk(); });
+    }
+
+    inline Vec3 get_in_unit_sphere() NOEXCEPT override  {
+        return _in_unit_sphere_pool->get_next();
+    }
+
+    inline Vec3 get_in_unit_disk() NOEXCEPT override  {
+        return _in_unit_disk_pool->get_next();
+    }
 };
