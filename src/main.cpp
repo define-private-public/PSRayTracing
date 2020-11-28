@@ -131,7 +131,7 @@ int main(int argc, char *argv[]) {
     pool.setup_render(seed_str, samples_per_pixel, max_depth);
 
     // Progress bar
-    util::ProgressBar progBar(pool.total_pixel_count(), 60, "Rendering:");
+    util::ProgressBar progBar(pool.total_pixel_count(), 50, "Rendering:");
     if (show_progress)
         progBar.start();
 
