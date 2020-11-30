@@ -342,6 +342,37 @@ I make sure the RNG is thread safe, which it wasn’t.  My implementation create
 scanline (each seeded from a master RNG).  It fixed this issue and improved performance.
 
 
+====================
+Deep Copy per Thread
+====================
+
+The list of objects to render (or tree, whatever term you prefer), if you notice, is actually a collection
+of ``std::shared_ptr<T>`` types.  In some cases, using a shared pointer can make a lot of sense.  For example
+if two different objects have the same texture or material.  If you update the material on one of the objects,
+you'll see the change on the other.  A common complaint of shared pointers is that they are slow (e.g. because
+of reference counting).  This can even further cause issues when you throw multi-core access into the mix.
+Luckily, the rendering process is read-only when it comes to the scene, so we don't need to worry about any of
+those multi-threaded reading/writing/access issues you hear so much about.
+
+I started with the hypothesis: *"Copying the scene (to render) to each thread/core would improve the render
+performance."*  I created the ``IDeepCopyable`` interface, and then implemented it on every class that could be
+rendered (e.g. Spheres, Textures, Boxes, etc.).  It requires that you add a function called ``copy()``, which
+must return a deep copy of the object and of its child objects.  Then when setuping up the render threads, in
+each one, ``copy()`` is called on the root of the scene.
+
+So for single core rendering, there's no improvement.  But when rendering with multiple cores, I saw signifcant
+improvements.  Sometimes in the range of it being 20-30% faster! I also want to note that different scenes did
+not have all the same benefits.  To be honest, I'm not fully sure why this is the case.  My assumption is because
+multiple threads are not having to fight over a single shared pointer tree.   I did ask Reddit's ``/r/cpp_questions/``
+why it could be faster.  If you would like to read the thread `it's right over here <https://www.reddit.com/r/cpp_questions/comments/jl4vdd/why_exactly_did_copying_a_tree_of_pointers_to/>`_ .
+Or if you may know why this is more performant, please tell me so I can put that information here.
+
+A better thing to do in my opinion is not to rely on shared pointers unless you really need to.
+
+By default the "deep copy per thread" feature is on, but it can be toggled off at runtime by supplying the
+``--no-copy-per-thread`` flag to the executable.
+
+
 
 *****************
 Other Experiments
@@ -370,6 +401,7 @@ ears.
 =========================
 Square Root Approximation
 =========================
+
 Chasing after `that famous fast inverse square root  approximation (of Quake 3 frame)
 <https://en.wikipedia.org/wiki/Fast_inverse_square_root>`_, I did some research in square root approximation.
 `This article was an interesting read. <https://www.codeproject.com/Articles/69941/Best-Square-Root-Method-Algorithm-Function-Precisi>`_
@@ -377,6 +409,45 @@ I tried the Babylonian method without much success.  I did learn quite a bit abo
 square roots.  For me, in the end it turned out those methods were slower and more incorrect.
 
 ``std::sqrt()`` is king.
+
+
+=================================
+Marking functions as ``noexcept``
+=================================
+
+I remember hearing about how marking my functions with the `noexcept <https://visualstudiomagazine.com/articles/2016/10/01/noexcept.aspx>`_
+could make my code run faster.  So to test this out (and test toggling it on & off), I added a macro called
+``NOEXCEPT``, which will either expand to the ``noexcept`` keyword, or will be a null string.  As a benchmark
+I did single core renders with the sample-per-pixels set to 250.
+
+To my surprise, I found out that there was no signficant change in render time with ``noexcept`` on the functions
+or not.  Each one took about 230 seconds in total, with a difference of about ~0.5 seconds (which can easily
+accounts as error).  My code is very much exception sparse, so I don't think it would have helped that much
+anyways.  Other code bases may benefit from this, but this one definately did not.
+
+Despite having no real performance benefits (at least for me), I still think adding ``noexcept`` is a good
+C++ practice; especially for APIs.  It informs other developers of your design intentions.  *If you write code
+that could crash someone else's, it's best to tell others that it could happen*.  C++ documetation tools such
+as Doxygen will pick up those ``noexcept`` keywords and mark it in the generated docs.
+
+
+==================
+BVH Tree as a List
+==================
+
+The idea here is that I thought the ``BVHNode`` object was a little inefficient when it came to memory usage.  It required
+that you create have two ``IHittable`` objects as children (which could also be ``BVHNodes``).  Instead, the BVH tree could
+be a list AABBs, that also contained indices to child AABBs.  But maybe some of those indices actually pointed to objects
+that could be hit and produce colour.  It practically became "pointers but with a lot more steps involved". I don't want
+to go into the gory details of how it works.  If you want to see, look at the code for the class ``BVHNode_MorePerformant``.
+
+This one had a much more minor speedup.  On some newer hardware, I only saw about a 1-2% performance boost.  When it came
+an older machine, it was more in the range of 5-9% (which is more on the significant side).  This one didn't seem to be
+as significant as other changes.  Not to mention it was hard to reproduce results that saw a constant performance boost
+accross different hardware.  It is on by default though; it can be toggled on/off via a CMake configuration variable.
+
+The tree construction and hit algorithms are the same as the book's BVH node (depth first).  It's very likely that
+alterative construction and hit algorithms could produce more performant results.
 
 
 
