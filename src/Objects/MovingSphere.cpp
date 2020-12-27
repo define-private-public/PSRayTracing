@@ -84,7 +84,7 @@ bool MovingSphere::hit(
             rec.t = temp1;
             rec.p = p1;
             rec.set_face_normal(r, on1);
-            rec.mat_ptr = _mat_ptr;
+            rec.set_mat_ptr(_mat_ptr);
             return true;
         }
 
@@ -96,7 +96,7 @@ bool MovingSphere::hit(
             rec.t = temp2;
             rec.p = p2;
             rec.set_face_normal(r, on2);
-            rec.mat_ptr = _mat_ptr;
+            rec.set_mat_ptr(_mat_ptr);
             return true;
         }
     }

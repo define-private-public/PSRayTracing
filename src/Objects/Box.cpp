@@ -176,7 +176,7 @@ bool Box::hit(
     rec.t = nearest_t;
     rec.p = r.at(nearest_t);
     rec.set_face_normal(r, face_normals[nearest_i]);
-    rec.mat_ptr = _mat;
+    rec.set_mat_ptr(_mat);
 
     return true;
 #endif // USE_BOOK_BOX (else clause)

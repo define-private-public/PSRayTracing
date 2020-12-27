@@ -64,7 +64,7 @@ bool ConstantMedium::hit(RandomGenerator &rng, const Ray &r, const rreal t_min, 
 
     rec.normal = Vec3(1, 0, 0); // Arbitrary
     rec.front_face = true;      // Also arbitrary
-    rec.mat_ptr = _phase_function;
+    rec.set_mat_ptr(_phase_function);
 
     return true;
 }

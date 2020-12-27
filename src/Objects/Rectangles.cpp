@@ -73,7 +73,7 @@ bool XYRect::hit(
 #endif
 
     rec.set_face_normal(r, Vec3(0, 0, 1));
-    rec.mat_ptr = _mat_ptr;
+    rec.set_mat_ptr(_mat_ptr);
 
     return true;
 }
@@ -158,7 +158,7 @@ bool XZRect::hit(
 #endif
 
     rec.set_face_normal(r, Vec3(0, 1, 0));
-    rec.mat_ptr = _mat_ptr;
+    rec.set_mat_ptr(_mat_ptr);
 
     return true;
 }
@@ -243,7 +243,7 @@ bool YZRect::hit(
 #endif
 
     rec.set_face_normal(r, Vec3(1, 0, 0));
-    rec.mat_ptr = _mat_ptr;
+    rec.set_mat_ptr(_mat_ptr);
 
     return true;
 }
