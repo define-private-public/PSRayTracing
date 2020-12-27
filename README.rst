@@ -373,6 +373,32 @@ By default the "deep copy per thread" feature is on, but it can be toggled off a
 ``--no-copy-per-thread`` flag to the executable.
 
 
+===========================================================
+Using a raw pointer over shared pointers (in ``HitRecord``)
+===========================================================
+
+Going off from the above section, it would be good to eliminate (or reduce) the use of ``std::shared_ptr<T>`` in
+our code.
+
+Going off on a little aside here, part of my inspiration to revisit this book series was watching `Tyler Morgan-Wall <https://twitter.com/tylermorganwall>`_
+build his `Rayrender/Rayshader project <https://github.com/tylermorganwall/rayrender/>`_ (a path tracer for R).
+Like this one, it's also based off of the Peter Shirley books.  `In a recent tweet <https://twitter.com/tylermorganwall/status/1342328063510638593>`_
+he announced that he was able improve render speeds by about 20%.  `After poking through his commit history <https://github.com/tylermorganwall/rayrender/commit/7358edf19e0ccf4478a8f9975f4c418e15841783>`_,
+there is a change in the ``HitRecord`` structure.  ``mat_ptr`` was changed from being a
+``std::shared_ptr<IMaterial>`` over to a plain old raw pointer (``IMaterial *``).
+
+Making that change to this ray tracing project also led to a good speed boost.  When testing this out on an older
+Gen 7 i5 CPU, I got a render speed improvement of about 30%!  On a Gen 10 i7 CPU, the speed boost was closer to 10%;
+not as grand, but still quite significant.
+
+Since ``HitRecord`` is used a lot, including the ``mat_ptr`` field, it makes a lot of sense here to remove the shared
+pointer usage.  We have no intention of modifying the material used, only to know what it is.  And during the render
+process, none of the objects or materials will change.  This is a perfect place to use a raw pointer.
+
+If you want to try toggling this on/off, this is controlled by the ``WITH_BOOK_MAT_PTR`` flag at CMake configuration
+time.
+
+
 
 *****************
 Other Experiments
@@ -509,6 +535,10 @@ bit more of an impact on this project.
 
 * `Roman Wiche (a.k.a. Bromanz) <https://twitter.com/romanwiche>`_ for his Ray-AABB intersection article
   (and code)
+
+* `Tyler Morgan-Wall <https://twitter.com/tylermorganwall>`_ for working on `Rayrender/Rayshader <https://github.com/tylermorganwall/rayrender/>`_
+  which provided me with inspiration to start this project.  As well providing another hint on how to boost
+  render speed
 
 * The folks over on Reddit’s C++ community answering my questions (`/r/cpp <https://reddit.com/r/cpp>`_ and
   `/r/cpp_questions <https://reddit.com/r/cpp_questions>`_)
