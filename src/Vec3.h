@@ -124,6 +124,14 @@ public:
         );
     }
 
+    // Return true if the vector is close to zero in all dimensions.
+    inline bool near_zero() const NOEXCEPT {
+        constexpr rreal s = 1e-8;
+        return (std::fabs(x) < s) &&
+               (std::fabs(y) < s) &&
+               (std::fabs(z) < s);
+    }
+
     std::string str() const {
         return "Vec3<" + std::to_string(x) +
                   ", " + std::to_string(y) +

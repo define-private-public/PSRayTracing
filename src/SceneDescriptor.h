@@ -14,6 +14,7 @@ class ICamera;
 struct SceneDescriptor {
     // Data
     std::shared_ptr<IHittable> scene;
+    std::shared_ptr<IHittable> lights;                  // This could be a list of lights, or a singular one
     std::vector<std::shared_ptr<ICamera>> cameras;
     Vec3 background = Vec3(0);
 };

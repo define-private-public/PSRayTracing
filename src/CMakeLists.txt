@@ -19,6 +19,7 @@ file(GLOB_RECURSE sources
     "Scenes/**"
     "Util/**"
     "Textures/**"
+    "PDFs/**"
 )
 file(GLOB third_party_sources "third_party/**")
 

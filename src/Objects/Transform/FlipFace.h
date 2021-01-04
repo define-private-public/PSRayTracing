@@ -1,29 +1,17 @@
 #pragma once
 
 #include "Interfaces/IHittable.h"
-class IMaterial;
-class ITexture;
 
 
-class ConstantMedium : public IHittable {
+class FlipFace : public IHittable {
 private:
     // Data
-    std::shared_ptr<IHittable> _boundary = nullptr;
-    std::shared_ptr<IMaterial> _phase_function = nullptr;
-    rreal _neg_inv_intensity = 0;
+    std::shared_ptr<IHittable> _obj;
 
 public:
-    explicit ConstantMedium(
-        const std::shared_ptr<IHittable> &boundary,
-        const rreal density,
-        const std::shared_ptr<ITexture> &phase
-    ) NOEXCEPT;
-
-    explicit ConstantMedium(
-        const std::shared_ptr<IHittable> &boundary,
-        const rreal density,
-        const Vec3 &clr
-    ) NOEXCEPT;
+    explicit FlipFace(const std::shared_ptr<IHittable> &obj) NOEXCEPT :
+        _obj(obj)
+    { }
 
     std::shared_ptr<IHittable> deep_copy() const NOEXCEPT override;
 

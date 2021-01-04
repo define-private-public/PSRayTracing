@@ -6,7 +6,9 @@
 #include "Interfaces/IDeepCopyable.h"
 
 struct HitRecord;
+struct ScatterRecord;
 class RandomGenerator;
+class IPDF;
 
 
 class IMaterial : public IDeepCopyable<IMaterial> {
@@ -19,9 +21,20 @@ public:
         RandomGenerator &rng,   // In
         const Ray &r_in,        // In
         const HitRecord &rec,   // In
-        Vec3 &attenuation,      // Out
-        Ray &scattered          // Out
+        ScatterRecord &s_rec    // Out
     ) const NOEXCEPT = 0;
 
-    virtual Vec3 emitted(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT = 0;
+    virtual rreal scattering_pdf(
+        const Ray &r_in,
+        const HitRecord &rec,
+        const Ray &scattered
+    ) const NOEXCEPT = 0;
+
+    virtual Vec3 emitted(
+        const Ray &r_in,
+        const HitRecord &rec,
+        const rreal u,
+        const rreal v,
+        const Vec3 &p
+    ) const NOEXCEPT = 0;
 };

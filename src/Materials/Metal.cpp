@@ -1,6 +1,7 @@
 #include "Materials/Metal.h"
 #include "Ray.h"
 #include "HitRecord.h"
+#include "ScatterRecord.h"
 #include "RandomGenerator.h"
 
 using namespace std;
@@ -19,17 +20,20 @@ bool Metal::scatter(
     RandomGenerator &rng,
     const Ray &r_in,        // In
     const HitRecord &rec,   // In
-    Vec3 &attenuation,      // Out
-    Ray &scattered          // Out
+    ScatterRecord &s_rec    // Out
 ) const NOEXCEPT {
     const Vec3 reflected = r_in.direction.unit_vector().reflect(rec.normal);
-    scattered = Ray(rec.p, reflected + (_fuzz * rng.get_in_unit_sphere()), r_in.time);
-    attenuation = _albedo;
+    s_rec.specular_ray = Ray(rec.p, reflected + (_fuzz * rng.get_in_unit_sphere()), r_in.time);
+    s_rec.attenuation = _albedo;
+    s_rec.is_specular = true;
+    s_rec.pdf_ptr = nullptr;
 
-    return (scattered.direction.dot(rec.normal) > 0);
+    return true;
 }
 
 Vec3 Metal::emitted(
+    [[maybe_unused]] const Ray &r_in,
+    [[maybe_unused]] const HitRecord &rec,
     [[maybe_unused]] const rreal u,
     [[maybe_unused]] const rreal v,
     [[maybe_unused]] const Vec3 &p

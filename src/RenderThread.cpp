@@ -5,8 +5,12 @@
 #include "Ray.h"
 #include "Util.h"
 #include "HitRecord.h"
+#include "ScatterRecord.h"
 #include "RenderOutput.h"
 #include "RandomGenerator.h"
+#include "PDFs/CosinePDF.h"
+#include "PDFs/HittablePDF.h"
+#include "PDFs/MixturePDF.h"
 using namespace std;
 
 
@@ -94,6 +98,9 @@ void RenderThread::_thread_main_loop() NOEXCEPT {
     if (_r_ctx.deep_copy_per_thread) {
         _r_ctx.camera = _r_ctx.camera->deep_copy();
         _r_ctx.scene = _r_ctx.scene->deep_copy();
+
+        if (_r_ctx.lights)
+            _r_ctx.lights = _r_ctx.lights->deep_copy();
     }
 
     RenderTask task;
@@ -276,17 +283,29 @@ Vec3 ray_color(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &r, c
         return r_ctx.background;
 
     // Hit something...
-    Ray scattered;
-    Vec3 attenuation;
-    const Vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
-    const bool rays_scattered = rec.mat_ptr->scatter(rng, r, rec, attenuation, scattered);
+    ScatterRecord s_rec;
+    const Vec3 emitted = rec.mat_ptr->emitted(r, rec, rec.u, rec.v, rec.p);
+    const bool rays_scattered = rec.mat_ptr->scatter(rng, r, rec, s_rec);
 
     // If hit a an emmsive material (they don't scatter rays), then only emit that one's light
     if (!rays_scattered)
         return emitted;
 
+    if (s_rec.is_specular)
+        return s_rec.attenuation * ray_color(r_ctx, rng, s_rec.specular_ray, depth - 1);
+
+    // TODO I don't think these pointers (and shared ones of that) are efficient
+    //      And creating the PDF objects each time
+    const auto light_pdf = make_shared<HittablePDF>(r_ctx.lights, rec.p);
+    const MixturePDF mixed_pdf(light_pdf, s_rec.pdf_ptr);
+
+    const Ray scattered(rec.p, mixed_pdf.generate(rng), r.time);
+    const rreal pdf_val = mixed_pdf.value(rng, scattered.direction);
+
     // else, it must have been non-emissive,
-    return emitted + (attenuation * ray_color(r_ctx, rng, scattered, depth - 1));
+    return emitted + (s_rec.attenuation *
+                      rec.mat_ptr->scattering_pdf(r, rec, scattered) *
+                      ray_color(r_ctx, rng, scattered, depth - 1) / pdf_val);
 }
 
 /*
@@ -370,10 +389,10 @@ vector<BatchedVec3> ray_color_batched(const RenderContext &r_ctx, RandomGenerato
 }
 */
 
-
 // This was an attempt to see if an interative ray color function could be more performant
 //   than the recursive one
 // TODO do a little measureing to see if it does help
+/*
 Vec3 ray_color_iterative(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &initial_ray, const uint32_t depth) NOEXCEPT {
     vector<Vec3> clrs;  // TODO reserve a specific size
     uint32_t d = depth;
@@ -430,6 +449,7 @@ Vec3 ray_color_iterative(const RenderContext &r_ctx, RandomGenerator &rng, const
 
     return final_clr;
 }
+*/
 
 /*
 // This is an experiment to compute a color for a pixel, with a batch of rays, in an iterative manor
@@ -508,6 +528,14 @@ ColorRGBA _pixel_color(const RenderContext &r_ctx, RandomGenerator &rng, const u
         pixel.b += c.z;
     }
 #endif  // USE_BOOK_COMPUTE_PIXEL_COLOR
+
+    // Replace NaN components with zero (See explanation in the final chapter of "Ray Tracing: The Rest of Your Life")
+    if (pixel.r != pixel.r)
+        pixel.r = 0;
+    if (pixel.g != pixel.g)
+        pixel.g = 0;
+    if (pixel.b != pixel.b)
+        pixel.b = 0;
 
     // Average all the samples
     pixel.r /= r_spp;

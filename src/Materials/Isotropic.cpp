@@ -1,6 +1,7 @@
 #include "Materials/Isotropic.h"
 #include "Textures/SolidColor.h"
 #include "HitRecord.h"
+#include "ScatterRecord.h"
 #include "RandomGenerator.h"
 using namespace std;
 
@@ -25,16 +26,20 @@ bool Isotropic::scatter(
     RandomGenerator &rng,
     const Ray &r_in,        // In
     const HitRecord &rec,   // In
-    Vec3 &attenuation,      // Out
-    Ray &scattered          // Out
+    ScatterRecord &s_rec    // Out
 ) const NOEXCEPT {
-    scattered = Ray(rec.p, rng.get_in_unit_sphere(), r_in.time);
-    attenuation = _albedo->value(rec.u, rec.v, rec.p);
+    // Note: this wasn't in the book's code, so I had to add it here
+    s_rec.specular_ray = Ray(rec.p, rng.get_in_unit_sphere(), r_in.time);
+    s_rec.attenuation = _albedo->value(rec.u, rec.v, rec.p);
+    s_rec.is_specular = false;
+    s_rec.pdf_ptr = nullptr;        // TODO should this be a Cosine PDF?
 
     return true;
 }
 
 Vec3 Isotropic::emitted(
+    [[maybe_unused]] const Ray &r_in,
+    [[maybe_unused]] const HitRecord &rec,
     [[maybe_unused]] const rreal u,
     [[maybe_unused]] const rreal v,
     [[maybe_unused]] const Vec3 &p

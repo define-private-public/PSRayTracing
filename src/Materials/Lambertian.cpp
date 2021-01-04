@@ -1,7 +1,10 @@
 #include "Materials/Lambertian.h"
 #include "HitRecord.h"
+#include "ScatterRecord.h"
 #include "Textures/SolidColor.h"
 #include "RandomGenerator.h"
+#include "ONB.h"
+#include "PDFs/CosinePDF.h"
 
 using namespace std;
 
@@ -23,20 +26,31 @@ shared_ptr<IMaterial> Lambertian::deep_copy() const NOEXCEPT {
 }
 
 bool Lambertian::scatter(
-    RandomGenerator &rng,
-    const Ray &r_in,
+    [[maybe_unused]] RandomGenerator &rng,
+    [[maybe_unused]] const Ray &r_in,
     const HitRecord &rec,
-    Vec3 &attenuation,
-    Ray &scattered
+    ScatterRecord &s_rec    // Out
 ) const NOEXCEPT {
-    const Vec3 scatter_direction = rec.normal + rng.get_unit_vector();
-    scattered = Ray(rec.p, scatter_direction, r_in.time);
-    attenuation = _albedo->value(rec.u, rec.v, rec.p);
+    s_rec.is_specular = false;
+    s_rec.attenuation = _albedo->value(rec.u, rec.v, rec.p);
+    s_rec.pdf_ptr = make_shared<CosinePDF>(rec.normal);
+    // TODO the above being a shared pointer is slow (and being always new allocated)
 
     return true;
 }
 
+rreal Lambertian::scattering_pdf(
+    [[maybe_unused]] const Ray &r_in,
+    const HitRecord &rec,
+    const Ray &scattered
+) const NOEXCEPT {
+    const rreal cosine = rec.normal.dot(scattered.direction.unit_vector());
+    return (cosine < 0) ? 0 : (cosine / Pi);
+}
+
 Vec3 Lambertian::emitted(
+    [[maybe_unused]] const Ray &r_in,
+    [[maybe_unused]] const HitRecord &rec,
     [[maybe_unused]] const rreal u,
     [[maybe_unused]] const rreal v,
     [[maybe_unused]] const Vec3 &p

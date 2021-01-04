@@ -18,17 +18,17 @@ int main(int argc, char *argv[]) {
     po::variables_map args{};
     po::options_description argsDesc{"Options"};
     argsDesc.add_options()
-        ("help,h",                                                                      "Help screen (this message)")
-        ("list-scenes",                                                                 "List all of the available scenes to render")
-        ("scene",              po::value<string>()->default_value(Book2_FinalScene),     "Scene to render")
-        ("size,s",             po::value<string>()->default_value("960x540"),            "Render size")
-        ("num-samples,n",      po::value<int32_t>()->default_value(10),                  "Samples per pixel")
-        ("num-threads,j",      po::value<int>()->default_value(1),                       "How many threads to render with")
-        ("depth,d",            po::value<int16_t>()->default_value(50),                  "Maximum ray bounce depth")
-        ("random-seed,r",      po::value<string>()->default_value("ASDF"),               "Seed string for the RNG")
-        ("output-filename,o",  po::value<string>()->default_value("render.png"),         "Filename to save render to (PNG only)")
-        ("no-progress-bar",    po::bool_switch()->default_value(false),                  "Don't show the progress bar when rendering")
-        ("no-copy-per-thread", po::bool_switch()->default_value(false),                  "Don't make a copy of scene per thread");
+        ("help,h",                                                                                              "Help screen (this message)")
+        ("list-scenes",                                                                                         "List all of the available scenes to render")
+        ("scene",              po::value<string>()->default_value(Book3_CornellBox_OneMirrorBoxOneGlassSphere), "Scene to render")
+        ("size,s",             po::value<string>()->default_value("600x600"),                                   "Render size")
+        ("num-samples,n",      po::value<int32_t>()->default_value(10),                                         "Samples per pixel")
+        ("num-threads,j",      po::value<int>()->default_value(1),                                              "How many threads to render with")
+        ("depth,d",            po::value<int16_t>()->default_value(50),                                         "Maximum ray bounce depth")
+        ("random-seed,r",      po::value<string>()->default_value("ASDF"),                                      "Seed string for the RNG")
+        ("output-filename,o",  po::value<string>()->default_value("render.png"),                                "Filename to save render to (PNG only)")
+        ("no-progress-bar",    po::bool_switch()->default_value(false),                                         "Don't show the progress bar when rendering")
+        ("no-copy-per-thread", po::bool_switch()->default_value(false),                                         "Don't make a copy of scene per thread");
 
     try {
         po::store(po::parse_command_line(argc, argv, argsDesc), args);
@@ -120,6 +120,7 @@ int main(int argc, char *argv[]) {
     // Setup the context
     RenderContext r_ctx;
     r_ctx.scene = scene_desc.scene;
+    r_ctx.lights = scene_desc.lights;
     r_ctx.camera = cam;
     r_ctx.background = scene_desc.background;
     r_ctx.width = render_desc.width;

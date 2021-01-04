@@ -16,6 +16,15 @@ public:
 
     std::shared_ptr<IMaterial> deep_copy() const NOEXCEPT override;
 
-    bool scatter(RandomGenerator &rng, const Ray &r_in, const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const NOEXCEPT override;
-    Vec3 emitted(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
+    bool scatter(RandomGenerator &rng, const Ray &r_in, const HitRecord &rec, ScatterRecord &s_rec) const NOEXCEPT override;
+
+    rreal scattering_pdf(
+        [[maybe_unused]] const Ray &r_in,
+        [[maybe_unused]] const HitRecord &rec,
+        [[maybe_unused]] const Ray &scattered
+    ) const NOEXCEPT override {
+        return 0;
+    }
+
+    Vec3 emitted(const Ray &r_in, const HitRecord &rec, const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
 };

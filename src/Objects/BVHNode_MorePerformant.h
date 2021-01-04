@@ -91,6 +91,21 @@ public:
     bool hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT override;
     bool bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT override;
 
+    rreal pdf_value(
+        [[maybe_unused]] RandomGenerator &rng,
+        [[maybe_unused]] const Vec3 &origin,
+        [[maybe_unused]] const Vec3 &v
+    ) const NOEXCEPT override {
+        return 0;
+    }
+
+    Vec3 random(
+        [[maybe_unused]] RandomGenerator &rng,
+        [[maybe_unused]] const Vec3 &origin
+    ) const NOEXCEPT override {
+        return Vec3(1, 0, 0);
+    }
+
 private:
     // Used in the constructor to build the tree
     size_t _build_tree(RandomGenerator &rng, std::vector<_IndexedAABB> boxes, const size_t start, const size_t end);

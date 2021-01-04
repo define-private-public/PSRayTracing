@@ -1,6 +1,7 @@
 #include "Materials/Dielectric.h"
 #include <cmath>
 #include "HitRecord.h"
+#include "ScatterRecord.h"
 #include "Ray.h"
 #include "Util.h"
 #include "RandomGenerator.h"
@@ -20,10 +21,12 @@ bool Dielectric::scatter(
     RandomGenerator &rng,
     const Ray &r_in,
     const HitRecord &rec,
-    Vec3 &attenuation,
-    Ray &scattered
+    ScatterRecord &s_rec    // Out
 ) const NOEXCEPT {
-    attenuation = Vec3(1.0);
+    s_rec.is_specular = true;
+    s_rec.pdf_ptr = nullptr;
+    s_rec.attenuation = Vec3(1);
+
     const rreal etai_over_etat = rec.front_face ? (static_cast<rreal>(1) / _refractive_index) : _refractive_index;
     const Vec3 unit_direction = r_in.direction.unit_vector();
     const rreal cos_theta = std::fmin((-unit_direction).dot(rec.normal), static_cast<rreal>(1));
@@ -32,14 +35,14 @@ bool Dielectric::scatter(
 #ifdef USE_BOOK_DIELECTRIC_SCATTER
     if ((etai_over_etat * sin_theta) > 1) {
         // Must reflect
-        scattered = Ray(rec.p, unit_direction.reflect(rec.normal), r_in.time);
+        s_rec.specular_ray = Ray(rec.p, unit_direction.reflect(rec.normal), r_in.time);
         return true;
     }
 
     // Check case for when at an angle a dielectric becomes mirrorlike
     const rreal reflect_probe = util::schlick(cos_theta, etai_over_etat);
     if (rng.get_real() < reflect_probe) {
-        scattered = Ray(rec.p, unit_direction.reflect(rec.normal), r_in.time);
+        s_rec.specular_ray = Ray(rec.p, unit_direction.reflect(rec.normal), r_in.time);
         return true;
     }
 
@@ -58,15 +61,17 @@ bool Dielectric::scatter(
     const Vec3 refract_dir = unit_direction.refract(rec.normal, etai_over_etat);
 
     if (reflect_case_one || reflect_case_two)
-        scattered = Ray(rec.p, reflect_dir, r_in.time);
+        s_rec.specular_ray = Ray(rec.p, reflect_dir, r_in.time);
     else
-        scattered = Ray(rec.p, refract_dir, r_in.time);     // Instead refract
+        s_rec.specular_ray = Ray(rec.p, refract_dir, r_in.time);     // Instead refract
 #endif
 
     return true;
 }
 
 Vec3 Dielectric::emitted(
+    [[maybe_unused]] const Ray &r_in,
+    [[maybe_unused]] const HitRecord &rec,
     [[maybe_unused]] const rreal u,
     [[maybe_unused]] const rreal v,
     [[maybe_unused]] const Vec3 &p
