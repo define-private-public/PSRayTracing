@@ -128,7 +128,7 @@ public:
     inline Vec3 get_unit_vector() NOEXCEPT {
         const Type a = get_real(0, TwoPi);
         const Type z = get_real(-1, 1);
-        const Type r = util::sqrt(1 - (z * z));
+        const rreal r = util::sqrt(1 - (z * z));
 
         return Vec3(r * util::cos(a), r * util::sin(a), z);
     }
