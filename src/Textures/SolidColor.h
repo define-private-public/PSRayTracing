@@ -17,7 +17,7 @@ public:
         SolidColor(Vec3(red, green, blue))
     { }
 
-    virtual std::shared_ptr<ITexture> deep_copy() const NOEXCEPT override;
+    std::shared_ptr<ITexture> deep_copy() const NOEXCEPT override;
 
-    virtual Vec3 value(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
+    Vec3 value(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
 };

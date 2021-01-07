@@ -14,8 +14,8 @@ public:
     explicit DiffuseLight(const std::shared_ptr<ITexture> &a) NOEXCEPT;
     explicit DiffuseLight(const Vec3 &clr) NOEXCEPT;
 
-    virtual std::shared_ptr<IMaterial> deep_copy() const NOEXCEPT override;
+    std::shared_ptr<IMaterial> deep_copy() const NOEXCEPT override;
 
-    virtual bool scatter(RandomGenerator &rng, const Ray &r_in, const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const NOEXCEPT override;
-    virtual Vec3 emitted(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
+    bool scatter(RandomGenerator &rng, const Ray &r_in, const HitRecord &rec, Vec3 &attenuation, Ray &scattered) const NOEXCEPT override;
+    Vec3 emitted(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
 };
