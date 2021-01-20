@@ -20,6 +20,6 @@ public:
     void clear() NOEXCEPT;
     void add(const std::shared_ptr<IHittable> &object) NOEXCEPT;
 
-    bool hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT;
-    bool bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT;
+    bool hit(RandomGenerator &rng, const Ray &r, const rreal t_min, const rreal t_max, HitRecord &rec) const NOEXCEPT override;
+    bool bounding_box(const rreal t0, const rreal t1, AABB &output_box) const NOEXCEPT override;
 };
