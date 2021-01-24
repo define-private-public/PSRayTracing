@@ -27,13 +27,14 @@ radically changing the architecture of the renderer and using (near) vanilla C++
 
 There are other fun features such as multi-core rendering, configurable render parameters (e.g. samples
 per pixel, max ray depth), and progress bars; it’s the little things that count.  It should be able to
-replicate all of the scenes from books 1 & 2.  Though there is no book 3 implementation at this time.
+replicate all of the scenes from books 1 & 2.  If you want to render the scenes from book 3, you will
+need to check out the branch ``book 3``.
 
 What I like about how this book is structured is that it shows you how to make incremental changes to
 the ray tracer.  With these step-by-step changes in book 3 though, it was getting very difficult to
 have my code reproduce every step, due to many structural changes in critical sections.  So I decided
-it would be best to keep book 3 as its own separate thing for a later date.  But on top of that, I
-think there are more points of optimization to talk about for Books 1 & 2.
+it would be best to keep book 3 as its own separate branch.  But on top of that, I think there are more
+points of optimization to talk about for Books 1 & 2.
 
 I've decided to license this implementation under the ``Apache License (2.0)``.  The full text is in the
 file ``LICENSE.txt``.  The only exception to this is ``src/third_party``, as those are externally provided
@@ -123,6 +124,9 @@ surface normal (to shade it), with 250 samples/pixel, rendering on four cores at
 ``render.png``.
 
 You should be good now to start rendering.
+
+If you want to see what scenes, supply the flag ``-list-scenes`` to the executable.  The output form this is
+different depending upong what branch you're currently on.
 
 
 
@@ -486,9 +490,11 @@ Overall this was a fun project.
 I’d love to visit some of these ideas, as they could bring better perf and add all around fun features, but
 I want to get onto other projects.  Someday...
 
-* An implementation of Book 3.  As stated before, it was getting to be a real pain to make sure every scene
-  was reproducible.  Having Book 3 in here could make this feel more complete, but too many critical things
-  kept on changing
+* Book 3's handling of PDFs could be more memory friendly.  I stated before there was not much optimization
+  that could be done, but I guarentee that this is a point of slowdown in the application.  It's a general
+  good rule of thumb to not allocate any new/dynamic memory in a critical section of your code (such ashamed
+  rendering).  With he use of PDFs, this happens.  If the PDFs could be turned into something allocated on
+  the stack, than that would be way more efficient.  Though, I think this would require some nasty refactoring.
 
 * Being able to pause and restart renders.  Should be simple, but I’d want to do it
 
