@@ -28,7 +28,7 @@ radically changing the architecture of the renderer and using (near) vanilla C++
 There are other fun features such as multi-core rendering, configurable render parameters (e.g. samples
 per pixel, max ray depth), and progress bars; it’s the little things that count.  It should be able to
 replicate all of the scenes from books 1 & 2.  If you want to render the scenes from book 3, you will
-need to check out the branch ``book 3``.
+need to check out the branch ``book3``.
 
 What I like about how this book is structured is that it shows you how to make incremental changes to
 the ray tracer.  With these step-by-step changes in book 3 though, it was getting very difficult to
