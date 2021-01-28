@@ -26,7 +26,7 @@ bool Metal::scatter(
     s_rec.specular_ray = Ray(rec.p, reflected + (_fuzz * rng.get_in_unit_sphere()), r_in.time);
     s_rec.attenuation = _albedo;
     s_rec.is_specular = true;
-    s_rec.pdf_ptr = nullptr;
+    s_rec.pdf = monostate();
 
     return true;
 }

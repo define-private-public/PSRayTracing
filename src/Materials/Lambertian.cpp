@@ -33,8 +33,7 @@ bool Lambertian::scatter(
 ) const NOEXCEPT {
     s_rec.is_specular = false;
     s_rec.attenuation = _albedo->value(rec.u, rec.v, rec.p);
-    s_rec.pdf_ptr = make_shared<CosinePDF>(rec.normal);
-    // TODO the above being a shared pointer is slow (and being always new allocated)
+    s_rec.pdf = CosinePDF(rec.normal);
 
     return true;
 }

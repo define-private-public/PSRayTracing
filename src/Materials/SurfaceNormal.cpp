@@ -30,7 +30,7 @@ bool SurfaceNormal::scatter(
     s_rec.attenuation = Vec3(a.x * a.x, a.y * a.y, a.z * a.z);
     s_rec.specular_ray = Ray(rec.p, scatter_direction, r_in.time);
     s_rec.is_specular = false;
-    s_rec.pdf_ptr = make_shared<CosinePDF>(rec.normal);
+    s_rec.pdf = CosinePDF(rec.normal);
 
     return true;
 }

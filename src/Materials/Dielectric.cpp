@@ -24,7 +24,7 @@ bool Dielectric::scatter(
     ScatterRecord &s_rec    // Out
 ) const NOEXCEPT {
     s_rec.is_specular = true;
-    s_rec.pdf_ptr = nullptr;
+    s_rec.pdf = monostate();
     s_rec.attenuation = Vec3(1);
 
     const rreal etai_over_etat = rec.front_face ? (static_cast<rreal>(1) / _refractive_index) : _refractive_index;

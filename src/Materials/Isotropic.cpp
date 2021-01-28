@@ -32,7 +32,7 @@ bool Isotropic::scatter(
     s_rec.specular_ray = Ray(rec.p, rng.get_in_unit_sphere(), r_in.time);
     s_rec.attenuation = _albedo->value(rec.u, rec.v, rec.p);
     s_rec.is_specular = false;
-    s_rec.pdf_ptr = nullptr;        // TODO should this be a Cosine PDF?
+    s_rec.pdf = monostate();
 
     return true;
 }

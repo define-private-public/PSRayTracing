@@ -1,20 +1,19 @@
 #pragma once
 
 #include "Interfaces/IPDF.h"
-#include <memory>
 
 
 // A PDF that mixes two others
 class MixturePDF : public IPDF {
 private:
     // Data
-    std::shared_ptr<IPDF> _a;
-    std::shared_ptr<IPDF> _b;
+    IPDF *_a = nullptr;
+    IPDF *_b = nullptr;
 
 public:
     explicit MixturePDF(
-        const std::shared_ptr<IPDF> &a,
-        const std::shared_ptr<IPDF> &b
+        IPDF *a,
+        IPDF *b
     ) NOEXCEPT :
         _a(a),
         _b(b)
