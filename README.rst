@@ -28,7 +28,9 @@ radically changing the architecture of the renderer and using (near) vanilla C++
 There are other fun features such as multi-core rendering, configurable render parameters (e.g. samples
 per pixel, max ray depth), and progress bars; it’s the little things that count.  It should be able to
 replicate all of the scenes from books 1 & 2.  If you want to render the scenes from book 3, you will
-need to check out the branch ``book3``.
+need to check out the branch ``book3``.  There is another branch called ``book3.PDF_pointer_alternative``
+which is more performant, but it breaks the architecture a bit.  I'd recommend doing a diff of the two
+branches to see what the changes are.  The optimization is better explained in the section  `PDFVariant (Book 3 only)`_ .
 
 What I like about how this book is structured is that it shows you how to make incremental changes to
 the ray tracer.  With these step-by-step changes in book 3 though, it was getting very difficult to
@@ -401,6 +403,27 @@ process, none of the objects or materials will change.  This is a perfect place 
 
 If you want to try toggling this on/off, this is controlled by the ``WITH_BOOK_MAT_PTR`` flag at CMake configuration
 time.
+
+
+========================
+PDFVariant (Book 3 only)
+========================
+
+While working on Book 3, I couldn't help but notice that during the rendering process, we were allocating dynamic
+memory and creating shared pointers when it came to using classes like ``CosinePDF``, ``HittablePDF``, and
+``MixturePDF`` (all subclasses of ``IPDF``).  These classes weren't being used in any extraordinary complex ways.
+For instance ``CosinePDF`` is only being used in ``IMaterial`` objects.  ``HittablePDF`` is only being used with
+the light objects for a scene.  And ``MixturePDF`` is only instantiated in the ``ray_color()`` function.
+
+Leveraging ``std::variant<T>``, type we can still pass around these various ``IPDF`` sublcasses in a fleiable manor,
+but ensure that they stay allocated on the stack (thus no dynamic memory or reference counting).  This now shoved
+int an aliased type called ``PDFVariant``.  We still need to  work with pointers to ``IPDF`` (namely for
+``MixturePDF``), but these are much faster raw pointers.
+
+If you want to check out these changes, they are on the branch ``book3.PDF_pointer_alternative``.  It actually not
+too complex, but it does break the book's architecture a tad.  With some initial testing, I was able to render the
+final scene of book 3 about 15% faster!  I'm sure there are some other minor tweaks that could be made too, but that
+would reduce some of the flexibility ``PDFVariant`` can give us.
 
 
 
