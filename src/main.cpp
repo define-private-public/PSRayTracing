@@ -28,7 +28,9 @@ int main(int argc, char *argv[]) {
         ("random-seed,r",      po::value<string>()->default_value("ASDF"),               "Seed string for the RNG")
         ("output-filename,o",  po::value<string>()->default_value("render.png"),         "Filename to save render to (PNG only)")
         ("no-progress-bar",    po::bool_switch()->default_value(false),                  "Don't show the progress bar when rendering")
-        ("no-copy-per-thread", po::bool_switch()->default_value(false),                  "Don't make a copy of scene per thread");
+        ("no-copy-per-thread", po::bool_switch()->default_value(false),                  "Don't make a copy of scene per thread")
+        ("testing-mode",       po::bool_switch()->default_value(false),                 "Run in testing mode; only outputs how long render time took")
+    ;
 
     try {
         po::store(po::parse_command_line(argc, argv, argsDesc), args);
@@ -77,8 +79,13 @@ int main(int argc, char *argv[]) {
     const auto max_depth = static_cast<uint16_t>(std::max(static_cast<int16_t>(1), args["depth"].as<int16_t>()));
     const auto num_threads = std::max(args["num-threads"].as<int>(), 1);
     const auto seed_str = args["random-seed"].as<string>();
-    const auto show_progress = !args["no-progress-bar"].as<bool>();
+    auto show_progress = !args["no-progress-bar"].as<bool>();
     const auto deep_copy_per_thread = !args["no-copy-per-thread"].as<bool>();
+    const auto run_in_testing_mode = args["testing-mode"].as<bool>();
+
+    // If we're in test mode, there's going to be no progress bar
+    if (run_in_testing_mode)
+        show_progress = false;
 
     // If we use the book's perlin implementation, but also use `copy-per-thread`, errors could happen
 #ifdef USE_BOOK_PERLIN
@@ -104,14 +111,16 @@ int main(int argc, char *argv[]) {
     }
 
     // Print some info
-    cout << "Scene: " << scene_id << endl;
-    cout << "Render size: " << render_desc.width << "x" << render_desc.height << endl;
-    cout << "Samples per pixel: " << samples_per_pixel << endl;
-    cout << "Max number of ray bounces: " << max_depth << endl;
-    cout << "Number of render threads: " << num_threads << endl;
-    cout << "  Copy per thread: " << (deep_copy_per_thread ? "on" : "off")<< endl;
-    cout << "Saving to: " << output_filename << endl;
-    cout << "Seed: `" << seed_str << "`" << endl;
+    if (!run_in_testing_mode) {
+        cout << "Scene: " << scene_id << endl;
+        cout << "Render size: " << render_desc.width << "x" << render_desc.height << endl;
+        cout << "Samples per pixel: " << samples_per_pixel << endl;
+        cout << "Max number of ray bounces: " << max_depth << endl;
+        cout << "Number of render threads: " << num_threads << endl;
+        cout << "  Copy per thread: " << (deep_copy_per_thread ? "on" : "off")<< endl;
+        cout << "Saving to: " << output_filename << endl;
+        cout << "Seed: `" << seed_str << "`" << endl;
+    }
 
     // Prep the render
     const SceneDescriptor scene_desc = scp.scene;
@@ -157,8 +166,15 @@ int main(int argc, char *argv[]) {
     }
 
     // Print some info
-    const rreal renderTime = rreal(chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count()) / 1000.0f;
-    cout << "Render took " << renderTime << " seconds" << endl;
+    if (run_in_testing_mode) {
+        // For machines, we show nanoseconds (as integers)
+        const auto render_time_us = chrono::duration_cast<std::chrono::nanoseconds>(endTime - startTime).count();
+        cout << render_time_us << " ns" << endl;
+    } else {
+        // for humans, we show seconds (with decimals)
+        const rreal renderTime = rreal(chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime).count()) / 1000.0f;
+        cout << "Render took " << renderTime << " seconds" << endl;
+    }
 
     // Grab the render and save it
     pool.retreive_render(render_desc, image_data);
