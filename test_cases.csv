@@ -1,0 +1,351 @@
+id_num,scene_id,num_threads,use_copy_per_thread,num_samples,ray_depth,random_seed,size
+001,book1::surface_normal_sphere,1,False,5,25,9001,400x400
+002,book1::surface_normal_sphere,1,True,5,10,ASDF,400x400
+003,book1::surface_normal_sphere,1,True,10,10,9001,400x400
+004,book1::surface_normal_sphere,1,True,10,50,ASDF,320x240
+005,book1::surface_normal_sphere,1,True,25,25,9001,852x480
+006,book1::surface_normal_sphere,2,True,10,50,9001,320x240
+007,book1::surface_normal_sphere,2,True,25,25,alvin's hot juicebox,400x400
+008,book1::surface_normal_sphere,2,True,25,50,alvin's hot juicebox,400x400
+009,book1::surface_normal_sphere,2,True,25,50,alvin's hot juicebox,852x480
+010,book1::surface_normal_sphere,4,True,5,10,alvin's hot juicebox,320x240
+011,book1::grey_sphere,2,False,5,25,9001,320x240
+012,book1::grey_sphere,2,False,10,25,alvin's hot juicebox,852x480
+013,book1::grey_sphere,2,False,10,50,9001,320x240
+014,book1::grey_sphere,2,False,25,50,alvin's hot juicebox,852x480
+015,book1::grey_sphere,2,True,10,25,ASDF,852x480
+016,book1::grey_sphere,4,False,5,25,ASDF,320x240
+017,book1::grey_sphere,4,False,5,50,ASDF,852x480
+018,book1::grey_sphere,4,True,5,10,9001,852x480
+019,book1::grey_sphere,4,True,10,10,ASDF,852x480
+020,book1::grey_sphere,4,True,25,25,9001,852x480
+021,book1::shiny_metal_sphere,1,False,25,10,alvin's hot juicebox,852x480
+022,book1::shiny_metal_sphere,1,False,25,50,ASDF,852x480
+023,book1::shiny_metal_sphere,1,True,10,25,9001,320x240
+024,book1::shiny_metal_sphere,1,True,25,10,9001,320x240
+025,book1::shiny_metal_sphere,2,True,10,10,ASDF,320x240
+026,book1::shiny_metal_sphere,2,True,25,10,ASDF,320x240
+027,book1::shiny_metal_sphere,4,False,5,10,9001,400x400
+028,book1::shiny_metal_sphere,4,False,10,50,ASDF,400x400
+029,book1::shiny_metal_sphere,4,True,5,25,alvin's hot juicebox,320x240
+030,book1::shiny_metal_sphere,4,True,10,10,ASDF,400x400
+031,book1::fuzzy_metal_sphere,1,False,10,10,alvin's hot juicebox,400x400
+032,book1::fuzzy_metal_sphere,1,True,10,25,alvin's hot juicebox,400x400
+033,book1::fuzzy_metal_sphere,2,False,5,10,9001,320x240
+034,book1::fuzzy_metal_sphere,2,True,10,10,ASDF,400x400
+035,book1::fuzzy_metal_sphere,2,True,25,10,alvin's hot juicebox,852x480
+036,book1::fuzzy_metal_sphere,4,False,10,10,alvin's hot juicebox,852x480
+037,book1::fuzzy_metal_sphere,4,False,25,50,alvin's hot juicebox,320x240
+038,book1::fuzzy_metal_sphere,4,True,5,10,alvin's hot juicebox,852x480
+039,book1::fuzzy_metal_sphere,4,True,5,25,9001,852x480
+040,book1::fuzzy_metal_sphere,4,True,25,10,ASDF,400x400
+041,book1::two_glass_one_metal_spheres,1,False,10,50,alvin's hot juicebox,852x480
+042,book1::two_glass_one_metal_spheres,1,False,25,50,9001,320x240
+043,book1::two_glass_one_metal_spheres,1,True,25,50,ASDF,320x240
+044,book1::two_glass_one_metal_spheres,2,False,5,25,alvin's hot juicebox,320x240
+045,book1::two_glass_one_metal_spheres,2,False,5,50,ASDF,320x240
+046,book1::two_glass_one_metal_spheres,2,False,10,50,alvin's hot juicebox,320x240
+047,book1::two_glass_one_metal_spheres,2,True,10,10,9001,852x480
+048,book1::two_glass_one_metal_spheres,4,False,10,10,alvin's hot juicebox,400x400
+049,book1::two_glass_one_metal_spheres,4,False,25,25,alvin's hot juicebox,852x480
+050,book1::two_glass_one_metal_spheres,4,True,25,25,9001,852x480
+051,book1::glass_blue_metal_spheres,1,False,5,10,9001,852x480
+052,book1::glass_blue_metal_spheres,1,False,5,10,ASDF,852x480
+053,book1::glass_blue_metal_spheres,1,False,5,50,ASDF,320x240
+054,book1::glass_blue_metal_spheres,1,True,25,25,alvin's hot juicebox,400x400
+055,book1::glass_blue_metal_spheres,2,False,5,25,ASDF,852x480
+056,book1::glass_blue_metal_spheres,2,True,5,50,alvin's hot juicebox,320x240
+057,book1::glass_blue_metal_spheres,4,False,10,10,alvin's hot juicebox,852x480
+058,book1::glass_blue_metal_spheres,4,True,25,10,alvin's hot juicebox,852x480
+059,book1::glass_blue_metal_spheres,4,True,25,50,ASDF,320x240
+060,book1::glass_blue_metal_spheres,4,True,25,50,ASDF,400x400
+061,book1::red_blue_spheres,1,True,5,50,alvin's hot juicebox,400x400
+062,book1::red_blue_spheres,2,False,25,10,ASDF,400x400
+063,book1::red_blue_spheres,2,False,25,25,ASDF,320x240
+064,book1::red_blue_spheres,2,False,25,50,ASDF,400x400
+065,book1::red_blue_spheres,2,True,10,25,9001,320x240
+066,book1::red_blue_spheres,4,False,5,10,9001,400x400
+067,book1::red_blue_spheres,4,False,10,50,ASDF,320x240
+068,book1::red_blue_spheres,4,True,10,25,9001,320x240
+069,book1::red_blue_spheres,4,True,10,25,ASDF,320x240
+070,book1::red_blue_spheres,4,True,10,50,9001,400x400
+071,book1::glass_blue_metal_spheres,1,False,10,10,9001,320x240
+072,book1::glass_blue_metal_spheres,1,False,25,25,ASDF,852x480
+073,book1::glass_blue_metal_spheres,1,True,5,50,alvin's hot juicebox,400x400
+074,book1::glass_blue_metal_spheres,1,True,25,50,alvin's hot juicebox,400x400
+075,book1::glass_blue_metal_spheres,2,False,5,25,9001,852x480
+076,book1::glass_blue_metal_spheres,2,False,5,25,ASDF,400x400
+077,book1::glass_blue_metal_spheres,2,False,10,25,9001,400x400
+078,book1::glass_blue_metal_spheres,2,True,25,50,ASDF,852x480
+079,book1::glass_blue_metal_spheres,4,False,25,50,ASDF,320x240
+080,book1::glass_blue_metal_spheres,4,True,10,25,alvin's hot juicebox,320x240
+081,book1::glass_blue_metal_spheres::far_view,1,False,5,50,alvin's hot juicebox,400x400
+082,book1::glass_blue_metal_spheres::far_view,1,False,25,10,alvin's hot juicebox,400x400
+083,book1::glass_blue_metal_spheres::far_view,1,True,5,50,alvin's hot juicebox,852x480
+084,book1::glass_blue_metal_spheres::far_view,2,False,5,50,9001,320x240
+085,book1::glass_blue_metal_spheres::far_view,2,False,10,50,ASDF,400x400
+086,book1::glass_blue_metal_spheres::far_view,2,False,10,50,alvin's hot juicebox,852x480
+087,book1::glass_blue_metal_spheres::far_view,2,True,10,10,alvin's hot juicebox,400x400
+088,book1::glass_blue_metal_spheres::far_view,2,True,10,50,ASDF,320x240
+089,book1::glass_blue_metal_spheres::far_view,4,False,25,25,ASDF,852x480
+090,book1::glass_blue_metal_spheres::far_view,4,True,25,25,alvin's hot juicebox,852x480
+091,book1::glass_blue_metal_spheres::close_view,1,False,5,10,9001,852x480
+092,book1::glass_blue_metal_spheres::close_view,1,True,10,50,9001,400x400
+093,book1::glass_blue_metal_spheres::close_view,2,False,25,10,alvin's hot juicebox,852x480
+094,book1::glass_blue_metal_spheres::close_view,2,False,25,25,alvin's hot juicebox,320x240
+095,book1::glass_blue_metal_spheres::close_view,2,False,25,50,ASDF,400x400
+096,book1::glass_blue_metal_spheres::close_view,2,True,25,50,9001,320x240
+097,book1::glass_blue_metal_spheres::close_view,2,True,25,50,alvin's hot juicebox,320x240
+098,book1::glass_blue_metal_spheres::close_view,4,False,5,10,alvin's hot juicebox,320x240
+099,book1::glass_blue_metal_spheres::close_view,4,False,10,25,9001,400x400
+100,book1::glass_blue_metal_spheres::close_view,4,True,25,25,ASDF,400x400
+101,book1::glass_blue_metal_spheres::close_fuzzy_view,1,False,5,50,alvin's hot juicebox,852x480
+102,book1::glass_blue_metal_spheres::close_fuzzy_view,1,False,10,10,alvin's hot juicebox,320x240
+103,book1::glass_blue_metal_spheres::close_fuzzy_view,1,True,5,10,ASDF,400x400
+104,book1::glass_blue_metal_spheres::close_fuzzy_view,1,True,10,25,9001,852x480
+105,book1::glass_blue_metal_spheres::close_fuzzy_view,2,False,5,10,alvin's hot juicebox,852x480
+106,book1::glass_blue_metal_spheres::close_fuzzy_view,2,False,25,50,9001,400x400
+107,book1::glass_blue_metal_spheres::close_fuzzy_view,2,False,25,50,ASDF,852x480
+108,book1::glass_blue_metal_spheres::close_fuzzy_view,2,True,25,10,9001,400x400
+109,book1::glass_blue_metal_spheres::close_fuzzy_view,4,False,25,50,ASDF,852x480
+110,book1::glass_blue_metal_spheres::close_fuzzy_view,4,True,10,50,9001,320x240
+111,book1::final_scene,1,False,5,50,ASDF,400x400
+112,book1::final_scene,1,False,25,50,9001,320x240
+113,book1::final_scene,1,True,5,25,alvin's hot juicebox,852x480
+114,book1::final_scene,1,True,5,50,ASDF,400x400
+115,book1::final_scene,1,True,25,50,alvin's hot juicebox,320x240
+116,book1::final_scene,2,True,5,10,ASDF,320x240
+117,book1::final_scene,2,True,5,25,ASDF,400x400
+118,book1::final_scene,4,False,25,50,ASDF,852x480
+119,book1::final_scene,4,True,10,50,9001,400x400
+120,book1::final_scene,4,True,25,10,9001,400x400
+121,book2::bouncing_spheres,1,False,5,10,9001,852x480
+122,book2::bouncing_spheres,1,True,10,10,9001,320x240
+123,book2::bouncing_spheres,1,True,25,25,9001,852x480
+124,book2::bouncing_spheres,2,False,5,10,alvin's hot juicebox,320x240
+125,book2::bouncing_spheres,2,False,25,50,alvin's hot juicebox,320x240
+126,book2::bouncing_spheres,2,True,10,10,9001,400x400
+127,book2::bouncing_spheres,4,False,5,10,ASDF,320x240
+128,book2::bouncing_spheres,4,False,5,25,9001,400x400
+129,book2::bouncing_spheres,4,True,5,10,ASDF,320x240
+130,book2::bouncing_spheres,4,True,5,50,ASDF,400x400
+131,book2::bouncing_spheres::with_bvh,1,False,10,10,9001,852x480
+132,book2::bouncing_spheres::with_bvh,1,False,25,10,alvin's hot juicebox,400x400
+133,book2::bouncing_spheres::with_bvh,2,False,5,25,9001,320x240
+134,book2::bouncing_spheres::with_bvh,2,False,5,25,alvin's hot juicebox,400x400
+135,book2::bouncing_spheres::with_bvh,2,False,25,10,ASDF,320x240
+136,book2::bouncing_spheres::with_bvh,2,False,25,25,ASDF,852x480
+137,book2::bouncing_spheres::with_bvh,2,True,5,25,9001,320x240
+138,book2::bouncing_spheres::with_bvh,4,False,10,50,alvin's hot juicebox,400x400
+139,book2::bouncing_spheres::with_bvh,4,True,5,10,9001,320x240
+140,book2::bouncing_spheres::with_bvh,4,True,10,25,9001,400x400
+141,book2::bouncing_spheres_checkered_floor,1,False,10,25,alvin's hot juicebox,320x240
+142,book2::bouncing_spheres_checkered_floor,1,False,25,10,ASDF,400x400
+143,book2::bouncing_spheres_checkered_floor,1,True,5,50,ASDF,320x240
+144,book2::bouncing_spheres_checkered_floor,1,True,10,50,alvin's hot juicebox,400x400
+145,book2::bouncing_spheres_checkered_floor,2,False,10,10,ASDF,852x480
+146,book2::bouncing_spheres_checkered_floor,2,False,10,25,alvin's hot juicebox,320x240
+147,book2::bouncing_spheres_checkered_floor,2,False,25,10,9001,852x480
+148,book2::bouncing_spheres_checkered_floor,2,False,25,25,ASDF,400x400
+149,book2::bouncing_spheres_checkered_floor,4,True,5,25,ASDF,320x240
+150,book2::bouncing_spheres_checkered_floor,4,True,10,25,ASDF,852x480
+151,book2::bouncing_spheres_checkered_floor::with_bvh,1,False,5,25,alvin's hot juicebox,320x240
+152,book2::bouncing_spheres_checkered_floor::with_bvh,1,False,10,25,9001,400x400
+153,book2::bouncing_spheres_checkered_floor::with_bvh,1,True,5,50,ASDF,852x480
+154,book2::bouncing_spheres_checkered_floor::with_bvh,2,False,5,10,ASDF,320x240
+155,book2::bouncing_spheres_checkered_floor::with_bvh,2,False,10,50,ASDF,320x240
+156,book2::bouncing_spheres_checkered_floor::with_bvh,2,False,25,50,9001,400x400
+157,book2::bouncing_spheres_checkered_floor::with_bvh,2,True,25,25,alvin's hot juicebox,320x240
+158,book2::bouncing_spheres_checkered_floor::with_bvh,4,False,10,25,ASDF,400x400
+159,book2::bouncing_spheres_checkered_floor::with_bvh,4,True,25,25,9001,320x240
+160,book2::bouncing_spheres_checkered_floor::with_bvh,4,True,25,50,9001,400x400
+161,book2::two_checkered_spheres,1,False,25,10,ASDF,320x240
+162,book2::two_checkered_spheres,1,False,25,50,9001,400x400
+163,book2::two_checkered_spheres,1,True,10,25,9001,320x240
+164,book2::two_checkered_spheres,2,False,5,50,9001,400x400
+165,book2::two_checkered_spheres,2,False,10,50,9001,320x240
+166,book2::two_checkered_spheres,2,True,10,50,9001,400x400
+167,book2::two_checkered_spheres,4,False,10,25,alvin's hot juicebox,320x240
+168,book2::two_checkered_spheres,4,False,25,10,alvin's hot juicebox,400x400
+169,book2::two_checkered_spheres,4,False,25,25,ASDF,400x400
+170,book2::two_checkered_spheres,4,True,25,25,ASDF,320x240
+171,book2::perlin_sphere,1,False,10,25,alvin's hot juicebox,400x400
+172,book2::perlin_sphere,1,True,5,50,9001,852x480
+173,book2::perlin_sphere,1,True,5,50,ASDF,400x400
+174,book2::perlin_sphere,1,True,25,10,ASDF,852x480
+175,book2::perlin_sphere,2,False,25,10,ASDF,400x400
+176,book2::perlin_sphere,2,True,10,50,ASDF,852x480
+177,book2::perlin_sphere,4,False,5,10,alvin's hot juicebox,852x480
+178,book2::perlin_sphere,4,False,10,50,9001,852x480
+179,book2::perlin_sphere,4,False,25,25,alvin's hot juicebox,852x480
+180,book2::perlin_sphere,4,True,25,25,ASDF,852x480
+181,book2::perlin_sphere::trilinear,1,False,5,25,ASDF,320x240
+182,book2::perlin_sphere::trilinear,1,True,10,10,ASDF,320x240
+183,book2::perlin_sphere::trilinear,2,False,5,10,alvin's hot juicebox,400x400
+184,book2::perlin_sphere::trilinear,2,False,10,50,ASDF,852x480
+185,book2::perlin_sphere::trilinear,4,False,5,50,9001,320x240
+186,book2::perlin_sphere::trilinear,4,False,10,25,alvin's hot juicebox,852x480
+187,book2::perlin_sphere::trilinear,4,False,10,50,ASDF,320x240
+188,book2::perlin_sphere::trilinear,4,False,25,10,ASDF,320x240
+189,book2::perlin_sphere::trilinear,4,True,5,25,ASDF,320x240
+190,book2::perlin_sphere::trilinear,4,True,5,50,9001,852x480
+191,book2::perlin_sphere::trilinear_hermite_cubic,1,True,25,50,alvin's hot juicebox,852x480
+192,book2::perlin_sphere::trilinear_hermite_cubic,2,False,10,10,ASDF,320x240
+193,book2::perlin_sphere::trilinear_hermite_cubic,2,False,10,10,alvin's hot juicebox,320x240
+194,book2::perlin_sphere::trilinear_hermite_cubic,2,True,5,25,ASDF,320x240
+195,book2::perlin_sphere::trilinear_hermite_cubic,2,True,10,10,ASDF,852x480
+196,book2::perlin_sphere::trilinear_hermite_cubic,2,True,25,10,ASDF,852x480
+197,book2::perlin_sphere::trilinear_hermite_cubic,4,False,10,10,ASDF,320x240
+198,book2::perlin_sphere::trilinear_hermite_cubic,4,True,5,50,alvin's hot juicebox,320x240
+199,book2::perlin_sphere::trilinear_hermite_cubic,4,True,10,25,9001,852x480
+200,book2::perlin_sphere::trilinear_hermite_cubic,4,True,25,10,9001,320x240
+201,book2::perlin_sphere::normal_noise,2,False,25,25,9001,400x400
+202,book2::perlin_sphere::normal_noise,2,True,5,10,9001,320x240
+203,book2::perlin_sphere::normal_noise,2,True,5,25,alvin's hot juicebox,400x400
+204,book2::perlin_sphere::normal_noise,2,True,10,25,alvin's hot juicebox,400x400
+205,book2::perlin_sphere::normal_noise,2,True,10,50,ASDF,400x400
+206,book2::perlin_sphere::normal_noise,2,True,25,25,ASDF,852x480
+207,book2::perlin_sphere::normal_noise,4,False,5,50,alvin's hot juicebox,852x480
+208,book2::perlin_sphere::normal_noise,4,False,10,10,9001,852x480
+209,book2::perlin_sphere::normal_noise,4,False,25,10,9001,852x480
+210,book2::perlin_sphere::normal_noise,4,True,5,10,alvin's hot juicebox,852x480
+211,book2::perlin_sphere::turbulent_noise,1,False,5,50,9001,852x480
+212,book2::perlin_sphere::turbulent_noise,1,False,10,25,9001,852x480
+213,book2::perlin_sphere::turbulent_noise,1,False,25,25,alvin's hot juicebox,320x240
+214,book2::perlin_sphere::turbulent_noise,1,True,5,50,alvin's hot juicebox,320x240
+215,book2::perlin_sphere::turbulent_noise,1,True,10,25,ASDF,400x400
+216,book2::perlin_sphere::turbulent_noise,1,True,10,25,alvin's hot juicebox,400x400
+217,book2::perlin_sphere::turbulent_noise,2,True,5,25,9001,400x400
+218,book2::perlin_sphere::turbulent_noise,2,True,10,10,9001,320x240
+219,book2::perlin_sphere::turbulent_noise,2,True,10,50,ASDF,400x400
+220,book2::perlin_sphere::turbulent_noise,4,True,10,50,alvin's hot juicebox,400x400
+221,book2::perlin_sphere::marble_noise,1,False,10,50,alvin's hot juicebox,852x480
+222,book2::perlin_sphere::marble_noise,1,True,5,10,alvin's hot juicebox,852x480
+223,book2::perlin_sphere::marble_noise,1,True,5,25,ASDF,320x240
+224,book2::perlin_sphere::marble_noise,2,False,5,10,ASDF,852x480
+225,book2::perlin_sphere::marble_noise,2,True,5,50,alvin's hot juicebox,320x240
+226,book2::perlin_sphere::marble_noise,2,True,10,50,ASDF,852x480
+227,book2::perlin_sphere::marble_noise,2,True,25,25,ASDF,320x240
+228,book2::perlin_sphere::marble_noise,4,False,5,10,alvin's hot juicebox,400x400
+229,book2::perlin_sphere::marble_noise,4,True,10,25,9001,852x480
+230,book2::perlin_sphere::marble_noise,4,True,25,10,ASDF,852x480
+231,book2::earth,1,False,5,50,alvin's hot juicebox,400x400
+232,book2::earth,1,False,25,25,9001,400x400
+233,book2::earth,1,True,10,50,alvin's hot juicebox,400x400
+234,book2::earth,2,False,10,50,alvin's hot juicebox,320x240
+235,book2::earth,2,True,10,25,ASDF,400x400
+236,book2::earth,2,True,25,50,alvin's hot juicebox,400x400
+237,book2::earth,4,False,5,25,ASDF,852x480
+238,book2::earth,4,False,10,50,alvin's hot juicebox,400x400
+239,book2::earth,4,False,25,10,alvin's hot juicebox,400x400
+240,book2::earth,4,True,25,25,alvin's hot juicebox,320x240
+241,book2::simple_light,1,False,25,25,ASDF,852x480
+242,book2::simple_light,1,False,25,50,ASDF,852x480
+243,book2::simple_light,1,True,10,25,9001,852x480
+244,book2::simple_light,1,True,25,10,alvin's hot juicebox,320x240
+245,book2::simple_light,2,False,10,50,9001,852x480
+246,book2::simple_light,2,False,25,10,9001,852x480
+247,book2::simple_light,2,True,5,25,alvin's hot juicebox,400x400
+248,book2::simple_light,4,False,5,25,ASDF,320x240
+249,book2::simple_light,4,False,25,50,9001,400x400
+250,book2::simple_light,4,True,5,10,9001,400x400
+251,book2::simple_light::with_overhead_light,1,False,5,50,9001,852x480
+252,book2::simple_light::with_overhead_light,1,True,10,50,9001,852x480
+253,book2::simple_light::with_overhead_light,1,True,25,25,9001,320x240
+254,book2::simple_light::with_overhead_light,1,True,25,50,alvin's hot juicebox,320x240
+255,book2::simple_light::with_overhead_light,2,False,5,10,9001,400x400
+256,book2::simple_light::with_overhead_light,2,False,25,50,9001,320x240
+257,book2::simple_light::with_overhead_light,2,True,5,10,ASDF,320x240
+258,book2::simple_light::with_overhead_light,2,True,10,10,alvin's hot juicebox,852x480
+259,book2::simple_light::with_overhead_light,4,True,10,25,alvin's hot juicebox,400x400
+260,book2::simple_light::with_overhead_light,4,True,25,50,9001,400x400
+261,book2::cornell_box::empty,1,False,5,10,9001,400x400
+262,book2::cornell_box::empty,2,False,10,50,ASDF,320x240
+263,book2::cornell_box::empty,2,False,25,10,ASDF,400x400
+264,book2::cornell_box::empty,2,False,25,10,alvin's hot juicebox,852x480
+265,book2::cornell_box::empty,2,True,5,50,ASDF,320x240
+266,book2::cornell_box::empty,2,True,10,25,9001,852x480
+267,book2::cornell_box::empty,2,True,10,50,alvin's hot juicebox,320x240
+268,book2::cornell_box::empty,4,False,5,25,9001,320x240
+269,book2::cornell_box::empty,4,False,5,50,ASDF,400x400
+270,book2::cornell_box::empty,4,True,25,25,9001,400x400
+271,book2::cornell_box::two_boxes,1,False,25,50,ASDF,852x480
+272,book2::cornell_box::two_boxes,1,True,5,10,9001,400x400
+273,book2::cornell_box::two_boxes,1,True,25,25,alvin's hot juicebox,400x400
+274,book2::cornell_box::two_boxes,2,False,10,50,alvin's hot juicebox,852x480
+275,book2::cornell_box::two_boxes,2,False,25,25,alvin's hot juicebox,400x400
+276,book2::cornell_box::two_boxes,2,True,5,50,ASDF,320x240
+277,book2::cornell_box::two_boxes,2,True,25,10,alvin's hot juicebox,400x400
+278,book2::cornell_box::two_boxes,4,False,5,10,ASDF,400x400
+279,book2::cornell_box::two_boxes,4,False,10,10,ASDF,852x480
+280,book2::cornell_box::two_boxes,4,True,5,10,9001,320x240
+281,book2::cornell_box::two_rotated_boxes,1,False,10,10,ASDF,320x240
+282,book2::cornell_box::two_rotated_boxes,1,False,25,50,alvin's hot juicebox,320x240
+283,book2::cornell_box::two_rotated_boxes,1,True,25,50,9001,320x240
+284,book2::cornell_box::two_rotated_boxes,2,False,25,10,9001,852x480
+285,book2::cornell_box::two_rotated_boxes,2,False,25,50,alvin's hot juicebox,400x400
+286,book2::cornell_box::two_rotated_boxes,2,True,5,25,9001,400x400
+287,book2::cornell_box::two_rotated_boxes,2,True,10,50,ASDF,852x480
+288,book2::cornell_box::two_rotated_boxes,4,False,10,10,ASDF,852x480
+289,book2::cornell_box::two_rotated_boxes,4,False,25,10,9001,852x480
+290,book2::cornell_box::two_rotated_boxes,4,True,10,10,ASDF,852x480
+291,book2::cornell_box::two_smoke_boxes,1,False,5,25,ASDF,320x240
+292,book2::cornell_box::two_smoke_boxes,1,False,5,50,ASDF,852x480
+293,book2::cornell_box::two_smoke_boxes,1,False,10,10,9001,320x240
+294,book2::cornell_box::two_smoke_boxes,1,False,10,25,9001,320x240
+295,book2::cornell_box::two_smoke_boxes,1,True,25,50,9001,852x480
+296,book2::cornell_box::two_smoke_boxes,2,False,10,25,alvin's hot juicebox,852x480
+297,book2::cornell_box::two_smoke_boxes,4,False,5,10,9001,400x400
+298,book2::cornell_box::two_smoke_boxes,4,False,5,10,ASDF,400x400
+299,book2::cornell_box::two_smoke_boxes,4,False,10,50,ASDF,400x400
+300,book2::cornell_box::two_smoke_boxes,4,False,25,25,ASDF,852x480
+301,book2::final_scene,1,False,5,25,9001,852x480
+302,book2::final_scene,1,False,25,50,alvin's hot juicebox,400x400
+303,book2::final_scene,1,True,5,10,9001,320x240
+304,book2::final_scene,1,True,5,50,alvin's hot juicebox,320x240
+305,book2::final_scene,1,True,25,50,9001,400x400
+306,book2::final_scene,2,False,10,25,alvin's hot juicebox,320x240
+307,book2::final_scene,2,False,10,50,9001,852x480
+308,book2::final_scene,2,True,5,25,ASDF,400x400
+309,book2::final_scene,2,True,10,10,9001,852x480
+310,book2::final_scene,4,False,25,10,ASDF,320x240
+311,fun::three_spheres,1,False,5,50,alvin's hot juicebox,400x400
+312,fun::three_spheres,1,False,10,50,ASDF,852x480
+313,fun::three_spheres,1,False,10,50,alvin's hot juicebox,320x240
+314,fun::three_spheres,2,False,25,10,alvin's hot juicebox,852x480
+315,fun::three_spheres,2,True,5,50,alvin's hot juicebox,852x480
+316,fun::three_spheres,4,False,5,10,ASDF,320x240
+317,fun::three_spheres,4,False,5,25,alvin's hot juicebox,320x240
+318,fun::three_spheres,4,True,5,10,alvin's hot juicebox,400x400
+319,fun::three_spheres,4,True,5,50,alvin's hot juicebox,400x400
+320,fun::three_spheres,4,True,25,25,ASDF,400x400
+321,fun::whitted_1980,1,True,5,10,ASDF,320x240
+322,fun::whitted_1980,1,True,25,10,9001,320x240
+323,fun::whitted_1980,2,False,25,50,alvin's hot juicebox,400x400
+324,fun::whitted_1980,2,True,5,50,9001,400x400
+325,fun::whitted_1980,2,True,25,25,alvin's hot juicebox,852x480
+326,fun::whitted_1980,4,False,5,10,9001,400x400
+327,fun::whitted_1980,4,True,5,10,9001,852x480
+328,fun::whitted_1980,4,True,10,10,9001,852x480
+329,fun::whitted_1980,4,True,10,50,ASDF,400x400
+330,fun::whitted_1980,4,True,25,25,9001,320x240
+331,fun::cornell_glass_boxes,1,False,5,25,alvin's hot juicebox,852x480
+332,fun::cornell_glass_boxes,1,False,5,50,alvin's hot juicebox,852x480
+333,fun::cornell_glass_boxes,1,False,10,25,9001,400x400
+334,fun::cornell_glass_boxes,2,False,5,10,ASDF,400x400
+335,fun::cornell_glass_boxes,2,False,10,25,ASDF,320x240
+336,fun::cornell_glass_boxes,2,True,25,25,9001,320x240
+337,fun::cornell_glass_boxes,4,False,5,25,9001,852x480
+338,fun::cornell_glass_boxes,4,False,5,25,alvin's hot juicebox,400x400
+339,fun::cornell_glass_boxes,4,True,5,25,9001,400x400
+340,fun::cornell_glass_boxes,4,True,5,25,ASDF,320x240
+341,fun::wave_of_spheres,1,False,25,10,ASDF,400x400
+342,fun::wave_of_spheres,1,False,25,25,ASDF,400x400
+343,fun::wave_of_spheres,1,True,5,25,alvin's hot juicebox,852x480
+344,fun::wave_of_spheres,1,True,10,25,alvin's hot juicebox,852x480
+345,fun::wave_of_spheres,2,False,5,10,9001,852x480
+346,fun::wave_of_spheres,2,False,5,50,alvin's hot juicebox,400x400
+347,fun::wave_of_spheres,2,False,10,10,ASDF,400x400
+348,fun::wave_of_spheres,2,True,5,50,alvin's hot juicebox,320x240
+349,fun::wave_of_spheres,2,True,10,50,ASDF,320x240
+350,fun::wave_of_spheres,4,True,25,10,9001,400x400
