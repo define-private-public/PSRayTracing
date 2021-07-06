@@ -276,7 +276,7 @@ def run_test_cases(test_cases_filename, running_real_tests):
         result_str = 'PASS' if result else 'FAIL'
 
         # Format the message to print (and save to report)
-        case = '  %s -- %s : %s' % (a, b, result_str)
+        case = '  %s -- %s : %s' % (render_a, render_b, result_str)
         print(case)
         matching_renders_results_txt += '%s\n' % case
 
