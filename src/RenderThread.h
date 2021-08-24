@@ -4,6 +4,7 @@
 //   https://www.bfilipek.com/2019/12/threading-loopers-cpp17.html
 
 #include <thread>
+#include <memory>
 #include <atomic>
 #include <queue>
 #include <mutex>
