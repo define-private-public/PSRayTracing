@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 # So we can use includes relative to the project root
 include_directories(${CMAKE_SOURCE_DIR})
-#include_directories("${CMAKE_SOURCE_DIR}/third_party/")
 
 # Get the source
 file(GLOB_RECURSE sources
@@ -24,7 +23,6 @@ file(GLOB third_party_sources "third_party/**")
 
 # Get the required libraries
 find_package(Threads REQUIRED)
-find_package(Boost 1.65 REQUIRED COMPONENTS program_options)
 
 # Copy over assets to the build directory
 file(COPY "${CMAKE_SOURCE_DIR}/../assets" DESTINATION ${CMAKE_BINARY_DIR})
@@ -167,4 +165,4 @@ endif()
 # Build it!
 target_compile_options(PSRayTracing PRIVATE -Wall -Wextra -Wconversion -Wsign-conversion -pedantic-errors)
 set_source_files_properties(${third_party_sources} PROPERTIES COMPILE_FLAGS -w)
-target_link_libraries(PSRayTracing Threads::Threads Boost::program_options)
+target_link_libraries(PSRayTracing Threads::Threads)

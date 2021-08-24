@@ -76,13 +76,6 @@ Requirements
 * CMake 3.x.  Using a CMake GUI application (such as ``ccmake``) will make your life easier if you want
   to toggle on/off changes from the reference implementation
 
-* Boost.  I’m using their argument parsing library.
-
-  * If someone knows a good replacement that doesn’t change the command line interface, please tell me.
-    I’m not using any other parts of Boost and I’d like to remove this dependency
-
-    * That is, unless someone points out a way I can leverage Boost for more perf. bumps
-
 
 ============
 How To Build
@@ -572,7 +565,7 @@ bit more of an impact on this project.
 * The folks over on Reddit’s C++ community answering my questions (`/r/cpp <https://reddit.com/r/cpp>`_ and
   `/r/cpp_questions <https://reddit.com/r/cpp_questions>`_)
 
-* Those who work on the Boost, PCG Random, and stb libraries
+* Those who work on the Boost, PCG Random, cxxopts (jarro2783), and stb libraries
 
 
 

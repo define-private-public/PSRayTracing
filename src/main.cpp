@@ -1,6 +1,6 @@
 #include <iostream>
 #include <chrono>
-#include <boost/program_options.hpp>
+#include "third_party/cxxopts.hpp"
 #include "third_party/stb_image_write.h"
 #include "Util.h"
 #include "Util/ProgressBar.h"
@@ -10,39 +10,33 @@
 #include "RenderOutput.h"
 
 using namespace std;
-namespace po = boost::program_options;
+namespace co = cxxopts;
 
 
 int main(int argc, char *argv[]) {
     // Build the argument parser
-    po::variables_map args{};
-    po::options_description argsDesc{"Options"};
-    argsDesc.add_options()
-        ("help,h",                                                                      "Help screen (this message)")
-        ("list-scenes",                                                                 "List all of the available scenes to render")
-        ("scene",              po::value<string>()->default_value(Book2_FinalScene),     "Scene to render")
-        ("size,s",             po::value<string>()->default_value("960x540"),            "Render size")
-        ("num-samples,n",      po::value<int32_t>()->default_value(10),                  "Samples per pixel")
-        ("num-threads,j",      po::value<int>()->default_value(1),                       "How many threads to render with")
-        ("depth,d",            po::value<int16_t>()->default_value(50),                  "Maximum ray bounce depth")
-        ("random-seed,r",      po::value<string>()->default_value("ASDF"),               "Seed string for the RNG")
-        ("output-filename,o",  po::value<string>()->default_value("render.png"),         "Filename to save render to (PNG only)")
-        ("no-progress-bar",    po::bool_switch()->default_value(false),                  "Don't show the progress bar when rendering")
-        ("no-copy-per-thread", po::bool_switch()->default_value(false),                  "Don't make a copy of scene per thread")
-        ("testing-mode",       po::bool_switch()->default_value(false),                 "Run in testing mode; only outputs how long render time took")
+    co::Options options("PSRayTracing", "An optimized implementation of Peter Shirley's Ray Tracing minibook series");
+    options.add_options()
+        ("h,help",              "Help screen (this message)")
+        ("list-scenes",         "List all of the available scenes to render")
+        ("scene",               "Scene to render",                                              co::value<string>()->default_value(Book2_FinalScene))
+        ("s,size",              "Render size",                                                  co::value<string>()->default_value("960x540"))
+        ("n,num-samples",       "Samples per pixel",                                            co::value<int32_t>()->default_value("10"))
+        ("j,num-threads",       "How many threads to render with",                              co::value<int>()->default_value("1"))
+        ("d,depth",             "Maximum ray bounce depth",                                     co::value<int16_t>()->default_value("50"))
+        ("r,random-seed",       "Seed string for the RNG",                                      co::value<string>()->default_value("ASDF"))
+        ("o,output-filename",   "Filename to save render to (PNG only)",                        co::value<string>()->default_value("render.png"))
+        ("no-progress-bar",     "Don't show the progress bar when rendering",                   co::value<bool>()->default_value("false"))
+        ("no-copy-per-thread",  "Don't make a copy of scene per thread",                        co::value<bool>()->default_value("false"))
+        ("testing-mode",        "Run in testing mode; only outputs how long render time took",  co::value<bool>()->default_value("false"))
     ;
 
-    try {
-        po::store(po::parse_command_line(argc, argv, argsDesc), args);
-        po::notify(args);
-    } catch (const po::error &err) {
-        cerr << err.what() << endl;
-        return 1;
-    }
+    // And then parse them
+    const co::ParseResult args = options.parse(argc, argv);
 
     // Show help message? (Exit early)
     if (args.count("help")) {
-        cout << argsDesc << endl;
+        cout << options.help() << endl;
         return 0;
     }
 
