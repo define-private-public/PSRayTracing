@@ -590,7 +590,7 @@ namespace cxxopts
           throw argument_incorrect_type(text);
         }
 
-        US next = result * base + digit;
+        US next = static_cast<US>(result * base) + digit;
         if (result > next)
         {
           throw argument_incorrect_type(text);
