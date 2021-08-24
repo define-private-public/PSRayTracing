@@ -51,6 +51,8 @@ option(WITH_BOOK_COMPUTE_PIXEL_COLOR "Use the book's method for computing the co
 option(WITH_BOOK_BVH_NODE "Use the book's method for BVH Nodes (slower)" OFF)
 option(WITH_BOOK_MAT_PTR "Use Book's method for HitRecord::mat_ptr, which is a std::shared_ptr (slower)" OFF)
 option(WITH_NOEXCEPT "Use the `noexcept` annotation for various functions (faster)" ON)
+option(WITH_TURN_OFF_EXCEPTIONS "Turn off exception handling (faster)" ON)
+
 
 
 
@@ -160,6 +162,17 @@ if (WITH_NOEXCEPT)
 else()
   message(STATUS "Turned off use of `noexcept` (slower)")
 endif()
+
+
+if (WITH_TURN_OFF_EXCEPTIONS)
+  message(STATUS "Turn off exception handling (faster)")
+
+  # TODO is this portable? test turning it on/off
+#  set(CMAKE_CXX_FLAGS "-fno-exceptions")
+else()
+  target_compile_definitions(PSRayTracing PUBLIC USE_EXCEPTIONS)
+endif()
+
 
 
 # Build it!

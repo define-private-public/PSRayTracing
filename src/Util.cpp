@@ -243,12 +243,18 @@ bool try_parse_size_string(const string &s, uint16_t &x, uint16_t &y) {
     const string h = s.substr(pivot + 1, s.length());
 
     // Try to parse
+#ifdef USE_EXCEPTIONS
     try {
+#endif
+
         x = static_cast<uint16_t>(stoi(w));
         y = static_cast<uint16_t>(stoi(h));
+
+#ifdef USE_EXCEPTIONS
     } catch (const invalid_argument &err) {
         return false;
     }
+#endif
 
     // Make sure we have at least 1x1 (and return success)
     x = std::max(static_cast<uint16_t>(1), x);

@@ -46,18 +46,27 @@ RenderThread::RenderThread(RenderThread &&other) noexcept :
 
 // Returns true if the thread was successfuly created and starts running
 bool RenderThread::run() NOEXCEPT {
+#ifdef USE_EXCEPTIONS
     try {
+#endif
+
         // Create the thread object
         _thread = thread(&RenderThread::_thread_main_loop, this);
+
+#ifdef USE_EXCEPTIONS
     } catch (...) {
         return false;
     }
+#endif
 
     return true;
 }
 
 bool RenderThread::add_task(const RenderTask &task) NOEXCEPT {
+#ifdef USE_EXCEPTIONS
     try {
+#endif
+
         {
             // Put the task on
             lock_guard guard(_task_queue_mutex);
@@ -68,9 +77,12 @@ bool RenderThread::add_task(const RenderTask &task) NOEXCEPT {
         _total_queued_pixels.store(_total_queued_pixels.load() + _r_ctx.width);
 
         return true;
+
+#ifdef USE_EXCEPTIONS
     } catch (...) {
         return false;
     }
+#endif
 }
 
 bool RenderThread::retrive_result(RenderResult &result) NOEXCEPT {
@@ -100,7 +112,11 @@ void RenderThread::_thread_main_loop() NOEXCEPT {
     bool got_task = false;
 
     while (_stop_requested.load() != true) {
+
+#ifdef USE_EXCEPTIONS
         try {
+#endif
+
             // Do render here
 
             got_task = _get_next_task(task);
@@ -109,9 +125,12 @@ void RenderThread::_thread_main_loop() NOEXCEPT {
             else
                 this_thread::sleep_for(chrono::milliseconds(10));   // Take a short nap
 
+#ifdef USE_EXCEPTIONS
         } catch (...) {
             // No errors leave thread
         }
+#endif
+
     }
 
     _running.store(false);
@@ -147,7 +166,10 @@ bool RenderThread::_get_next_task(RenderTask &task) NOEXCEPT {
 }
 
 bool RenderThread::_store_result(const uint16_t scanline, const std::vector<ColorRGBA> &data) NOEXCEPT {
+#ifdef USE_EXCEPTIONS
     try {
+#endif
+
         const uint16_t num_completed_now = _completed_task_count.load() + 1;
         RenderResult rr;
         rr.scanline = scanline;
@@ -159,9 +181,12 @@ bool RenderThread::_store_result(const uint16_t scanline, const std::vector<Colo
         _completed_task_count.store(num_completed_now);
 
         return true;
+
+#ifdef USE_EXCEPTIONS
     } catch (...) {
         return false;
     }
+#endif
 }
 
 
@@ -184,7 +209,7 @@ void RenderThreadPool::setup_render(const string &main_rng_seed, const uint32_t 
 
     const uint16_t height_max = _r_ctx.height - 1;
     auto row = static_cast<int16_t>(height_max);
-    bool added = false;
+    [[maybe_unused]] bool added = false;
 
     while (row >= 0) {
         // Setup the task
@@ -193,18 +218,24 @@ void RenderThreadPool::setup_render(const string &main_rng_seed, const uint32_t 
 
         // Pick which thread to add it to
         added = _threads[static_cast<size_t>(row) % _threads.size()].add_task(task);
+
+#ifdef USE_EXCEPTIONS
         if (!added)
             throw runtime_error("Wasn't able to add render task");
+#endif
     }
 }
 
 void RenderThreadPool::start_render() {
     // Start all threads
-    bool started = false;
+    [[maybe_unused]] bool started = false;
     for (RenderThread &rt : _threads) {
         started = rt.run();
+
+#ifdef USE_EXCEPTIONS
         if (!started)
             throw runtime_error("Wasn't able to start render thread");
+#endif
     }
 }
 

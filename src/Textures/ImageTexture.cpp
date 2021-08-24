@@ -15,8 +15,11 @@ ImageTexture::ImageTexture(const char *filename) {
 
     // Load into a temporary location
     uint8_t *tmp = stbi_load(filename, &_width, &_height, &num_channels, num_channels);
+
+#ifdef USE_EXCEPTIONS
     if (!tmp)
         throw std::runtime_error("Error, couldn't load texture image file");
+#endif
 
     // Copy into a vector
     const auto num_bytes = static_cast<size_t>(_width * _height * num_channels);

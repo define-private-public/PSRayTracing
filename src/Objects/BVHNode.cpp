@@ -55,10 +55,12 @@ BVHNode::BVHNode(
 
     AABB box_left, box_right;
 
+#ifdef USE_EXCEPTIONS
     const bool not_box_left = !_left->bounding_box(time0, time1, box_left);
     const bool not_box_right = !_right->bounding_box(time0, time1, box_right);
     if (not_box_left || not_box_right)
         throw runtime_error("No bounding box in BVHNode constructor");
+#endif
 
     _box = AABB::surrounding(box_left, box_right);
 }
@@ -101,8 +103,13 @@ bool box_compare(const std::shared_ptr<IHittable> &a, const std::shared_ptr<IHit
     AABB box_a, box_b;
 
     // TODO what about time parameters?
-    if (!a->bounding_box(0, 0, box_a) || !b->bounding_box(0, 0, box_b))
+    [[maybe_unused]] const bool no_a_bb = !a->bounding_box(0, 0, box_a);
+    [[maybe_unused]] const bool no_b_bb = !b->bounding_box(0, 0, box_b);
+
+#ifdef USE_EXCEPTIONS
+    if (no_a_bb || no_b_bb)
         throw runtime_error("No bounding box in BVHNode constructor [box_compare]");
+#endif
 
     // original implementation used indexing here
     // but that is because of how the Vec3 class was structured
@@ -112,6 +119,11 @@ bool box_compare(const std::shared_ptr<IHittable> &a, const std::shared_ptr<IHit
         case Vec3::Axis::Z: return (box_a.min.z < box_b.min.z);
     }
 
+
+#ifdef USE_EXCEPTIONS
     // Should never hit this case
     throw runtime_error("Proper Vec3::Axis value was never provided");
+#else
+    return false;
+#endif
 }
