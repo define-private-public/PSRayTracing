@@ -10,6 +10,7 @@
 #include <mutex>
 #include <vector>
 #include <random>
+#include <array>
 #include "Vec3.h"
 #include "ColorRGBA.h"
 class IHittable;

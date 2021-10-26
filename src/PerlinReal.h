@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Vec3.h"
+#include <array>
 class RandomGenerator;
 
 

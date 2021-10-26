@@ -6,6 +6,7 @@
 #include "Scenes/Book1.h"
 #include "Scenes/Book2.h"
 #include "Scenes/Fun.h"
+#include <array>
 
 
 // A complete configuration for a scene to render, and which camera to use
