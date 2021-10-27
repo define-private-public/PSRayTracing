@@ -1,5 +1,6 @@
 #include "PerlinReal.h"
 #include <cmath>
+#include <array>
 #include "RandomGenerator.h"
 
 using namespace std;

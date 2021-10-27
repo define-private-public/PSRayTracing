@@ -2,6 +2,7 @@
 
 #include "Vec3.h"
 #include <cstdint>
+#include <array>
 class RandomGenerator;
 
 
