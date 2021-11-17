@@ -23,6 +23,7 @@
 #include "Perlin.h"
 #include "PerlinReal.h"
 #include "RandomGenerator.h"
+#include "../assets/earthmap.jpg.h"
 
 using namespace std;
 
@@ -188,7 +189,8 @@ SceneDescriptor perlin_sphere(const rreal aspect_ratio, const NoiseTexture::Nois
 
 SceneDescriptor earth(const rreal aspect_ratio) {
     // The world (quite literlaly)
-    const auto earth_texture = make_shared<ImageTexture>("assets/earthmap.jpg");
+//    const shared_ptr<ImageTexture> earth_texture = ImageTexture::load_from_file("assets/earthmap.jpg");
+    const shared_ptr<ImageTexture> earth_texture = ImageTexture::load_from_memory_buffer(earthmap_jpg, earthmap_jpg_len);
     const auto earth_surface = make_shared<Lambertian>(earth_texture);
 
     SceneDescriptor sd{};
@@ -360,7 +362,8 @@ SceneDescriptor final_scene(const rreal aspect_ratio) {
     objects.add(make_shared<ConstantMedium>(boundary, static_cast<rreal>(0.0001), Vec3(1)));
 
     // Earth
-    const auto emat = make_shared<Lambertian>(make_shared<ImageTexture>("assets/earthmap.jpg"));
+//    const auto emat = make_shared<Lambertian>(ImageTexture::load_from_file("assets/earthmap.jpg"));
+    const auto emat = make_shared<Lambertian>(ImageTexture::load_from_memory_buffer(earthmap_jpg, earthmap_jpg_len));
     objects.add(make_shared<Sphere>(Vec3(400, 200, 400), 100, emat));
 
     // Perlin sphere

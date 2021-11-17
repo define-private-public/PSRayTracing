@@ -10,22 +10,90 @@ using namespace std;
 const int BytesPerPixel = 3;
 
 
-ImageTexture::ImageTexture(const char *filename) {
-    int num_channels = BytesPerPixel;
 
-    // Load into a temporary location
-    uint8_t *tmp = stbi_load(filename, &_width, &_height, &num_channels, num_channels);
-    if (!tmp)
-        throw std::runtime_error("Error, couldn't load texture image file");
-
-    // Copy into a vector
-    const auto num_bytes = static_cast<size_t>(_width * _height * num_channels);
-    _img_data.assign(tmp, tmp + num_bytes);
-
-    _bytes_per_scanline = num_channels * _width;
-
-    stbi_image_free(tmp);
+ImageTexture::ImageTexture(const uint8_t *image_data, const int width, const int height, const int num_channels) :
+    _width(width),
+    _height(height),
+    _bytes_per_scanline(num_channels * width)
+{
+    // Copy the pixels into the image buffer
+    const auto num_bytes = static_cast<size_t>(width * height * num_channels);
+    _img_data.assign(image_data, image_data + num_bytes);
 }
+
+
+// Note: I'm not too happy with how "duplicate" the two static `load_*()` methods are below, but I think it's
+//       best to leave them like that for simplicty's scake
+
+
+shared_ptr<ImageTexture> ImageTexture::load_from_file(const char *filename) {
+    int num_channels = BytesPerPixel;
+    int width, height;
+
+    // Load image data
+    uint8_t *tmp = stbi_load(filename, &width, &height, &num_channels, num_channels);
+    if (!tmp)
+        throw std::runtime_error("Error, couldn't load texture image from file");
+
+    // Create texture
+    auto texture = make_shared<ImageTexture>(tmp, width, height, num_channels);
+
+    // Cleanup
+    stbi_image_free(tmp);
+
+    return texture;
+}
+
+
+shared_ptr<ImageTexture> ImageTexture::load_from_memory_buffer(const uint8_t *data, const int data_length) {
+    int num_channels = BytesPerPixel;
+    int width, height;
+
+    // Load image data
+    uint8_t *tmp = stbi_load_from_memory(data, data_length, &width, &height, &num_channels, num_channels);
+    if (!tmp)
+        throw std::runtime_error("Error, couldn't load texture image from memory buffer");
+
+    // Create texture
+    auto texture = make_shared<ImageTexture>(tmp, width, height, num_channels);
+
+    // Cleanup
+    stbi_image_free(tmp);
+
+    return texture;
+}
+
+// NOTE: better engineered solution would be to unify the above constructor and this one since they have
+//       very similar code.  But I don't want to interfeare more than what's in the book.  This function
+//       is only meant to make running on iOS and Android better
+//ImageTexture ImageTexture::load_from_memory_buffer(const uint8_t *data, const int data_length) {
+//    ImageTexture image_texture;
+//
+//    int num_channels = BytesPerPixel;
+//
+//    // Load into a temporary location
+//    uint8_t *tmp = stbi_load_from_memory(
+//        data,
+//        data_length,
+//        &image_texture._width,
+//        &image_texture._height,
+//        &num_channels,
+//        num_channels
+//    );
+//    if (!tmp)
+//        throw std::runtime_error("Error, couldn't load texture image file");
+//
+//    // Copy into a vector
+//    const auto num_bytes = static_cast<size_t>(image_texture._width * image_texture._height * num_channels);
+//    image_texture._img_data.assign(tmp, tmp + num_bytes);
+//
+//    image_texture._bytes_per_scanline = num_channels * image_texture._width;
+//
+//    stbi_image_free(tmp);
+//
+//    return image_texture;
+//}
+
 
 shared_ptr<ITexture> ImageTexture::deep_copy() const NOEXCEPT {
     return make_shared<ImageTexture>(*this);

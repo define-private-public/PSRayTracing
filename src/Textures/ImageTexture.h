@@ -13,7 +13,18 @@ private:
     int _bytes_per_scanline = 0;
 
 public:
-    explicit ImageTexture(const char *filename);
+    /** Creates an image texture with the raw pixel data passed into \a image_data. */
+    explicit ImageTexture(const uint8_t *image_data, const int width, const int height, const int num_channels);
+
+    /** Loads an image texture from the given path at \a filename */
+    static std::shared_ptr<ImageTexture> load_from_file(const char *filename);
+
+    /**
+     * Loads an image texture from a memory buffer (e.g. an embedded resource)
+     *
+     * \a data is not the raw pixel data, but encoded in a format like JPEG, PNG, etc.
+     */
+    static std::shared_ptr<ImageTexture> load_from_memory_buffer(const uint8_t *data, const int data_length);
 
     std::shared_ptr<ITexture> deep_copy() const NOEXCEPT override;
 

@@ -175,6 +175,16 @@ Structural/Architectural
     * Modern compilers are really nice.  Sometimes they do this for you.  It’s less code we have to write,
       which also means less bugs
 
+12. ``ImageTexture``'s method of object creation is different; it's constructor has a different signature.
+    And you are instead recommed to use a "static constructor" method instead.  One which loads an image from
+    a filepath, the other which loads an image from a memory buffer.
+
+    * This was done to make Android & iOS port easier to develop.  There is only a single image used in the
+      entire program (``assets/earthmap.jpg``).  So embedding this makes life much easier instead of having
+      to worry about how those platforms look for runtime assets.  And if you want to add your own image
+      textures into a scene (directly from a file), I've left the older loading function in, commented out
+      (see ``Scenes/Book2.cpp``).
+
 
 ===========
 Render-wise
