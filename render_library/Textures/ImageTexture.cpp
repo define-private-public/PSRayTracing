@@ -1,5 +1,5 @@
 #include "ImageTexture.h"
-#include "third_party/stb_image.h"
+#include "../third_party/stb_image.h"
 #include "Util.h"
 #include <stdexcept>
 #include <algorithm>

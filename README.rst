@@ -1,6 +1,6 @@
-#####################################
-Peter Shirley Ray Tracing (in C++ 17)
-#####################################
+#########################################
+Peter Shirley Ray Tracing (in modern C++)
+#########################################
 
 |book2_final_render|
 
@@ -85,7 +85,7 @@ How To Build
 
 2. Set your desired compiler (e.g. ``export CC=gcc-10``, ``export CXX=g++-10``)
 
-3. Run CMake w/ build type set to be a release: ``cmake ../src/ -DCMAKE_BUILD_TYPE=Release``
+3. Run CMake w/ build type set to be a release: ``cmake ../ -DCMAKE_BUILD_TYPE=Release``
 
 4. Build it: ``make``
 
@@ -184,6 +184,10 @@ Structural/Architectural
       to worry about how those platforms look for runtime assets.  And if you want to add your own image
       textures into a scene (directly from a file), I've left the older loading function in, commented out
       (see ``Scenes/Book2.cpp``).
+
+13. The ray tracer has been split into two parts, a static library (where the rendering code lives) and a
+    "CLI Runner".  This was done so I could make it easier to build the Qt UI.  This is an architectural
+    change that was introduced after the ``r7`` release.
 
 
 ===========

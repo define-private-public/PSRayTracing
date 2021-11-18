@@ -112,7 +112,4 @@ namespace util {
             return _sqrt_approx_private(x);
         #endif
     }
-
-
-    bool try_parse_size_string(const std::string &s, uint16_t &x, uint16_t &y);
 }

@@ -7,7 +7,7 @@
 
 #ifndef USE_BOOK_RNG
     // We use the PCG random family to generate random numbers, it's faster
-    #include "third_party/pcg_random.hpp"
+    #include "../third_party/pcg_random.hpp"
 #endif
 
 

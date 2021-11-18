@@ -2,7 +2,7 @@
 #include <ostream>
 
 using namespace std;
-using namespace util;
+
 
 ProgressBar::ProgressBar(const uint64_t total_ticks, const uint16_t bar_width, const string &prefix) :
     _total_ticks(total_ticks),
@@ -10,10 +10,12 @@ ProgressBar::ProgressBar(const uint64_t total_ticks, const uint16_t bar_width, c
     _prefix(prefix)
 { }
 
+
 // NOTE: will not always print, only if there is something to update
 //       e.g. results are stored in a cache before printing out.  If
 //            nothing is different, then it doesn't do an output
-void ProgressBar::display(ostream &out) {
+void ProgressBar::display(ostream &out)
+{
     const auto time_now = chrono::steady_clock::now();
     const float progress = static_cast<float>(_ticks) / static_cast<float>(_total_ticks);
     const uint16_t pos = static_cast<uint16_t>(progress * static_cast<float>(_bar_width));
@@ -26,7 +28,8 @@ void ProgressBar::display(ostream &out) {
 
     // Prefix
     size_t cursor = 0;
-    if (!_prefix.empty()) {
+    if (!_prefix.empty())
+    {
         buffer.replace(cursor, _prefix.length(), _prefix);
         cursor += _prefix.length() + 1;
     }
@@ -74,12 +77,16 @@ void ProgressBar::display(ostream &out) {
     out.flush();
 }
 
-void ProgressBar::done(ostream &out) {
+
+void ProgressBar::done(ostream &out)
+{
     display(out);
     out << endl;
 }
 
-size_t ProgressBar::_get_line_width(const string &time_str) const {
+
+size_t ProgressBar::_get_line_width(const string &time_str) const
+{
     size_t prefix_width = 0;
     if (!_prefix.empty())
         prefix_width = _prefix.length() + 1;        // +1 for padding
