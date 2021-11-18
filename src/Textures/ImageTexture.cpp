@@ -63,37 +63,6 @@ shared_ptr<ImageTexture> ImageTexture::load_from_memory_buffer(const uint8_t *da
     return texture;
 }
 
-// NOTE: better engineered solution would be to unify the above constructor and this one since they have
-//       very similar code.  But I don't want to interfeare more than what's in the book.  This function
-//       is only meant to make running on iOS and Android better
-//ImageTexture ImageTexture::load_from_memory_buffer(const uint8_t *data, const int data_length) {
-//    ImageTexture image_texture;
-//
-//    int num_channels = BytesPerPixel;
-//
-//    // Load into a temporary location
-//    uint8_t *tmp = stbi_load_from_memory(
-//        data,
-//        data_length,
-//        &image_texture._width,
-//        &image_texture._height,
-//        &num_channels,
-//        num_channels
-//    );
-//    if (!tmp)
-//        throw std::runtime_error("Error, couldn't load texture image file");
-//
-//    // Copy into a vector
-//    const auto num_bytes = static_cast<size_t>(image_texture._width * image_texture._height * num_channels);
-//    image_texture._img_data.assign(tmp, tmp + num_bytes);
-//
-//    image_texture._bytes_per_scanline = num_channels * image_texture._width;
-//
-//    stbi_image_free(tmp);
-//
-//    return image_texture;
-//}
-
 
 shared_ptr<ITexture> ImageTexture::deep_copy() const NOEXCEPT {
     return make_shared<ImageTexture>(*this);
