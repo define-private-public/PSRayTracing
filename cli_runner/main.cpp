@@ -9,6 +9,7 @@
 
 using namespace std;
 namespace co = cxxopts;
+using namespace psrt;
 
 
 int main(int argc, char *argv[]) {

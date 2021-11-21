@@ -8,6 +8,10 @@
 
 using namespace std;
 
+
+namespace psrt {
+
+
 // Some global state management functions.  I'm not too happy about doing this, but I
 // want to keep things simple
 atomic<float> g_progress(0);
@@ -139,8 +143,19 @@ float render_progress()
     { return g_progress.load(); }
 
 
+
+bool render_in_progress()
+    { return g_render_in_progress.load(); }
+
+
 vector<string> all_scene_ids()
 {
     const vector<string> vec(AllSceneIds.cbegin(), AllSceneIds.cend());
     return vec;
 }
+
+int num_concurrent_threads_supported()
+    { return static_cast<int>(std::thread::hardware_concurrency()); }
+
+
+}   // psrt::

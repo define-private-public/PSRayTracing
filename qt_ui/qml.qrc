@@ -1,0 +1,29 @@
+<RCC>
+  <qresource prefix="/">
+    <file>main.qml</file>
+    <file>qtquickcontrols2.conf</file>
+
+    <!-- packged stuff -->
+    <file>imports/SixteenBPP/qmldir</file>
+    <file>imports/SixteenBPP/ControlsBar.qml</file>
+    <file>imports/SixteenBPP/Messages.qml</file>
+    <file>imports/SixteenBPP/RenderSettingsForm.qml</file>
+    <file>imports/SixteenBPP/UITheme.qml</file>
+
+    <file>imports/SixteenBPP/Views/qmldir</file>
+    <file>imports/SixteenBPP/Views/AboutView.qml</file>
+    <file>imports/SixteenBPP/Views/RenderView.qml</file>
+
+    <file>imports/SixteenBPP/Widgets/qmldir</file>
+    <file>imports/SixteenBPP/Widgets/IntegerOnlyTextField.qml</file>
+    <file>imports/SixteenBPP/Widgets/PanZoom.qml</file>
+    <file>imports/SixteenBPP/Widgets/RenderDisplay.qml</file>
+    <file>imports/SixteenBPP/Widgets/VerticalScroll.qml</file>
+
+    <!-- Icons -->
+    <file alias="settings_icon">icons/settings.svg</file>
+    <file alias="start_icon">icons/start.svg</file>
+    <file alias="stop_icon">icons/stop.svg</file>
+    <file alias="app_icon_compressed">icons/app_icon_compressed.png</file>
+  </qresource>
+</RCC>

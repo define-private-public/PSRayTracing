@@ -8,6 +8,9 @@
 #include <future>
 
 
+namespace psrt {
+
+
 /** A descriptor of how a render should be performed */
 struct RenderJob
 {
@@ -41,4 +44,9 @@ struct Render
 std::future<Render> do_render(const RenderJob &job);    ///< Will start a render job (if one isn't in progress)
 void stop_active_render();                              ///< Will stop a render job (if one is in progress)
 float render_progress();                                ///< Returns the progress of a render [0.0, 1.0].  Returns less than 0 (e.g. -1) if no render is happening
+bool render_in_progress();                              ///< Checks to see if a render is already in progress (or not)
 std::vector<std::string> all_scene_ids();               ///< Retrives all possible scenes that could be rendered
+int num_concurrent_threads_supported();                 ///< Retrives the maximum number of threads that can ru concurrently
+
+
+}   // psrt::
