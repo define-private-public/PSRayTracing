@@ -1,0 +1,4 @@
+The mobile/tablet app version of PSRayTracing (that is available in the Google Play or Apple App stores) does not
+collect any data about the user or their actions in the app.  Renders/images may be temporarly saved onto the device.
+
+Google Play does report what kind of device installs this app.
