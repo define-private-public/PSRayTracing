@@ -122,7 +122,6 @@ elseif (ANDROID)
   # Slap the above together with a version code (major and minor only)
   set(ANDROID_VERSION_CODE "${ANDROID_PLATFORM_ARCHITECTURE_CODE}${PROJECT_VERSION_MAJOR}${PROJECT_VERSION_MINOR}")
   set_property(TARGET PSRayTracing_QtUI APPEND PROPERTY QT_ANDROID_VERSION_CODE ${ANDROID_VERSION_CODE})
-  message(STATUS ${ANDROID_VERSION_CODE})
 
   # For android, we also need to make sure it gets the other deployment settings
   qt_android_generate_deployment_settings(PSRayTracing_QtUI)
