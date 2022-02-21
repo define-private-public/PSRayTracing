@@ -9,6 +9,12 @@ The official place where I do most of the work for this is `over on GitLab <http
 Though I do field questions on the `GitHub mirror <https://github.com/define-private-public/PSRayTracing/>`_
 To contact me, you can always @ me `on Twitter as @DefPriPub <https://twitter.com/DefPriPub>`_  (`Or my personal website <https://16bpp.net/>`_)
 
+Now with an Android GUI:
+
+|PSRayTracingGooglePlay|_
+
+(It also runs on Windows, Mac, Linux, & iOS, but you need to build that for yourself in the meantime.)
+
 
 .. contents ::
 
@@ -57,6 +63,21 @@ to see how far I could push a CPU render and optimize my code while keeping thin
 and reproducible.
 
 
+***************
+Some Blog Posts
+***************
+
+Care to read a little more about this project?  Check out these:
+
+* `Making the first few revisions of the project <https://16bpp.net/blog/post/psraytracing-a-revisit-of-the-peter-shirley-minibooks-4-years-later/>`_
+
+* `Using Python to do automated testing & performance measuring <https://16bpp.net/blog/post/automated-testing-of-a-ray-tracer/>`_
+
+* `Adding a Qt/QML UI that works seamlessly on Mobile & Desktop <https://16bpp.net/blog/post/making-a-cross-platform-mobile-desktop-app-with-qt-62/>`_
+
+
+
+
 ************************
 Building and Basic Usage
 ************************
@@ -65,6 +86,14 @@ I developed this on an Ubuntu 18.04 machine using GCC 10.x.  I was able to get i
 10 via MSYS2 (also GCC).  It also compiles under clang 11 without a hitch.  I haven’t tested it on OS X,
 but I’m sure it will build just fine there.  Something I could use help with is getting a build working
 with MSVC on Windows.
+
+
+====================================
+Qt/QML based UI for Mobile & Desktop
+====================================
+
+Don't want to use the command line interface?  Want to see how this performs on your phone, tablet, or chromebook?
+Take a look at the ``qt_ui/`` subfolder.  Be sure the check the ``README.rst`` there for some more instructions.
 
 
 ============
@@ -595,7 +624,10 @@ bit more of an impact on this project.
 .. |asin_approx_no_ec| image:: https://gitlab.com/define-private-public/PSRayTracing/-/raw/master/images/asin_approx_no_ec.png
 .. |asin_approx_with_ec| image:: https://gitlab.com/define-private-public/PSRayTracing/-/raw/master/images/asin_approx_with_ec.png
 .. |cornell_glass_boxes| image:: https://gitlab.com/define-private-public/PSRayTracing/-/raw/master/images/cornell_glass_boxes.png
+.. |PSRayTracingGooglePlay| image:: https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png
 
 .. _`Ray Tracing mini-books`: https://raytracing.github.io
 .. _`an exercise to learn Nim`: https://16bpp.net/blog/post/ray-tracing-book-series-review-nim-first-impressions/
+.. _PSRayTracingGooglePlay: https://play.google.com/store/apps/details?id=net.sixteenbpp.psraytracing&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1
+
 
