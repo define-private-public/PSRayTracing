@@ -451,7 +451,7 @@ memory and creating shared pointers when it came to using classes like ``CosineP
 For instance ``CosinePDF`` is only being used in ``IMaterial`` objects.  ``HittablePDF`` is only being used with
 the light objects for a scene.  And ``MixturePDF`` is only instantiated in the ``ray_color()`` function.
 
-Leveraging ``std::variant<T>``, type we can still pass around these various ``IPDF`` sublcasses in a fleiable manor,
+Leveraging ``std::variant<T>``, type we can still pass around these various ``IPDF`` sublcasses in a flexable manor,
 but ensure that they stay allocated on the stack (thus no dynamic memory or reference counting).  This now shoved
 int an aliased type called ``PDFVariant``.  We still need to  work with pointers to ``IPDF`` (namely for
 ``MixturePDF``), but these are much faster raw pointers.
