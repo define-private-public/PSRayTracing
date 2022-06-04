@@ -3,7 +3,8 @@
 #include "Ray.h"
 #include "AABB.h"
 #include "Util.h"
-
+#include "ONB.h"
+#include "RandomGenerator.h"
 using namespace std;
 
 
@@ -122,4 +123,28 @@ bool Sphere::bounding_box(
     const Vec3 r(abs(_radius));
     output_box = AABB(_center - r, _center + r);
     return true;
+}
+
+rreal Sphere::pdf_value(RandomGenerator &rng, const Vec3 &origin, const Vec3 &v) const NOEXCEPT {
+    HitRecord rec;
+    const bool did_hit = hit(rng, Ray(origin, v), 0.001, Infinity, rec);
+
+    if (!did_hit)
+        return 0;
+
+    const rreal dist_sq = (_center - origin).length_squared();
+    const rreal cos_theta_max = util::sqrt(1.0 - (_radius * _radius / dist_sq));
+    const rreal solid_angle = 2 * Pi * (1 - cos_theta_max);
+
+    return 1.0 / solid_angle;
+}
+
+Vec3 Sphere::random(RandomGenerator &rng, const Vec3 &origin) const NOEXCEPT {
+    ONB uvw;
+    const Vec3 direction = _center - origin;
+    const rreal dist_sq = direction.length_squared();
+
+    uvw.build_from_w(direction);
+
+    return uvw.local(rng.get_to_sphere(_radius, dist_sq));
 }

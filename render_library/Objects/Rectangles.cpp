@@ -1,10 +1,48 @@
 #include "Objects/Rectangles.h"
+#include "RandomGenerator.h"
 
 using namespace std;
 
 
 // the bounding box must have non-zero width in each dimension, so pad the Z dimension a small amount
 constexpr auto ThinPadding = static_cast<rreal>(0.0001);
+
+/** This function is a common implementation for each rectangle's `pdf_value()` method */
+inline rreal _rect_pdf(
+    const IHittable *rect,            // Should be one of the *Rect objects
+    RandomGenerator &rng,
+    const Vec3 &origin,
+    const Vec3 &v,
+    const rreal a0, const rreal a1,
+    const rreal b0, const rreal b1
+) NOEXCEPT {
+    HitRecord rec;
+    const bool did_hit = rect->hit(rng, Ray(origin, v), 0.001, Infinity, rec);
+
+    if (!did_hit)
+        return 0;
+
+    const rreal area = (a1 - a0) * (b1 - b0);
+    const rreal distance_squared = rec.t * rec.t * v.length_squared();
+    const rreal cosine = std::fabs(v.dot(rec.normal)) / v.length();
+
+    return distance_squared / (cosine * area);
+}
+
+/** This function is a common implementation for each rectangle's `random()` method */
+inline Vec3 _rect_random(
+    RandomGenerator &rng,
+    const Vec3 &origin,
+    const rreal a0, const rreal a1,
+    const rreal b0, const rreal b1,
+    const rreal k
+) NOEXCEPT {
+    const Vec3 random_point(rng.get_real(a0, a1), k, rng.get_real(b0, b1));
+    return random_point - origin;
+}
+
+
+
 
 
 XYRect::XYRect(
@@ -88,6 +126,14 @@ bool XYRect::bounding_box(
         Vec3(_x1, _y1, _k + ThinPadding)
     );
     return true;
+}
+
+rreal XYRect::pdf_value(RandomGenerator &rng, const Vec3 &origin, const Vec3 &v) const NOEXCEPT {
+    return _rect_pdf(this, rng, origin, v, _x0, _x1, _y0, _y1);
+}
+
+Vec3 XYRect::random(RandomGenerator &rng, const Vec3 &origin) const NOEXCEPT {
+    return _rect_random(rng, origin, _x0, _x1, _y0, _y1, _k);
 }
 
 
@@ -175,6 +221,14 @@ bool XZRect::bounding_box(
     return true;
 }
 
+rreal XZRect::pdf_value(RandomGenerator &rng, const Vec3 &origin, const Vec3 &v) const NOEXCEPT {
+    return _rect_pdf(this, rng, origin, v, _x0, _x1, _z0, _z1);
+}
+
+Vec3 XZRect::random(RandomGenerator &rng, const Vec3 &origin) const NOEXCEPT {
+    return _rect_random(rng, origin, _x0, _x1, _z0, _z1, _k);
+}
+
 
 
 
@@ -258,4 +312,12 @@ bool YZRect::bounding_box(
         Vec3(_k + ThinPadding, _y1, _z1)
     );
     return true;
+}
+
+rreal YZRect::pdf_value(RandomGenerator &rng, const Vec3 &origin, const Vec3 &v) const NOEXCEPT {
+    return _rect_pdf(this, rng, origin, v, _y0, _y1, _z0, _z1);
+}
+
+Vec3 YZRect::random(RandomGenerator &rng, const Vec3 &origin) const NOEXCEPT {
+    return _rect_random(rng, origin, _y0, _y1, _z0, _z1, _k);
 }

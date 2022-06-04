@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include "Scenes/Book1.h"
 #include "Scenes/Book2.h"
+#include "Scenes/Book3.h"
 #include "Scenes/Fun.h"
 #include <array>
 
@@ -50,13 +51,18 @@ const std::string Book2_CornellBox_TwoRotatedBoxes             = "book2::cornell
 const std::string Book2_CornellBox_TwoSmokeBoxes               = "book2::cornell_box::two_smoke_boxes";
 const std::string Book2_FinalScene                             = "book2::final_scene";
 
+const std::string Book3_CornellBox_TwoBoxes                    = "book3::cornell_box::two_boxes";
+const std::string Book3_CornellBox_TwoBoxesOneMirror           = "book3::cornell_box::two_boxes_one_mirror";
+const std::string Book3_CornellBox_OneBoxOneGlassSphere        = "book3::cornell_box::one_box_one_glass_sphere";
+const std::string Book3_CornellBox_OneMirrorBoxOneGlassSphere  = "book3::cornell_box::one_mirror_box_one_glass_sphere";
+
 const std::string Fun_ThreeSpheres                             = "fun::three_spheres";
 const std::string Fun_Whitted1980                              = "fun::whitted_1980";
 const std::string Fun_CornellGlassBoxes                        = "fun::cornell_glass_boxes";
 const std::string Fun_WaveOfSpheres                            = "fun::wave_of_spheres";
 
 // All of the scenes (in order)
-const std::array<std::string, 35> AllSceneIds = {
+const std::array<std::string, 39> AllSceneIds = {
     Book1_SurfaceNormalSphere,
     Book1_GreySphere,
     Book1_ShinyMetalSphere,
@@ -88,6 +94,10 @@ const std::array<std::string, 35> AllSceneIds = {
     Book2_CornellBox_TwoRotatedBoxes,
     Book2_CornellBox_TwoSmokeBoxes,
     Book2_FinalScene,
+    Book3_CornellBox_TwoBoxes,
+    Book3_CornellBox_TwoBoxesOneMirror,
+    Book3_CornellBox_OneBoxOneGlassSphere,
+    Book3_CornellBox_OneMirrorBoxOneGlassSphere,
     Fun_ThreeSpheres,
     Fun_Whitted1980,
     Fun_CornellGlassBoxes,
@@ -162,6 +172,8 @@ const std::unordered_map<std::string, std::function<SceneCameraPair(rreal)>> Ava
         scp.scene = Scenes::Book1::final_scene(aspect_ratio);
         return scp;
     }},
+
+    /*== Book 2 ==*/
     {Book2_BouncingSpheres, [](const rreal aspect_ratio) {
         SceneCameraPair scp;
         scp.scene = Scenes::Book2::bouncing_spheres(aspect_ratio);
@@ -257,6 +269,30 @@ const std::unordered_map<std::string, std::function<SceneCameraPair(rreal)>> Ava
         scp.scene = Scenes::Book2::final_scene(aspect_ratio);
         return scp;
     }},
+
+    /*== Book 3 ==*/
+    {Book3_CornellBox_TwoBoxes, [](const rreal aspect_ratio) {
+        SceneCameraPair scp;
+        scp.scene = Scenes::Book3::cornell_box(aspect_ratio, Scenes::Book3::CornellBoxConfiguration::TwoBoxes);
+        return scp;
+    }},
+    {Book3_CornellBox_TwoBoxesOneMirror, [](const rreal aspect_ratio) {
+        SceneCameraPair scp;
+        scp.scene = Scenes::Book3::cornell_box(aspect_ratio, Scenes::Book3::CornellBoxConfiguration::TwoBoxesOneMirror);
+        return scp;
+    }},
+    {Book3_CornellBox_OneBoxOneGlassSphere, [](const rreal aspect_ratio) {
+        SceneCameraPair scp;
+        scp.scene = Scenes::Book3::cornell_box(aspect_ratio, Scenes::Book3::CornellBoxConfiguration::OneBoxOneGlassSphere);
+        return scp;
+    }},
+    {Book3_CornellBox_OneMirrorBoxOneGlassSphere, [](const rreal aspect_ratio) {
+        SceneCameraPair scp;
+        scp.scene = Scenes::Book3::cornell_box(aspect_ratio, Scenes::Book3::CornellBoxConfiguration::OneMirrorBoxOneGlassSphere);
+        return scp;
+    }},
+
+    /*== Fun ==*/
     {Fun_ThreeSpheres, [](const rreal aspect_ratio) {
         SceneCameraPair scp;
         scp.scene = Scenes::Fun::three_spheres(aspect_ratio);

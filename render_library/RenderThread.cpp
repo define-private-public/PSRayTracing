@@ -5,8 +5,12 @@
 #include "Ray.h"
 #include "Util.h"
 #include "HitRecord.h"
+#include "ScatterRecord.h"
 #include "RenderOutput.h"
 #include "RandomGenerator.h"
+#include "PDFs/CosinePDF.h"
+#include "PDFs/HittablePDF.h"
+#include "PDFs/MixturePDF.h"
 using namespace std;
 
 
@@ -94,6 +98,9 @@ void RenderThread::_thread_main_loop() NOEXCEPT {
     if (_r_ctx.deep_copy_per_thread) {
         _r_ctx.camera = _r_ctx.camera->deep_copy();
         _r_ctx.scene = _r_ctx.scene->deep_copy();
+
+        if (_r_ctx.lights)
+            _r_ctx.lights = _r_ctx.lights->deep_copy();
     }
 
     RenderTask task;
@@ -264,29 +271,51 @@ void RenderThreadPool::retreive_render(const RenderOutput &render_desc, vector<u
 
 
 Vec3 ray_color(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &r, const uint32_t depth) NOEXCEPT {
+    const RenderMethod r_method = r_ctx.render_method;
+
     // If we've exceeded the ray bounce limit, no more light is gathered
     if (depth <= 0)
         return Vec3(0);
 
-    HitRecord rec{};
+    HitRecord h_rec{};
 
     // Anything?
-    const bool hit_something = r_ctx.scene->hit(rng, r, static_cast<rreal>(0.001), Infinity, rec);
+    const bool hit_something = r_ctx.scene->hit(rng, r, static_cast<rreal>(0.001), Infinity, h_rec);
     if (!hit_something)
         return r_ctx.background;
 
     // Hit something...
-    Ray scattered;
-    Vec3 attenuation;
-    const Vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
-    const bool rays_scattered = rec.mat_ptr->scatter(rng, r, rec, attenuation, scattered);
+    ScatterRecord s_rec;
+    const Vec3 emitted = h_rec.mat_ptr->emitted(r, h_rec, h_rec.u, h_rec.v, h_rec.p, r_method);
+    const bool rays_scattered = h_rec.mat_ptr->scatter(rng, r, h_rec, s_rec, r_method);
 
     // If hit a an emmsive material (they don't scatter rays), then only emit that one's light
     if (!rays_scattered)
         return emitted;
 
-    // else, it must have been non-emissive,
-    return emitted + (attenuation * ray_color(r_ctx, rng, scattered, depth - 1));
+    // Chose a render method (for a non-emissive material)
+    if (r_method == RenderMethod::Books1And2)
+    {
+        return emitted + (s_rec.attenuation * ray_color(r_ctx, rng, s_rec.ray, depth - 1));
+    }
+    else
+    {
+        if (s_rec.is_specular)
+            return s_rec.attenuation * ray_color(r_ctx, rng, s_rec.ray, depth - 1);
+
+        // TODO I don't think these pointers (and shared ones of that) are efficient
+        //      And creating the PDF objects each time
+        const auto light_pdf = make_shared<HittablePDF>(r_ctx.lights, h_rec.p);
+        const MixturePDF mixed_pdf(light_pdf, s_rec.pdf_ptr);
+
+        const Ray scattered(h_rec.p, mixed_pdf.generate(rng), r.time);
+        const rreal pdf_val = mixed_pdf.value(rng, scattered.direction);
+
+        // else, it must have been non-emissive,
+        return emitted + (s_rec.attenuation *
+                          h_rec.mat_ptr->scattering_pdf(r, h_rec, scattered) *
+                          ray_color(r_ctx, rng, scattered, depth - 1) / pdf_val);
+    }
 }
 
 /*
@@ -371,6 +400,7 @@ vector<BatchedVec3> ray_color_batched(const RenderContext &r_ctx, RandomGenerato
 */
 
 
+/*
 // This was an attempt to see if an interative ray color function could be more performant
 //   than the recursive one
 // TODO do a little measureing to see if it does help
@@ -430,6 +460,7 @@ Vec3 ray_color_iterative(const RenderContext &r_ctx, RandomGenerator &rng, const
 
     return final_clr;
 }
+*/
 
 /*
 // This is an experiment to compute a color for a pixel, with a batch of rays, in an iterative manor
@@ -509,6 +540,25 @@ ColorRGBA _pixel_color(const RenderContext &r_ctx, RandomGenerator &rng, const u
     }
 #endif  // USE_BOOK_COMPUTE_PIXEL_COLOR
 
+
+    // Replace NaN components with zero (See explanation in the final chapter of "Ray Tracing: The Rest of Your Life")
+    //   Note that this is not found in books 1 & 2, but having this for all shouldn't cause any harm.
+#ifdef USE_BOOK_COMPUTE_PIXEL_COLOR
+    if (pixel.r != pixel.r)
+        pixel.r = 0;
+    if (pixel.g != pixel.g)
+        pixel.g = 0;
+    if (pixel.b != pixel.b)
+        pixel.b = 0;
+//    if (pixel.a != pixel.a)
+//        pixel.a = 0;
+#else
+    pixel.r = (pixel.r != pixel.r) ? 0 : pixel.r;
+    pixel.g = (pixel.g != pixel.g) ? 0 : pixel.g;
+    pixel.b = (pixel.b != pixel.b) ? 0 : pixel.b;
+//    pixel.a = (pixel.a != pixel.a) ? 0 : pixel.a;
+#endif  // USE_BOOK_COMPUTE_PIXEL_COLOR
+
     // Average all the samples
     pixel.r /= r_spp;
     pixel.g /= r_spp;
@@ -519,7 +569,7 @@ ColorRGBA _pixel_color(const RenderContext &r_ctx, RandomGenerator &rng, const u
     pixel.r = util::sqrt(pixel.r);
     pixel.g = util::sqrt(pixel.g);
     pixel.b = util::sqrt(pixel.b);
-    pixel.a = util::sqrt(pixel.a);
+//    pixel.a = util::sqrt(pixel.a);
 
     return pixel;
 }

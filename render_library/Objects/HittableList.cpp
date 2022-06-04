@@ -1,5 +1,6 @@
 #include "Objects/HittableList.h"
 #include "AABB.h"
+#include "RandomGenerator.h"
 
 using namespace std;
 
@@ -67,4 +68,21 @@ bool HittableList::bounding_box(
     }
 
     return true;
+}
+
+rreal HittableList::pdf_value(RandomGenerator &rng, const Vec3 &origin, const Vec3 &v) const NOEXCEPT {
+    // `rreal` is an alias for `double`
+    const rreal weight = 1.0 / static_cast<rreal>(_objects.size());
+    rreal sum = 0;
+
+    for (const shared_ptr<IHittable> &obj : _objects)
+        sum += (weight * obj->pdf_value(rng, origin, v));
+
+    return sum;
+}
+
+Vec3 HittableList::random(RandomGenerator &rng, const Vec3 &origin) const NOEXCEPT {
+    const auto int_size = static_cast<int>(_objects.size());
+    const auto index = static_cast<size_t>(rng.get_int(0, int_size - 1));
+    return _objects[index]->random(rng, origin);
 }

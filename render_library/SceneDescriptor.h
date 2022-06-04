@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 #include "Vec3.h"
+#include "RenderMethod.h"
 
 class IHittable;
 class ICamera;
@@ -14,8 +15,10 @@ class ICamera;
 struct SceneDescriptor {
     // Data
     std::shared_ptr<IHittable> scene;
+    std::shared_ptr<IHittable> lights;                      ///< This could be a list of lights, or a singular one; note that this is meant for use with book3 style scenes/renders
     std::vector<std::shared_ptr<ICamera>> cameras;
     Vec3 background = Vec3(0);
+    RenderMethod render_method = RenderMethod::Books1And2;  ///< With style of rendering to use; e.g. Book 3 uses PDFs
 };
 
 // That sky blue background that was used for all things in the first book and a half

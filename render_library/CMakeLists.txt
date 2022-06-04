@@ -19,6 +19,8 @@ set(sources
   Common.h
   HitRecord.h
   HitRecord.cpp
+  ONB.h
+  ONB.cpp
   Perlin.h
   Perlin.cpp
   PerlinReal.h
@@ -27,11 +29,15 @@ set(sources
   RandomGenerator.cpp
   Ray.h
   Ray.cpp
+  RenderMethod.h
+  RenderMethod.cpp
   RenderOutput.h
   RenderOutput.cpp
   RenderThread.h
   RenderThread.cpp
   SceneDescriptor.h
+  ScatterRecord.h
+  ScatterRecord.cpp
   Util.h
   Util.cpp
   Vec3.h
@@ -46,6 +52,7 @@ set(sources
   Interfaces/IDeepCopyable.h
   Interfaces/IHittable.h
   Interfaces/IMaterial.h
+  Interfaces/IPDF.h
   Interfaces/ITexture.h
 
   Materials/Dielectric.h
@@ -77,16 +84,27 @@ set(sources
   Objects/Rectangles.cpp
   Objects/Sphere.h
   Objects/Sphere.cpp
+  Objects/Transform/FlipFace.h
+  Objects/Transform/FlipFace.cpp
   Objects/Transform/RotateY.h
   Objects/Transform/RotateY.cpp
   Objects/Transform/Translate.h
   Objects/Transform/Translate.cpp
+
+  PDFs/CosinePDF.h
+  PDFs/CosinePDF.cpp
+  PDFs/HittablePDF.h
+  PDFs/HittablePDF.cpp
+  PDFs/MixturePDF.h
+  PDFs/MixturePDF.cpp
 
   Scenes/All.h
   Scenes/Book1.h
   Scenes/Book1.cpp
   Scenes/Book2.h
   Scenes/Book2.cpp
+  Scenes/Book3.h
+  Scenes/Book3.cpp
   Scenes/Fun.h
   Scenes/Fun.cpp
 
