@@ -50,17 +50,17 @@ bool Dielectric::scatter(
     // into vector instructions for us, and reduce the amounts of possible branching
 
     // Check for reflections
-    const bool reflect_case_one = (etai_over_etat * sin_theta) > 1;
+    const bool reflect_case_one = ((etai_over_etat * sin_theta) > 1);
     const rreal reflect_probe = util::schlick(cos_theta, etai_over_etat);
-    const bool reflect_case_two = rng.get_real() < reflect_probe;           // This is a case whre the dielectric becomes mirrorlike
+    const bool reflect_case_two = (rng.get_real() < reflect_probe);                 // This is a case whre the dielectric becomes mirrorlike
+    const bool reflect = (reflect_case_one || reflect_case_two);
 
+    // Choose either to reflect or refract
     const Vec3 reflect_dir = unit_direction.reflect(rec.normal);
     const Vec3 refract_dir = unit_direction.refract(rec.normal, etai_over_etat);
+    const Vec3 direction = (reflect ? reflect_dir : refract_dir);
 
-    if (reflect_case_one || reflect_case_two)
-        scattered = Ray(rec.p, reflect_dir, r_in.time);
-    else
-        scattered = Ray(rec.p, refract_dir, r_in.time);     // Instead refract
+    scattered = Ray(rec.p, direction, r_in.time);
 #endif
 
     return true;
