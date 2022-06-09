@@ -21,6 +21,8 @@ set(sources
   HitRecord.cpp
   ONB.h
   ONB.cpp
+  PDFVariant.h
+  PDFVariant.cpp
   Perlin.h
   Perlin.cpp
   PerlinReal.h
@@ -155,6 +157,7 @@ option(WITH_BOOK_PERLIN "Use the Book's Perlin class" OFF)
 option(WITH_BOOK_COMPUTE_PIXEL_COLOR "Use the book's method for computing the color of a pixel" OFF)
 option(WITH_BOOK_BVH_NODE "Use the book's method for BVH Nodes (slower)" OFF)
 option(WITH_BOOK_MAT_PTR "Use Book's method for HitRecord::mat_ptr, which is a std::shared_ptr (slower)" OFF)
+option(WITH_BOOK_PDF_MANAGEMENT "Use the Book's method for managing PDFs, which are pointers (slower)" OFF)
 option(WITH_NOEXCEPT "Use the `noexcept` annotation for various functions (faster)" ON)
 
 
@@ -247,6 +250,13 @@ endif()
 if (WITH_BOOK_MAT_PTR)
   message(STATUS "Using the Book's method for HitRecord::mat_ptr, which is a std::shared_ptr (slower)")
   target_compile_definitions(PSRayTracing_StaticLibrary PUBLIC USE_BOOK_MAT_PTR)
+endif()
+
+if (WITH_BOOK_PDF_MANAGEMENT)
+  message(STATUS "Using the Book's method for managing PDFs, which are pointers (slower)")
+  target_compile_definitions(PSRayTracing_StaticLibrary PUBLIC USE_BOOK_PDF_MANAGEMENT)
+else()
+  message(STATUS "Using our method for managing PDFs, which is based around std::variant and stack allocations (faster)")
 endif()
 
 #if (WITH_BOOK_CONSTANT_MEDIUM_HIT)

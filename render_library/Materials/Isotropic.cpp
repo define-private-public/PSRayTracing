@@ -39,7 +39,12 @@ bool Isotropic::scatter(
         //       If you look at the github for the book 3's reference code, you'll see they just `#if 0 ... #endf`
         //       the entire `Isotropic::scatter()` method.
         s_rec.is_specular = false;
-        s_rec.pdf_ptr = nullptr;        // TODO should this be a Cosine PDF?
+
+        #ifdef USE_BOOK_PDF_MANAGEMENT
+            s_rec.pdf_ptr = nullptr;        // TODO should this be a Cosine PDF?
+        #else
+            s_rec.pdf = monostate();
+        #endif
     }
 
     return true;

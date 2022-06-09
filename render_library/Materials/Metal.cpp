@@ -38,7 +38,12 @@ bool Metal::scatter(
     else
     {
         s_rec.is_specular = true;
-        s_rec.pdf_ptr = nullptr;
+
+        #ifdef USE_BOOK_PDF_MANAGEMENT
+            s_rec.pdf_ptr = nullptr;
+        #else
+            s_rec.pdf = monostate();
+        #endif
     }
 
     return do_scatter;

@@ -8,6 +8,7 @@
 #include "ScatterRecord.h"
 #include "RenderOutput.h"
 #include "RandomGenerator.h"
+#include "PDFVariant.h"
 #include "PDFs/CosinePDF.h"
 #include "PDFs/HittablePDF.h"
 #include "PDFs/MixturePDF.h"
@@ -21,6 +22,7 @@ using namespace std;
 
 // Finds what the color should be for the given pixel
 ColorRGBA _pixel_color(const RenderContext &r_ctx, RandomGenerator &rng, const uint32_t samples_per_pixel, const rreal x, const rreal y, const uint16_t max_ray_depth) NOEXCEPT;
+const IPDF *maybe_get_pdf_ptr(const PDFVariant &pdf) NOEXCEPT;
 
 
 RenderThread::RenderThread(const RenderContext &render_context) NOEXCEPT :
@@ -303,10 +305,16 @@ Vec3 ray_color(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &r, c
         if (s_rec.is_specular)
             return s_rec.attenuation * ray_color(r_ctx, rng, s_rec.ray, depth - 1);
 
-        // TODO I don't think these pointers (and shared ones of that) are efficient
-        //      And creating the PDF objects each time
-        const auto light_pdf = make_shared<HittablePDF>(r_ctx.lights, h_rec.p);
-        const MixturePDF mixed_pdf(light_pdf, s_rec.pdf_ptr);
+        #ifdef USE_BOOK_PDF_MANAGEMENT
+            const auto light_pdf = make_shared<HittablePDF>(r_ctx.lights, h_rec.p);
+            const MixturePDF mixed_pdf(light_pdf, s_rec.pdf_ptr);
+        #else
+            // NOTE: The `s_rec.pdf` will always be of the type of CosinePDF because of what we put in our various
+            //       IMaterial::scatter() methods has always been a CosinePDF.  The only reason I'm having that
+            //       conversion function (`maybe_get_pdf_ptr()`) is for future flexabiliy.
+            const HittablePDF light_pdf(r_ctx.lights, h_rec.p);
+            const MixturePDF mixed_pdf(&light_pdf, maybe_get_pdf_ptr(s_rec.pdf));
+        #endif  // USE_BOOK_PDF_MANAGEMENT
 
         const Ray scattered(h_rec.p, mixed_pdf.generate(rng), r.time);
         const rreal pdf_val = mixed_pdf.value(rng, scattered.direction);
@@ -317,6 +325,27 @@ Vec3 ray_color(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &r, c
                           ray_color(r_ctx, rng, scattered, depth - 1) / pdf_val);
     }
 }
+
+
+/**
+ * Utility function to take PDVariant over to a pointer to the PDF interface.  If it wasn't
+ * able to properly convert it, then it will return a nullptr.
+ */
+const IPDF *maybe_get_pdf_ptr(const PDFVariant &pdf) NOEXCEPT
+{
+    auto *ptr = static_cast<const IPDF *>(get_if<CosinePDF>(&pdf));
+    if (ptr)
+        return ptr;
+
+    ptr = static_cast<const IPDF *>(get_if<HittablePDF>(&pdf));
+    if (ptr)
+        return ptr;
+
+    // This is the final option (will either return a Mixture PDF or nullptr)
+    ptr = static_cast<const IPDF *>(get_if<MixturePDF>(&pdf));
+    return ptr;
+}
+
 
 
 ColorRGBA _pixel_color(const RenderContext &r_ctx, RandomGenerator &rng, const uint32_t samples_per_pixel, const rreal x, const rreal y, const uint16_t max_ray_depth) NOEXCEPT {

@@ -34,7 +34,12 @@ bool SurfaceNormal::scatter(
     {
         // Since this material is very close to Lambertian, we use a cosine PDF
         s_rec.is_specular = false;
-        s_rec.pdf_ptr = make_shared<CosinePDF>(h_rec.normal);
+
+        #ifdef USE_BOOK_PDF_MANAGEMENT
+            s_rec.pdf_ptr = make_shared<CosinePDF>(h_rec.normal);
+        #else
+            s_rec.pdf = CosinePDF(h_rec.normal);
+        #endif
     }
 
     return true;

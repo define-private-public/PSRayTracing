@@ -3,6 +3,7 @@
 #include <memory>
 #include "Ray.h"
 #include "Interfaces/IPDF.h"
+#include "PDFVariant.h"
 
 
 struct ScatterRecord {
@@ -10,5 +11,10 @@ struct ScatterRecord {
     Ray ray;                                        ///< In books 1 & 2, this argument was called `scattered`, in book 3 is was called `specular_ray`.
     bool is_specular = false;
     Vec3 attenuation;
-    std::shared_ptr<IPDF> pdf_ptr = nullptr;
+
+    #ifdef USE_BOOK_PDF_MANAGEMENT
+        std::shared_ptr<IPDF> pdf_ptr = nullptr;
+    #else
+        PDFVariant pdf;
+    #endif
 };

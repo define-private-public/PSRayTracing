@@ -41,7 +41,12 @@ bool Lambertian::scatter(
     {
         // Book 3
         s_rec.is_specular = false;
-        s_rec.pdf_ptr = make_shared<CosinePDF>(h_rec.normal);
+
+        #ifdef USE_BOOK_PDF_MANAGEMENT
+            s_rec.pdf_ptr = make_shared<CosinePDF>(h_rec.normal);
+        #else
+            s_rec.pdf = CosinePDF(h_rec.normal);
+        #endif
     }
 
     s_rec.attenuation = _albedo->value(h_rec.u, h_rec.v, h_rec.p);

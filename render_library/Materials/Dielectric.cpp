@@ -29,7 +29,12 @@ bool Dielectric::scatter(
     if (method == RenderMethod::Book3)
     {
         s_rec.is_specular = true;
-        s_rec.pdf_ptr = nullptr;
+
+        #ifdef USE_BOOK_PDF_MANAGEMENT
+            s_rec.pdf_ptr = nullptr;
+        #else
+            s_rec.pdf = monostate();
+        #endif
     }
 
     const rreal etai_over_etat = h_rec.front_face ? (static_cast<rreal>(1) / _refractive_index) : _refractive_index;
