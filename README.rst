@@ -33,16 +33,16 @@ radically changing the architecture of the renderer and using (near) vanilla C++
 
 There are other fun features such as multi-core rendering, configurable render parameters (e.g. samples
 per pixel, max ray depth), and progress bars; it's the little things that count.  It should be able to
-replicate all of the scenes from books 1 & 2.  If you want to render the scenes from book 3, you will
-need to check out the branch ``book3``.  There is another branch called ``book3.PDF_pointer_alternative``
-which is more performant, but it breaks the architecture a bit.  I'd recommend doing a diff of the two
-branches to see what the changes are.  The optimization is better explained in the section  `PDFVariant (Book 3 only)`_ .
+replicate all of the scenes from all three books.
 
 What I like about how this book is structured is that it shows you how to make incremental changes to
 the ray tracer.  With these step-by-step changes in book 3 though, it was getting very difficult to
-have my code reproduce every step, due to many structural changes in critical sections.  So I decided
-it would be best to keep book 3 as its own separate branch.  But on top of that, I think there are more
-points of optimization to talk about for Books 1 & 2.
+have my code reproduce every step, due to many structural changes in critical sections.  Originally the
+code for book 3 was off in its own separate branch (called ``book3``), but it has now been mereged into
+the mainline branch (that is ``master``).  The ``PDFVariant`` optimization has also come along with it
+(and is now a CMake configuration variable instead of a second separate branch).  Note that getting book 3's
+code to work alongside that of books 1 & 2 did required adjusting some of the architecture a bit; but not
+my too much.
 
 I've decided to license this implementation under the ``Apache License (2.0)``.  The full text is in the
 file ``LICENSE.txt``.  The only exception to this is ``src/third_party``, as those are externally provided
@@ -58,9 +58,9 @@ Why?
 
 I first went through the books back in mid 2016 when they were new.  That time I did it though as `an exercise to learn Nim`_
 It's kind of cool to see how much these books have blown up in popularity.  Ray Tracing seems to be
-quite in vogue recently, and I was looking for a project to learn C++17.  This was also an experiment
-to see how far I could push a CPU render and optimize my code while keeping things simple, portable,
-and reproducible.
+quite in vogue recently, and I was looking for a project to learn modern C++ and better project architecture.
+This was also an experiment to see how far I could push a CPU render and optimize my code while keeping
+things simple, portable, and reproducible.
 
 
 ***************
@@ -82,10 +82,10 @@ Care to read a little more about this project?  Check out these:
 Building and Basic Usage
 ************************
 
-I developed this on an Ubuntu 18.04 machine using GCC 10.x.  I was able to get it to run under Windows
-10 via MSYS2 (also GCC).  It also compiles under clang 11 without a hitch.  I haven't tested it on OS X,
-but I'm sure it will build just fine there.  Something I could use help with is getting a build working
-with MSVC on Windows.
+I initially developed this on an Ubuntu 18.04 machine using GCC 10.x; but now its moved to newer versions
+of Ubuntu (22.04 LTS) and GCC (11 & 12).  It runs on Windows 10/11 via MSYS2 (also GCC).  It also compiles
+via clang 11+ without a hitch.  macOS & xcode/clang have also been testing and verified. Something I could
+use help with is getting a build working with MSVC on Windows.
 
 
 ====================================
@@ -93,14 +93,14 @@ Qt/QML based UI for Mobile & Desktop
 ====================================
 
 Don't want to use the command line interface?  Want to see how this performs on your phone, tablet, or chromebook?
-Take a look at the ``qt_ui/`` subfolder.  Be sure the check the ``README.rst`` there for some more instructions.
+Take a look at the ``qt_ui/`` subfolder.  Be sure the check the ``README.rst`` over there for some more instructions.
 
 
 ============
 Requirements
 ============
 
-* A C++17 compiler.  I'd recommend GCC 10 or higher
+* A C++17 compiler.  I'd recommend GCC 11/12 (or higher)
 
 * CMake 3.x.  Using a CMake GUI application (such as ``ccmake``) will make your life easier if you want
   to toggle on/off changes from the reference implementation
@@ -112,7 +112,7 @@ How To Build
 
 1. In the root of this project, make a build directory and go into it: ``mkdir build && cd build/``
 
-2. Set your desired compiler (e.g. ``export CC=gcc-10``, ``export CXX=g++-10``)
+2. Set your desired compiler (e.g. ``export CC=gcc-12``, ``export CXX=g++-12``)
 
 3. Run CMake w/ build type set to be a release: ``cmake ../ -DCMAKE_BUILD_TYPE=Release``
 
@@ -149,7 +149,7 @@ surface normal (to shade it), with 250 samples/pixel, rendering on four cores at
 
 You should be good now to start rendering.
 
-If you want to see what scenes, supply the flag ``-list-scenes`` to the executable.  The output form this is
+If you want to see what scenes, supply the flag ``--list-scenes`` to the executable.  The output form this is
 different depending upong what branch you're currently on.
 
 
@@ -217,6 +217,11 @@ Structural/Architectural
 13. The ray tracer has been split into two parts, a static library (where the rendering code lives) and a
     "CLI Runner".  This was done so I could make it easier to build the Qt UI.  This is an architectural
     change that was introduced after the ``r7`` release.
+
+14. To get all three book's to be able to render with the same branch, I needed to add an enumeration called
+    ``RenderMethod``.  This is passed into some of the ``IMaterial`` methods.  Books 1 & 2 have the same exact
+    method of perfoming renders, but book 3 is different in its "rendering equation" (e.g. the use of ``PDF``s).
+    It doesn't clutter up the code/architecture too much and after testing, it didn't hamper performance whatsover.
 
 
 ===========
@@ -327,7 +332,7 @@ that, any approximation is fair game to use as long as the viewer has no idea it
 Building a Better Box
 =====================
 
-In this ray tracer, the ``Box`` object is actually made up of six components.  Two ``XYRect``, two ``XZRect``,
+In the books' code, the ``Box`` object is actually made up of six components.  Two ``XYRect``, two ``XZRect``,
 and two ``YZRect``.  Using a ``HittableList`` to store them all, and then loop through it for the ``hit()``
 detection.  While this is pretty simple, it can be done better.
 
@@ -441,9 +446,9 @@ If you want to try toggling this on/off, this is controlled by the ``WITH_BOOK_M
 time.
 
 
-========================
-PDFVariant (Book 3 only)
-========================
+===================================
+PDFVariant (For Book 3 Scenes Only)
+===================================
 
 While working on Book 3, I couldn't help but notice that during the rendering process, we were allocating dynamic
 memory and creating shared pointers when it came to using classes like ``CosinePDF``, ``HittablePDF``, and
@@ -452,14 +457,9 @@ For instance ``CosinePDF`` is only being used in ``IMaterial`` objects.  ``Hitta
 the light objects for a scene.  And ``MixturePDF`` is only instantiated in the ``ray_color()`` function.
 
 Leveraging ``std::variant<T>``, type we can still pass around these various ``IPDF`` sublcasses in a flexable manor,
-but ensure that they stay allocated on the stack (thus no dynamic memory or reference counting).  This now shoved
-int an aliased type called ``PDFVariant``.  We still need to  work with pointers to ``IPDF`` (namely for
-``MixturePDF``), but these are much faster raw pointers.
-
-If you want to check out these changes, they are on the branch ``book3.PDF_pointer_alternative``.  It actually not
-too complex, but it does break the book's architecture a tad.  With some initial testing, I was able to render the
-final scene of book 3 about 15% faster!  I'm sure there are some other minor tweaks that could be made too, but that
-would reduce some of the flexibility ``PDFVariant`` can give us.
+but ensure that they stay allocated on the stack (thus no dynamic memory or reference counting).  This was shoved
+into an aliased type called ``PDFVariant``.  We still need to work with pointers to ``IPDF`` (namely for
+``MixturePDF``), but these are much faster raw pointers (and the memory actually lives on the stack).
 
 
 
@@ -510,8 +510,8 @@ could make my code run faster.  So to test this out (and test toggling it on & o
 I did single core renders with the sample-per-pixels set to 250.
 
 To my surprise, I found out that there was no signficant change in render time with ``noexcept`` on the functions
-or not.  Each one took about 230 seconds in total, with a difference of about ~0.5 seconds (which can easily
-accounts as error).  My code is very much exception sparse, so I don't think it would have helped that much
+or not.  Each one took about 230 seconds in total, with a difference of about ~0.5 seconds (which can be
+attributed to error).  My code is very much exception sparse, so I don't think it would have helped that much
 anyways.  Other code bases may benefit from this, but this one definately did not.
 
 Despite having no real performance benefits (at least for me), I still think adding ``noexcept`` is a good
@@ -549,12 +549,6 @@ Overall this was a fun project.
 I'd love to visit some of these ideas, as they could bring better perf and add all around fun features, but
 I want to get onto other projects.  Someday...
 
-* Book 3's handling of PDFs could be more memory friendly.  I stated before there was not much optimization
-  that could be done, but I guarentee that this is a point of slowdown in the application.  It's a general
-  good rule of thumb to not allocate any new/dynamic memory in a critical section of your code (such ashamed
-  rendering).  With he use of PDFs, this happens.  If the PDFs could be turned into something allocated on
-  the stack, than that would be way more efficient.  Though, I think this would require some nasty refactoring.
-
 * Being able to pause and restart renders.  Should be simple, but I'd want to do it
 
 * Adding in a scripting language to define scenes (instead of hard coding them in).
@@ -576,9 +570,6 @@ I want to get onto other projects.  Someday...
 * Adding in some more fun features like metaballs or an
   `“0ldskool” plasma effect <https://www.bidouille.org/prog/plasma>`_.  Let's be real here, it isn't a true
   CG application unless you support these.  LAN party like it's '96.
-
-* I'd like to add in a script that runs all possible configurations/permutations of the render, then compares
-  it against a known ground truth.  The key to discovering better perf is through measuring and testing
 
 I will be visiting Ray Tracing again sometime in the future.
 
@@ -629,5 +620,3 @@ bit more of an impact on this project.
 .. _`Ray Tracing mini-books`: https://raytracing.github.io
 .. _`an exercise to learn Nim`: https://16bpp.net/blog/post/ray-tracing-book-series-review-nim-first-impressions/
 .. _PSRayTracingGooglePlay: https://play.google.com/store/apps/details?id=net.sixteenbpp.psraytracing&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1
-
-
