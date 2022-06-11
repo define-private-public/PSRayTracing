@@ -21,7 +21,7 @@ Requirements
 
 It's pretty much what you need for the project above + Qt.
 
-* A C++17 compiler.  I’d recommend GCC 10 or higher
+* A C++17 compiler.  I'd recommend GCC 10 or higher
 
 * CMake 3.x.  Using a CMake GUI application (such as ``ccmake``) will make your life easier if you want
   to toggle on/off changes from the reference implementation
