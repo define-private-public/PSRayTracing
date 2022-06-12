@@ -309,43 +309,83 @@ id_num,scene_id,num_threads,use_copy_per_thread,num_samples,ray_depth,random_see
 308,book2::final_scene,2,True,5,25,ASDF,400x400
 309,book2::final_scene,2,True,10,10,9001,852x480
 310,book2::final_scene,4,False,25,10,ASDF,320x240
-311,fun::three_spheres,1,False,5,50,alvin's hot juicebox,400x400
-312,fun::three_spheres,1,False,10,50,ASDF,852x480
-313,fun::three_spheres,1,False,10,50,alvin's hot juicebox,320x240
-314,fun::three_spheres,2,False,25,10,alvin's hot juicebox,852x480
-315,fun::three_spheres,2,True,5,50,alvin's hot juicebox,852x480
-316,fun::three_spheres,4,False,5,10,ASDF,320x240
-317,fun::three_spheres,4,False,5,25,alvin's hot juicebox,320x240
-318,fun::three_spheres,4,True,5,10,alvin's hot juicebox,400x400
-319,fun::three_spheres,4,True,5,50,alvin's hot juicebox,400x400
-320,fun::three_spheres,4,True,25,25,ASDF,400x400
-321,fun::whitted_1980,1,True,5,10,ASDF,320x240
-322,fun::whitted_1980,1,True,25,10,9001,320x240
-323,fun::whitted_1980,2,False,25,50,alvin's hot juicebox,400x400
-324,fun::whitted_1980,2,True,5,50,9001,400x400
-325,fun::whitted_1980,2,True,25,25,alvin's hot juicebox,852x480
-326,fun::whitted_1980,4,False,5,10,9001,400x400
-327,fun::whitted_1980,4,True,5,10,9001,852x480
-328,fun::whitted_1980,4,True,10,10,9001,852x480
-329,fun::whitted_1980,4,True,10,50,ASDF,400x400
-330,fun::whitted_1980,4,True,25,25,9001,320x240
-331,fun::cornell_glass_boxes,1,False,5,25,alvin's hot juicebox,852x480
-332,fun::cornell_glass_boxes,1,False,5,50,alvin's hot juicebox,852x480
-333,fun::cornell_glass_boxes,1,False,10,25,9001,400x400
-334,fun::cornell_glass_boxes,2,False,5,10,ASDF,400x400
-335,fun::cornell_glass_boxes,2,False,10,25,ASDF,320x240
-336,fun::cornell_glass_boxes,2,True,25,25,9001,320x240
-337,fun::cornell_glass_boxes,4,False,5,25,9001,852x480
-338,fun::cornell_glass_boxes,4,False,5,25,alvin's hot juicebox,400x400
-339,fun::cornell_glass_boxes,4,True,5,25,9001,400x400
-340,fun::cornell_glass_boxes,4,True,5,25,ASDF,320x240
-341,fun::wave_of_spheres,1,False,25,10,ASDF,400x400
-342,fun::wave_of_spheres,1,False,25,25,ASDF,400x400
-343,fun::wave_of_spheres,1,True,5,25,alvin's hot juicebox,852x480
-344,fun::wave_of_spheres,1,True,10,25,alvin's hot juicebox,852x480
-345,fun::wave_of_spheres,2,False,5,10,9001,852x480
-346,fun::wave_of_spheres,2,False,5,50,alvin's hot juicebox,400x400
-347,fun::wave_of_spheres,2,False,10,10,ASDF,400x400
-348,fun::wave_of_spheres,2,True,5,50,alvin's hot juicebox,320x240
-349,fun::wave_of_spheres,2,True,10,50,ASDF,320x240
-350,fun::wave_of_spheres,4,True,25,10,9001,400x400
+311,book3::cornell_box::two_boxes,1,False,5,25,ASDF,852x480
+312,book3::cornell_box::two_boxes,1,True,25,10,ASDF,400x400
+313,book3::cornell_box::two_boxes,2,False,10,10,alvin's hot juicebox,320x240
+314,book3::cornell_box::two_boxes,2,False,25,10,alvin's hot juicebox,400x400
+315,book3::cornell_box::two_boxes,2,True,10,10,9001,852x480
+316,book3::cornell_box::two_boxes,2,True,10,10,ASDF,400x400
+317,book3::cornell_box::two_boxes,2,True,25,10,ASDF,320x240
+318,book3::cornell_box::two_boxes,2,True,25,50,9001,400x400
+319,book3::cornell_box::two_boxes,4,False,5,25,alvin's hot juicebox,852x480
+320,book3::cornell_box::two_boxes,4,True,5,50,alvin's hot juicebox,400x400
+321,book3::cornell_box::two_boxes_one_mirror,1,False,5,10,ASDF,852x480
+322,book3::cornell_box::two_boxes_one_mirror,1,True,25,50,9001,320x240
+323,book3::cornell_box::two_boxes_one_mirror,2,True,10,50,9001,852x480
+324,book3::cornell_box::two_boxes_one_mirror,2,True,25,25,ASDF,852x480
+325,book3::cornell_box::two_boxes_one_mirror,4,False,5,10,alvin's hot juicebox,852x480
+326,book3::cornell_box::two_boxes_one_mirror,4,False,5,25,9001,852x480
+327,book3::cornell_box::two_boxes_one_mirror,4,False,10,10,alvin's hot juicebox,320x240
+328,book3::cornell_box::two_boxes_one_mirror,4,False,25,50,alvin's hot juicebox,400x400
+329,book3::cornell_box::two_boxes_one_mirror,4,True,5,50,alvin's hot juicebox,852x480
+330,book3::cornell_box::two_boxes_one_mirror,4,True,10,25,9001,400x400
+331,book3::cornell_box::one_box_one_glass_sphere,1,False,5,50,alvin's hot juicebox,852x480
+332,book3::cornell_box::one_box_one_glass_sphere,2,False,5,10,ASDF,320x240
+333,book3::cornell_box::one_box_one_glass_sphere,2,True,5,50,ASDF,320x240
+334,book3::cornell_box::one_box_one_glass_sphere,2,True,25,25,9001,400x400
+335,book3::cornell_box::one_box_one_glass_sphere,4,False,5,10,ASDF,400x400
+336,book3::cornell_box::one_box_one_glass_sphere,4,False,5,50,ASDF,852x480
+337,book3::cornell_box::one_box_one_glass_sphere,4,False,10,10,alvin's hot juicebox,852x480
+338,book3::cornell_box::one_box_one_glass_sphere,4,True,10,10,ASDF,320x240
+339,book3::cornell_box::one_box_one_glass_sphere,4,True,10,50,9001,400x400
+340,book3::cornell_box::one_box_one_glass_sphere,4,True,25,10,ASDF,852x480
+341,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,25,10,alvin's hot juicebox,320x240
+342,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,5,25,9001,852x480
+343,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,25,10,9001,320x240
+344,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,25,50,alvin's hot juicebox,320x240
+345,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,10,10,9001,400x400
+346,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,10,50,9001,320x240
+347,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,10,50,9001,852x480
+348,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,10,50,ASDF,400x400
+349,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,10,25,ASDF,400x400
+350,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,25,50,9001,400x400
+351,fun::three_spheres,1,False,5,50,alvin's hot juicebox,400x400
+352,fun::three_spheres,1,False,10,50,ASDF,852x480
+353,fun::three_spheres,1,False,10,50,alvin's hot juicebox,320x240
+354,fun::three_spheres,2,False,25,10,alvin's hot juicebox,852x480
+355,fun::three_spheres,2,True,5,50,alvin's hot juicebox,852x480
+356,fun::three_spheres,4,False,5,10,ASDF,320x240
+357,fun::three_spheres,4,False,5,25,alvin's hot juicebox,320x240
+358,fun::three_spheres,4,True,5,10,alvin's hot juicebox,400x400
+359,fun::three_spheres,4,True,5,50,alvin's hot juicebox,400x400
+360,fun::three_spheres,4,True,25,25,ASDF,400x400
+361,fun::whitted_1980,1,True,5,10,ASDF,320x240
+362,fun::whitted_1980,1,True,25,10,9001,320x240
+363,fun::whitted_1980,2,False,25,50,alvin's hot juicebox,400x400
+364,fun::whitted_1980,2,True,5,50,9001,400x400
+365,fun::whitted_1980,2,True,25,25,alvin's hot juicebox,852x480
+366,fun::whitted_1980,4,False,5,10,9001,400x400
+367,fun::whitted_1980,4,True,5,10,9001,852x480
+368,fun::whitted_1980,4,True,10,10,9001,852x480
+369,fun::whitted_1980,4,True,10,50,ASDF,400x400
+370,fun::whitted_1980,4,True,25,25,9001,320x240
+371,fun::cornell_glass_boxes,1,False,5,25,alvin's hot juicebox,852x480
+372,fun::cornell_glass_boxes,1,False,5,50,alvin's hot juicebox,852x480
+373,fun::cornell_glass_boxes,1,False,10,25,9001,400x400
+374,fun::cornell_glass_boxes,2,False,5,10,ASDF,400x400
+375,fun::cornell_glass_boxes,2,False,10,25,ASDF,320x240
+376,fun::cornell_glass_boxes,2,True,25,25,9001,320x240
+377,fun::cornell_glass_boxes,4,False,5,25,9001,852x480
+378,fun::cornell_glass_boxes,4,False,5,25,alvin's hot juicebox,400x400
+379,fun::cornell_glass_boxes,4,True,5,25,9001,400x400
+380,fun::cornell_glass_boxes,4,True,5,25,ASDF,320x240
+381,fun::wave_of_spheres,1,False,25,10,ASDF,400x400
+382,fun::wave_of_spheres,1,False,25,25,ASDF,400x400
+383,fun::wave_of_spheres,1,True,5,25,alvin's hot juicebox,852x480
+384,fun::wave_of_spheres,1,True,10,25,alvin's hot juicebox,852x480
+385,fun::wave_of_spheres,2,False,5,10,9001,852x480
+386,fun::wave_of_spheres,2,False,5,50,alvin's hot juicebox,400x400
+387,fun::wave_of_spheres,2,False,10,10,ASDF,400x400
+388,fun::wave_of_spheres,2,True,5,50,alvin's hot juicebox,320x240
+389,fun::wave_of_spheres,2,True,10,50,ASDF,320x240
+390,fun::wave_of_spheres,4,True,25,10,9001,400x400

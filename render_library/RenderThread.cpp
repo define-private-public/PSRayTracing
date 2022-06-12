@@ -5,8 +5,13 @@
 #include "Ray.h"
 #include "Util.h"
 #include "HitRecord.h"
+#include "ScatterRecord.h"
 #include "RenderOutput.h"
 #include "RandomGenerator.h"
+#include "PDFVariant.h"
+#include "PDFs/CosinePDF.h"
+#include "PDFs/HittablePDF.h"
+#include "PDFs/MixturePDF.h"
 using namespace std;
 
 
@@ -17,6 +22,7 @@ using namespace std;
 
 // Finds what the color should be for the given pixel
 ColorRGBA _pixel_color(const RenderContext &r_ctx, RandomGenerator &rng, const uint32_t samples_per_pixel, const rreal x, const rreal y, const uint16_t max_ray_depth) NOEXCEPT;
+const IPDF *maybe_get_pdf_ptr(const PDFVariant &pdf) NOEXCEPT;
 
 
 RenderThread::RenderThread(const RenderContext &render_context) NOEXCEPT :
@@ -94,6 +100,9 @@ void RenderThread::_thread_main_loop() NOEXCEPT {
     if (_r_ctx.deep_copy_per_thread) {
         _r_ctx.camera = _r_ctx.camera->deep_copy();
         _r_ctx.scene = _r_ctx.scene->deep_copy();
+
+        if (_r_ctx.lights)
+            _r_ctx.lights = _r_ctx.lights->deep_copy();
     }
 
     RenderTask task;
@@ -264,200 +273,79 @@ void RenderThreadPool::retreive_render(const RenderOutput &render_desc, vector<u
 
 
 Vec3 ray_color(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &r, const uint32_t depth) NOEXCEPT {
+    const RenderMethod r_method = r_ctx.render_method;
+
     // If we've exceeded the ray bounce limit, no more light is gathered
     if (depth <= 0)
         return Vec3(0);
 
-    HitRecord rec{};
+    HitRecord h_rec{};
 
     // Anything?
-    const bool hit_something = r_ctx.scene->hit(rng, r, static_cast<rreal>(0.001), Infinity, rec);
+    const bool hit_something = r_ctx.scene->hit(rng, r, static_cast<rreal>(0.001), Infinity, h_rec);
     if (!hit_something)
         return r_ctx.background;
 
     // Hit something...
-    Ray scattered;
-    Vec3 attenuation;
-    const Vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
-    const bool rays_scattered = rec.mat_ptr->scatter(rng, r, rec, attenuation, scattered);
+    ScatterRecord s_rec;
+    const Vec3 emitted = h_rec.mat_ptr->emitted(r, h_rec, h_rec.u, h_rec.v, h_rec.p, r_method);
+    const bool rays_scattered = h_rec.mat_ptr->scatter(rng, r, h_rec, s_rec, r_method);
 
     // If hit a an emmsive material (they don't scatter rays), then only emit that one's light
     if (!rays_scattered)
         return emitted;
 
-    // else, it must have been non-emissive,
-    return emitted + (attenuation * ray_color(r_ctx, rng, scattered, depth - 1));
+    // Chose a render method (for a non-emissive material)
+    if (r_method == RenderMethod::Books1And2)
+    {
+        return emitted + (s_rec.attenuation * ray_color(r_ctx, rng, s_rec.ray, depth - 1));
+    }
+    else
+    {
+        if (s_rec.is_specular)
+            return s_rec.attenuation * ray_color(r_ctx, rng, s_rec.ray, depth - 1);
+
+        #ifdef USE_BOOK_PDF_MANAGEMENT
+            const auto light_pdf = make_shared<HittablePDF>(r_ctx.lights, h_rec.p);
+            const MixturePDF mixed_pdf(light_pdf, s_rec.pdf_ptr);
+        #else
+            // NOTE: The `s_rec.pdf` will always be of the type of CosinePDF because of what we put in our various
+            //       IMaterial::scatter() methods has always been a CosinePDF.  The only reason I'm having that
+            //       conversion function (`maybe_get_pdf_ptr()`) is for future flexabiliy.
+            const HittablePDF light_pdf(r_ctx.lights, h_rec.p);
+            const MixturePDF mixed_pdf(&light_pdf, maybe_get_pdf_ptr(s_rec.pdf));
+        #endif  // USE_BOOK_PDF_MANAGEMENT
+
+        const Ray scattered(h_rec.p, mixed_pdf.generate(rng), r.time);
+        const rreal pdf_val = mixed_pdf.value(rng, scattered.direction);
+
+        // else, it must have been non-emissive,
+        return emitted + (s_rec.attenuation *
+                          h_rec.mat_ptr->scattering_pdf(r, h_rec, scattered) *
+                          ray_color(r_ctx, rng, scattered, depth - 1) / pdf_val);
+    }
 }
 
-/*
-struct BatchedHitRecord {
-    size_t id;
-    HitRecord rec;
-    bool hit_something;
-};
 
-vector<BatchedVec3> ray_color_batched(const RenderContext &r_ctx, RandomGenerator &rng, const std::vector<BatchedRay> &rays, const uint32_t depth) {
-    const size_t num_rays = rays.size();
+/**
+ * Utility function to take PDVariant over to a pointer to the PDF interface.  If it wasn't
+ * able to properly convert it, then it will return a nullptr.
+ */
+const IPDF *maybe_get_pdf_ptr(const PDFVariant &pdf) NOEXCEPT
+{
+    auto *ptr = static_cast<const IPDF *>(get_if<CosinePDF>(&pdf));
+    if (ptr)
+        return ptr;
 
-    // Depending upon how many input rays we got, create the returns, make sure they have the same id's
-    vector<BatchedVec3> vecs(num_rays);
-    for (size_t s = 0; s < num_rays; ++s)
-        vecs[s].id = rays[s].id;
+    ptr = static_cast<const IPDF *>(get_if<HittablePDF>(&pdf));
+    if (ptr)
+        return ptr;
 
-    // If we've exceeded the ray bounce limit, no more light is gathered
-    if (depth <= 0) {
-        for (auto &v : vecs)
-            v.v = Vec3(0);
-
-        return vecs;
-    }
-
-    // Make sure IDs are the same
-    vector<BatchedHitRecord> recs(num_rays);
-    for (size_t s = 0; s < num_rays; ++s)
-        recs[s].id = rays[s].id;
-
-    // See what they hit (SLOW)
-    for (size_t s = 0; s < num_rays; ++s) {
-        BatchedHitRecord &bhr = recs[s];
-        bhr.hit_something = r_ctx.scene->hit(rng, rays[s].ray, static_cast<real>(0.001), Infinity, bhr.rec);
-    }
-
-    // Sort the hit records based on if they hit something or not
-    sort(recs.begin(), recs.end(), [](const BatchedHitRecord &a, const BatchedHitRecord &b) {
-        return a.hit_something == b.hit_something;
-    });
-
-    // Count how many scatered rays we;ll need
-    size_t num_hit = count_if(recs.begin(), recs.end(), [](const BatchedHitRecord &rec) { return rec.hit_something; });
-    vector<BatchedRay> scattered_rays(num_hit);
-    vector<BatchedVec3> attenuations(num_hit);
-    vector<BatchedVec3> emittions(num_hit);
-
-    Vec3<
-
-    for (size_t s = 0; s < num_rays; ++s) {
-        // Note that the hit reocords are now out of order (in the `id` sense)
-        BatchedHitRecord &bhr = recs[s];
-        const size_t id = bhr.id;
-
-        if (bhr.hit_something) {
-            // DO emittion and scatter check
-            // Mark which rays scattered, then recurse on them
-            scattered_rays[id].id = id;
-            attenuations[id].id = id;
-
-        } else {
-            // It hit the backound, match the hit record tht that of the return vec
-            vecs[id].id = id;
-            vecs[id].v = r_ctx.background;
-        }
-    }
-
-    // Hit something...
-    Ray scattered;
-    Vec3 attenuation;
-    const Vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
-    const bool rays_scattered = rec.mat_ptr->scatter(rng, r, rec, attenuation, scattered);
-
-    // If hit a an emmsive material (they don't scatter rays), then only emit that one's light
-    if (!rays_scattered)
-        return emitted;
-
-    // else, it must have been non-emissive,
-    return emitted + (attenuation * ray_color(r_ctx, rng, scattered, depth - 1));
-
-}
-*/
-
-
-// This was an attempt to see if an interative ray color function could be more performant
-//   than the recursive one
-// TODO do a little measureing to see if it does help
-Vec3 ray_color_iterative(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &initial_ray, const uint32_t depth) NOEXCEPT {
-    vector<Vec3> clrs;  // TODO reserve a specific size
-    uint32_t d = depth;
-    bool hit_something = false;
-    Ray ray = initial_ray;
-
-    while (d != 0) {
-        // Hit the end of our depth
-        if (d == 0) {
-            clrs.push_back(Vec3(0));
-            break;   // Break out early
-        }
-
-        HitRecord rec{};
-
-        // See if we hit something
-        hit_something = r_ctx.scene->hit(rng, ray, static_cast<rreal>(0.001), Infinity, rec);
-        if (!hit_something) {
-            // Didn't hit a thing, pop on the bacgrkound and exit early
-            clrs.push_back(r_ctx.background);
-            break;   // Break out earily
-        }
-
-        // Hit something...
-        Ray scattered;
-        Vec3 attenuation;
-        const Vec3 emitted = rec.mat_ptr->emitted(rec.u, rec.v, rec.p);
-        const bool rays_scattered = rec.mat_ptr->scatter(rng, ray, rec, attenuation, scattered);
-
-        // If hit a an emmsive material (they don't scatter rays), then only emit that one's light
-        if (!rays_scattered) {
-            // Push on the emittied color and break out early
-            clrs.push_back(emitted);
-            break;
-        }
-
-        // It Hit another emissive material, with the scattered ray, go deeper
-        clrs.push_back(emitted + attenuation);
-        ray = scattered;
-        d--;
-    }
-
-    // Hit nothing...
-    if (clrs.empty())
-        return Vec3(0);
-
-    // Now summate the accumulated colors (starting in reverse)
-    Vec3 final_clr = *clrs.rbegin();
-    auto riter = clrs.rbegin() + 1;
-    while (riter != clrs.rend()) {
-        final_clr = final_clr * (*riter);
-        riter++;
-    }
-
-    return final_clr;
+    // This is the final option (will either return a Mixture PDF or nullptr)
+    ptr = static_cast<const IPDF *>(get_if<MixturePDF>(&pdf));
+    return ptr;
 }
 
-/*
-// This is an experiment to compute a color for a pixel, with a batch of rays, in an iterative manor
-//   It hopes to explain hot pathing and data locality
-Vec3 ray_color_iterative_batched(const RenderContext &r_ctx, RandomGenerator &rng, const std::vector<Ray> &rays, const uint32_t depth) {
-    const size_t num_rays = rays.size();
-    const real r_num_rays = static_cast<real>(num_rays);
-
-    // Preallocate to the maximum possible number of rays
-    vector<vector<Vec3>> clrs(static_cast<size_t>(depth));
-    for (auto &vv : clrs)
-        vv.reserve(num_rays);
-
-    uint32_t d = depth;
-    while (d != 0) {
-        vector<Vec3> &
-    }
-
-
-    Vec3 clr(0);
-    clr.x /= r_num_rays;
-    clr.y /= r_num_rays;
-    clr.z /= r_num_rays;
-//    pixel.a /= num_rays;
-
-    return Vec3(0);
-}
-*/
 
 
 ColorRGBA _pixel_color(const RenderContext &r_ctx, RandomGenerator &rng, const uint32_t samples_per_pixel, const rreal x, const rreal y, const uint16_t max_ray_depth) NOEXCEPT {
@@ -509,6 +397,25 @@ ColorRGBA _pixel_color(const RenderContext &r_ctx, RandomGenerator &rng, const u
     }
 #endif  // USE_BOOK_COMPUTE_PIXEL_COLOR
 
+
+    // Replace NaN components with zero (See explanation in the final chapter of "Ray Tracing: The Rest of Your Life")
+    //   Note that this is not found in books 1 & 2, but having this for all shouldn't cause any harm.
+#ifdef USE_BOOK_COMPUTE_PIXEL_COLOR
+    if (pixel.r != pixel.r)
+        pixel.r = 0;
+    if (pixel.g != pixel.g)
+        pixel.g = 0;
+    if (pixel.b != pixel.b)
+        pixel.b = 0;
+//    if (pixel.a != pixel.a)
+//        pixel.a = 0;
+#else
+    pixel.r = (pixel.r != pixel.r) ? 0 : pixel.r;
+    pixel.g = (pixel.g != pixel.g) ? 0 : pixel.g;
+    pixel.b = (pixel.b != pixel.b) ? 0 : pixel.b;
+//    pixel.a = (pixel.a != pixel.a) ? 0 : pixel.a;
+#endif  // USE_BOOK_COMPUTE_PIXEL_COLOR
+
     // Average all the samples
     pixel.r /= r_spp;
     pixel.g /= r_spp;
@@ -519,7 +426,7 @@ ColorRGBA _pixel_color(const RenderContext &r_ctx, RandomGenerator &rng, const u
     pixel.r = util::sqrt(pixel.r);
     pixel.g = util::sqrt(pixel.g);
     pixel.b = util::sqrt(pixel.b);
-    pixel.a = util::sqrt(pixel.a);
+//    pixel.a = util::sqrt(pixel.a);
 
     return pixel;
 }

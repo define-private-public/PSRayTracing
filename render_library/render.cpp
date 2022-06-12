@@ -75,10 +75,12 @@ future<Render> do_render(const RenderJob &job)
         // Setup the context
         RenderContext r_ctx;
         r_ctx.scene = scene_desc.scene;
+        r_ctx.lights = scene_desc.lights;
         r_ctx.camera = cam;
         r_ctx.background = scene_desc.background;
         r_ctx.width = render_desc.width;
         r_ctx.height = render_desc.height;
+        r_ctx.render_method = scene_desc.render_method;
         r_ctx.deep_copy_per_thread = job.deep_copy_per_thread;
 
         // Create the thread pool (and renderer)

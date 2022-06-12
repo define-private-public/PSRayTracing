@@ -133,6 +133,33 @@ public:
         return Vec3(r * util::cos(a), r * util::sin(a), z);
     }
 
+    Vec3 get_cosine_direction() NOEXCEPT {
+        const Type r1 = get_real();
+        const Type r2 = get_real();
+        const rreal phi = 2 * Pi * r1;
+        const rreal z = util::sqrt(1 - r2);
+        const rreal r2_sqrt = util::sqrt(r2);
+        const rreal x = util::cos(phi) * r2_sqrt;
+        const rreal y = util::sin(phi) * r2_sqrt;
+
+        return Vec3(x, y, z);
+    }
+
+    Vec3 get_to_sphere(const Type radius, const Type distance_squared) {
+        const Type r1 = get_real();
+        const Type r2 = get_real();
+        const rreal phi = 2 * Pi * r1;
+
+        const rreal z = 1 + r2 * (util::sqrt(1 - (radius * radius / distance_squared)) - 1);
+        const rreal zeta = util::sqrt(1 - (z * z));
+
+        const rreal x = util::cos(phi) * zeta;
+        const rreal y = util::sin(phi) * zeta;
+
+        return Vec3(x, y, z);
+    }
+
+
     // Returns a random string (of the requested size)
     // Will be populated with [0-9a-zA-Z]
     std::string get_random_string(const size_t num) NOEXCEPT {

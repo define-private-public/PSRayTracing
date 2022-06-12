@@ -18,11 +18,24 @@ public:
 
     bool scatter(
         RandomGenerator &rng,
-        const Ray &r_in,        // In
-        const HitRecord &rec,   // In
-        Vec3 &attenuation,      // Out
-        Ray &scattered          // Out
+        const Ray &r_in,
+        const HitRecord &h_rec,
+        ScatterRecord &s_rec,
+        const RenderMethod method
     ) const NOEXCEPT override;
 
-    Vec3 emitted(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT override;
+    virtual rreal scattering_pdf(
+        const Ray &r_in,
+        const HitRecord &h_rec,
+        const Ray &scattered
+    ) const NOEXCEPT override;
+
+    virtual Vec3 emitted(
+        const Ray &r_in,
+        const HitRecord &h_rec,
+        const rreal u,
+        const rreal v,
+        const Vec3 &p,
+        const RenderMethod method
+    ) const NOEXCEPT override;
 };

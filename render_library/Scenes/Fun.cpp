@@ -148,10 +148,15 @@ SceneDescriptor cornell_glass_boxes(const rreal aspect_ratio) {
     HittableList world;
     world.add(make_shared<YZRect>(  0, 555,   0, 555, 555, green));     // Left
     world.add(make_shared<YZRect>(  0, 555,   0, 555,   0, red));       // Right
-    world.add(make_shared<XZRect>(150, 410, 150, 400,   5, light));
     world.add(make_shared<XZRect>(  0, 555,   0, 555,   0, white));     // Floor
     world.add(make_shared<XZRect>(  0, 555,   0, 555, 555, white));     // Roof
     world.add(make_shared<XYRect>(  0, 555,   0, 555, 555, white));     // Back
+
+    // Floor light
+    HittableList lights;
+    const auto floor_light = make_shared<XZRect>(150, 410, 150, 400,   5, light);
+    lights.add(floor_light);
+    world.add(floor_light);
 
     constexpr int cube_depth = 5;           // Makes NxN cubes
     constexpr rreal box_size = 50;
@@ -181,7 +186,9 @@ SceneDescriptor cornell_glass_boxes(const rreal aspect_ratio) {
 
     RandomGenerator rng(DefaultRNGSeed);
     SceneDescriptor sd{};
+    sd.render_method = RenderMethod::Book3;
     sd.scene = make_shared<BVHNode_Implementation>(rng, world, 0, 0);
+    sd.lights = make_shared<HittableList>(lights);
     sd.background = 0.8 * sky_blue;
 
     const Vec3 look_from(278, 278, -800);

@@ -1,4 +1,6 @@
 #include "Materials/DiffuseLight.h"
+#include "HitRecord.h"
+#include "ScatterRecord.h"
 #include "Textures/SolidColor.h"
 
 using namespace std;
@@ -23,13 +25,40 @@ shared_ptr<IMaterial> DiffuseLight::deep_copy() const NOEXCEPT {
 bool DiffuseLight::scatter(
     [[maybe_unused]] RandomGenerator &rng,
     [[maybe_unused]] const Ray &r_in,
-    [[maybe_unused]] const HitRecord &rec,
-    [[maybe_unused]] Vec3 &attenuation,
-    [[maybe_unused]] Ray &scattered
+    [[maybe_unused]] const HitRecord &h_rec,
+    [[maybe_unused]] ScatterRecord &s_rec,
+    [[maybe_unused]] const RenderMethod method
 ) const NOEXCEPT {
     return false;
 }
 
-Vec3 DiffuseLight::emitted(const rreal u, const rreal v, const Vec3 &p) const NOEXCEPT {
-    return _emit->value(u, v, p);
+rreal DiffuseLight::scattering_pdf(
+    [[maybe_unused]] const Ray &r_in,
+    [[maybe_unused]] const HitRecord &h_rec,
+    [[maybe_unused]] const Ray &scattered
+) const NOEXCEPT
+    { return 0; }
+
+Vec3 DiffuseLight::emitted(
+    [[maybe_unused]] const Ray &r_in,
+    const HitRecord &h_rec,
+    const rreal u,
+    const rreal v,
+    const Vec3 &p,
+    const RenderMethod method
+) const NOEXCEPT {
+    Vec3 emission(0);   // Default emission is pitch black
+
+    if (method == RenderMethod::Books1And2)
+    {
+        emission = _emit->value(u, v, p);
+    }
+    else
+    {
+        // Book 3
+        if (h_rec.front_face)
+            emission = _emit->value(u, v, p);
+    }
+
+    return emission;
 }

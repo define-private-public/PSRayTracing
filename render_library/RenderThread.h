@@ -13,6 +13,7 @@
 #include <array>
 #include "Vec3.h"
 #include "ColorRGBA.h"
+#include "RenderMethod.h"
 class IHittable;
 class ICamera;
 class Ray;
@@ -35,12 +36,14 @@ struct RenderOutput;
 //   Treat this as a read-only structure
 struct RenderContext {
     // Data
-    std::shared_ptr<IHittable> scene = nullptr; // Objects to render
-    std::shared_ptr<ICamera> camera = nullptr;  // Camera to render with
-    Vec3 background = Vec3(0);                  // Background of scene, affects the illumination
-    uint16_t width = 1;                         // Render image width
-    uint16_t height = 1;                        // Render image height
-    bool deep_copy_per_thread = true;           // If there should be a of the scene & camera per each thread
+    std::shared_ptr<IHittable> scene = nullptr;             // Objects to render
+    std::shared_ptr<IHittable> lights = nullptr;            // Light sources in the scene
+    std::shared_ptr<ICamera> camera = nullptr;              // Camera to render with
+    Vec3 background = Vec3(0);                              // Background of scene, affects the illumination
+    uint16_t width = 1;                                     // Render image width
+    uint16_t height = 1;                                    // Render image height
+    RenderMethod render_method = RenderMethod::Books1And2;  // The style of rendering to use (e.g. book 3 uses PDFs)
+    bool deep_copy_per_thread = true;                       // If there should be a of the scene & camera per each thread
 };
 
 // A job of what to render, right now a single RenderThread will work on a scanline at a time
@@ -165,7 +168,7 @@ public:
 
 // the funtion where the rendering magic happens
 Vec3 ray_color(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &r, const uint32_t depth) NOEXCEPT;
-Vec3 ray_color_iterative(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &initial_ray, const uint32_t depth) NOEXCEPT;
+//Vec3 ray_color_iterative(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &initial_ray, const uint32_t depth) NOEXCEPT;
 
 
 // For an experiment in batching processing to exploit branch prediction
