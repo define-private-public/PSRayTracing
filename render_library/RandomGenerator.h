@@ -101,28 +101,23 @@ public:
     }
 
     inline Vec3 get_in_unit_disk() NOEXCEPT {
-        // TODO find a function to smooth this out (so we don't have to loop!)
-//        constexpr auto magic_num = static_cast<real>(0.707107);
-//        return Vec3(
-//            get_real(-magic_num, magic_num),
-//            get_real(-magic_num, magic_num),
-//            0
-//        );
-
-//        Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
-//        if (p.length_squared() >= 1)
-//            return p.one_over();
-//
-//        return p;
-
-        // BOOK CODE: (loop, super bad...)
+        // BOOK CODE: (loop, with branching, super bad... but it's acutely faster)
         while (true) {
-            Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
+            const Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
             if (p.length_squared() >= 1)
                 continue;
 
             return p;
         }
+
+//        // This is polar, it's slightly slower (by 0.8%) for some odd reason...
+//        const rreal r = util::sqrt(get_real(0, 1));
+//        const rreal theta = get_real(0, TwoPi);
+//
+//        const rreal x = r * util::cos(theta);
+//        const rreal y = r * util::sin(theta);
+//
+//        return Vec3(x, y, 0);
     }
 
     inline Vec3 get_unit_vector() NOEXCEPT {
