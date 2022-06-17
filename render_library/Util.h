@@ -45,10 +45,10 @@ namespace util {
             const rreal alpha = 1 - cosine;
             const rreal beta = alpha * alpha * alpha * alpha * alpha;
 
-            rreal r0 = (1 - refractive_index) / (1 + refractive_index);
-            r0 = r0 * r0;
+            const rreal r0 = (1 - refractive_index) / (1 + refractive_index);
+            const rreal r1 = r0 * r0;
 
-            return r0 + ((1 - r0) * beta);
+            return r1 + ((1 - r1) * beta);
         #endif
     }
 
