@@ -67,32 +67,32 @@ public:
     }
 
     inline Vec3 get_in_unit_sphere() NOEXCEPT {
-        // TODO find a function to smooth this out (so we don't have to loop!)
-//        constexpr auto magic_num = static_cast<real>(0.57735);       // Ensures that we dont go above or below [-1, 1] for the dot product
-//        return get_vec3(-magic_num, magic_num);
-//        return get_vec3(-1, 1).unit_vector();         // Was bad...  We were guarteened a unit vector,
-
-        // We want something that could be UP TO a unit vector, but not quite
-        // maybe first generate the above,  and if it's length_squared is >1, then make it so that it
-        // isn't?  This introduceds branching, but I think it's better than loop & branching
-
-        // TODO maybe precompute (pool) a bunch of these?
-        //      the issue arrises when the pool is exhausted though...
-
-//        Vec3 p = get_vec3(-1, 1);
-//        if (p.length_squared() >= 1)
-//            return p.one_over();
-//
-//        return p;
-
-        // BOOK CODE: (loop, super bad...)
+        // BOOK CODE: (loop, with brancing, super bad... but it's acutely faster)
         while (true) {
-            Vec3 p = get_vec3(-1, 1);
+            const Vec3 p = get_vec3(-1, 1);
             if (p.length_squared() >= 1)
                 continue;
 
             return p;
         }
+
+//        // This is adapted from https://karthikkaranth.me/blog/generating-random-points-in-a-sphere/
+//        //   It was an attempt to generate the points in a more performant maner, but turned out to
+//        //   be slightly slower, and a little different too.
+//        const rreal r = std::cbrt(get_real(0, 1));
+//        const rreal theta = get_real(0, TwoPi);
+//        const rreal phi = /* std::acos(get_real(0, 2) - 1); */ HalfPi - util::asin(get_real(0, 2) - 1);       // Use our asin approximation with the acos trig identity
+//
+//        const rreal sin_theta = util::sin(theta);
+//        const rreal cos_theta = util::cos(theta);
+//        const rreal sin_phi = util::sin(phi);
+//        const rreal cos_phi = util::cos(phi);
+//
+//        const rreal x = r * sin_phi * cos_theta;
+//        const rreal y = r * sin_phi * sin_theta;
+//        const rreal z = r * cos_phi;
+//
+//        return Vec3(x, y, z);
     }
 
     inline Vec3 get_in_unit_hemisphere(const Vec3 &normal) NOEXCEPT {
