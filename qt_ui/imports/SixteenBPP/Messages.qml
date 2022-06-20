@@ -68,6 +68,7 @@ QtObject {
   <ul>\
     <li><a href="https://16bpp.net/blog/post/psraytracing-a-revisit-of-the-peter-shirley-minibooks-4-years-later/">PSRayTracing, A revisit of the Peter Shirley Minibooks 4 years later</a></li>\
     <li><a href="https://16bpp.net/blog/post/automated-testing-of-a-ray-tracer/">Automated Testing of a Ray Tracer</a></li>\
+    <li><a href="https://16bpp.net/blog/post/making-a-cross-platform-mobile-desktop-app-with-qt-62/">Making A Cross Platform Mobile & Desktop App with Qt 6.2</a></li>\
     <li><a href="https://16bpp.net/blog/post/ray-tracing-book-series-review-nim-first-impressions/">Ray Tracing in Nim</a></li>\
   </ul>\
 </p>\
