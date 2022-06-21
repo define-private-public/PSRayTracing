@@ -57,7 +57,13 @@ Window {
       height: parent.height
 
       // If the close button is clicked, pop this view (thus going back to the render view)
-      onClose_button_clicked: stack_view.pop();
+      //   The "RenderSettings" popover should show again (prevents bug #12), also since the
+      //   Render settings are the only way to get to the About page.
+      onClose_button_clicked:
+      {
+        stack_view.pop()
+        render_view.show_render_settings();
+      }
     }
   }
 }

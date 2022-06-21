@@ -120,9 +120,14 @@ Item {
       g_renderer.stop_active_render();
   }
 
+
   function handle_render_double_tapped() {
     // If a render has completed, then double tapping is enabled, which means the image can be fullscreen'd
     root.in_fullscreen_mode = !root.in_fullscreen_mode;
   }
+
+  // Function to call showing the render settings popup
+  function show_render_settings()
+    { render_settings_popup.open(); }
 }
 
