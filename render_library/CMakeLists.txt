@@ -31,12 +31,16 @@ set(sources
   RandomGenerator.cpp
   Ray.h
   Ray.cpp
+  RenderContext.h
+  RenderContext.cpp
   RenderMethod.h
   RenderMethod.cpp
   RenderOutput.h
   RenderOutput.cpp
   RenderThread.h
   RenderThread.cpp
+  RenderThreadPool.h
+  RenderThreadPool.cpp
   SceneDescriptor.h
   ScatterRecord.h
   ScatterRecord.cpp

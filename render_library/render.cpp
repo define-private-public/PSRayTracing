@@ -3,7 +3,7 @@
 #include <sstream>
 #include "Interfaces/ICamera.h"
 #include "Scenes/All.h"
-#include "RenderThread.h"
+#include "RenderThreadPool.h"
 #include "RenderOutput.h"
 
 using namespace std;

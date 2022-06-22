@@ -15,14 +15,16 @@
 using namespace std;
 
 
-// TODO [features]
-// - In RenderThread:_thread_main_loop():
-//       what if a shutdown was requested mid-task? It's not able to shutdown until a task is done
 
+/** The funtion where the rendering magic happens. */
+Vec3 ray_color(const RenderContext &r_ctx, RandomGenerator &rng, const Ray &r, const uint32_t depth) NOEXCEPT;
 
-// Finds what the color should be for the given pixel
+/** Finds what the color should be for the given pixel */
 ColorRGBA _pixel_color(const RenderContext &r_ctx, RandomGenerator &rng, const uint32_t samples_per_pixel, const rreal x, const rreal y, const uint16_t max_ray_depth) NOEXCEPT;
+
+/** Resolves a PDFVariant to a pointer to an IPDF */
 const IPDF *maybe_get_pdf_ptr(const PDFVariant &pdf) NOEXCEPT;
+
 
 
 RenderThread::RenderThread(const RenderContext &render_context) NOEXCEPT :
@@ -36,7 +38,7 @@ RenderThread::RenderThread(const RenderContext &render_context) NOEXCEPT :
     _pixels_completed.store(0);
 }
 
-RenderThread::RenderThread(RenderThread &&other) noexcept :
+RenderThread::RenderThread(RenderThread &&other) NOEXCEPT :
     _r_ctx(move(other._r_ctx)),
     _thread(move(other._thread)),
     _task_queue(move(other._task_queue)),
@@ -62,7 +64,7 @@ bool RenderThread::run() NOEXCEPT {
     return true;
 }
 
-bool RenderThread::add_task(const RenderTask &task) NOEXCEPT {
+bool RenderThread::add_task(const Task &task) NOEXCEPT {
     try {
         {
             // Put the task on
@@ -79,7 +81,7 @@ bool RenderThread::add_task(const RenderTask &task) NOEXCEPT {
     }
 }
 
-bool RenderThread::retrive_result(RenderResult &result) NOEXCEPT {
+bool RenderThread::retrive_result(Result &result) NOEXCEPT {
     lock_guard guard(_result_queue_mutex);
 
     // Nothing?
@@ -105,7 +107,7 @@ void RenderThread::_thread_main_loop() NOEXCEPT {
             _r_ctx.lights = _r_ctx.lights->deep_copy();
     }
 
-    RenderTask task;
+    Task task;
     bool got_task = false;
 
     while (_stop_requested.load() != true) {
@@ -126,7 +128,7 @@ void RenderThread::_thread_main_loop() NOEXCEPT {
     _running.store(false);
 }
 
-vector<ColorRGBA> RenderThread::_render_scanline(const RenderTask &task) NOEXCEPT {
+vector<ColorRGBA> RenderThread::_render_scanline(const Task &task) NOEXCEPT {
     const auto scanline_num = static_cast<rreal>(task.scanline);
     vector<ColorRGBA> scanline(static_cast<size_t>(_r_ctx.width));
     RandomGenerator rng(task.rng_seed);
@@ -142,7 +144,7 @@ vector<ColorRGBA> RenderThread::_render_scanline(const RenderTask &task) NOEXCEP
     return scanline;
 }
 
-bool RenderThread::_get_next_task(RenderTask &task) NOEXCEPT {
+bool RenderThread::_get_next_task(Task &task) NOEXCEPT {
     lock_guard guard(_task_queue_mutex);
 
     // Nothing?
@@ -158,7 +160,7 @@ bool RenderThread::_get_next_task(RenderTask &task) NOEXCEPT {
 bool RenderThread::_store_result(const uint16_t scanline, const std::vector<ColorRGBA> &data) NOEXCEPT {
     try {
         const uint16_t num_completed_now = _completed_task_count.load() + 1;
-        RenderResult rr;
+        Result rr;
         rr.scanline = scanline;
         rr.data = data;
 
@@ -170,103 +172,6 @@ bool RenderThread::_store_result(const uint16_t scanline, const std::vector<Colo
         return true;
     } catch (...) {
         return false;
-    }
-}
-
-
-
-RenderThreadPool::RenderThreadPool(const RenderContext &render_context, const uint16_t num_threads) NOEXCEPT :
-    _r_ctx(render_context)
-{
-    // Create the threads
-    for (uint16_t i = 0; i < num_threads; i++)
-        _threads.push_back(RenderThread(_r_ctx));
-}
-
-void RenderThreadPool::setup_render(const string &main_rng_seed, const uint32_t samples_per_pixel, const uint16_t max_ray_depth) {
-    RandomGenerator rng(main_rng_seed);
-
-    // Set which threads will render which scanlines
-    RenderTask task;
-    task.samples_per_pixel = samples_per_pixel;
-    task.max_ray_depth = max_ray_depth;
-
-    const uint16_t height_max = _r_ctx.height - 1;
-    auto row = static_cast<int16_t>(height_max);
-    bool added = false;
-
-    while (row >= 0) {
-        // Setup the task
-        task.scanline = static_cast<uint16_t>(row--);
-        task.rng_seed = rng.get_random_string(16);
-
-        // Pick which thread to add it to
-        added = _threads[static_cast<size_t>(row) % _threads.size()].add_task(task);
-        if (!added)
-            throw runtime_error("Wasn't able to add render task");
-    }
-}
-
-void RenderThreadPool::start_render() {
-    // Start all threads
-    bool started = false;
-    for (RenderThread &rt : _threads) {
-        started = rt.run();
-        if (!started)
-            throw runtime_error("Wasn't able to start render thread");
-    }
-}
-
-uint64_t RenderThreadPool::total_pixel_count() const NOEXCEPT {
-    uint64_t total = 0;
-    for (const RenderThread &rt: _threads)
-        total += rt.total_pixel_count();
-
-    return total;
-}
-
-uint64_t RenderThreadPool::num_pixels_completed() const NOEXCEPT {
-    uint64_t completed = 0;
-    for (const RenderThread &rt: _threads)
-        completed += rt.num_pixels_completed();
-
-    return completed;
-}
-
-// Checks if the render is done by looking at the task counts
-bool RenderThreadPool::render_completed() const NOEXCEPT {
-    uint16_t tasks_done = 0;
-    for (const RenderThread &rt: _threads)
-        tasks_done += rt.num_tasks_completed();
-
-    // the total number of tasks is equal to the height of the render
-    return (tasks_done >= _r_ctx.height);
-}
-
-void RenderThreadPool::shutdown_and_wait() NOEXCEPT {
-    // Cleanly tell the threads to shutdown and wait for them all
-    for (RenderThread &rt: _threads)
-        rt.request_stop();
-
-    for (RenderThread &rt: _threads)
-        rt.stop_and_try_join();
-}
-
-// Write the results of the rendering to a byte buffer
-void RenderThreadPool::retreive_render(const RenderOutput &render_desc, vector<uint8_t> &dest) NOEXCEPT {
-    RenderResult result;
-    bool got_scanline = false;
-
-    // Loop through all the threads
-    for (RenderThread &rt : _threads) {
-        // And loop through all of their results
-        got_scanline = rt.retrive_result(result);
-        while (got_scanline) {
-            write_rgb_scanline(render_desc, dest, result.scanline, result.data);
-
-            // Try to get the next
-            got_scanline = rt.retrive_result(result);
-        }
     }
 }
 
