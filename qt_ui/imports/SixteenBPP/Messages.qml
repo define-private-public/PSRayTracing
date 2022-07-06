@@ -54,8 +54,7 @@ QtObject {
 <br>\
 <p>\
   This app itself is a GUI frontend for the ray tracer.  Written in C++ &amp; Qt 6, it also acts as a way to (easily) test the performance of the ray tracer on\
-  platforms such as Android and iOS.\  As of right now, only the scenes from books 1 &amp; 2 are available in this app.  Book 3\'s renders are supported but\
-  (currently) cannot work alongside 1 &amp; 2\'s due to architectural issues.\
+  platforms such as Android and iOS.\  The scenes from books 1, 2, &amp; 3 are available in this app (plus some bonus ones too).
 </p>\
 <br>\
 <p>\
