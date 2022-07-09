@@ -18,8 +18,8 @@ QtObject {
   // Used in the Render Settings Form
   readonly property string render_settings:             qsTr('Render Settings')
   readonly property string render_size:                 qsTr('Render Size')
-  readonly property string width_min_value:             qsTr('Width (minimum value of 1)')
-  readonly property string height_min_value:            qsTr('Height (minimum value of 1)')
+  readonly property string width_min_value:             qsTr('W (min. 1)')
+  readonly property string height_min_value:            qsTr('H (min. 1)')
   readonly property string use_device_resolution_fmt:   qsTr('Use Device Resolution: %1')
   readonly property string samples_per_pixel:           qsTr('Samples Per Pixel')
   readonly property string min_value_of_one:            qsTr('(minimum value of 1)')
