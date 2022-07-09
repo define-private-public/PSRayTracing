@@ -18,7 +18,6 @@
     <file>imports/SixteenBPP/Widgets/IntegerOnlyTextField.qml</file>
     <file>imports/SixteenBPP/Widgets/PanZoom.qml</file>
     <file>imports/SixteenBPP/Widgets/RenderDisplay.qml</file>
-    <file>imports/SixteenBPP/Widgets/VerticalScroll.qml</file>
 
     <!-- Icons -->
     <file alias="settings_icon">icons/settings.svg</file>

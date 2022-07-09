@@ -48,50 +48,62 @@ Item {
     font.pointSize: UITheme.title_font_size_pt
   }
 
-  VerticalScroll {
+  ScrollView {
     id: scroller
 
-    width: Math.min(UITheme.min_width_threshold, root.width) - (2 * __p.padding_amount);
-    anchors.topMargin: __p.padding_amount
-    anchors.bottomMargin: __p.padding_amount
-    anchors.horizontalCenter: parent.horizontalCenter
+    anchors.margins: __p.padding_amount
+    anchors.left: parent.left
+    anchors.right: parent.right
     anchors.top: title.bottom
     anchors.bottom: (__p.place_close_button_bellow_scroller ? close_button.top : parent.bottom)
 
-    content_item: ColumnLayout {
-      id: layout
+    clip: true
+    ScrollBar.horizontal.interactive: true
+    ScrollBar.vertical.interactive: true
 
-      width:  scroller.visible_area_width
+    Flickable {
+      width: parent.width
+      height: parent.height
 
-      // Main body of the about page
-      Text {
-        Layout.fillWidth: true
+      contentWidth: parent.width
+      contentHeight: layout.height
 
-        text: Messages.about_contents
-        wrapMode: Text.WordWrap
-        font.pointSize: UITheme.about_font_size_pt
+      ColumnLayout {
+        id: layout
 
-        // Opens the hyperlinks when pressed
-        onLinkActivated: Qt.openUrlExternally(link)
-      }
+        width: Math.min(UITheme.min_width_threshold, root.width) - (2 * __p.padding_amount);
+        anchors.horizontalCenter: parent.horizontalCenter
 
-      // App Icon
-      Image {
-        Layout.alignment: Qt.AlignHCenter
+        // Main body of the about page
+        Text {
+          Layout.fillWidth: true
 
-        source: 'qrc:/app_icon_compressed'
-        sourceSize.width:  ((2 / 3) * parent.width)
-        mipmap: true    // Smoother scaling
-        fillMode: Image.PreserveAspectFit
-      }
+          text: Messages.about_contents
+          wrapMode: Text.WordWrap
+          font.pointSize: UITheme.about_font_size_pt
 
-      // Info about the app
-      Text {
-        Layout.fillWidth: true
+          // Opens the hyperlinks when pressed
+          onLinkActivated: (link) => Qt.openUrlExternally(link)
+        }
 
-        text: Messages.info_contents
-        wrapMode: Text.WordWrap
-        font.pointSize: UITheme.about_font_size_pt
+        // App Icon
+        Image {
+          Layout.alignment: Qt.AlignHCenter
+
+          source: 'qrc:/app_icon_compressed'
+          sourceSize.width:  ((2 / 3) * layout.width)
+          mipmap: true    // Smoother scaling
+          fillMode: Image.PreserveAspectFit
+        }
+
+        // Info about the app
+        Text {
+          Layout.fillWidth: true
+
+          text: Messages.info_contents
+          wrapMode: Text.WordWrap
+          font.pointSize: UITheme.about_font_size_pt
+        }
       }
     }
   }

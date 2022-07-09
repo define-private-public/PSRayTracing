@@ -3,4 +3,3 @@ module SixteenBPP.Widgets
 IntegerOnlyTextField IntegerOnlyTextField.qml
 PanZoom PanZoom.qml
 RenderDisplay RenderDisplay.qml
-VerticalScroll VerticalScroll.qml

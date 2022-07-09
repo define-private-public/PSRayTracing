@@ -282,7 +282,7 @@ endif()
 
 
 # Build it!
-target_compile_options(PSRayTracing_StaticLibrary PRIVATE -Wall -Wextra -Wconversion -Wsign-conversion -Wno-overlength-strings -pedantic)
+target_compile_options(PSRayTracing_StaticLibrary PRIVATE -Wall -Wextra -Wconversion -Wsign-conversion -Wmismatched-tags -Wno-overlength-strings -pedantic)
 set_source_files_properties(${third_party_sources} PROPERTIES COMPILE_FLAGS -w)
 target_link_libraries(PSRayTracing_StaticLibrary Threads::Threads)
 

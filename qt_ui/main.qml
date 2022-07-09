@@ -20,7 +20,7 @@ Window {
   // This is neededed: On Android when the user pressed the Back button, Qml
   // will close the app.  Instead, we'd like it to go back to the previous view.
   // Only if that isn't possible, then close the app.
-  onClosing: {
+  onClosing: function(close) {
     if (stack_view.depth > 1) {
       close.accepted = false;
       stack_view.pop();

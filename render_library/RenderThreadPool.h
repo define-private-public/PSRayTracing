@@ -3,7 +3,7 @@
 #include <vector>
 #include "RenderContext.h"
 #include "RenderThread.h"
-class RenderOutput;
+struct RenderOutput;
 
 
 // A class that manages multiple render threads, and getting everying done for you
