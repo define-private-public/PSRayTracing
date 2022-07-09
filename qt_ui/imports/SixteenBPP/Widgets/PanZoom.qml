@@ -49,7 +49,7 @@ Item {
    */
   property bool pan_zoom_enabled: false
 
-  readonly property real _zoom_out_max: (1.0 / 16.0)  ///< The most we can zoom out; semi-private access
+  readonly property real _zoom_out_max: (1.0 / 4.0)   ///< The most we can zoom out; semi-private access
   readonly property real _zoom_in_max: 64.0           ///< The most we can zoom in; semi-private access
 
   // Private internal data structure
@@ -251,7 +251,11 @@ Item {
         //      accidental zooms
 
         // Set the new zoom, based on the scale of the pinch event
+        var zoom_previous = root.zoom;
         root.set_zoom(pinch.scale * pa._zoom_at_pinch_start);
+        var zoom_current = root.zoom;
+
+        pa.better_viewport_zoom_fix(zoom_previous, zoom_current, pinch.center);
       }
 
       onPinchFinished: function(pinch) {
@@ -286,41 +290,41 @@ Item {
           //    Something more user friendly is at higher scalle to have increase/decrease more
           var steps = wheel.angleDelta.y / 120;
           var inc = 0.25 * steps;
+
+          // Set zoom (and record changes)
+          var zoom_previous = root.zoom;
           root.set_zoom(root.zoom + inc);
+          var zoom_current = root.zoom;
+
+          pa.better_viewport_zoom_fix(zoom_previous, zoom_current, Qt.point(wheel.x, wheel.y));
 
           // Mark that we're zooming in/out with the wheel (and kick off the reset timer)
           mouse_wheel_handler._zooming = true;
           zooming_reset_timer.restart();
-
-
-          // TODO was trying to work on a way to ensure that when zooms happen, they zoom based on the
-          //      position of the mouse, but I was having some issues with it.  Will revisit later, then
-          //      make it work with pinching as well
-          //
-          //      I'm sure leveraging The QRect (C++) api has some stuff for this, which is much easier to figure
-          /*
-          // This tries to repoisition the flicker topleft X/y origin, as to hopefully make the zoom feel better
-          //   I.e. the goal is to have the position of the mouse (event x/y) be the center of the zoom
-          // TODO implement this for pinch as well
-          var fcw_new = flicker.contentWidth;
-          var fch_new = flicker.contentHeight;
-          var x_target = wheel.x - (root.width / 2);
-          var y_target = wheel.y - (root.height / 2);
-          var x_max = fcw_new - root.width;
-          var y_max = fch_new - root.height;
-
-          var fcx = root.clamp(x_target, 0, x_max);
-          var fcy = root.clamp(y_target, 0, y_max);
-
-          flicker.contentX = fcx;
-          flicker.contentY = fcy;
-          */
         }
 
         // This handles both double-clicks (mouse) and double-taps (touchscreen/tablet/phone)
         //   It should reset the zoom to 100%, and position to centered
         onDoubleClicked: {
           root.double_tapped();
+        }
+      }
+
+      // this will do a better viewport zoom in/out with a focal point
+      function better_viewport_zoom_fix(zoom_previous, zoom_current, focal_point)
+      {
+        // If we're zoomed in (to where the viewport doesn't contain the entire image), we do some special handling to make sure the zoom feels more natural
+        var too_big = (flicker.contentWidth > flicker.width) || (flicker.contentHeight > flicker.height);
+        if (too_big)
+        {
+          // Compute the viewport rect we'll use to reset the view (so everyhing is nice and centered)
+          var viewport_rect = Qt.rect(flicker.contentX, flicker.contentY, flicker.contentWidth, flicker.contentHeight);
+          var zoom_focus = mapToItem(flicker, focal_point);
+          var r = g_ui_math_helper.compute_viewport_for_zoom(viewport_rect, zoom_focus, zoom_previous, zoom_current);
+
+          // Use the top-left (origin) point to set the flicker
+          flicker.contentX = r.x;
+          flicker.contentY = r.y;
         }
       }
     }
