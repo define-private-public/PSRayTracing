@@ -9,4 +9,3 @@ ControlsBar ControlsBar.qml
 IntegerOnlyTextField IntegerOnlyTextField.qml
 RenderDisplay RenderDisplay.qml
 RenderSettingsForm RenderSettingsForm.qml
-VerticalScroll VerticalScroll.qml
