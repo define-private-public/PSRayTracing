@@ -83,6 +83,16 @@ Item {
     __p.zoom = root.zoom;
   }
 
+  onPan_zoom_enabledChanged: {
+    // If we are going out of zoom, first set the zoom to 100% to prevent a visual bug (see #29 on GitLab)
+    if (!root.pan_zoom_enabled)
+    {
+      flicker.contentX = 0;
+      flicker.contentY = 0;
+      __p.zoom = 1;
+    }
+  }
+
   /**
    * Sets the zoom to \a z.
    *
