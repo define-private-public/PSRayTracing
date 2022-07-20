@@ -2,6 +2,8 @@
 Qt/QML Mobile & Dekstop UI
 ##########################
 
+|qt_ui_macos_screenshot|
+
 For anyone who wants to play around with this Ray Tracing implementation, it is a bit of a pain.  You need to clone
 the repo, have CMake & a C++ compiler installed and know your way around a terminal.  I thought it would be nicer to
 have a GUI application that could be readily downloaded either from GitLab/GitHub or from an app store.  So it was done,
@@ -26,7 +28,7 @@ It's pretty much what you need for the project above + Qt.
 * CMake 3.x.  Using a CMake GUI application (such as ``ccmake``) will make your life easier if you want
   to toggle on/off changes from the reference implementation
 
-* Qt 6.2.x.  This project started out with 6.2.1, used 6.2.2, and is known to work with 6.2.3.  Later versions of Qt
+* Qt 6.x.x.  This project started out with 6.2.1, used 6.2.2, and is known to work with 6.3.1.  Later versions of Qt
   Should work.  If not, then please file a ticket on the [issue tracker](https://gitlab.com/define-private-public/PSRayTracing/-/issues).
 
   * If you're compiling for Android, make sure you install the Android tools/libraries from the Qt Maintenance. You'll
@@ -90,5 +92,6 @@ of these kits is detected.
 
 
 .. |PSRayTracingGooglePlay| image:: https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png
+.. |qt_ui_macos_screenshot| image:: https://gitlab.com/define-private-public/PSRayTracing/-/raw/master/images/qt_ui_macos_screenshot.png
 
 .. _PSRayTracingGooglePlay: https://play.google.com/store/apps/details?id=net.sixteenbpp.psraytracing&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1
