@@ -102,7 +102,7 @@ bool BVHNode_MorePerformant::hit(
         // Pop of the last most
         const size_t n = _to_visit.back();
         _to_visit.pop_back();
-        auto node = &_tree[n];
+        const _Node *node = &_tree[n];
 
         if (node->box.hit(r, t_min, cur_t_max)) {
             // Does the node contain an object?
