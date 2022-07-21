@@ -27,7 +27,7 @@ Item {
     // This is a function that's called upon startup to set the iniali scene
     // that is selected in the dropdown
     function set_initial_selected_scene() {
-      var i = scene_select_dropdown.find('book2::final_scene', Qt.MatchExactly);
+      var i = scene_select_dropdown.find(g_settings.scene_id, Qt.MatchExactly);
       scene_select_dropdown.currentIndex = i;
     }
   }
@@ -79,6 +79,11 @@ Item {
       anchors.top: parent.top
 
       model: g_renderer.available_scene_ids();
+
+      onActivated: {
+        // Save the selected scene to the settings store
+        g_settings.scene_id = scene_select_dropdown.currentText;
+      }
     }
 
     // This is a progress bar when rendering, but total time string when done

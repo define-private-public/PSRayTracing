@@ -28,23 +28,26 @@ Item {
       root.render_size.height = height_field.value_as_int();
     }
 
-    /**
-     * This will set the default thread count to be half the recomended.
-     * This funciton will only be called once the app's main window is loaded.
-     */
-    function set_default_thread_count() {
-      // Use half of the available threads, but make sure there's at least one (if we're on a single core machine);
-      var half_thread_count = Math.floor(g_renderer.num_concurrent_threads_supported() / 2);
-      num_threads_field.text = Math.max(half_thread_count, 1);
+    /** Will load and set the render settings from the pesistant settings store */
+    function load_render_settings_from_settings_store()
+    {
+      // Set the editor fields with the data from the settings store
+      width_field.text = g_settings.render_size.width;
+      height_field.text = g_settings.render_size.height;
+      samples_per_pixel_field.text = g_settings.samples_per_pixel;
+      max_depth_field.text = g_settings.max_depth;
+      num_threads_field.text = g_settings.num_threads;
+      seed_str_field.text = g_settings.seed_str;
+      deep_copy_per_thread_field.checked = g_settings.deep_copy_per_thread;
     }
   }
 
   Component.onCompleted: {
-    __p.set_default_thread_count();
-
     // Forward some signals
     ok_button.clicked.connect(root.ok_button_clicked);
     about_button.clicked.connect(root.about_button_clicked);
+
+    __p.load_render_settings_from_settings_store();
   }
 
   // These are the rendering settings's values
@@ -256,6 +259,24 @@ Item {
           checked: true
         }
 
+        // Button to reset the render settings back to their default values
+        Button {
+          id: reset_to_default_button
+
+          Layout.columnSpan: 2
+          Layout.alignment: Qt.AlignRight
+          Layout.minimumWidth: use_device_resolution_button.width
+          Layout.maximumWidth: use_device_resolution_button.width
+
+          text: Messages.reset_to_default
+
+          onClicked: {
+            // First reset on disk, then reload the form
+            g_settings.reset_render_settings_to_default();
+            __p.load_render_settings_from_settings_store();
+          }
+        }
+
         // Spacer for the "about" that's at the bottom
         Rectangle {
           Layout.bottomMargin: (2 * fields_layout.rowSpacing)
@@ -303,5 +324,15 @@ Item {
              max_depth_field.acceptableInput &&
              num_threads_field.acceptableInput &&
              seed_str_field.acceptableInput
+
+    onClicked: {
+      // When clicked, we will save fields to the settings store
+      g_settings.render_size = render_settings_form.render_size;
+      g_settings.samples_per_pixel = render_settings_form.samples_per_pixel;
+      g_settings.max_depth = render_settings_form.max_depth;
+      g_settings.num_threads = render_settings_form.num_threads;
+      g_settings.seed_str = render_settings_form.seed_str;
+      g_settings.deep_copy_per_thread = render_settings_form.deep_copy_per_thread;
+    }
   }
 }

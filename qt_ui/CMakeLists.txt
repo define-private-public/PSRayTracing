@@ -30,6 +30,8 @@ set(SOURCES
   main.cpp
   PSRayTracingRenderer.h
   PSRayTracingRenderer.cpp
+  Settings.h
+  Settings.cpp
   UIMathHelper.h
   UIMathHelper.cpp
   Utils.h

@@ -3,22 +3,27 @@
 #include <QQmlContext>
 #include "UIMathHelper.h"
 #include "PSRayTracingRenderer.h"
+#include "Settings.h"
 
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     qmlRegisterType<PSRayTracingRenderer>("SixteenBPP", 1, 0, "PSRayTracingRenderer");
-    qmlRegisterType<UIMathHelper>("SixteenBPP", 1, 0, "UIMathHelper");
+    qmlRegisterType<UIMathHelper>(        "SixteenBPP", 1, 0, "UIMathHelper");
+    qmlRegisterType<Settings>(            "SixteenBPP", 1, 0, "Settings");
 
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
-    // Create the renderer and bind it w/ a global
-    auto renderer = new PSRayTracingRenderer(&app);
-    engine.rootContext()->setContextProperty("g_renderer", renderer);
-
-    // Create the UI math helper (and expose it to Qml)
+    // Setup some globals that communicate between Qml & C++
+    auto render_engine = new PSRayTracingRenderer(&app);
+    auto settings = new Settings(render_engine->num_concurrent_threads_supported(), &app);
     auto ui_math_helper = new UIMathHelper(&app);
-    engine.rootContext()->setContextProperty("g_ui_math_helper", ui_math_helper);
+    engine.rootContext()->setContextProperties({
+        {"g_renderer",       QVariant::fromValue(render_engine)},
+        {"g_settings",       QVariant::fromValue(settings)},
+        {"g_ui_math_helper", QVariant::fromValue(ui_math_helper)},
+    });
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

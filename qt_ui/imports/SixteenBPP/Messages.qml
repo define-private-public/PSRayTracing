@@ -28,6 +28,7 @@ QtObject {
   readonly property string use_recommended_value_fmt:   qsTr('Use Recommended Value: %1')
   readonly property string random_seed:                 qsTr('Random Seed')
   readonly property string deep_copy_per_thread:        qsTr('Deep Copy per Thread')
+  readonly property string reset_to_default:            qsTr('Reset To Default')
   readonly property string ok:                          qsTr('OK')
   readonly property string valid_input_please:          qsTr('Please give valid input for each field above.')
   readonly property string about_ps_raytracing:         qsTr('About PSRayTracing')
