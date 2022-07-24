@@ -79,7 +79,6 @@ if (APPLE)
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${APPLE_SHORT_VERSION_STRING}
     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/apple/Info.plist.in
 
-    XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2"                      # Required os that we build for both iPhone & iOS.  Without, it would only build for iPhone
     XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER ${APPLE_BUNDLE_ID}      # Fixes an XCode warning
     XCODE_ATTRIBUTE_EXECUTABLE_NAME ${APPLE_EXE_NAME}                 # Makes it so that our app name shows up as "PSRayTracing", without the `_QtUI` at the nd
     XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon"      # Required to make sure our AppIcon works
