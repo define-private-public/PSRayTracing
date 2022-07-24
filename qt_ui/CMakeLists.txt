@@ -84,21 +84,6 @@ if (APPLE)
     XCODE_ATTRIBUTE_EXECUTABLE_NAME ${APPLE_EXE_NAME}                 # Makes it so that our app name shows up as "PSRayTracing", without the `_QtUI` at the nd
     XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME "AppIcon"      # Required to make sure our AppIcon works
   )
-
-  # There seems to be some sort of bug when trying to build for iOS (w/ the Qt UI); It will place
-  # the static render library in a different directory then where it tries to look for it when
-  # linking.  E.g, it's going in `Debug-iphoneos/`, but when building the QT UI, it's looking for
-  # it in `Debug/`  To fix this, before building the UI project, we have it create a symbolic link.
-  #
-  # This is kinda hacky and I would prefer to not have this `if()` block here...
-  add_custom_target(fix_render_lib_static_linking
-    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-  )
-  add_custom_command(TARGET fix_render_lib_static_linking
-    PRE_BUILD
-    COMMAND ln -sF ${CMAKE_BINARY_DIR}/render_library/Debug-${CMAKE_OSX_SYSROOT} ${CMAKE_BINARY_DIR}/render_library/Debug
-  )
-  add_dependencies(PSRayTracing_QtUI fix_render_lib_static_linking)
 elseif (ANDROID)
 
   # Because of Qt 6.2.2, we must publish single ABI builds.  Qt, in their official docs, recommends doing this:
