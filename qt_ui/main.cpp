@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QTranslator>
 #include "UIMathHelper.h"
 #include "PSRayTracingRenderer.h"
 #include "Settings.h"
@@ -14,6 +15,17 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
+
+    // Load up any translations we have (for the system locale)
+    QTranslator translator;
+    const QStringList uiLanguages = QLocale::system().uiLanguages();
+    for (const QString &locale : uiLanguages) {
+        const QString baseName = "qt_ui_" + QLocale(locale).name();
+        if (translator.load(":/i18n/" + baseName)) {
+            app.installTranslator(&translator);
+            break;
+        }
+    }
 
     // Setup some globals that communicate between Qml & C++
     auto render_engine = new PSRayTracingRenderer(&app);

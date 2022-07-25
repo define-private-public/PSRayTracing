@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 #find_package(QT NAMES Qt6 COMPONENTS Core Quick Svg REQUIRED)
-find_package(Qt6 COMPONENTS Core Quick Svg REQUIRED)
+find_package(Qt6 COMPONENTS Core Quick Svg Linguist REQUIRED)
 
 # We might need some native code for certain functionality
 if (ANDROID)
@@ -48,6 +48,17 @@ qt_add_executable(PSRayTracing_QtUI
   ${SOURCES}
 )
 set_property(TARGET PSRayTracing_QtUI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
+
+# Add files for translations
+qt_add_translations(PSRayTracing_QtUI
+  TS_FILES
+  i18n/qt_ui_en_US.ts
+  i18n/qt_ui_de_DE.ts
+)
+add_dependencies(PSRayTracing_QtUI release_translations)
+# Note that `update_translations` is not inclued above as a dependency;
+#   It seems to be destroying the `.ts` files in the source...  So we'll
+#   run `lupdate` manually ourselves.  No biggie
 
 
 target_compile_definitions(PSRayTracing_QtUI
