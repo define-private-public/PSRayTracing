@@ -167,6 +167,10 @@ Item {
 
             text: Messages.use_device_resolution_fmt.arg(__device_resolution_str)
 
+            // This is done to make the layout less broken (on German)
+            Layout.minimumWidth: max_depth_field.width
+            Layout.maximumWidth: max_depth_field.width
+
             onClicked: {
               // Set the resolution for the fields
               width_field.text = __p.true_screen_width;

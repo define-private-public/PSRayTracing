@@ -6,7 +6,7 @@ import QtQuick
 // User facing strings
 QtObject {
   readonly property string _render_library_version:   'r7'
-  readonly property string _qt_ui_version:            '1.0'
+  readonly property string _qt_ui_version:            '1.1'
 
   // Render View
   readonly property string app_window_title:        qsTr('PSRayTracing (GUI Edition)')
@@ -20,7 +20,7 @@ QtObject {
   readonly property string render_size:                 qsTr('Render Size')
   readonly property string width_min_value:             qsTr('W (min. 1)')
   readonly property string height_min_value:            qsTr('H (min. 1)')
-  readonly property string use_device_resolution_fmt:   qsTr('Use Device Resolution: %1')
+  readonly property string use_device_resolution_fmt:   qsTr('Use Device Resolution:\n%1')
   readonly property string samples_per_pixel:           qsTr('Samples Per Pixel')
   readonly property string min_value_of_one:            qsTr('(minimum value of 1)')
   readonly property string max_ray_depth:               qsTr('Max Ray Depth')
@@ -47,15 +47,15 @@ QtObject {
   readonly property string about_contents:  qsTr(
 '<p>\
   PSRayTracing is an implementation of <a href="https://twitter.com/Peter_shirley">Peter Shirley\'s</a> <a href="https://raytracing.github.io/">Ray Racing in one\
-  Weekend book series.</a>  While keeping the same architectural structure of the rendering logic it, is has alterations and improvements to its project layout,\
+  Weekend book series.</a>  While keeping the same architectural structure of the rendering logic, it has alterations and improvements to its project layout,\
   algorithms, and portability; all while being done in vanilla C++ 17.  On average, it can render in 1/4 of the time as the reference code from the book.  It was\
-  an exercise too in now the ordering of code can affect the compiled output assembly and the performance of a program.\  The CMake build system also features the\
+  an exercise too in how the ordering of code can affect the compiled output assembly and the performance of a program.  The CMake build system also features the\
   ability to toggle on (and off) the changes from the book\s code, as to see the performance impact.\
 </p>\
 <br>\
 <p>\
   This app itself is a GUI frontend for the ray tracer.  Written in C++ &amp; Qt 6, it also acts as a way to (easily) test the performance of the ray tracer on\
-  platforms such as Android and iOS.\  The scenes from books 1, 2, &amp; 3 are available in this app (plus some bonus ones too).
+  platforms such as Android and iOS.  The scenes from books 1, 2, &amp; 3 are available in this app (plus some bonus ones too).\
 </p>\
 <br>\
 <p>\
