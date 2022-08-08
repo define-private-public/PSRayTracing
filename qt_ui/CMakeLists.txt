@@ -54,6 +54,7 @@ qt_add_translations(PSRayTracing_QtUI
   TS_FILES
   i18n/qt_ui_en_US.ts
   i18n/qt_ui_de_DE.ts
+  i18n/qt_ui_ja_JP.ts
 )
 add_dependencies(PSRayTracing_QtUI release_translations)
 # Note that `update_translations` is not inclued above as a dependency;
