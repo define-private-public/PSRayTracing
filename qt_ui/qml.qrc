@@ -25,4 +25,9 @@
     <file alias="stop_icon">icons/stop.svg</file>
     <file alias="app_icon_compressed">icons/app_icon_compressed.png</file>
   </qresource>
+
+  <!-- Japanese specific resources -->
+  <qresource prefix="/" lang="ja">
+    <file alias="qtquickcontrols2.conf">i18n/qtquickcontrols2_ja_JP.conf</file>
+  </qresource>
 </RCC>

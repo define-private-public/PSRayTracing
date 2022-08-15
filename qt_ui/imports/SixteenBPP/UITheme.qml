@@ -25,12 +25,18 @@ QtObject {
   readonly property color pan_zoom_controls_border_color:      '#CCCCCC'
 
   readonly property real title_font_size_pt: _scaling_factor * 18
-  readonly property real about_font_size_pt: _scaling_factor * 10
+  readonly property real about_font_size_pt: _scaling_factor * _about_font_size_base
 
   // TODO document better
   // This is for smartphone's and small screen, If they have a screen width less than this
   //   we adjust the layout for that kind of display
   readonly property int min_width_threshold: 700
+
+  // Depending upon the language, we need to make tha bout text a bit bigger (maybe)
+  readonly property real _about_font_size_base: {
+    var is_japanese = Qt.locale().name.startsWith('ja');    // Most likely `ja_JP`, but I once got `ja_US`...
+    return (is_japanese ? 15 : 12);
+  }
 
 //  readonly property bool width_is_small: Screen.width <= min_width_threshold
 

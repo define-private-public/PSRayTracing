@@ -13,6 +13,8 @@ int main(int argc, char *argv[])
     qmlRegisterType<UIMathHelper>(        "SixteenBPP", 1, 0, "UIMathHelper");
     qmlRegisterType<Settings>(            "SixteenBPP", 1, 0, "Settings");
 
+//    QLocale::setDefault(QLocale::Japanese);
+
     QGuiApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
