@@ -96,11 +96,17 @@ Item {
       GridLayout {
         id: fields_layout
 
+        // If the width is small...
+        readonly property bool _small_width:           UITheme.is_width_small(parent.width)
+        readonly property int column_count:            (_small_width ? 1 : 2)                           // we only want one column (label on top of field); else, use two (label left of field);
+        readonly property real row_spacing_multiplier: (_small_width ? 0.5 : 1.5)                       // use less row spacing (makes labels closer to fields)
+        readonly property real field_bottom_margin:    (_small_width ? (1.5 * __p.padding_amount) : 0)  // add some bottom margin to the fields (spaces fields better)
+
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.margins: __p.padding_amount_2x
 
-        columns: 2
-        rowSpacing: (1.5 * __p.padding_amount)
+        columns: fields_layout.column_count
+        rowSpacing: (fields_layout.row_spacing_multiplier * __p.padding_amount)
         columnSpacing: (2 * __p.padding_amount)
 
         Label {
@@ -113,6 +119,7 @@ Item {
         ColumnLayout {
           Layout.minimumWidth: use_device_resolution_button.width
           Layout.maximumWidth: use_device_resolution_button.width
+          Layout.bottomMargin: fields_layout.field_bottom_margin
 
           // These are the two integer fields to specify resolution
           RowLayout {
@@ -185,6 +192,7 @@ Item {
 
           Layout.minimumWidth: use_device_resolution_button.width
           Layout.maximumWidth: use_device_resolution_button.width
+          Layout.bottomMargin: fields_layout.field_bottom_margin
 
           text: '10'
           placeholderText: Messages.min_value_of_one
@@ -199,6 +207,7 @@ Item {
           id: max_depth_field
 
           Layout.fillWidth: true
+          Layout.bottomMargin: fields_layout.field_bottom_margin
 
           text: '50'
           placeholderText: Messages.min_value_of_one
@@ -218,6 +227,7 @@ Item {
         }
         ColumnLayout {
           Layout.fillWidth: true
+          Layout.bottomMargin: fields_layout.field_bottom_margin
 
           IntegerOnlyTextField {
             id: num_threads_field
@@ -248,6 +258,7 @@ Item {
           id: seed_str_field
 
           Layout.fillWidth: true
+          Layout.bottomMargin: fields_layout.field_bottom_margin
 
           text: 'ASDF'
 
@@ -259,18 +270,19 @@ Item {
           id: deep_copy_per_thread_field
 
           Layout.alignment: Qt.AlignRight
+          Layout.bottomMargin: fields_layout.field_bottom_margin
 
           checked: true
         }
 
-        // Button to reset the render settings back to their default values
+        Label { text: "" }    // Empty spacer
         Button {
+          // Button to reset the render settings back to their default values
           id: reset_to_default_button
 
-          Layout.columnSpan: 2
-          Layout.alignment: Qt.AlignRight
           Layout.minimumWidth: use_device_resolution_button.width
           Layout.maximumWidth: use_device_resolution_button.width
+          Layout.bottomMargin: fields_layout.field_bottom_margin
 
           text: Messages.reset_to_default
 
@@ -281,24 +293,24 @@ Item {
           }
         }
 
+
         // Spacer for the "about" that's at the bottom
         Rectangle {
-          Layout.bottomMargin: (2 * fields_layout.rowSpacing)
+          Layout.bottomMargin: (3 * __p.padding_amount)
           Layout.fillWidth: true
-          Layout.columnSpan: 2
+          Layout.columnSpan: fields_layout.column_count
           height: (__p.padding_amount / 4)
 
           color: UITheme.render_display_background_color
         }
 
+
         // Button that launches an "About" page
         Button {
           id: about_button
 
-          Layout.columnSpan: 2
-          Layout.alignment: Qt.AlignRight
-          Layout.minimumWidth: use_device_resolution_button.width
-          Layout.maximumWidth: use_device_resolution_button.width
+          Layout.columnSpan: fields_layout.column_count
+          Layout.fillWidth: true
 
           text: Messages.about_ps_raytracing
         }
