@@ -80,8 +80,8 @@ Bildschirmauflösung:
     </message>
     <message>
         <location filename="../imports/SixteenBPP/Messages.qml" line="28"/>
-        <source>Use Recommended Value: %1</source>
-        <translatorcomment>&quot;Empfehlenswert&quot; is too long in German, needs to be on a second line</translatorcomment>
+        <source>Use Recommended
+Value: %1</source>
         <translation>Benutzen
 Empfehlenswert: %1</translation>
     </message>

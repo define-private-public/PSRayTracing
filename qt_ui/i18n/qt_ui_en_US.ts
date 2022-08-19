@@ -88,7 +88,8 @@
     </message>
     <message>
         <location filename="../imports/SixteenBPP/Messages.qml" line="28"/>
-        <source>Use Recommended Value: %1</source>
+        <source>Use Recommended
+Value: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
