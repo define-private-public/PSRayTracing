@@ -25,7 +25,7 @@ QtObject {
   readonly property string min_value_of_one:            qsTr('(minimum value of 1)')
   readonly property string max_ray_depth:               qsTr('Max Ray Depth')
   readonly property string number_of_threads:           qsTr('Number of Threads')
-  readonly property string use_recommended_value_fmt:   qsTr('Use Recommended Value: %1')
+  readonly property string use_recommended_value_fmt:   qsTr('Use Recommended\nValue: %1')
   readonly property string random_seed:                 qsTr('Random Seed')
   readonly property string deep_copy_per_thread:        qsTr('Deep Copy per Thread')
   readonly property string reset_to_default:            qsTr('Reset To Default')
