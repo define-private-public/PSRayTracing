@@ -77,7 +77,7 @@ Care to read a little more about this project?  Check out these:
 
 * `Localizing the GUI app into Japanese (日本語）and German (Deutsch) <https://16bpp.net/blog/post/localizing-a-qt-app-or-anything-else-for-that-matter/>`_
 
-  * This one is more about Qt & software localization; not so much ray tracing
+  * This one is more about localizing Qt apps & software localization in general; not so much ray tracing
 
 
 
