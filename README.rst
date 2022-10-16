@@ -75,6 +75,10 @@ Care to read a little more about this project?  Check out these:
 
 * `Adding a Qt/QML UI that works seamlessly on Mobile & Desktop <https://16bpp.net/blog/post/making-a-cross-platform-mobile-desktop-app-with-qt-62/>`_
 
+* `Localizing the GUI app into Japanese (日本語）and German (Deutsch). <https://16bpp.net/blog/post/localizing-a-qt-app-or-anything-else-for-that-matter/>`_
+
+  * This one is more about Qt & software localization; not so much ray tracing.
+
 
 
 
