@@ -5,8 +5,6 @@
 #include <algorithm>
 #include <cmath>
 
-// TODO [misc]
-// - there should be a SIGGRAPH paper that presented an alternative to the common slick approxmation
 
 // A small set of utility functions
 namespace util {
