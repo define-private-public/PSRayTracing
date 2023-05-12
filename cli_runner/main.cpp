@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <chrono>
 #include <thread>
 #include "Misc.h"
@@ -13,6 +14,11 @@ using namespace psrt;
 
 
 int main(int argc, char *argv[]) {
+    // Build the (machine specific) help message for number of threads`
+    const int num_recommended_threads = num_concurrent_threads_supported();
+    stringstream num_threads_msg;
+    num_threads_msg << "How many threads to render with; " << num_recommended_threads << " recomended for this device";
+
     // Build the argument parser
     co::Options options("PSRayTracing", "An optimized implementation of Peter Shirley's Ray Tracing minibook series");
     options.add_options()
@@ -21,7 +27,7 @@ int main(int argc, char *argv[]) {
         ("scene",               "Scene to render",                                              co::value<string>()->default_value("book2::final_scene"))
         ("s,size",              "Render size",                                                  co::value<string>()->default_value("960x540"))
         ("n,num-samples",       "Samples per pixel",                                            co::value<int32_t>()->default_value("10"))
-        ("j,num-threads",       "How many threads to render with",                              co::value<int>()->default_value("1"))
+        ("j,num-threads",       num_threads_msg.str(),                                          co::value<int>()->default_value("1"))
         ("d,depth",             "Maximum ray bounce depth",                                     co::value<int16_t>()->default_value("50"))
         ("r,random-seed",       "Seed string for the RNG",                                      co::value<string>()->default_value("ASDF"))
         ("o,output-filename",   "Filename to save render to (PNG only)",                        co::value<string>()->default_value("render.png"))
