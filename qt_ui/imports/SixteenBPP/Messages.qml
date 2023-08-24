@@ -6,7 +6,7 @@ import QtQuick
 // User facing strings
 QtObject {
   readonly property string _render_library_version:   'r9'
-  readonly property string _qt_ui_version:            '1.1'
+  readonly property string _qt_ui_version:            '1.2'
 
   // Render View
   readonly property string app_window_title:        qsTr('PSRayTracing (GUI Edition)')
