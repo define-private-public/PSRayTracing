@@ -21,6 +21,7 @@ elseif (IOS)
   set(PLATFORM_SPECIFIC_SOURCES
       apple/iOSUtils.h
       apple/iOSUtils.mm
+      apple/Launch.storyboard       # Required so we can use native resolution (no scaling!)
   )
 endif()
 
