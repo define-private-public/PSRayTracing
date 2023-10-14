@@ -40,5 +40,21 @@
   <key>UILaunchStoryboardName</key>
   <string>Launch</string>
 
+  <!-- Required to have our app validate for the Apple app store:
+       https://stackoverflow.com/questions/74794155/invalid-bundle-because-your-app-supports-multitasking-on-ipad-you-need-to-incl -->
+  <key>UILaunchScreen</key>
+  <dict>
+    <key>UIImageName</key>
+    <string>Launch Screen</string>
+  </dict>
+
+  <key>UISupportedInterfaceOrientations</key>
+  <array>
+    <string>UIInterfaceOrientationPortrait</string>
+    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+    <string>UIInterfaceOrientationLandscapeLeft</string>
+    <string>UIInterfaceOrientationLandscapeRight</string>
+  </array>
+
 </dict>
 </plist>
