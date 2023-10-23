@@ -9,11 +9,12 @@ The official place where I do most of the work for this is `over on GitLab <http
 Though I do field questions on the `GitHub mirror <https://github.com/define-private-public/PSRayTracing/>`_
 To contact me, you can always @ me `on Twitter as @DefPriPub <https://twitter.com/DefPriPub>`_  (`Or my personal website <https://16bpp.net/>`_)
 
-Now with an Android GUI:
+Now with an Android, iOS, and macOS (Apple Silicon) GUI:
 
 |PSRayTracingGooglePlay|_
+|PSRayTracingAppleAppStore|_
 
-(It also runs on Windows, Mac, Linux, & iOS, but you need to build that for yourself in the meantime.)
+(It also runs on Windows, Mac (Intel), Linux,, but you need to build that for yourself in the meantime.)
 
 
 .. contents ::
@@ -620,7 +621,9 @@ bit more of an impact on this project.
 .. |asin_approx_with_ec| image:: https://gitlab.com/define-private-public/PSRayTracing/-/raw/master/images/asin_approx_with_ec.png
 .. |cornell_glass_boxes| image:: https://gitlab.com/define-private-public/PSRayTracing/-/raw/master/images/cornell_glass_boxes.png
 .. |PSRayTracingGooglePlay| image:: https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png
+.. |PSRayTracingAppleAppStore| image:: https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us
 
 .. _`Ray Tracing mini-books`: https://raytracing.github.io
 .. _`an exercise to learn Nim`: https://16bpp.net/blog/post/ray-tracing-book-series-review-nim-first-impressions/
 .. _PSRayTracingGooglePlay: https://play.google.com/store/apps/details?id=net.sixteenbpp.psraytracing&amp;pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1
+.. _PSRayTracingAppleAppStore: https://apps.apple.com/us/app/psraytracing/id6468944135
