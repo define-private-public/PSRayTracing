@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(PSRayTracing_QtUI VERSION 1.1)
+project(PSRayTracing_QtUI VERSION 1.2)
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -124,8 +124,9 @@ elseif (ANDROID)
   set_property(TARGET PSRayTracing_QtUI APPEND PROPERTY QT_ANDROID_VERSION_CODE ${ANDROID_VERSION_CODE})
   set_property(TARGET PSRayTracing_QtUI APPEND PROPERTY QT_ANDROID_VERSION_NAME "${PROJECT_VERSION}")
 
-  # For android, we also need to make sure it gets the other deployment settings
-  qt_android_generate_deployment_settings(PSRayTracing_QtUI)
+  set_target_properties(PSRayTracing_QtUI PROPERTIES
+    QT_ANDROID_MIN_SDK_VERSION "31"
+  )
 endif()
 
 # We need to manually finalize since we wanted the Android stuff
