@@ -1,10 +1,9 @@
-#include "PSRayTracingRenderer.h"
+#include "PSRayTracingRenderer.hpp"
 #include <QStandardPaths>
 #include <QDir>
 #include <QGuiApplication>
 #include <QScreen>
-#include "Utils.h"
-//#include "../render_library/render.h"
+#include "Utils.hpp"
 using namespace std;
 
 

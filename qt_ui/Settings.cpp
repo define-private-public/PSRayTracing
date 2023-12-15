@@ -1,4 +1,4 @@
-#include "Settings.h"
+#include "Settings.hpp"
 
 
 // Keys for the general section

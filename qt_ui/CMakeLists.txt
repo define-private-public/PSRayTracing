@@ -28,13 +28,13 @@ endif()
 
 set(SOURCES
   main.cpp
-  PSRayTracingRenderer.h
+  PSRayTracingRenderer.hpp
   PSRayTracingRenderer.cpp
-  Settings.h
+  Settings.hpp
   Settings.cpp
-  UIMathHelper.h
+  UIMathHelper.hpp
   UIMathHelper.cpp
-  Utils.h
+  Utils.hpp
   Utils.cpp
 
   ${PLATFORM_SPECIFIC_SOURCES}

@@ -2,9 +2,9 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QTranslator>
-#include "UIMathHelper.h"
-#include "PSRayTracingRenderer.h"
-#include "Settings.h"
+#include "UIMathHelper.hpp"
+#include "PSRayTracingRenderer.hpp"
+#include "Settings.hpp"
 
 
 int main(int argc, char *argv[])

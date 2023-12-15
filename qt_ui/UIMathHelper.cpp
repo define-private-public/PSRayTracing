@@ -1,4 +1,4 @@
-#include "UIMathHelper.h"
+#include "UIMathHelper.hpp"
 
 UIMathHelper::UIMathHelper(QObject *parent) :
     QObject(parent)
