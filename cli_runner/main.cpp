@@ -2,8 +2,8 @@
 #include <sstream>
 #include <chrono>
 #include <thread>
-#include "Misc.h"
-#include "ProgressBar.h"
+#include "Misc.hpp"
+#include "ProgressBar.hpp"
 #include "../third_party/cxxopts.hpp"
 #include "../third_party/stb_image_write.h"
 #include "../render_library/render.h"

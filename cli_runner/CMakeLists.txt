@@ -11,9 +11,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 set(sources
   main.cpp
 
-  Misc.h
+  Misc.hpp
   Misc.cpp
-  ProgressBar.h
+  ProgressBar.hpp
   ProgressBar.cpp
 )
 set(third_party_sources

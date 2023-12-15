@@ -1,4 +1,4 @@
-#include "ProgressBar.h"
+#include "ProgressBar.hpp"
 #include <ostream>
 
 using namespace std;
