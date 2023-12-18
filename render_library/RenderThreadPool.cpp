@@ -1,6 +1,6 @@
-#include "RenderThreadPool.h"
-#include "RandomGenerator.h"
-#include "RenderOutput.h"
+#include "RenderThreadPool.hpp"
+#include "RandomGenerator.hpp"
+#include "RenderOutput.hpp"
 using namespace std;
 
 

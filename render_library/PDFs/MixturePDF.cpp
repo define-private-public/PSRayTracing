@@ -1,5 +1,5 @@
-#include "PDFs/MixturePDF.h"
-#include "RandomGenerator.h"
+#include "PDFs/MixturePDF.hpp"
+#include "RandomGenerator.hpp"
 
 
 rreal MixturePDF::value(

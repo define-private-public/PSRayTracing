@@ -1,7 +1,7 @@
-#include "NoiseTexture.h"
-#include "Perlin.h"
-#include "PerlinReal.h"
-#include "Util.h"
+#include "NoiseTexture.hpp"
+#include "Perlin.hpp"
+#include "PerlinReal.hpp"
+#include "Util.hpp"
 
 using namespace std;
 

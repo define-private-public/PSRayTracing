@@ -1,1 +1,1 @@
-#include "HitRecord.h"
+#include "HitRecord.hpp"

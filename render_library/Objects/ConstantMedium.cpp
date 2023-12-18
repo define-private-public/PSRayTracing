@@ -1,8 +1,8 @@
-#include "Objects/ConstantMedium.h"
+#include "Objects/ConstantMedium.hpp"
 #include <cmath>
-#include "Materials/Isotropic.h"
-#include "Interfaces/ITexture.h"
-#include "RandomGenerator.h"
+#include "Materials/Isotropic.hpp"
+#include "Interfaces/ITexture.hpp"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 

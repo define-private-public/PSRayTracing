@@ -1,5 +1,5 @@
-#include "Objects/Transform/RotateY.h"
-#include "Util.h"
+#include "Objects/Transform/RotateY.hpp"
+#include "Util.hpp"
 
 using namespace std;
 

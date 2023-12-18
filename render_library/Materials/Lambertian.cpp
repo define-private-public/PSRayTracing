@@ -1,10 +1,10 @@
-#include "Materials/Lambertian.h"
-#include "HitRecord.h"
-#include "ScatterRecord.h"
-#include "Textures/SolidColor.h"
-#include "RandomGenerator.h"
-#include "ONB.h"
-#include "PDFs/CosinePDF.h"
+#include "Materials/Lambertian.hpp"
+#include "HitRecord.hpp"
+#include "ScatterRecord.hpp"
+#include "Textures/SolidColor.hpp"
+#include "RandomGenerator.hpp"
+#include "ONB.hpp"
+#include "PDFs/CosinePDF.hpp"
 
 using namespace std;
 

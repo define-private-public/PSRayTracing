@@ -1,8 +1,8 @@
-#include "AABB.h"
+#include "AABB.hpp"
 #include <cmath>
 #include <algorithm>
 #include <utility>
-#include "Ray.h"
+#include "Ray.hpp"
 
 
 AABB::AABB(const Vec3 &a, const Vec3 &b) NOEXCEPT  :

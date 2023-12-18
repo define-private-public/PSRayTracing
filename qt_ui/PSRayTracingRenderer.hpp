@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QElapsedTimer>
 #include <QImage>
-#include "../render_library/render.h"
+#include "../render_library/render.hpp"
 
 
 

@@ -1,5 +1,5 @@
-#include "Objects/Rectangles.h"
-#include "RandomGenerator.h"
+#include "Objects/Rectangles.hpp"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 

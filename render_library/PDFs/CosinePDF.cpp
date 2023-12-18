@@ -1,5 +1,5 @@
-#include "PDFs/CosinePDF.h"
-#include "RandomGenerator.h"
+#include "PDFs/CosinePDF.hpp"
+#include "RandomGenerator.hpp"
 
 rreal CosinePDF::value(
     [[maybe_unused]] RandomGenerator &rng,

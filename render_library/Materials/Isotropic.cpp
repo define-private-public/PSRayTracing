@@ -1,8 +1,8 @@
-#include "Materials/Isotropic.h"
-#include "Textures/SolidColor.h"
-#include "HitRecord.h"
-#include "ScatterRecord.h"
-#include "RandomGenerator.h"
+#include "Materials/Isotropic.hpp"
+#include "Textures/SolidColor.hpp"
+#include "HitRecord.hpp"
+#include "ScatterRecord.hpp"
+#include "RandomGenerator.hpp"
 using namespace std;
 
 

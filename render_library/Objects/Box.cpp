@@ -1,6 +1,6 @@
-#include "Objects/Box.h"
-#include "Objects/Rectangles.h"
-#include "RandomGenerator.h"
+#include "Objects/Box.hpp"
+#include "Objects/Rectangles.hpp"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 

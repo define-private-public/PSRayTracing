@@ -1,6 +1,6 @@
-#include "RenderOutput.h"
-#include "ColorRGBA.h"
-#include "Util.h"
+#include "RenderOutput.hpp"
+#include "ColorRGBA.hpp"
+#include "Util.hpp"
 
 using namespace std;
 using namespace util;

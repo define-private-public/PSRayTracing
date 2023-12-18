@@ -1,7 +1,7 @@
-#include "Objects/MovingSphere.h"
+#include "Objects/MovingSphere.hpp"
 #include <cmath>
-#include "Ray.h"
-#include "AABB.h"
+#include "Ray.hpp"
+#include "AABB.hpp"
 
 using namespace std;
 

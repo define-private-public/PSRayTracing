@@ -1,8 +1,8 @@
-#include "Materials/Metal.h"
-#include "Ray.h"
-#include "HitRecord.h"
-#include "ScatterRecord.h"
-#include "RandomGenerator.h"
+#include "Materials/Metal.hpp"
+#include "Ray.hpp"
+#include "HitRecord.hpp"
+#include "ScatterRecord.hpp"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 

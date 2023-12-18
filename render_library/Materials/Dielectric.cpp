@@ -1,10 +1,10 @@
-#include "Materials/Dielectric.h"
+#include "Materials/Dielectric.hpp"
 #include <cmath>
-#include "ScatterRecord.h"
-#include "HitRecord.h"
-#include "Ray.h"
-#include "Util.h"
-#include "RandomGenerator.h"
+#include "ScatterRecord.hpp"
+#include "HitRecord.hpp"
+#include "Ray.hpp"
+#include "Util.hpp"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 

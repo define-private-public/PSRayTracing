@@ -1,8 +1,8 @@
-#include "Objects/BVHNode.h"
+#include "Objects/BVHNode.hpp"
 #include <stdexcept>
 #include <algorithm>
-#include "Objects/HittableList.h"
-#include "RandomGenerator.h"
+#include "Objects/HittableList.hpp"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 

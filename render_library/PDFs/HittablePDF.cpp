@@ -1,5 +1,5 @@
-#include "PDFs/HittablePDF.h"
-#include "RandomGenerator.h"
+#include "PDFs/HittablePDF.hpp"
+#include "RandomGenerator.hpp"
 
 rreal HittablePDF::value(RandomGenerator &rng, const Vec3 &direction) const NOEXCEPT {
     // This is slighty different from the book, to handle a case where a `null` was provided

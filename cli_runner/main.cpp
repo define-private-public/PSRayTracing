@@ -6,7 +6,7 @@
 #include "ProgressBar.hpp"
 #include "../third_party/cxxopts.hpp"
 #include "../third_party/stb_image_write.h"
-#include "../render_library/render.h"
+#include "../render_library/render.hpp"
 
 using namespace std;
 namespace co = cxxopts;

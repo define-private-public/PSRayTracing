@@ -1,15 +1,15 @@
-#include "Book1.h"
+#include "Book1.hpp"
 #include <cmath>
 #include <random>
-#include "Cameras/Camera.h"
-#include "RandomGenerator.h"
-#include "Materials/Lambertian.h"
-#include "Materials/SurfaceNormal.h"
-#include "Materials/Metal.h"
-#include "Materials/Dielectric.h"
-#include "Objects/Sphere.h"
-#include "Objects/HittableList.h"
-#include "Util.h"
+#include "Cameras/Camera.hpp"
+#include "RandomGenerator.hpp"
+#include "Materials/Lambertian.hpp"
+#include "Materials/SurfaceNormal.hpp"
+#include "Materials/Metal.hpp"
+#include "Materials/Dielectric.hpp"
+#include "Objects/Sphere.hpp"
+#include "Objects/HittableList.hpp"
+#include "Util.hpp"
 
 using namespace std;
 

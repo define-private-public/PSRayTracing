@@ -1,7 +1,7 @@
-#include "PerlinReal.h"
+#include "PerlinReal.hpp"
 #include <cmath>
 #include <array>
-#include "RandomGenerator.h"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 

@@ -1,7 +1,7 @@
-#include "MotionBlurCamera.h"
+#include "MotionBlurCamera.hpp"
 #include <cmath>
-#include "RandomGenerator.h"
-#include "Ray.h"
+#include "RandomGenerator.hpp"
+#include "Ray.hpp"
 
 
 MotionBlurCamera::MotionBlurCamera(

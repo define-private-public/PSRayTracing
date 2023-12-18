@@ -1,6 +1,6 @@
-#include "CheckerTexture.h"
-#include "SolidColor.h"
-#include "Util.h"
+#include "CheckerTexture.hpp"
+#include "SolidColor.hpp"
+#include "Util.hpp"
 
 using namespace std;
 

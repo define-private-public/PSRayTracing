@@ -1,6 +1,6 @@
-#include "Objects/HittableList.h"
-#include "AABB.h"
-#include "RandomGenerator.h"
+#include "Objects/HittableList.hpp"
+#include "AABB.hpp"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 

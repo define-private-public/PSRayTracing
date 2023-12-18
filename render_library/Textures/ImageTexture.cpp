@@ -1,6 +1,6 @@
-#include "ImageTexture.h"
+#include "ImageTexture.hpp"
 #include "../third_party/stb_image.h"
-#include "Util.h"
+#include "Util.hpp"
 #include <stdexcept>
 #include <algorithm>
 

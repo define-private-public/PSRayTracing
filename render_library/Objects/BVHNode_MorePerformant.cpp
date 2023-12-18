@@ -1,9 +1,9 @@
-#include "Objects/BVHNode_MorePerformant.h"
+#include "Objects/BVHNode_MorePerformant.hpp"
 #include <stdexcept>
 #include <algorithm>
 #include <utility>
-#include "Objects/HittableList.h"
-#include "RandomGenerator.h"
+#include "Objects/HittableList.hpp"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 

@@ -1,8 +1,8 @@
-#include "Camera.h"
+#include "Camera.hpp"
 #include <cmath>
-#include "Util.h"
-#include "Ray.h"
-#include "RandomGenerator.h"
+#include "Util.hpp"
+#include "Ray.hpp"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 using namespace util;

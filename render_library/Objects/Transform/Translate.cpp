@@ -1,5 +1,5 @@
-#include "Objects/Transform/Translate.h"
-#include "AABB.h"
+#include "Objects/Transform/Translate.hpp"
+#include "AABB.hpp"
 
 using namespace std;
 

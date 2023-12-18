@@ -1,10 +1,10 @@
-#include "render.h"
+#include "render.hpp"
 #include <chrono>
 #include <sstream>
-#include "Interfaces/ICamera.h"
-#include "Scenes/All.h"
-#include "RenderThreadPool.h"
-#include "RenderOutput.h"
+#include "Interfaces/ICamera.hpp"
+#include "Scenes/All.hpp"
+#include "RenderThreadPool.hpp"
+#include "RenderOutput.hpp"
 
 using namespace std;
 

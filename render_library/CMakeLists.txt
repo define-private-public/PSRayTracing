@@ -9,118 +9,118 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # Get the source
 set(sources
-  render.h
+  render.hpp
   render.cpp
 
-  AABB.h
+  AABB.hpp
   AABB.cpp
-  ColorRGBA.h
+  ColorRGBA.hpp
   ColorRGBA.cpp
-  Common.h
-  HitRecord.h
+  Common.hpp
+  HitRecord.hpp
   HitRecord.cpp
-  ONB.h
+  ONB.hpp
   ONB.cpp
-  PDFVariant.h
+  PDFVariant.hpp
   PDFVariant.cpp
-  Perlin.h
+  Perlin.hpp
   Perlin.cpp
-  PerlinReal.h
+  PerlinReal.hpp
   PerlinReal.cpp
-  RandomGenerator.h
+  RandomGenerator.hpp
   RandomGenerator.cpp
-  Ray.h
+  Ray.hpp
   Ray.cpp
-  RenderContext.h
+  RenderContext.hpp
   RenderContext.cpp
-  RenderMethod.h
+  RenderMethod.hpp
   RenderMethod.cpp
-  RenderOutput.h
+  RenderOutput.hpp
   RenderOutput.cpp
-  RenderThread.h
+  RenderThread.hpp
   RenderThread.cpp
-  RenderThreadPool.h
+  RenderThreadPool.hpp
   RenderThreadPool.cpp
-  SceneDescriptor.h
-  ScatterRecord.h
+  SceneDescriptor.hpp
+  ScatterRecord.hpp
   ScatterRecord.cpp
-  Util.h
+  Util.hpp
   Util.cpp
-  Vec3.h
+  Vec3.hpp
   Vec3.cpp
 
-  Cameras/Camera.h
+  Cameras/Camera.hpp
   Cameras/Camera.cpp
-  Cameras/MotionBlurCamera.h
+  Cameras/MotionBlurCamera.hpp
   Cameras/MotionBlurCamera.cpp
 
-  Interfaces/ICamera.h
-  Interfaces/IDeepCopyable.h
-  Interfaces/IHittable.h
-  Interfaces/IMaterial.h
-  Interfaces/IPDF.h
-  Interfaces/ITexture.h
+  Interfaces/ICamera.hpp
+  Interfaces/IDeepCopyable.hpp
+  Interfaces/IHittable.hpp
+  Interfaces/IMaterial.hpp
+  Interfaces/IPDF.hpp
+  Interfaces/ITexture.hpp
 
-  Materials/Dielectric.h
+  Materials/Dielectric.hpp
   Materials/Dielectric.cpp
-  Materials/DiffuseLight.h
+  Materials/DiffuseLight.hpp
   Materials/DiffuseLight.cpp
-  Materials/Isotropic.h
+  Materials/Isotropic.hpp
   Materials/Isotropic.cpp
-  Materials/Lambertian.h
+  Materials/Lambertian.hpp
   Materials/Lambertian.cpp
-  Materials/Metal.h
+  Materials/Metal.hpp
   Materials/Metal.cpp
-  Materials/SurfaceNormal.h
+  Materials/SurfaceNormal.hpp
   Materials/SurfaceNormal.cpp
 
-  Objects/Box.h
+  Objects/Box.hpp
   Objects/Box.cpp
-  Objects/BVHNode.h
+  Objects/BVHNode.hpp
   Objects/BVHNode.cpp
-  Objects/BVHNode_MorePerformant.h
+  Objects/BVHNode_MorePerformant.hpp
   Objects/BVHNode_MorePerformant.cpp
-  Objects/ConstantMedium.h
+  Objects/ConstantMedium.hpp
   Objects/ConstantMedium.cpp
-  Objects/HittableList.h
+  Objects/HittableList.hpp
   Objects/HittableList.cpp
-  Objects/MovingSphere.h
+  Objects/MovingSphere.hpp
   Objects/MovingSphere.cpp
-  Objects/Rectangles.h
+  Objects/Rectangles.hpp
   Objects/Rectangles.cpp
-  Objects/Sphere.h
+  Objects/Sphere.hpp
   Objects/Sphere.cpp
-  Objects/Transform/FlipFace.h
+  Objects/Transform/FlipFace.hpp
   Objects/Transform/FlipFace.cpp
-  Objects/Transform/RotateY.h
+  Objects/Transform/RotateY.hpp
   Objects/Transform/RotateY.cpp
-  Objects/Transform/Translate.h
+  Objects/Transform/Translate.hpp
   Objects/Transform/Translate.cpp
 
-  PDFs/CosinePDF.h
+  PDFs/CosinePDF.hpp
   PDFs/CosinePDF.cpp
-  PDFs/HittablePDF.h
+  PDFs/HittablePDF.hpp
   PDFs/HittablePDF.cpp
-  PDFs/MixturePDF.h
+  PDFs/MixturePDF.hpp
   PDFs/MixturePDF.cpp
 
-  Scenes/All.h
-  Scenes/Book1.h
+  Scenes/All.hpp
+  Scenes/Book1.hpp
   Scenes/Book1.cpp
-  Scenes/Book2.h
+  Scenes/Book2.hpp
   Scenes/Book2.cpp
-  Scenes/Book3.h
+  Scenes/Book3.hpp
   Scenes/Book3.cpp
-  Scenes/Fun.h
+  Scenes/Fun.hpp
   Scenes/Fun.cpp
 
-  Textures/CheckerTexture.h
+  Textures/CheckerTexture.hpp
   Textures/CheckerTexture.cpp
-  Textures/ImageTexture.h
+  Textures/ImageTexture.hpp
   Textures/ImageTexture.cpp
-  Textures/NoiseTexture.h
+  Textures/NoiseTexture.hpp
   Textures/NoiseTexture.cpp
-  Textures/SolidColor.h
+  Textures/SolidColor.hpp
   Textures/SolidColor.cpp
 )
 set(third_party_sources
@@ -288,5 +288,5 @@ target_link_libraries(PSRayTracing_StaticLibrary Threads::Threads)
 
 # Misc.
 set_target_properties(PSRayTracing_StaticLibrary PROPERTIES
-  PUBLIC_HEADER "render.h"
+  PUBLIC_HEADER "render.hpp"
 )

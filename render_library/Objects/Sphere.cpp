@@ -1,10 +1,10 @@
-#include "Objects/Sphere.h"
+#include "Objects/Sphere.hpp"
 #include <cmath>
-#include "Ray.h"
-#include "AABB.h"
-#include "Util.h"
-#include "ONB.h"
-#include "RandomGenerator.h"
+#include "Ray.hpp"
+#include "AABB.hpp"
+#include "Util.hpp"
+#include "ONB.hpp"
+#include "RandomGenerator.hpp"
 using namespace std;
 
 

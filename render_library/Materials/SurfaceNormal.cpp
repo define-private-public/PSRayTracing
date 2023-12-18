@@ -1,9 +1,9 @@
-#include "Materials/SurfaceNormal.h"
+#include "Materials/SurfaceNormal.hpp"
 #include <cmath>
-#include "HitRecord.h"
-#include "ScatterRecord.h"
-#include "RandomGenerator.h"
-#include "PDFs/CosinePDF.h"
+#include "HitRecord.hpp"
+#include "ScatterRecord.hpp"
+#include "RandomGenerator.hpp"
+#include "PDFs/CosinePDF.hpp"
 
 using namespace std;
 

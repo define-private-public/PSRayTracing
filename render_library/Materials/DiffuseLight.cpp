@@ -1,7 +1,7 @@
-#include "Materials/DiffuseLight.h"
-#include "HitRecord.h"
-#include "ScatterRecord.h"
-#include "Textures/SolidColor.h"
+#include "Materials/DiffuseLight.hpp"
+#include "HitRecord.hpp"
+#include "ScatterRecord.hpp"
+#include "Textures/SolidColor.hpp"
 
 using namespace std;
 

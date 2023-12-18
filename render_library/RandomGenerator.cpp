@@ -1,1 +1,1 @@
-#include "RandomGenerator.h"
+#include "RandomGenerator.hpp"

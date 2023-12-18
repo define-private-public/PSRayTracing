@@ -1,4 +1,4 @@
-#include "SolidColor.h"
+#include "SolidColor.hpp"
 
 using namespace std;
 

@@ -1,6 +1,6 @@
-#include "Perlin.h"
+#include "Perlin.hpp"
 #include <cmath>
-#include "RandomGenerator.h"
+#include "RandomGenerator.hpp"
 
 using namespace std;
 
