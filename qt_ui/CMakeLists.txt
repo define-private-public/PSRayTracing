@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(PSRayTracing_QtUI VERSION 1.2)
+project(PSRayTracing_QtUI VERSION 1.3)
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -125,7 +125,7 @@ elseif (ANDROID)
   set_property(TARGET PSRayTracing_QtUI APPEND PROPERTY QT_ANDROID_VERSION_NAME "${PROJECT_VERSION}")
 
   set_target_properties(PSRayTracing_QtUI PROPERTIES
-    QT_ANDROID_MIN_SDK_VERSION "31"
+    QT_ANDROID_MIN_SDK_VERSION "33"
   )
 endif()
 
