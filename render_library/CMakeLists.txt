@@ -163,6 +163,7 @@ option(WITH_BOOK_BVH_NODE "Use the book's method for BVH Nodes (slower)" OFF)
 option(WITH_BOOK_MAT_PTR "Use Book's method for HitRecord::mat_ptr, which is a std::shared_ptr (slower)" OFF)
 option(WITH_BOOK_PDF_MANAGEMENT "Use the Book's method for managing PDFs, which are pointers (slower)" OFF)
 option(WITH_NOEXCEPT "Use the `noexcept` annotation for various functions (faster)" ON)
+option(WITH_FINAL "Use the `final` specifier on derived classes (faster?)" ON)
 
 
 
@@ -278,6 +279,13 @@ if (WITH_NOEXCEPT)
   target_compile_definitions(PSRayTracing_StaticLibrary PUBLIC USE_NOEXCEPT)
 else()
   message(STATUS "Turned off use of `noexcept` (slower)")
+endif()
+
+if (WITH_FINAL)
+  message(STATUS "Using `final` spicifer (faster?)")
+  target_compile_definitions(PSRayTracing_StaticLibrary PUBLIC USE_FINAL)
+else()
+  message(STATUS "Turned off use of `final` (slower?)")
 endif()
 
 
