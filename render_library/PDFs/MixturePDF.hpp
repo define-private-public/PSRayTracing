@@ -5,7 +5,7 @@
 
 
 // A PDF that mixes two others
-class MixturePDF : public IPDF {
+class MixturePDF FINAL : public IPDF {
 private:
     // Data
     #ifdef USE_BOOK_PDF_MANAGEMENT

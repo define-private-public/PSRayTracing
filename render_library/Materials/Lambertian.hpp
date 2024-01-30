@@ -5,7 +5,7 @@
 class ITexture;
 
 
-class Lambertian : public IMaterial {
+class Lambertian FINAL : public IMaterial {
 private:
     // Data
     std::shared_ptr<ITexture> _albedo;

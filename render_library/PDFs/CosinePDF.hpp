@@ -4,7 +4,7 @@
 #include "ONB.hpp"
 
 
-class CosinePDF : public IPDF {
+class CosinePDF FINAL : public IPDF {
 private:
     // Data
     ONB _uvw;

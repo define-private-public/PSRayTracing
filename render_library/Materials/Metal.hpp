@@ -3,7 +3,7 @@
 #include "Interfaces/IMaterial.hpp"
 
 
-class Metal : public IMaterial {
+class Metal FINAL : public IMaterial {
 public:
     // Data
     Vec3 _albedo;

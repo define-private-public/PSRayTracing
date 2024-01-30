@@ -6,7 +6,7 @@
 class HittableList;
 
 
-class BVHNode : public IHittable {
+class BVHNode FINAL : public IHittable {
 private:
     // Data
     std::shared_ptr<IHittable> _left = nullptr;

@@ -4,7 +4,7 @@
 #include "AABB.hpp"
 
 
-class RotateY : public IHittable {
+class RotateY FINAL : public IHittable {
 private:
     // Data
     std::shared_ptr<IHittable> _obj = nullptr;

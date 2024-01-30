@@ -4,7 +4,7 @@
 #include "Interfaces/IHittable.hpp"
 
 
-class HittablePDF : public IPDF {
+class HittablePDF FINAL : public IPDF {
 private:
     // Data
     Vec3 _origin;

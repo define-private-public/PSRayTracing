@@ -5,7 +5,7 @@
 #include <memory>
 
 
-class DiffuseLight : public IMaterial {
+class DiffuseLight FINAL : public IMaterial {
 private:
     // Data
     std::shared_ptr<ITexture> _emit;

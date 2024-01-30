@@ -5,7 +5,7 @@
 class ITexture;
 
 
-class Isotropic : public IMaterial {
+class Isotropic FINAL : public IMaterial {
 private:
     // Data
     std::shared_ptr<ITexture> _albedo;

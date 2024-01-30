@@ -4,7 +4,7 @@
 
 
 // E.g. a glass like (refracting) material
-class Dielectric : public IMaterial {
+class Dielectric FINAL : public IMaterial {
 public:
     // Data
     rreal _refractive_index;

@@ -7,7 +7,7 @@ class IMaterial;
 
 //*== Three types of axis-aligned rectangles
 
-class XYRect : public IHittable {
+class XYRect FINAL : public IHittable {
 private:
     // Data
     rreal _x0, _x1;
@@ -34,7 +34,7 @@ public:
 };
 
 
-class XZRect : public IHittable {
+class XZRect FINAL : public IHittable {
 private:
     // Data
     rreal _x0, _x1;
@@ -61,7 +61,7 @@ public:
 };
 
 
-class YZRect : public IHittable {
+class YZRect FINAL : public IHittable {
 private:
     // Data
     rreal _y0, _y1;

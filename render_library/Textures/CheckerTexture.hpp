@@ -4,7 +4,7 @@
 #include <memory>
 
 
-class CheckerTexture : public ITexture {
+class CheckerTexture FINAL : public ITexture {
 private:
     // Data
     std::shared_ptr<ITexture> _even = nullptr;

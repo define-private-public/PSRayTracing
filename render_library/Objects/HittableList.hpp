@@ -6,7 +6,7 @@
 #include "Interfaces/IHittable.hpp"
 
 
-class HittableList : public IHittable {
+class HittableList FINAL : public IHittable {
 public:
     // Data
     std::vector<std::shared_ptr<IHittable>> _objects;
