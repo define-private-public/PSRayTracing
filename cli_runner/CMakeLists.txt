@@ -29,8 +29,12 @@ set_target_properties(PSRayTracing_CLIRunner PROPERTIES
 )
 
 # Build it!
-target_compile_options(PSRayTracing_CLIRunner PRIVATE -Wall -Wextra -Wconversion -Wsign-conversion -pedantic-errors)
-set_source_files_properties(${third_party_sources} PROPERTIES COMPILE_FLAGS -w)
+if (NOT COMPILING_WITH_MSVC)
+  # Turn on extra warnings (or supress them) for GCC & clang
+  target_compile_options(PSRayTracing_CLIRunner PRIVATE -Wall -Wextra -Wconversion -Wsign-conversion -pedantic-errors)
+  set_source_files_properties(${third_party_sources} PROPERTIES COMPILE_FLAGS -w)
+endif()
+
 target_link_libraries(PSRayTracing_CLIRunner
   PSRayTracing_StaticLibrary
 )
