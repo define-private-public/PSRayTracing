@@ -4,9 +4,6 @@ project(PSRayTracing_StaticLibrary)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# So we can use includes relative to the project root
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
 # Get the source
 set(sources
   render.hpp
@@ -139,6 +136,7 @@ file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/../assets" DESTINATION ${CMAKE_BINARY_DIR
 
 # Define the library
 add_library(PSRayTracing_StaticLibrary STATIC ${sources} ${third_party_sources})
+target_include_directories(PSRayTracing_StaticLibrary PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})    # Enable includes relative to the root
 
 
 

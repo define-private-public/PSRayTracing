@@ -4,9 +4,6 @@ project(PSRayTracing_CLIRunner)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# So we can use includes relative to the project root
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
 # Get the source
 set(sources
   main.cpp
@@ -24,6 +21,7 @@ set(third_party_sources
 
 # Create the executable
 add_executable(PSRayTracing_CLIRunner ${sources} ${third_party_sources})
+target_include_directories(PSRayTracing_CLIRunner PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})    # Enable includes relative to the root
 set_target_properties(PSRayTracing_CLIRunner PROPERTIES
   OUTPUT_NAME "PSRayTracing"
 )
