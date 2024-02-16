@@ -10,7 +10,7 @@ class Perlin;
 // - coloured noise?  right now it's only return a greyscale.
 //   we could call the `noise.noise()` function three times and get something different
 
-class NoiseTexture : public ITexture {
+class NoiseTexture FINAL : public ITexture {
 public:
     enum class NoiseStyle {
         Normal = 0,

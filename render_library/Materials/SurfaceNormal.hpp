@@ -4,7 +4,7 @@
 
 
 // This is a material that shows the normal of a object's surface
-class SurfaceNormal : public IMaterial {
+class SurfaceNormal FINAL : public IMaterial {
 public:
     // Data
     rreal brightness = static_cast<rreal>(0.6);

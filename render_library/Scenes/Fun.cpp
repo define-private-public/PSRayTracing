@@ -219,7 +219,7 @@ SceneDescriptor wave_of_spheres(const rreal aspect_ratio) {
     // The spheres
     constexpr int dim = 50;
 
-    auto compute_loc = [](const rreal percentage) { return (percentage * (dim / 2) - (dim / 2.75)); };
+    auto compute_loc = [dim](const rreal percentage) { return (percentage * (dim / 2) - (dim / 2.75)); };
 
     for (int i = 0; i < dim; i++) {
         for (int j = 0; j < dim; j++) {

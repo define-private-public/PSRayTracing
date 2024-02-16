@@ -16,7 +16,7 @@
  * It's a bit complicated, and I didn't want to clutter it together with the Book's BVHNode code, so I put
  * it in it's own class.
  */
-class BVHNode_MorePerformant : public IHittable {
+class BVHNode_MorePerformant FINAL : public IHittable {
 private:
     /*== Class Internal Stuff ==*/
 

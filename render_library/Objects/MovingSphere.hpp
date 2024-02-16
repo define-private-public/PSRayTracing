@@ -3,7 +3,7 @@
 #include "Interfaces/IHittable.hpp"
 
 
-class MovingSphere : public IHittable {
+class MovingSphere FINAL : public IHittable {
 private:
     // Data
     Vec3 _center0 = Vec3(), _center1 = Vec3();

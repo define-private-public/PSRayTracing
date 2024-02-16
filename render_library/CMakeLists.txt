@@ -4,9 +4,6 @@ project(PSRayTracing_StaticLibrary)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# So we can use includes relative to the project root
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
-
 # Get the source
 set(sources
   render.hpp
@@ -139,6 +136,7 @@ file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/../assets" DESTINATION ${CMAKE_BINARY_DIR
 
 # Define the library
 add_library(PSRayTracing_StaticLibrary STATIC ${sources} ${third_party_sources})
+target_include_directories(PSRayTracing_StaticLibrary PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})    # Enable includes relative to the root
 
 
 
@@ -163,6 +161,7 @@ option(WITH_BOOK_BVH_NODE "Use the book's method for BVH Nodes (slower)" OFF)
 option(WITH_BOOK_MAT_PTR "Use Book's method for HitRecord::mat_ptr, which is a std::shared_ptr (slower)" OFF)
 option(WITH_BOOK_PDF_MANAGEMENT "Use the Book's method for managing PDFs, which are pointers (slower)" OFF)
 option(WITH_NOEXCEPT "Use the `noexcept` annotation for various functions (faster)" ON)
+option(WITH_FINAL "Use the `final` specifier on derived classes (faster?)" ON)
 
 
 
@@ -280,11 +279,24 @@ else()
   message(STATUS "Turned off use of `noexcept` (slower)")
 endif()
 
+if (WITH_FINAL)
+  message(STATUS "Using `final` spicifer (faster?)")
+  target_compile_definitions(PSRayTracing_StaticLibrary PUBLIC USE_FINAL)
+else()
+  message(STATUS "Turned off use of `final` (slower?)")
+endif()
+
 
 # Build it!
-target_compile_options(PSRayTracing_StaticLibrary PRIVATE -Wall -Wextra -Wconversion -Wsign-conversion -Wmismatched-tags -Wno-overlength-strings -pedantic)
-set_source_files_properties(${third_party_sources} PROPERTIES COMPILE_FLAGS -w)
-target_link_libraries(PSRayTracing_StaticLibrary Threads::Threads)
+if (NOT COMPILING_WITH_MSVC)
+  # Turn on extra warnings (or supress them) for GCC & clang
+  target_compile_options(PSRayTracing_StaticLibrary PRIVATE -Wall -Wextra -Wconversion -Wsign-conversion -Wmismatched-tags -Wno-overlength-strings -pedantic)
+  set_source_files_properties(${third_party_sources} PROPERTIES COMPILE_FLAGS -w)
+endif()
+
+target_link_libraries(PSRayTracing_StaticLibrary
+  Threads::Threads
+)
 
 # Misc.
 set_target_properties(PSRayTracing_StaticLibrary PROPERTIES

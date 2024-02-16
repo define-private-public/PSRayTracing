@@ -5,7 +5,7 @@ class IMaterial;
 class ITexture;
 
 
-class ConstantMedium : public IHittable {
+class ConstantMedium FINAL : public IHittable {
 private:
     // Data
     std::shared_ptr<IHittable> _boundary = nullptr;

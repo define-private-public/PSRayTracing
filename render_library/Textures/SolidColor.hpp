@@ -3,7 +3,7 @@
 #include "Interfaces/ITexture.hpp"
 
 
-class SolidColor : public ITexture {
+class SolidColor FINAL : public ITexture {
 private:
     // Data
     Vec3 _colour_value = Vec3(0);   // Default is black

@@ -3,7 +3,7 @@
 #include "Interfaces/IHittable.hpp"
 
 
-class Translate : public IHittable {
+class Translate FINAL : public IHittable {
 private:
     // Data
     std::shared_ptr<IHittable> _obj = nullptr;

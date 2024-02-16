@@ -182,7 +182,7 @@ public:
 /*!
  * The random generator that should actually be used by the app in general places.
  */
-class RandomGenerator : public _GeneralizedRandomGenerator<std::uniform_real_distribution, rreal, RNG_ENGINE> {
+class RandomGenerator FINAL : public _GeneralizedRandomGenerator<std::uniform_real_distribution, rreal, RNG_ENGINE> {
 public:
     explicit RandomGenerator(const std::string &rng_seed) :
         _GeneralizedRandomGenerator(rng_seed)

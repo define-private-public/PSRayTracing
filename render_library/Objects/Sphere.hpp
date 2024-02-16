@@ -3,7 +3,7 @@
 #include "Interfaces/IHittable.hpp"
 
 
-class Sphere : public IHittable {
+class Sphere FINAL : public IHittable {
 private:
     // Data
     Vec3 _center = Vec3();

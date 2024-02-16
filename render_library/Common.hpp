@@ -12,6 +12,13 @@
 #endif
 
 
+#ifdef USE_FINAL
+    #define FINAL final
+#else
+    #define FINAL
+#endif
+
+
 #ifdef USE_SINGLE_PRECISION_REAL
     // Use floats (singles) for the maths
     using rreal = float;

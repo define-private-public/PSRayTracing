@@ -7,7 +7,7 @@ class BVHNode;
 class RandomGenerator;
 
 
-class Box : public IHittable {
+class Box FINAL : public IHittable {
 private:
     // Data
     Vec3 _box_min = Vec3(0);

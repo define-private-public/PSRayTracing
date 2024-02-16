@@ -3,7 +3,7 @@
 #include "Interfaces/IHittable.hpp"
 
 
-class FlipFace : public IHittable {
+class FlipFace FINAL : public IHittable {
 private:
     // Data
     std::shared_ptr<IHittable> _obj;

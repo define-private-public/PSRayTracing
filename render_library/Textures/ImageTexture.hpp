@@ -5,7 +5,7 @@
 #include <vector>
 
 
-class ImageTexture : public ITexture {
+class ImageTexture FINAL : public ITexture {
 private:
     // Data
     std::vector<uint8_t> _img_data;

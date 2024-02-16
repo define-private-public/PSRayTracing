@@ -4,7 +4,8 @@
 
 
 // A camera that supports motion blue
-class MotionBlurCamera : public Camera {
+// TODO need to refactor (maybe) for FINAL keyword
+class MotionBlurCamera FINAL : public Camera {
 private:
     // Data
     rreal _time0, _time1;        // Shutter open/close times

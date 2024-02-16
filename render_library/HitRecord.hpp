@@ -6,7 +6,7 @@
 #include "Interfaces/IMaterial.hpp"
 
 
-struct HitRecord : public IDeepCopyable<HitRecord> {
+struct HitRecord FINAL : public IDeepCopyable<HitRecord> {
     Vec3 p = Vec3();
     Vec3 normal = Vec3();
 
