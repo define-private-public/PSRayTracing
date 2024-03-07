@@ -140,8 +140,9 @@ def test_images_match(image_a_filepath, image_b_filepath):
 # This is the actual function that runs all of the tests, both reference and the real ones.
 # `test_cases_filename` should be the name of the CSV file where the test cases live.  If
 # the reference renders are being made `running_real_tests` should be set to `False`.  But
-# When running the real tests, it should be `True`.
-def run_test_cases(test_cases_filename, running_real_tests):
+# When running the real tests, it should be `True`.  If you are doing a performance only
+# check then set `test_sameness=False`
+def run_test_cases(test_cases_filename, running_real_tests, test_sameness):
     #== Section 1: Setup (Files & Data) ==#
     # First determine where the renders live
     parts = [test_cases_filename, 'refernence', 'renders']
@@ -230,7 +231,10 @@ def run_test_cases(test_cases_filename, running_real_tests):
         pass_fail_str = None
         if running_real_tests:
             ref_render_filepath= path.join(references_folder, '%s.png' % id_num)
-            result = test_images_match(ref_render_filepath, render_filepath)
+
+            result = True
+            if test_sameness:
+                test_images_match(ref_render_filepath, render_filepath)
 
             if result:
                 num_matches_reference += 1
@@ -272,7 +276,11 @@ def run_test_cases(test_cases_filename, running_real_tests):
         # Build the arguments for the `idff` command
         render_a = path.join(renders_destination, '%s.png' % pair[0])
         render_b = path.join(renders_destination, '%s.png' % pair[1])
-        result = test_images_match(render_a, render_b)
+
+        result = True
+        if test_sameness:
+            result = test_images_match(render_a, render_b)
+
         result_str = 'PASS' if result else 'FAIL'
 
         # Format the message to print (and save to report)
@@ -303,6 +311,7 @@ def main():
     parser = ArgumentParser()
     parser.add_argument('-g', '--generate-test-cases', help='Generate a suite of tests to run',     action='store_true')
     parser.add_argument('-r', '--run-reference-test',  help='Runs the tests in "reference mode"',   action='store_true')
+    parser.add_argument('-p', '--performance-only',    help="Only run for performance testing (don't check if images are the same)", action='store_true')
     parser.add_argument('-n', '--tests-per-scene',     help='If generating tests, how many to generate per scene (default is 10)', type=int, default=10)
     parser.add_argument('-f', '--test-cases-filename', help='CSV file where the test case configuration is stored',                type=str, default='test_cases.csv')
     args = parser.parse_args()
@@ -326,7 +335,11 @@ def main():
             print('ERROR: Not able to find the test cases file `%s`.  Please run this with `-r` or `-g` before doing a actual test.' % args.test_cases_filename)
             exit(1)
 
-        run_test_cases(args.test_cases_filename, not args.run_reference_test)
+        # Are we checkinly only for performance?  This is done because some systems don't have `idiff` availabe on them
+        if args.performance_only:
+            print('NOT TESTING FOR IMAGE VALIDITY; only testing for the runtime performance.  All results will report the test as `PASS`')
+
+        run_test_cases(args.test_cases_filename, not args.run_reference_test, not args.performance_only)
 
 
 if __name__  == '__main__':
