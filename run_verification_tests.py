@@ -14,9 +14,6 @@ from pathlib import Path
 from shutil import copyfile
 from subprocess import check_output, CalledProcessError
 
-# Location of the ray tracing executable
-PS_RAYTRACING_EXE = path.abspath(path.join('build', 'PSRayTracing'))
-
 # The possible arguments that can be passed into the ray tracer
 NUM_THREADS = (1, 2, 4)                                         # How many threads to render with
 USE_COPY_PER_THREAD = (True, False)                             # Use the "deep copy per thread" feature
@@ -31,9 +28,9 @@ FIELDS = ('id_num', 'scene_id', 'num_threads', 'use_copy_per_thread', 'num_sampl
 
 # This generates the tests to be run.  Needs to know how many tests per scene there should be, as well as what filename
 # to save the CSV file to. To run successfully, the `PSRayTracing` binary must be found
-def generate_test_cases(tests_per_scene, test_cases_filename):
+def generate_test_cases(ps_raytracing_exe, tests_per_scene, test_cases_filename):
     # Get the available scenes
-    scenes_raw = check_output([PS_RAYTRACING_EXE, '--list-scenes']).decode('utf-8')     # Get list directly from the executable
+    scenes_raw = check_output([ps_raytracing_exe, '--list-scenes']).decode('utf-8')     # Get list directly from the executable
     scenes = scenes_raw.splitlines()                                                    # Each scene is on its own line
     scenes = scenes[1:]                                                                 # First line is actually not a scene, the rest are
     scenes = [x.strip() for x in scenes]                                                # There is surrounding whitespace, clean it up
@@ -142,7 +139,7 @@ def test_images_match(image_a_filepath, image_b_filepath):
 # the reference renders are being made `running_real_tests` should be set to `False`.  But
 # When running the real tests, it should be `True`.  If you are doing a performance only
 # check then set `test_sameness=False`
-def run_test_cases(test_cases_filename, running_real_tests, test_sameness):
+def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, test_sameness):
     #== Section 1: Setup (Files & Data) ==#
     # First determine where the renders live
     parts = [test_cases_filename, 'refernence', 'renders']
@@ -155,7 +152,8 @@ def run_test_cases(test_cases_filename, running_real_tests, test_sameness):
     renders_destination = '_'.join(parts)
     results_csv_filename = path.join(renders_destination, 'results.csv')
     results_txt_filename = path.join(renders_destination, 'results.txt')
-    cmake_cache_src = path.join('build', 'CMakeCache.txt')
+    build_dir = path.dirname(path.abspath(ps_raytracing_exe))
+    cmake_cache_src = path.join(build_dir, 'CMakeCache.txt')
     cmake_cache_dst = path.join(renders_destination, 'CMakeCache.txt')
 
     # Read in the test configurations
@@ -217,7 +215,7 @@ def run_test_cases(test_cases_filename, running_real_tests, test_sameness):
 
         # Do the render
         print('  Test %s/%s:' % (id_num,  num_total_cases), end='', flush=True)
-        output = check_output([PS_RAYTRACING_EXE, *args]).decode('utf-8').strip()
+        output = check_output([ps_raytracing_exe, *args]).decode('utf-8').strip()
         parts = output.split(' ')
 
         # Verify things were outputted correctly, if not, the quit testing
@@ -312,24 +310,29 @@ def main():
     parser.add_argument('-g', '--generate-test-cases', help='Generate a suite of tests to run',     action='store_true')
     parser.add_argument('-r', '--run-reference-test',  help='Runs the tests in "reference mode"',   action='store_true')
     parser.add_argument('-p', '--performance-only',    help="Only run for performance testing (don't check if images are the same)", action='store_true')
-    parser.add_argument('-n', '--tests-per-scene',     help='If generating tests, how many to generate per scene (default is 10)', type=int, default=10)
-    parser.add_argument('-f', '--test-cases-filename', help='CSV file where the test case configuration is stored',                type=str, default='test_cases.csv')
+    parser.add_argument('-n', '--tests-per-scene',     help='If generating tests, how many to generate per scene (default is 10)',   type=int, default=10)
+    parser.add_argument('-f', '--test-cases-filename', help='CSV file where the test case configuration is stored',                  type=str, default='test_cases.csv')
+    parser.add_argument('-e', '--executable-path',
+                        help='Location where PSRayTracing binary can be found (default is `build/PSRayTracing.exe`)',
+                        type=str,
+                        default=path.abspath(path.join('build', 'PSRayTracing')))
     args = parser.parse_args()
 
     # Make sure we can access the rendering executable
-    if not path.exists(PS_RAYTRACING_EXE):
+    ps_raytracing_exe = args.executable_path
+    if not path.exists(ps_raytracing_exe):
         print("ERROR: Not able to find `PSRayTracing` executable in the `build/` folder; can't run the tests without it.")
         exit(1)
 
     # Generate (only) or run the tests?
     if args.generate_test_cases:
-        generate_test_cases(args.tests_per_scene, args.test_cases_filename)
+        generate_test_cases(ps_raytracing_exe, args.tests_per_scene, args.test_cases_filename)
     else:
         no_test_file = not path.exists(args.test_cases_filename)
 
         if args.run_reference_test and no_test_file:
             # If there is no test file on our reference run, genereate it
-            generate_test_cases(args.tests_per_scene, args.test_cases_filename)
+            generate_test_cases(ps_raytracing_exe, args.tests_per_scene, args.test_cases_filename)
         elif no_test_file:
             # Else during a "real test", error out
             print('ERROR: Not able to find the test cases file `%s`.  Please run this with `-r` or `-g` before doing a actual test.' % args.test_cases_filename)
@@ -339,7 +342,7 @@ def main():
         if args.performance_only:
             print('NOT TESTING FOR IMAGE VALIDITY; only testing for the runtime performance.  All results will report the test as `PASS`')
 
-        run_test_cases(args.test_cases_filename, not args.run_reference_test, not args.performance_only)
+        run_test_cases(ps_raytracing_exe, args.test_cases_filename, not args.run_reference_test, not args.performance_only)
 
 
 if __name__  == '__main__':
