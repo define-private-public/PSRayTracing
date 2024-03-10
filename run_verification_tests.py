@@ -138,8 +138,9 @@ def test_images_match(image_a_filepath, image_b_filepath):
 # `test_cases_filename` should be the name of the CSV file where the test cases live.  If
 # the reference renders are being made `running_real_tests` should be set to `False`.  But
 # When running the real tests, it should be `True`.  If you are doing a performance only
-# check then set `test_sameness=False`
-def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, test_sameness):
+# check then set `test_sameness=False`.  If a previous test suite run was stopped part of
+# the way through, it can be restarted by providing settings `continue_previous_test_suite=True`
+def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, test_sameness, continue_previous_test_suite):
     #== Section 1: Setup (Files & Data) ==#
     # First determine where the renders live
     parts = [test_cases_filename, 'refernence', 'renders']
@@ -162,6 +163,11 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
         reader = DictReader(csv_file)
         test_cases = [row for row in reader]
 
+    # Metrics to report
+    total_render_time_ns = 0
+    num_matches_reference = 0
+    num_total_cases = len(test_cases)
+
     # Find the samesies for when we do the `idiff`
     matching_renders = find_matching_renders(test_cases)
     have_matching = (len(matching_renders) > 0)
@@ -176,24 +182,35 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
     # Copy over the CMake build configuration, this way you know how the software was build for that test run
     copyfile(cmake_cache_src, cmake_cache_dst)
 
-    # Create the results CSV file
-    with open(results_csv_filename, 'w') as csv_file:
-        fields = list(FIELDS)
-        fields.append('render_time_ns')     # Add on the render time as another column
+    # If we want to conintue a previous run, read the results CSV file to figure out where
+    # we need to pick up from
+    if continue_previous_test_suite:
+        with open(results_csv_filename, 'r') as csv_file:
+            # We can count how many test cases have been run and then throw out that
+            # many from the start
+            reader = DictReader(csv_file)
+            completed_test_cases = list(reader)
+            num_completed = len(completed_test_cases)
+            test_cases = test_cases[num_completed:]
 
-        # If we're running the real tests, we also need to list PASS/FAIL status
-        if running_real_tests:
-            fields.append('matches_reference')
+            # populate the reportable metrics
+            total_render_time_ns = sum([int(x['render_time_ns']) for x in completed_test_cases])
+            if running_real_tests:
+                num_matches_reference = len(list(filter(lambda x: (x['matches_reference'] == 'PASS'), completed_test_cases)))
+    else:
+        # Create the (brand new) results CSV file
+        with open(results_csv_filename, 'w') as csv_file:
+            fields = list(FIELDS)
+            fields.append('render_time_ns')     # Add on the render time as another column
 
-        writer = DictWriter(csv_file, fieldnames=fields)
-        writer.writeheader()
+            # If we're running the real tests, we also need to list PASS/FAIL status
+            if running_real_tests:
+                fields.append('matches_reference')
+
+            writer = DictWriter(csv_file, fieldnames=fields)
+            writer.writeheader()
 
     #== Section 2: Running Tests ==#
-    # Run the renders!
-    total_render_time_ns = 0
-    num_matches_reference = 0
-    num_total_cases = len(test_cases)
-
     print('Running %i test cases:' % num_total_cases)
     for case in test_cases:
         #== Section 2a: Run the Render ==#
@@ -309,6 +326,7 @@ def main():
     parser = ArgumentParser()
     parser.add_argument('-g', '--generate-test-cases', help='Generate a suite of tests to run',     action='store_true')
     parser.add_argument('-r', '--run-reference-test',  help='Runs the tests in "reference mode"',   action='store_true')
+    parser.add_argument('-c', '--continue-previous',   help='If a previous test was stopped, this will continue where the suite left off',  action='store_true')
     parser.add_argument('-p', '--performance-only',    help="Only run for performance testing (don't check if images are the same)", action='store_true')
     parser.add_argument('-n', '--tests-per-scene',     help='If generating tests, how many to generate per scene (default is 10)',   type=int, default=10)
     parser.add_argument('-f', '--test-cases-filename', help='CSV file where the test case configuration is stored',                  type=str, default='test_cases.csv')
@@ -342,7 +360,13 @@ def main():
         if args.performance_only:
             print('NOT TESTING FOR IMAGE VALIDITY; only testing for the runtime performance.  All results will report the test as `PASS`')
 
-        run_test_cases(ps_raytracing_exe, args.test_cases_filename, not args.run_reference_test, not args.performance_only)
+        run_test_cases(
+            ps_raytracing_exe,
+            args.test_cases_filename,
+            not args.run_reference_test,
+            not args.performance_only,
+            args.continue_previous
+        )
 
 
 if __name__  == '__main__':
