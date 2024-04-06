@@ -2,3 +2,4 @@ build*
 .vscode
 CMakeLists.txt.user
 .DS_Store
+.ipynb_checkpoints
