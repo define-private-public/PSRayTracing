@@ -80,6 +80,8 @@ Care to read a little more about this project?  Check out these:
 
   * This one is more about localizing Qt apps & software localization in general; not so much ray tracing
 
+* `Measuring the impact of the final keyword <https://16bpp.net/blog/post/the-performance-impact-of-cpp-final-keyword/>`_
+
 
 
 
