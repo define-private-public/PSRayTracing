@@ -25,10 +25,10 @@ const std::string Book1_FuzzyMetalSphere                       = "book1::fuzzy_m
 const std::string Book1_TwoGlassOneMetalSpheres                = "book1::two_glass_one_metal_spheres";
 const std::string Book1_GlassBlueMetalSpheres                  = "book1::glass_blue_metal_spheres";
 const std::string Book1_RedBlueSpheres                         = "book1::red_blue_spheres";
-const std::string Book1_HollowGlassBlueMetalSpheres            = "book1::glass_blue_metal_spheres";
-const std::string Book1_HollowGlassBlueMetalSpheres_Far        = "book1::glass_blue_metal_spheres::far_view";
-const std::string Book1_HollowGlassBlueMetalSpheres_Close      = "book1::glass_blue_metal_spheres::close_view";
-const std::string Book1_HollowGlassBlueMetalSpheres_CloseFuzzy = "book1::glass_blue_metal_spheres::close_fuzzy_view";
+const std::string Book1_HollowGlassBlueMetalSpheres            = "book1::hollow_glass_blue_metal_spheres";
+const std::string Book1_HollowGlassBlueMetalSpheres_Far        = "book1::hollow_glass_blue_metal_spheres::far_view";
+const std::string Book1_HollowGlassBlueMetalSpheres_Close      = "book1::hollow_glass_blue_metal_spheres::close_view";
+const std::string Book1_HollowGlassBlueMetalSpheres_CloseFuzzy = "book1::hollow_glass_blue_metal_spheres::close_fuzzy_view";
 const std::string Book1_FinalScene                             = "book1::final_scene";
 
 const std::string Book2_BouncingSpheres                        = "book2::bouncing_spheres";

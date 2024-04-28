@@ -194,7 +194,7 @@ SceneDescriptor hollow_glass_blue_metal_spheres(const rreal aspect_ratio) {
     const Vec3 v_up(0, 1, 0);
     const rreal dist_to_focus = (look_from - look_at).length();
 
-    sd.cameras.push_back(_center_looking_focused_camera(aspect_ratio));                                                             // Standard front on view
+    sd.cameras.push_back(_center_looking_focused_camera(aspect_ratio));                                                       // Standard front on view
     sd.cameras.push_back(make_shared<Camera>(look_from, look_at, v_up, 90, aspect_ratio, _zero_aperature, dist_to_focus));    // Distant view
     sd.cameras.push_back(make_shared<Camera>(look_from, look_at, v_up, 20, aspect_ratio, _zero_aperature, dist_to_focus));    // Close view
 
