@@ -69,46 +69,46 @@ id_num,scene_id,num_threads,use_copy_per_thread,num_samples,ray_depth,random_see
 068,book1::red_blue_spheres,4,True,10,25,9001,320x240
 069,book1::red_blue_spheres,4,True,10,25,ASDF,320x240
 070,book1::red_blue_spheres,4,True,10,50,9001,400x400
-071,book1::glass_blue_metal_spheres,1,False,10,10,9001,320x240
-072,book1::glass_blue_metal_spheres,1,False,25,25,ASDF,852x480
-073,book1::glass_blue_metal_spheres,1,True,5,50,alvin's hot juicebox,400x400
-074,book1::glass_blue_metal_spheres,1,True,25,50,alvin's hot juicebox,400x400
-075,book1::glass_blue_metal_spheres,2,False,5,25,9001,852x480
-076,book1::glass_blue_metal_spheres,2,False,5,25,ASDF,400x400
-077,book1::glass_blue_metal_spheres,2,False,10,25,9001,400x400
-078,book1::glass_blue_metal_spheres,2,True,25,50,ASDF,852x480
-079,book1::glass_blue_metal_spheres,4,False,25,50,ASDF,320x240
-080,book1::glass_blue_metal_spheres,4,True,10,25,alvin's hot juicebox,320x240
-081,book1::glass_blue_metal_spheres::far_view,1,False,5,50,alvin's hot juicebox,400x400
-082,book1::glass_blue_metal_spheres::far_view,1,False,25,10,alvin's hot juicebox,400x400
-083,book1::glass_blue_metal_spheres::far_view,1,True,5,50,alvin's hot juicebox,852x480
-084,book1::glass_blue_metal_spheres::far_view,2,False,5,50,9001,320x240
-085,book1::glass_blue_metal_spheres::far_view,2,False,10,50,ASDF,400x400
-086,book1::glass_blue_metal_spheres::far_view,2,False,10,50,alvin's hot juicebox,852x480
-087,book1::glass_blue_metal_spheres::far_view,2,True,10,10,alvin's hot juicebox,400x400
-088,book1::glass_blue_metal_spheres::far_view,2,True,10,50,ASDF,320x240
-089,book1::glass_blue_metal_spheres::far_view,4,False,25,25,ASDF,852x480
-090,book1::glass_blue_metal_spheres::far_view,4,True,25,25,alvin's hot juicebox,852x480
-091,book1::glass_blue_metal_spheres::close_view,1,False,5,10,9001,852x480
-092,book1::glass_blue_metal_spheres::close_view,1,True,10,50,9001,400x400
-093,book1::glass_blue_metal_spheres::close_view,2,False,25,10,alvin's hot juicebox,852x480
-094,book1::glass_blue_metal_spheres::close_view,2,False,25,25,alvin's hot juicebox,320x240
-095,book1::glass_blue_metal_spheres::close_view,2,False,25,50,ASDF,400x400
-096,book1::glass_blue_metal_spheres::close_view,2,True,25,50,9001,320x240
-097,book1::glass_blue_metal_spheres::close_view,2,True,25,50,alvin's hot juicebox,320x240
-098,book1::glass_blue_metal_spheres::close_view,4,False,5,10,alvin's hot juicebox,320x240
-099,book1::glass_blue_metal_spheres::close_view,4,False,10,25,9001,400x400
-100,book1::glass_blue_metal_spheres::close_view,4,True,25,25,ASDF,400x400
-101,book1::glass_blue_metal_spheres::close_fuzzy_view,1,False,5,50,alvin's hot juicebox,852x480
-102,book1::glass_blue_metal_spheres::close_fuzzy_view,1,False,10,10,alvin's hot juicebox,320x240
-103,book1::glass_blue_metal_spheres::close_fuzzy_view,1,True,5,10,ASDF,400x400
-104,book1::glass_blue_metal_spheres::close_fuzzy_view,1,True,10,25,9001,852x480
-105,book1::glass_blue_metal_spheres::close_fuzzy_view,2,False,5,10,alvin's hot juicebox,852x480
-106,book1::glass_blue_metal_spheres::close_fuzzy_view,2,False,25,50,9001,400x400
-107,book1::glass_blue_metal_spheres::close_fuzzy_view,2,False,25,50,ASDF,852x480
-108,book1::glass_blue_metal_spheres::close_fuzzy_view,2,True,25,10,9001,400x400
-109,book1::glass_blue_metal_spheres::close_fuzzy_view,4,False,25,50,ASDF,852x480
-110,book1::glass_blue_metal_spheres::close_fuzzy_view,4,True,10,50,9001,320x240
+071,book1::hollow_glass_blue_metal_spheres,1,False,10,10,9001,320x240
+072,book1::hollow_glass_blue_metal_spheres,1,False,25,25,ASDF,852x480
+073,book1::hollow_glass_blue_metal_spheres,1,True,5,50,alvin's hot juicebox,400x400
+074,book1::hollow_glass_blue_metal_spheres,1,True,25,50,alvin's hot juicebox,400x400
+075,book1::hollow_glass_blue_metal_spheres,2,False,5,25,9001,852x480
+076,book1::hollow_glass_blue_metal_spheres,2,False,5,25,ASDF,400x400
+077,book1::hollow_glass_blue_metal_spheres,2,False,10,25,9001,400x400
+078,book1::hollow_glass_blue_metal_spheres,2,True,25,50,ASDF,852x480
+079,book1::hollow_glass_blue_metal_spheres,4,False,25,50,ASDF,320x240
+080,book1::hollow_glass_blue_metal_spheres,4,True,10,25,alvin's hot juicebox,320x240
+081,book1::hollow_glass_blue_metal_spheres::far_view,1,False,5,50,alvin's hot juicebox,400x400
+082,book1::hollow_glass_blue_metal_spheres::far_view,1,False,25,10,alvin's hot juicebox,400x400
+083,book1::hollow_glass_blue_metal_spheres::far_view,1,True,5,50,alvin's hot juicebox,852x480
+084,book1::hollow_glass_blue_metal_spheres::far_view,2,False,5,50,9001,320x240
+085,book1::hollow_glass_blue_metal_spheres::far_view,2,False,10,50,ASDF,400x400
+086,book1::hollow_glass_blue_metal_spheres::far_view,2,False,10,50,alvin's hot juicebox,852x480
+087,book1::hollow_glass_blue_metal_spheres::far_view,2,True,10,10,alvin's hot juicebox,400x400
+088,book1::hollow_glass_blue_metal_spheres::far_view,2,True,10,50,ASDF,320x240
+089,book1::hollow_glass_blue_metal_spheres::far_view,4,False,25,25,ASDF,852x480
+090,book1::hollow_glass_blue_metal_spheres::far_view,4,True,25,25,alvin's hot juicebox,852x480
+091,book1::hollow_glass_blue_metal_spheres::close_view,1,False,5,10,9001,852x480
+092,book1::hollow_glass_blue_metal_spheres::close_view,1,True,10,50,9001,400x400
+093,book1::hollow_glass_blue_metal_spheres::close_view,2,False,25,10,alvin's hot juicebox,852x480
+094,book1::hollow_glass_blue_metal_spheres::close_view,2,False,25,25,alvin's hot juicebox,320x240
+095,book1::hollow_glass_blue_metal_spheres::close_view,2,False,25,50,ASDF,400x400
+096,book1::hollow_glass_blue_metal_spheres::close_view,2,True,25,50,9001,320x240
+097,book1::hollow_glass_blue_metal_spheres::close_view,2,True,25,50,alvin's hot juicebox,320x240
+098,book1::hollow_glass_blue_metal_spheres::close_view,4,False,5,10,alvin's hot juicebox,320x240
+099,book1::hollow_glass_blue_metal_spheres::close_view,4,False,10,25,9001,400x400
+100,book1::hollow_glass_blue_metal_spheres::close_view,4,True,25,25,ASDF,400x400
+101,book1::hollow_glass_blue_metal_spheres::close_fuzzy_view,1,False,5,50,alvin's hot juicebox,852x480
+102,book1::hollow_glass_blue_metal_spheres::close_fuzzy_view,1,False,10,10,alvin's hot juicebox,320x240
+103,book1::hollow_glass_blue_metal_spheres::close_fuzzy_view,1,True,5,10,ASDF,400x400
+104,book1::hollow_glass_blue_metal_spheres::close_fuzzy_view,1,True,10,25,9001,852x480
+105,book1::hollow_glass_blue_metal_spheres::close_fuzzy_view,2,False,5,10,alvin's hot juicebox,852x480
+106,book1::hollow_glass_blue_metal_spheres::close_fuzzy_view,2,False,25,50,9001,400x400
+107,book1::hollow_glass_blue_metal_spheres::close_fuzzy_view,2,False,25,50,ASDF,852x480
+108,book1::hollow_glass_blue_metal_spheres::close_fuzzy_view,2,True,25,10,9001,400x400
+109,book1::hollow_glass_blue_metal_spheres::close_fuzzy_view,4,False,25,50,ASDF,852x480
+110,book1::hollow_glass_blue_metal_spheres::close_fuzzy_view,4,True,10,50,9001,320x240
 111,book1::final_scene,1,False,5,50,ASDF,400x400
 112,book1::final_scene,1,False,25,50,9001,320x240
 113,book1::final_scene,1,True,5,25,alvin's hot juicebox,852x480
