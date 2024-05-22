@@ -57,7 +57,7 @@ def generate_test_cases(ps_raytracing_exe, tests_per_scene, test_cases_filename)
         all_cases[i].insert(0, id_num)
 
     # Write the test cases to a CSV file
-    with open(test_cases_filename, 'w') as csv_file:
+    with open(test_cases_filename, 'w', newline='', encoding='utf-8') as csv_file:
         writer = DictWriter(csv_file, fieldnames=FIELDS)
         writer.writeheader()
 
@@ -162,7 +162,7 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
 
     # Read in the test configurations
     test_cases = []
-    with open(test_cases_filename, 'r') as csv_file:
+    with open(test_cases_filename, 'r', newline='', encoding='utf-8') as csv_file:
         reader = DictReader(csv_file)
         test_cases = [row for row in reader]
 
@@ -193,7 +193,7 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
     # If we want to conintue a previous run, read the results CSV file to figure out where
     # we need to pick up from
     if continue_previous_test_suite:
-        with open(results_csv_filename, 'r') as csv_file:
+        with open(results_csv_filename, 'r', newline='', encoding='utf-8') as csv_file:
             # We can count how many test cases have been run and then throw out that
             # many from the start
             reader = DictReader(csv_file)
@@ -207,7 +207,7 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
                 num_matches_reference = len(list(filter(lambda x: (x['matches_reference'] == 'PASS'), completed_test_cases)))
     else:
         # Create the (brand new) results CSV file
-        with open(results_csv_filename, 'w') as csv_file:
+        with open(results_csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
             fields = list(FIELDS)
             fields.append('render_time_ns')     # Add on the render time as another column
 
@@ -279,7 +279,7 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
         print('')
 
         # Write results to CSV
-        with open(results_csv_filename, 'a') as csv_file:
+        with open(results_csv_filename, 'a', newline='', encoding='utf-8') as csv_file:
             # Add on the "render time (ns)" column
             case['render_time_ns'] = render_time_ns
 
