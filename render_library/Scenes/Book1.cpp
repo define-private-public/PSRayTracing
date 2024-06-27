@@ -9,19 +9,9 @@
 #include "Materials/Dielectric.hpp"
 #include "Objects/Sphere.hpp"
 #include "Objects/HittableList.hpp"
-#include "Objects/BVHNode.hpp"
-#include "Objects/BVHNode_MorePerformant.hpp"
 #include "Util.hpp"
 
 using namespace std;
-
-
-// Are we to use the book's BVH node, or our more performant one?
-#if WITH_BOOK_BVH_NODE
-    using BVHNode_Implementation = BVHNode;
-#else
-    using BVHNode_Implementation = BVHNode_MorePerformant;
-#endif
 
 
 //==== Scene setup helpers ====
@@ -52,8 +42,7 @@ shared_ptr<IHittable> _single_sphere(const shared_ptr<IMaterial> &sphere_mat, co
     world.add(make_shared<Sphere>(Vec3( 0,      0, -1),  0.5f, sphere_mat));   // Little boi
     world.add(make_shared<Sphere>(Vec3( 0, -100.5, -1),   100, ground_mat));   // The ground (Big boi)
 
-    RandomGenerator bvhRNG(DefaultRNGSeed);
-    return make_shared<BVHNode_Implementation>(bvhRNG, world, 0, 1);
+    return make_shared<HittableList>(world);
 }
 
 shared_ptr<IHittable> _tripple_spheres(
@@ -68,8 +57,7 @@ shared_ptr<IHittable> _tripple_spheres(
     world.add(make_shared<Sphere>(Vec3( 1,      0, -1), 0.5, right_mat));
     world.add(make_shared<Sphere>(Vec3( 0, -100.5, -1), 100, ground_mat));   // The ground (Big boi)
 
-    RandomGenerator bvhRNG(DefaultRNGSeed);
-    return make_shared<BVHNode_Implementation>(bvhRNG, world, 0, 1);
+    return make_shared<HittableList>(world);
 }
 
 shared_ptr<IHittable> _metal_spheres(const rreal leftmost_fuzz, const rreal rightmost_fuzz) {
@@ -171,14 +159,13 @@ SceneDescriptor blue_red_spheres(const rreal aspect_ratio) {
 
     // Spheres
     const rreal R = std::cos(Pi / 4);
-    HittableList world;
-    world.add(make_shared<Sphere>(Vec3(-R, 0, -1), R, left_mat));
-    world.add(make_shared<Sphere>(Vec3( R, 0, -1), R, right_mat));
+    auto world = make_shared<HittableList>();
+    world->add(make_shared<Sphere>(Vec3(-R, 0, -1), R, left_mat));
+    world->add(make_shared<Sphere>(Vec3( R, 0, -1), R, right_mat));
 
     SceneDescriptor sd{};
     sd.background = sky_blue;
-    RandomGenerator bvhRNG(DefaultRNGSeed);
-    sd.scene = make_shared<BVHNode_Implementation>(bvhRNG, world, 0, 1);
+    sd.scene = world;
     sd.cameras.push_back(cam);
 
     return sd;
@@ -199,8 +186,7 @@ SceneDescriptor hollow_glass_blue_metal_spheres(const rreal aspect_ratio) {
 
     SceneDescriptor sd{};
     sd.background = sky_blue;
-    RandomGenerator bvhRNG(DefaultRNGSeed);
-    sd.scene = make_shared<BVHNode_Implementation>(bvhRNG, world, 0, 1);
+    sd.scene = make_shared<HittableList>(world);
 
     // For the distant/close cameras (in focus)
     const Vec3 look_from(-2, 2, 1);
@@ -286,8 +272,7 @@ SceneDescriptor final_scene(const rreal aspect_ratio) {
     auto material3 = make_shared<Metal>(Vec3(static_cast<rreal>(0.7), static_cast<rreal>(0.6), static_cast<rreal>(0.5)), 0);
     world.add(make_shared<Sphere>(Vec3(4, 1, 0), 1, material3));
 
-    RandomGenerator bvhRNG(DefaultRNGSeed);
-    sd.scene = make_shared<BVHNode_Implementation>(bvhRNG, world, 0, 1);
+    sd.scene = make_shared<HittableList>(world);
     return sd;
 }
 
