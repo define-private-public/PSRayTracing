@@ -160,7 +160,7 @@ option(WITH_BOOK_COMPUTE_PIXEL_COLOR "Use the book's method for computing the co
 option(WITH_BOOK_BVH_NODE "Use the book's method for BVH Nodes (slower)" OFF)
 option(WITH_BOOK_MAT_PTR "Use Book's method for HitRecord::mat_ptr, which is a std::shared_ptr (slower)" OFF)
 option(WITH_BOOK_PDF_MANAGEMENT "Use the Book's method for managing PDFs, which are pointers (slower)" OFF)
-option(WITH_NOEXCEPT "Use the `noexcept` annotation for various functions (faster)" ON)
+option(WITH_NOEXCEPT "Use the `noexcept` annotation for various functions (faster?)" OFF)
 option(WITH_FINAL "Use the `final` specifier on derived classes (faster?)" OFF)
 
 
@@ -273,10 +273,10 @@ if (WITH_BOOK_DIELECTRIC_SCATTER)
 endif()
 
 if (WITH_NOEXCEPT)
-  message(STATUS "Using `noexcept` annotations (faster)")
+  message(STATUS "Using `noexcept` annotations (faster?)")
   target_compile_definitions(PSRayTracing_StaticLibrary PUBLIC USE_NOEXCEPT)
 else()
-  message(STATUS "Turned off use of `noexcept` (slower)")
+  message(STATUS "Turned off use of `noexcept` (slower?)")
 endif()
 
 if (WITH_FINAL)
