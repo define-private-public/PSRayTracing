@@ -33,20 +33,32 @@ vector<int> generate_random_numbers(const int n, mt19937 r_dev)
 }
 
 
-#define MAKE_FIND_FUNCTION(FUNCTION_NAME, NOEXCEPT)               \
-int FUNCTION_NAME(const vector<int> &numbers, const int x) NOEXCEPT   \
-{                                                                     \
-  for (int i = 0; i < numbers.size(); i++)                            \
-  {                                                                   \
-    if (numbers[i] == x)                                              \
-    {                                                                 \
-      return i;                                                       \
-    }                                                                 \
-  }                                                                   \
-  return -1;                                                          \
+int find_index_plain(const vector<int> &numbers, const int x)
+{
+  for (int i = 0; i < numbers.size(); i++)
+  {
+    if (numbers[i] == x)
+    {
+      return i;
+    }
+  }
+
+  return -1;
 }
-MAKE_FIND_FUNCTION(find_index_plain, )
-MAKE_FIND_FUNCTION(find_index_noexcept, noexcept)
+
+
+int find_index_noexcept(const vector<int> &numbers, const int x) noexcept
+{
+  for (int i = 0; i < numbers.size(); i++)
+  {
+    if (numbers[i] == x)
+    {
+      return i;
+    }
+  }
+
+  return -1;
+}
 
 
 int64_t compute_mean(const vector<int64_t> &vec)
@@ -55,9 +67,10 @@ int64_t compute_mean(const vector<int64_t> &vec)
   return sum / vec.size();
 }
 
+
+// Note: this isn't a proper/good median computation, just something quick for our purposes
 int64_t compute_bad_median(vector<int64_t> vec)
 {
-  // Note this isn't a proper/good median computation, just something quick for our purposes
   sort(vec.begin(), vec.end());
   return vec[vec.size() / 2];
 }
@@ -74,10 +87,9 @@ struct BenchmarkResult
 
 BenchmarkResult run_benchmark(const int rng_seed, const int number_of_runs, const int search_size)
 {
-
   vector<int64_t> runtimes_plain;
   vector<int64_t> runtimes_noexcept;
-  vector<int> bucket;     // Place to store the indicies that we found.
+  vector<int> bucket;     // Place to store the indicies that we found
 
   for (int i = 0; i < number_of_runs; i++)
   {
@@ -89,19 +101,19 @@ BenchmarkResult run_benchmark(const int rng_seed, const int number_of_runs, cons
     const vector<int> numbers = generate_random_numbers(search_size, rng);
     const int n = rng_distributor(rng) + static_cast<int>(rng_distributor(rng) * 0.10);
 
-    // First do the plain function
-    auto start_time = chrono::system_clock::now();
+    // First, do the plain function
+    const auto start_time_plain = chrono::system_clock::now();
     const int a = find_index_plain(numbers, n);
-    auto end_time = chrono::system_clock::now();
-    auto runtime_ns = chrono::duration_cast<chrono::nanoseconds>(end_time - start_time);
-    runtimes_plain.push_back(runtime_ns.count());
+    const auto end_time_plain = chrono::system_clock::now();
+    const auto runtime_plain_ns = chrono::duration_cast<chrono::nanoseconds>(end_time_plain - start_time_plain);
+    runtimes_plain.push_back(runtime_plain_ns.count());
 
-    // Second do the one with noexcept
-    start_time = chrono::system_clock::now();
+    // Second, do the one with noexcept
+    const auto start_time_noexcept = chrono::system_clock::now();
     const int b = find_index_noexcept(numbers, n);
-    end_time = chrono::system_clock::now();
-    runtime_ns = chrono::duration_cast<chrono::nanoseconds>(end_time - start_time);
-    runtimes_noexcept.push_back(runtime_ns.count());
+    const auto end_time_noexcept = chrono::system_clock::now();
+    const auto runtime_noexcept_ns = chrono::duration_cast<chrono::nanoseconds>(end_time_noexcept - start_time_noexcept);
+    runtimes_noexcept.push_back(runtime_noexcept_ns.count());
 
     bucket.push_back(a);
     bucket.push_back(b);
