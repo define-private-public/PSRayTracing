@@ -4,7 +4,7 @@
 // You'll need C++17/C++20 to compile, use -O3 (or Release for MSVC)
 //
 // You'll have to supply three arugments: <seed_number> <list_size> <iterations>
-// E.g.:  1337 9999999 500
+// E.g.:  1337 9999999 10000
 
 #include <iostream>
 #include <vector>
@@ -78,10 +78,10 @@ int64_t compute_bad_median(vector<int64_t> vec)
 
 struct BenchmarkResult
 {
-  int64_t average_time_plain_ns = 0;
-  int64_t average_time_noexcept_ns = 0;
-  int64_t median_time_plain_ns = 0;
-  int64_t median_time_noexcept_ns = 0;
+  int64_t average_time_plain_us = 0;
+  int64_t average_time_noexcept_us = 0;
+  int64_t median_time_plain_us = 0;
+  int64_t median_time_noexcept_us = 0;
 };
 
 
@@ -105,25 +105,25 @@ BenchmarkResult run_benchmark(const int rng_seed, const int number_of_runs, cons
     const auto start_time_plain = chrono::system_clock::now();
     const int a = find_index_plain(numbers, n);
     const auto end_time_plain = chrono::system_clock::now();
-    const auto runtime_plain_ns = chrono::duration_cast<chrono::nanoseconds>(end_time_plain - start_time_plain);
-    runtimes_plain.push_back(runtime_plain_ns.count());
+    const auto runtime_plain_us = chrono::duration_cast<chrono::microseconds>(end_time_plain - start_time_plain);
+    runtimes_plain.push_back(runtime_plain_us.count());
 
     // Second, do the one with noexcept
     const auto start_time_noexcept = chrono::system_clock::now();
     const int b = find_index_noexcept(numbers, n);
     const auto end_time_noexcept = chrono::system_clock::now();
-    const auto runtime_noexcept_ns = chrono::duration_cast<chrono::nanoseconds>(end_time_noexcept - start_time_noexcept);
-    runtimes_noexcept.push_back(runtime_noexcept_ns.count());
+    const auto runtime_noexcept_us = chrono::duration_cast<chrono::microseconds>(end_time_noexcept - start_time_noexcept);
+    runtimes_noexcept.push_back(runtime_noexcept_us.count());
 
     bucket.push_back(a);
     bucket.push_back(b);
   }
 
   BenchmarkResult result;
-  result.average_time_plain_ns = compute_mean(runtimes_plain);
-  result.average_time_noexcept_ns = compute_mean(runtimes_noexcept);
-  result.median_time_plain_ns = compute_bad_median(runtimes_plain);
-  result.median_time_noexcept_ns = compute_bad_median(runtimes_noexcept);
+  result.average_time_plain_us = compute_mean(runtimes_plain);
+  result.average_time_noexcept_us = compute_mean(runtimes_noexcept);
+  result.median_time_plain_us = compute_bad_median(runtimes_plain);
+  result.median_time_noexcept_us = compute_bad_median(runtimes_noexcept);
   return result;
 }
 
@@ -137,11 +137,11 @@ int main(int argc, char *argv[])
   cout << "Checking " << num_elements << " elements, " << num_times << " times..." << endl;
   const BenchmarkResult br = run_benchmark(rng_seed, num_times, num_elements);
 
-  cout << "  plain average time:       " << br.average_time_plain_ns << " ns" << endl;
-  cout << "  `noexcept` average time:  " << br.average_time_noexcept_ns << " ns" << endl;
+  cout << "  plain average time:       " << br.average_time_plain_us << " us" << endl;
+  cout << "  `noexcept` average time:  " << br.average_time_noexcept_us << " us" << endl;
   cout << endl;
-  cout << "  plain median time:       " << br.median_time_plain_ns << " ns" << endl;
-  cout << "  `noexcept` median time:  " << br.median_time_noexcept_ns << " ns" << endl;
+  cout << "  plain median time:       " << br.median_time_plain_us << " us" << endl;
+  cout << "  `noexcept` median time:  " << br.median_time_noexcept_us << " us" << endl;
 
   return 0;
 }
