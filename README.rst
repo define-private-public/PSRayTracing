@@ -82,6 +82,8 @@ Care to read a little more about this project?  Check out these:
 
 * `Measuring the impact of the final keyword <https://16bpp.net/blog/post/the-performance-impact-of-cpp-final-keyword/>`_
 
+* `Finding out when noexcept helps performance (and when it doesn't) <https://16bpp.net/blog/post/noexcept-can-sometimes-help-or-hurt-performance/>`_
+
 
 
 
@@ -510,6 +512,11 @@ square roots.  For me, in the end it turned out those methods were slower and mo
 =================================
 Marking functions as ``noexcept``
 =================================
+
+**Update Aug 5th, 2024:** After doing an experiment with the ``final`` keyword and writing a blog post on it,
+someone reached out and asked me if I had done the same but with ``noexcept``.  Now a more comprehensive
+performance test of the ``noexcept`` keyword has been done.  The results are mixed and you can `read it right here <https://16bpp.net/blog/post/noexcept-can-sometimes-help-or-hurt-performance/>`_ .
+Orginally I left ``noexcept`` on, but now I've decided to turn it off.
 
 I remember hearing about how marking my functions with the `noexcept <https://visualstudiomagazine.com/articles/2016/10/01/noexcept.aspx>`_
 could make my code run faster.  So to test this out (and test toggling it on & off), I added a macro called
