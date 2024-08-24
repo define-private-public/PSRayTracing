@@ -1,7 +1,4 @@
 #include "Book3.hpp"
-#include <cmath>
-#include <random>
-#include "Cameras/Camera.hpp"
 #include "Cameras/MotionBlurCamera.hpp"
 #include "Materials/Lambertian.hpp"
 #include "Materials/Metal.hpp"
@@ -10,22 +7,11 @@
 #include "Objects/Sphere.hpp"
 #include "Objects/HittableList.hpp"
 #include "Objects/Rectangles.hpp"
-#include "Objects/BVHNode.hpp"
-#include "Objects/BVHNode_MorePerformant.hpp"
 #include "Objects/Box.hpp"
 #include "Objects/Transform/Translate.hpp"
 #include "Objects/Transform/RotateY.hpp"
 #include "Objects/Transform/FlipFace.hpp"
-
 using namespace std;
-
-
-// Are we to use the book's BVH node, or our more performant one?
-#if WITH_BOOK_BVH_NODE
-    using BVHNode_Implementation = BVHNode;
-#else
-    using BVHNode_Implementation = BVHNode_MorePerformant;
-#endif
 
 
 namespace Scenes { namespace Book3 {
