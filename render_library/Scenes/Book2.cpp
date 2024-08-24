@@ -1,7 +1,5 @@
 #include "Book2.hpp"
-#include <cmath>
 #include <random>
-#include "Cameras/Camera.hpp"
 #include "Cameras/MotionBlurCamera.hpp"
 #include "Materials/Lambertian.hpp"
 #include "Materials/Metal.hpp"
@@ -11,8 +9,6 @@
 #include "Objects/MovingSphere.hpp"
 #include "Objects/HittableList.hpp"
 #include "Objects/Rectangles.hpp"
-#include "Objects/BVHNode.hpp"
-#include "Objects/BVHNode_MorePerformant.hpp"
 #include "Objects/Box.hpp"
 #include "Objects/Transform/Translate.hpp"
 #include "Objects/Transform/RotateY.hpp"
@@ -30,8 +26,10 @@ using namespace std;
 
 // Are we to use the book's BVH node, or our more performant one?
 #if WITH_BOOK_BVH_NODE
+    #include "Objects/BVHNode.hpp"
     using BVHNode_Implementation = BVHNode;
 #else
+    #include "Objects/BVHNode_MorePerformant.hpp"
     using BVHNode_Implementation = BVHNode_MorePerformant;
 #endif
 
@@ -117,7 +115,7 @@ SceneDescriptor _bouncing_spheres_common(const rreal aspect_ratio, const shared_
 
     if (use_bvh_node) {
         RandomGenerator bvhRNG(DefaultRNGSeed);
-        sd.scene = make_shared<BVHNode>(bvhRNG, world, 0, 1);
+        sd.scene = make_shared<BVHNode_Implementation>(bvhRNG, world, 0, 1);
     } else
         sd.scene = make_shared<HittableList>(world);
 
