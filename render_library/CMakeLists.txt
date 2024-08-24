@@ -157,7 +157,7 @@ option(WITH_BOOK_SQRT "Use the Book's method (std::sqrt) for `sqrt()` computatio
 option(WITH_BOOK_SCHLICK "Use the Book's method for `schlick()` computation (slower)" OFF)
 option(WITH_BOOK_PERLIN "Use the Book's Perlin class" OFF)
 option(WITH_BOOK_COMPUTE_PIXEL_COLOR "Use the book's method for computing the color of a pixel" OFF)
-option(WITH_BOOK_BVH_NODE "Use the book's method for BVH Nodes (slower)" OFF)
+option(WITH_BOOK_BVH_NODE "Use the book's method for BVH Nodes (slower?)" ON)
 option(WITH_BOOK_MAT_PTR "Use Book's method for HitRecord::mat_ptr, which is a std::shared_ptr (slower)" OFF)
 option(WITH_BOOK_PDF_MANAGEMENT "Use the Book's method for managing PDFs, which are pointers (slower)" OFF)
 option(WITH_NOEXCEPT "Use the `noexcept` annotation for various functions (faster?)" OFF)
@@ -246,7 +246,7 @@ if (WITH_BOOK_COMPUTE_PIXEL_COLOR)
 endif()
 
 if (WITH_BOOK_BVH_NODE)
-  message(STATUS "Using the book's method for BVH Nodes (slower)")
+  message(STATUS "Using the book's method for BVH Nodes (slower?)")
   target_compile_definitions(PSRayTracing_StaticLibrary PUBLIC USE_BOOK_BVH_NODE)
 endif()
 
