@@ -2,8 +2,6 @@
 
 #include "Common.hpp"
 #include "SceneDescriptor.hpp"
-#include "PerlinReal.hpp"
-#include "Textures/NoiseTexture.hpp"
 
 // Scenes from Book e (Ray Tracing the Rest of your life) of the Peter Shirley Raytracing minioooks
 
