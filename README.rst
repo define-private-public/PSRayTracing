@@ -538,6 +538,11 @@ as Doxygen will pick up those ``noexcept`` keywords and mark it in the generated
 BVH Tree as a List
 ==================
 
+**Update Aug 24th, 2024:** After a further investigation with the ``noexcept`` keyword I actually found this alternative
+implementation to be slightly slower that what book series originally offered.  I've now switched back to that as the
+default option.  My ``_MorePerformant`` variant did run faster on an older system (and compiler), but that is no longer
+the case.  I'm keeping the code available though.
+
 The idea here is that I thought the ``BVHNode`` object was a little inefficient when it came to memory usage.  It required
 that you create have two ``IHittable`` objects as children (which could also be ``BVHNodes``).  Instead, the BVH tree could
 be a list AABBs, that also contained indices to child AABBs.  But maybe some of those indices actually pointed to objects
@@ -551,7 +556,6 @@ accross different hardware.  It is on by default though; it can be toggled on/of
 
 The tree construction and hit algorithms are the same as the book's BVH node (depth first).  It's very likely that
 alterative construction and hit algorithms could produce more performant results.
-
 
 
 *********************************

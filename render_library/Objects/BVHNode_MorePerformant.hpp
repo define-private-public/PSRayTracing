@@ -7,6 +7,11 @@
 
 
 /**
+ * **Update Aug 24th, 2024**:  This is no longer "more performant" that the books' original implementation.
+ * This was the case years ago when I was running on older hardware, OS, and compiler, but now that's all
+ * changed and the Book's BVH node is slightly faster than this.  This is no longer the default BVH Node
+ * option.
+ *
  * This is an alternative implementation of the BVHNode class.  Instead of storing a tree of pointers to
  * other child BVHNodes, it instead constructs a list, that stores paris of `(AABB, index)` objects.  That
  * list is structured in a way that it can be traversed like a BVH tree.
