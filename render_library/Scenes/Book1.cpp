@@ -1,5 +1,4 @@
 #include "Book1.hpp"
-#include <cmath>
 #include <random>
 #include "Cameras/Camera.hpp"
 #include "RandomGenerator.hpp"
