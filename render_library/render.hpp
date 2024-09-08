@@ -33,7 +33,7 @@ struct Render
     uint16_t render_height = 0;
     uint8_t num_channels = 0;
     float render_time_in_seconds = 0.0f;
-    std::chrono::nanoseconds render_time_in_nanoseconds;
+    std::chrono::milliseconds render_time_in_milliseconds;
 
     bool was_succesful() const
         { return !image_data.empty(); }

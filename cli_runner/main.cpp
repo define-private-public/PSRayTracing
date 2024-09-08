@@ -136,8 +136,8 @@ int main(int argc, char *argv[]) {
     // Print some info
     if (run_in_testing_mode)
     {
-        // For machines, we show nanoseconds (as integers)
-        cout << result.render_time_in_nanoseconds.count() << " ns" << endl;
+        // For machines, we show milliseconds (as integers)
+        cout << result.render_time_in_milliseconds.count() << " ms" << endl;
     }
     else
     {

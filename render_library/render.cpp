@@ -124,8 +124,8 @@ future<Render> do_render(const RenderJob &job)
         result.render_width = render_desc.width;
         result.render_height = render_desc.height;
         result.num_channels = render_desc.num_channels;
-        result.render_time_in_seconds = static_cast<float>(chrono::duration_cast<chrono::milliseconds>(endTime - startTime).count()) / 1000.0f;
-        result.render_time_in_nanoseconds = chrono::duration_cast<chrono::nanoseconds>(endTime - startTime);
+        result.render_time_in_milliseconds = chrono::duration_cast<chrono::milliseconds>(endTime - startTime);
+        result.render_time_in_seconds = static_cast<float>(result.render_time_in_milliseconds.count()) / 1000.0f;
 
         g_render_in_progress.store(false);
 
