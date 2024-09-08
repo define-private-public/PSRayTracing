@@ -167,7 +167,7 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
         test_cases = [row for row in reader]
 
     # Metrics to report
-    total_render_time_ns = 0
+    total_render_time_ms = 0
     num_matches_reference = 0
     num_total_cases = len(test_cases)
 
@@ -202,14 +202,14 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
             test_cases = test_cases[num_completed:]
 
             # populate the reportable metrics
-            total_render_time_ns = sum([int(x['render_time_ns']) for x in completed_test_cases])
+            total_render_time_ms = sum([int(x['render_time_ms']) for x in completed_test_cases])
             if running_real_tests:
                 num_matches_reference = len(list(filter(lambda x: (x['matches_reference'] == 'PASS'), completed_test_cases)))
     else:
         # Create the (brand new) results CSV file
         with open(results_csv_filename, 'w', newline='', encoding='utf-8') as csv_file:
             fields = list(FIELDS)
-            fields.append('render_time_ns')     # Add on the render time as another column
+            fields.append('render_time_ms')     # Add on the render time as another column
 
             # If we're running the real tests, we also need to list PASS/FAIL status
             if running_real_tests:
@@ -244,7 +244,7 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
         parts = output.split(' ')
 
         # Verify things were outputted correctly, if not, the quit testing
-        if (len(parts) != 2) or (parts[1] != 'ns'):
+        if (len(parts) != 2) or (parts[1] != 'ms'):
             print('Error in the text output from test %s: %s' % (id_num, output))
             print("It's not as expected, quiting the test suite")
             exit(1)
@@ -270,9 +270,9 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
 
         #== Section 2c: Report/Save Metrics ==#
         # Get the time
-        render_time_ns = int(parts[0])
-        total_render_time_ns += render_time_ns
-        render_time_s = render_time_ns / 1000000000.0
+        render_time_ms = int(parts[0])
+        total_render_time_ms += render_time_ms
+        render_time_s = render_time_ms / 1000.0
         print(' [%.3f s]' % render_time_s, end='', flush=True)
 
         # Newline
@@ -280,8 +280,8 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
 
         # Write results to CSV
         with open(results_csv_filename, 'a', newline='', encoding='utf-8') as csv_file:
-            # Add on the "render time (ns)" column
-            case['render_time_ns'] = render_time_ns
+            # Add on the "render time (ms)" column
+            case['render_time_ms'] = render_time_ms
 
             # And maybe the pass/fail
             if pass_fail_str:
@@ -313,7 +313,7 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
 
     #== Section 4: Metrics Info  ==#
     # Metrics
-    total_time_str = 'Total render time was %.3f s' % (total_render_time_ns / 1000000000.0)
+    total_time_str = 'Total render time was %.3f s' % (total_render_time_ms / 1000.0)
     print('')
     print(total_time_str)
 
@@ -322,7 +322,7 @@ def run_test_cases(ps_raytracing_exe, test_cases_filename, running_real_tests, t
         if running_real_tests:
             results_txt.write('%s/%s tests passed\n' % (num_matches_reference, num_total_cases))
 
-        results_txt.write('%s (or %i ns)\n' % (total_time_str, total_render_time_ns))
+        results_txt.write('%s (or %i ms)\n' % (total_time_str, total_render_time_ms))
         results_txt.write('%s\n' % matching_msg)
 
         if have_matching:
