@@ -84,6 +84,8 @@ Care to read a little more about this project?  Check out these:
 
 * `Finding out when noexcept helps performance (and when it doesn't) <https://16bpp.net/blog/post/noexcept-can-sometimes-help-or-hurt-performance/>`_
 
+* `Interview on CppCast episode 389 about this project <https://cppcast.com/benchmarking_language_keywords/>`_
+
 
 
 
@@ -169,6 +171,10 @@ What's Different?
 
 Oh, quite a bit.  This isn't an exhaustive list though.  (I forgot to document some stuff along the way,
 *my bad ¯\\_( ツ )_/¯*)
+
+This project was started around September 2020, which is based off of v3.2.0 of the original book code. There
+have been a few changes since then (e.g. v4.x.x is out now).  So some code has diverged but is mostly the
+same.
 
 
 ========================
