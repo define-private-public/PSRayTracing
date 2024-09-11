@@ -83,6 +83,8 @@ set(sources
   Objects/HittableList.cpp
   Objects/MovingSphere.hpp
   Objects/MovingSphere.cpp
+  Objects/Quad.hpp
+  Objects/Quad.cpp
   Objects/Rectangles.hpp
   Objects/Rectangles.cpp
   Objects/Sphere.hpp
