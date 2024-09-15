@@ -85,6 +85,12 @@ public:
         return (x * x) + (y * y) + (z * z);
     }
 
+    /** Checks for the length squared only on the XY-axis */
+    inline rreal xy_length_squared() const NOEXCEPT
+    {
+        return (x * x) + (y * y);
+    }
+
     inline Vec3 unit_vector() const NOEXCEPT {
         return *this / length();
     }
