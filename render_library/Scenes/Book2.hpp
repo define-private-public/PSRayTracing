@@ -23,6 +23,8 @@ namespace Scenes {
         SceneDescriptor earth(const rreal aspect_ratio);
         SceneDescriptor simple_light(const rreal aspect_ratio, const bool overhead_sphere_light=false);
 
+        SceneDescriptor quads(const rreal aspect_ratio);
+
         // There are a few variations on the cornel box we have, so we need to use an enum to differentaite
         enum class CornellBoxConfiguration {
             Empty = 0,

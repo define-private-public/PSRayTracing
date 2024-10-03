@@ -42,6 +42,7 @@ const std::string Book2_PerlinSphere_TrilinearHermiteCubic     = "book2::perlin_
 const std::string Book2_PerlinSphere_NormalNoise               = "book2::perlin_sphere::normal_noise";
 const std::string Book2_PerlinSphere_TurbulentNoise            = "book2::perlin_sphere::turbulent_noise";
 const std::string Book2_PerlinSphere_MarbleNoise               = "book2::perlin_sphere::marble_noise";
+const std::string Book2_Quads                                  = "book2::quads";
 const std::string Book2_Earth                                  = "book2::earth";
 const std::string Book2_SimpleLight                            = "book2::simple_light";
 const std::string Book2_SimpleLight_WithOverheadLight          = "book2::simple_light::with_overhead_light";
@@ -62,7 +63,7 @@ const std::string Fun_CornellGlassBoxes                        = "fun::cornell_g
 const std::string Fun_WaveOfSpheres                            = "fun::wave_of_spheres";
 
 // All of the scenes (in order)
-const std::array<std::string, 39> AllSceneIds = {
+const std::array<std::string, 40> AllSceneIds = {
     Book1_SurfaceNormalSphere,
     Book1_GreySphere,
     Book1_ShinyMetalSphere,
@@ -85,7 +86,8 @@ const std::array<std::string, 39> AllSceneIds = {
     Book2_PerlinSphere_TrilinearHermiteCubic,
     Book2_PerlinSphere_NormalNoise,
     Book2_PerlinSphere_TurbulentNoise,
-    Book2_PerlinSphere_MarbleNoise ,
+    Book2_PerlinSphere_MarbleNoise,
+    Book2_Quads,
     Book2_Earth,
     Book2_SimpleLight,
     Book2_SimpleLight_WithOverheadLight,
@@ -232,6 +234,11 @@ const std::unordered_map<std::string, std::function<SceneCameraPair(rreal)>> Ava
     {Book2_Earth, [](const rreal aspect_ratio) {
         SceneCameraPair scp;
         scp.scene = Scenes::Book2::earth(aspect_ratio);
+        return scp;
+    }},
+    {Book2_Quads, [](const rreal aspect_ratio) {
+        SceneCameraPair scp;
+        scp.scene = Scenes::Book2::quads(aspect_ratio);
         return scp;
     }},
     {Book2_SimpleLight, [](const rreal aspect_ratio) {
