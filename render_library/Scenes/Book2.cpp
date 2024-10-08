@@ -10,6 +10,7 @@
 #include "Objects/HittableList.hpp"
 #include "Objects/Rectangles.hpp"
 #include "Objects/Box.hpp"
+#include "Objects/Quad.hpp"
 #include "Objects/Transform/Translate.hpp"
 #include "Objects/Transform/RotateY.hpp"
 #include "Objects/ConstantMedium.hpp"
@@ -228,6 +229,40 @@ SceneDescriptor simple_light(const rreal aspect_ratio, const bool overhead_spher
 
     return sd;
 }
+
+
+SceneDescriptor quads(const rreal aspect_ratio)
+{
+    HittableList world;
+
+    // Materials (colours)
+    auto left_red     = make_shared<Lambertian>(Vec3(static_cast<rreal>(1.0), static_cast<rreal>(0.2), static_cast<rreal>(0.2)));
+    auto back_green   = make_shared<Lambertian>(Vec3(static_cast<rreal>(0.2), static_cast<rreal>(1.0), static_cast<rreal>(0.2)));
+    auto right_blue   = make_shared<Lambertian>(Vec3(static_cast<rreal>(0.2), static_cast<rreal>(0.2), static_cast<rreal>(1.0)));
+    auto upper_orange = make_shared<Lambertian>(Vec3(static_cast<rreal>(1.0), static_cast<rreal>(0.5), static_cast<rreal>(0.0)));
+    auto lower_teal   = make_shared<Lambertian>(Vec3(static_cast<rreal>(0.2), static_cast<rreal>(0.8), static_cast<rreal>(0.8)));
+
+    // Quads
+    world.add(make_shared<Quad>(Vec3(-3, -2, 5), Vec3(0, 0, -4), Vec3(0, 4,  0), left_red));
+    world.add(make_shared<Quad>(Vec3(-2, -2, 0), Vec3(4, 0,  0), Vec3(0, 4,  0), back_green));
+    world.add(make_shared<Quad>(Vec3( 3, -2, 1), Vec3(0, 0,  4), Vec3(0, 4,  0), right_blue));
+    world.add(make_shared<Quad>(Vec3(-2,  3, 1), Vec3(4, 0,  0), Vec3(0, 0,  4), upper_orange));
+    world.add(make_shared<Quad>(Vec3(-2, -3, 5), Vec3(4, 0,  0), Vec3(0, 0, -4), lower_teal));
+
+    SceneDescriptor sd{};
+    sd.scene = make_shared<HittableList>(world);
+    sd.background = sky_blue;
+
+    const Vec3 look_from(0, 0, 9);
+    const Vec3 look_at(0, 0, 0);
+    const Vec3 v_up(0, 1, 0);
+    const rreal dist_to_focus = 10;
+    const rreal aperture = 0;
+    sd.cameras.push_back(make_shared<MotionBlurCamera>(look_from, look_at, v_up, 80, aspect_ratio, aperture, dist_to_focus, 0, 1));
+
+    return sd;
+}
+
 
 SceneDescriptor cornell_box(const rreal aspect_ratio, const CornellBoxConfiguration config) {
     const rreal light_intensity = (config == CornellBoxConfiguration::TwoSmokeBoxes) ? 7 : 15;
