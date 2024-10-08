@@ -1149,803 +1149,853 @@ id_num,scene_id,num_threads,use_copy_per_thread,num_samples,ray_depth,random_see
 1148,book2::perlin_sphere::marble_noise,4,True,75,35,9001,1280x720
 1149,book2::perlin_sphere::marble_noise,4,True,75,35,ASDF,1280x720
 1150,book2::perlin_sphere::marble_noise,4,True,75,50,9001,720x1280
-1151,book2::earth,1,False,25,35,9001,1280x720
-1152,book2::earth,1,False,25,50,ASDF,1280x720
-1153,book2::earth,1,False,25,50,alvin's hot juicebox,720x1280
-1154,book2::earth,1,False,50,50,alvin's hot juicebox,720x720
-1155,book2::earth,1,False,75,20,9001,1280x720
-1156,book2::earth,1,False,75,20,alvin's hot juicebox,720x1280
-1157,book2::earth,1,True,25,20,9001,720x1280
-1158,book2::earth,1,True,25,35,ASDF,720x1280
-1159,book2::earth,1,True,25,35,alvin's hot juicebox,720x1280
-1160,book2::earth,1,True,25,50,9001,720x1280
-1161,book2::earth,1,True,25,50,9001,720x720
-1162,book2::earth,1,True,75,20,9001,720x1280
-1163,book2::earth,1,True,75,50,alvin's hot juicebox,720x1280
-1164,book2::earth,2,False,25,20,alvin's hot juicebox,720x1280
-1165,book2::earth,2,False,25,50,ASDF,720x720
-1166,book2::earth,2,False,50,35,9001,1280x720
-1167,book2::earth,2,False,50,35,alvin's hot juicebox,720x1280
-1168,book2::earth,2,False,50,50,9001,1280x720
-1169,book2::earth,2,False,50,50,ASDF,1280x720
-1170,book2::earth,2,False,75,20,9001,720x1280
-1171,book2::earth,2,False,75,20,alvin's hot juicebox,720x720
-1172,book2::earth,2,False,75,35,ASDF,720x1280
-1173,book2::earth,2,False,75,35,alvin's hot juicebox,720x1280
-1174,book2::earth,2,False,75,50,alvin's hot juicebox,720x720
-1175,book2::earth,2,True,25,35,9001,1280x720
-1176,book2::earth,2,True,25,50,ASDF,1280x720
-1177,book2::earth,2,True,50,20,9001,1280x720
-1178,book2::earth,2,True,50,35,9001,1280x720
-1179,book2::earth,2,True,50,50,alvin's hot juicebox,720x720
-1180,book2::earth,2,True,75,20,alvin's hot juicebox,1280x720
-1181,book2::earth,2,True,75,35,9001,1280x720
-1182,book2::earth,2,True,75,35,ASDF,720x1280
-1183,book2::earth,2,True,75,35,alvin's hot juicebox,720x1280
-1184,book2::earth,2,True,75,50,9001,1280x720
-1185,book2::earth,2,True,75,50,ASDF,720x720
-1186,book2::earth,2,True,75,50,alvin's hot juicebox,1280x720
-1187,book2::earth,4,False,50,20,ASDF,1280x720
-1188,book2::earth,4,False,50,20,ASDF,720x1280
-1189,book2::earth,4,False,50,50,9001,1280x720
-1190,book2::earth,4,False,50,50,alvin's hot juicebox,1280x720
-1191,book2::earth,4,False,75,20,9001,720x720
-1192,book2::earth,4,False,75,35,ASDF,720x720
-1193,book2::earth,4,False,75,50,alvin's hot juicebox,720x720
-1194,book2::earth,4,True,25,20,9001,720x1280
-1195,book2::earth,4,True,25,50,9001,1280x720
-1196,book2::earth,4,True,25,50,alvin's hot juicebox,720x1280
-1197,book2::earth,4,True,50,20,9001,1280x720
-1198,book2::earth,4,True,50,50,alvin's hot juicebox,1280x720
-1199,book2::earth,4,True,75,35,alvin's hot juicebox,720x1280
-1200,book2::earth,4,True,75,50,alvin's hot juicebox,720x720
-1201,book2::simple_light,1,False,25,20,9001,1280x720
-1202,book2::simple_light,1,False,25,20,9001,720x1280
-1203,book2::simple_light,1,False,25,20,9001,720x720
-1204,book2::simple_light,1,False,25,50,alvin's hot juicebox,720x720
-1205,book2::simple_light,1,False,50,20,ASDF,720x720
-1206,book2::simple_light,1,False,50,35,ASDF,1280x720
-1207,book2::simple_light,1,False,50,50,alvin's hot juicebox,1280x720
-1208,book2::simple_light,1,False,75,20,9001,720x720
-1209,book2::simple_light,1,False,75,50,ASDF,720x720
-1210,book2::simple_light,1,False,75,50,alvin's hot juicebox,1280x720
-1211,book2::simple_light,1,False,75,50,alvin's hot juicebox,720x1280
-1212,book2::simple_light,1,True,25,35,alvin's hot juicebox,720x720
-1213,book2::simple_light,1,True,50,35,9001,720x720
-1214,book2::simple_light,1,True,50,35,alvin's hot juicebox,1280x720
-1215,book2::simple_light,1,True,50,35,alvin's hot juicebox,720x1280
-1216,book2::simple_light,1,True,50,50,9001,720x720
-1217,book2::simple_light,1,True,50,50,ASDF,1280x720
-1218,book2::simple_light,1,True,75,20,9001,720x1280
-1219,book2::simple_light,1,True,75,35,alvin's hot juicebox,1280x720
-1220,book2::simple_light,1,True,75,50,9001,720x720
-1221,book2::simple_light,1,True,75,50,ASDF,720x1280
-1222,book2::simple_light,2,False,25,20,9001,1280x720
-1223,book2::simple_light,2,False,25,20,ASDF,1280x720
-1224,book2::simple_light,2,False,25,35,9001,720x1280
-1225,book2::simple_light,2,False,25,50,ASDF,720x1280
-1226,book2::simple_light,2,False,25,50,alvin's hot juicebox,720x1280
-1227,book2::simple_light,2,False,50,20,ASDF,720x720
-1228,book2::simple_light,2,False,50,20,alvin's hot juicebox,1280x720
-1229,book2::simple_light,2,False,50,50,9001,720x1280
-1230,book2::simple_light,2,False,50,50,ASDF,720x720
-1231,book2::simple_light,2,False,50,50,alvin's hot juicebox,1280x720
-1232,book2::simple_light,2,True,50,50,9001,720x1280
-1233,book2::simple_light,2,True,50,50,alvin's hot juicebox,1280x720
-1234,book2::simple_light,2,True,50,50,alvin's hot juicebox,720x720
-1235,book2::simple_light,2,True,75,35,ASDF,720x1280
-1236,book2::simple_light,4,False,25,50,ASDF,720x720
-1237,book2::simple_light,4,False,50,20,9001,720x1280
-1238,book2::simple_light,4,False,50,20,9001,720x720
-1239,book2::simple_light,4,False,50,35,alvin's hot juicebox,720x1280
-1240,book2::simple_light,4,False,75,20,9001,1280x720
-1241,book2::simple_light,4,False,75,20,ASDF,720x720
-1242,book2::simple_light,4,False,75,35,9001,720x720
-1243,book2::simple_light,4,False,75,35,alvin's hot juicebox,720x1280
-1244,book2::simple_light,4,False,75,50,alvin's hot juicebox,1280x720
-1245,book2::simple_light,4,True,25,35,ASDF,1280x720
-1246,book2::simple_light,4,True,50,20,ASDF,1280x720
-1247,book2::simple_light,4,True,50,20,ASDF,720x720
-1248,book2::simple_light,4,True,50,50,9001,720x720
-1249,book2::simple_light,4,True,75,50,9001,1280x720
-1250,book2::simple_light,4,True,75,50,9001,720x720
-1251,book2::simple_light::with_overhead_light,1,False,25,20,ASDF,720x720
-1252,book2::simple_light::with_overhead_light,1,False,25,50,ASDF,720x1280
-1253,book2::simple_light::with_overhead_light,1,False,25,50,alvin's hot juicebox,720x1280
-1254,book2::simple_light::with_overhead_light,1,False,50,20,ASDF,1280x720
-1255,book2::simple_light::with_overhead_light,1,False,50,20,alvin's hot juicebox,1280x720
-1256,book2::simple_light::with_overhead_light,1,False,50,35,9001,1280x720
-1257,book2::simple_light::with_overhead_light,1,False,50,35,alvin's hot juicebox,1280x720
-1258,book2::simple_light::with_overhead_light,1,False,50,35,alvin's hot juicebox,720x1280
-1259,book2::simple_light::with_overhead_light,1,False,75,35,alvin's hot juicebox,720x720
-1260,book2::simple_light::with_overhead_light,1,False,75,50,alvin's hot juicebox,1280x720
-1261,book2::simple_light::with_overhead_light,1,True,25,20,9001,1280x720
-1262,book2::simple_light::with_overhead_light,1,True,25,50,ASDF,1280x720
-1263,book2::simple_light::with_overhead_light,1,True,25,50,ASDF,720x1280
-1264,book2::simple_light::with_overhead_light,1,True,50,35,ASDF,1280x720
-1265,book2::simple_light::with_overhead_light,1,True,50,35,ASDF,720x1280
-1266,book2::simple_light::with_overhead_light,1,True,50,35,alvin's hot juicebox,1280x720
-1267,book2::simple_light::with_overhead_light,1,True,50,50,alvin's hot juicebox,1280x720
-1268,book2::simple_light::with_overhead_light,1,True,50,50,alvin's hot juicebox,720x720
-1269,book2::simple_light::with_overhead_light,1,True,75,20,ASDF,1280x720
-1270,book2::simple_light::with_overhead_light,1,True,75,20,ASDF,720x1280
-1271,book2::simple_light::with_overhead_light,1,True,75,35,alvin's hot juicebox,720x1280
-1272,book2::simple_light::with_overhead_light,2,False,25,20,alvin's hot juicebox,1280x720
-1273,book2::simple_light::with_overhead_light,2,False,25,35,ASDF,720x720
-1274,book2::simple_light::with_overhead_light,2,False,25,50,ASDF,1280x720
-1275,book2::simple_light::with_overhead_light,2,False,50,35,alvin's hot juicebox,720x1280
-1276,book2::simple_light::with_overhead_light,2,False,75,20,9001,1280x720
-1277,book2::simple_light::with_overhead_light,2,False,75,20,alvin's hot juicebox,720x1280
-1278,book2::simple_light::with_overhead_light,2,False,75,50,ASDF,720x1280
-1279,book2::simple_light::with_overhead_light,2,True,25,20,ASDF,720x1280
-1280,book2::simple_light::with_overhead_light,2,True,25,50,ASDF,720x1280
-1281,book2::simple_light::with_overhead_light,2,True,50,35,ASDF,720x720
-1282,book2::simple_light::with_overhead_light,2,True,50,35,alvin's hot juicebox,720x1280
-1283,book2::simple_light::with_overhead_light,2,True,50,50,ASDF,720x720
-1284,book2::simple_light::with_overhead_light,2,True,75,20,alvin's hot juicebox,720x1280
-1285,book2::simple_light::with_overhead_light,2,True,75,50,alvin's hot juicebox,1280x720
-1286,book2::simple_light::with_overhead_light,4,False,25,20,alvin's hot juicebox,1280x720
-1287,book2::simple_light::with_overhead_light,4,False,25,35,ASDF,1280x720
-1288,book2::simple_light::with_overhead_light,4,False,25,50,9001,1280x720
-1289,book2::simple_light::with_overhead_light,4,False,50,20,ASDF,720x1280
-1290,book2::simple_light::with_overhead_light,4,False,50,35,ASDF,1280x720
-1291,book2::simple_light::with_overhead_light,4,False,75,20,alvin's hot juicebox,720x1280
-1292,book2::simple_light::with_overhead_light,4,False,75,35,alvin's hot juicebox,1280x720
-1293,book2::simple_light::with_overhead_light,4,True,25,20,ASDF,720x720
-1294,book2::simple_light::with_overhead_light,4,True,25,50,ASDF,1280x720
-1295,book2::simple_light::with_overhead_light,4,True,25,50,ASDF,720x1280
-1296,book2::simple_light::with_overhead_light,4,True,50,20,ASDF,1280x720
-1297,book2::simple_light::with_overhead_light,4,True,50,35,ASDF,720x1280
-1298,book2::simple_light::with_overhead_light,4,True,50,50,9001,720x720
-1299,book2::simple_light::with_overhead_light,4,True,50,50,ASDF,720x720
-1300,book2::simple_light::with_overhead_light,4,True,75,35,alvin's hot juicebox,1280x720
-1301,book2::cornell_box::empty,1,False,25,20,alvin's hot juicebox,1280x720
-1302,book2::cornell_box::empty,1,False,50,20,ASDF,720x720
-1303,book2::cornell_box::empty,1,False,50,20,alvin's hot juicebox,1280x720
-1304,book2::cornell_box::empty,1,False,50,35,9001,720x720
-1305,book2::cornell_box::empty,1,False,50,35,ASDF,720x720
-1306,book2::cornell_box::empty,1,False,50,50,9001,1280x720
-1307,book2::cornell_box::empty,1,True,25,20,9001,720x720
-1308,book2::cornell_box::empty,1,True,25,50,9001,720x720
-1309,book2::cornell_box::empty,1,True,50,20,9001,1280x720
-1310,book2::cornell_box::empty,1,True,50,20,ASDF,1280x720
-1311,book2::cornell_box::empty,1,True,50,20,ASDF,720x720
-1312,book2::cornell_box::empty,1,True,50,50,9001,720x1280
-1313,book2::cornell_box::empty,1,True,50,50,9001,720x720
-1314,book2::cornell_box::empty,1,True,50,50,alvin's hot juicebox,720x1280
-1315,book2::cornell_box::empty,1,True,75,20,ASDF,720x720
-1316,book2::cornell_box::empty,1,True,75,35,9001,1280x720
-1317,book2::cornell_box::empty,1,True,75,35,alvin's hot juicebox,720x1280
-1318,book2::cornell_box::empty,2,False,25,20,ASDF,1280x720
-1319,book2::cornell_box::empty,2,False,25,20,alvin's hot juicebox,720x720
-1320,book2::cornell_box::empty,2,False,25,35,alvin's hot juicebox,720x720
-1321,book2::cornell_box::empty,2,False,25,50,alvin's hot juicebox,1280x720
-1322,book2::cornell_box::empty,2,False,50,20,9001,720x1280
-1323,book2::cornell_box::empty,2,False,50,20,ASDF,720x1280
-1324,book2::cornell_box::empty,2,False,75,20,ASDF,720x720
-1325,book2::cornell_box::empty,2,False,75,50,alvin's hot juicebox,1280x720
-1326,book2::cornell_box::empty,2,True,25,20,9001,1280x720
-1327,book2::cornell_box::empty,2,True,50,20,ASDF,1280x720
-1328,book2::cornell_box::empty,2,True,50,20,ASDF,720x720
-1329,book2::cornell_box::empty,2,True,50,20,alvin's hot juicebox,720x720
-1330,book2::cornell_box::empty,2,True,50,50,alvin's hot juicebox,1280x720
-1331,book2::cornell_box::empty,2,True,75,20,9001,1280x720
-1332,book2::cornell_box::empty,2,True,75,35,9001,1280x720
-1333,book2::cornell_box::empty,2,True,75,35,ASDF,1280x720
-1334,book2::cornell_box::empty,4,False,25,20,ASDF,720x1280
-1335,book2::cornell_box::empty,4,False,25,20,alvin's hot juicebox,1280x720
-1336,book2::cornell_box::empty,4,False,25,50,9001,720x1280
-1337,book2::cornell_box::empty,4,False,75,35,9001,720x1280
-1338,book2::cornell_box::empty,4,False,75,35,alvin's hot juicebox,1280x720
-1339,book2::cornell_box::empty,4,True,25,20,alvin's hot juicebox,720x720
-1340,book2::cornell_box::empty,4,True,25,50,alvin's hot juicebox,1280x720
-1341,book2::cornell_box::empty,4,True,50,20,9001,720x720
-1342,book2::cornell_box::empty,4,True,50,20,ASDF,1280x720
-1343,book2::cornell_box::empty,4,True,50,50,ASDF,1280x720
-1344,book2::cornell_box::empty,4,True,50,50,ASDF,720x1280
-1345,book2::cornell_box::empty,4,True,75,20,ASDF,1280x720
-1346,book2::cornell_box::empty,4,True,75,20,alvin's hot juicebox,1280x720
-1347,book2::cornell_box::empty,4,True,75,20,alvin's hot juicebox,720x1280
-1348,book2::cornell_box::empty,4,True,75,35,9001,720x720
-1349,book2::cornell_box::empty,4,True,75,35,ASDF,720x720
-1350,book2::cornell_box::empty,4,True,75,35,alvin's hot juicebox,720x720
-1351,book2::cornell_box::two_boxes,1,False,25,50,9001,720x720
-1352,book2::cornell_box::two_boxes,1,False,50,35,ASDF,720x1280
-1353,book2::cornell_box::two_boxes,1,False,50,50,9001,1280x720
-1354,book2::cornell_box::two_boxes,1,False,75,20,9001,1280x720
-1355,book2::cornell_box::two_boxes,1,False,75,35,9001,720x720
-1356,book2::cornell_box::two_boxes,1,False,75,35,alvin's hot juicebox,1280x720
-1357,book2::cornell_box::two_boxes,1,False,75,50,alvin's hot juicebox,1280x720
-1358,book2::cornell_box::two_boxes,1,True,50,20,9001,720x720
-1359,book2::cornell_box::two_boxes,1,True,50,20,alvin's hot juicebox,720x720
-1360,book2::cornell_box::two_boxes,1,True,75,20,9001,720x1280
-1361,book2::cornell_box::two_boxes,2,False,25,50,ASDF,720x1280
-1362,book2::cornell_box::two_boxes,2,False,50,50,alvin's hot juicebox,720x1280
-1363,book2::cornell_box::two_boxes,2,False,75,35,ASDF,1280x720
-1364,book2::cornell_box::two_boxes,2,False,75,50,9001,720x1280
-1365,book2::cornell_box::two_boxes,2,False,75,50,9001,720x720
-1366,book2::cornell_box::two_boxes,2,False,75,50,alvin's hot juicebox,720x720
-1367,book2::cornell_box::two_boxes,2,True,25,35,ASDF,1280x720
-1368,book2::cornell_box::two_boxes,2,True,25,35,ASDF,720x1280
-1369,book2::cornell_box::two_boxes,2,True,50,20,9001,720x720
-1370,book2::cornell_box::two_boxes,2,True,50,20,alvin's hot juicebox,720x1280
-1371,book2::cornell_box::two_boxes,2,True,50,35,ASDF,720x720
-1372,book2::cornell_box::two_boxes,2,True,50,50,9001,720x720
-1373,book2::cornell_box::two_boxes,2,True,75,20,9001,720x1280
-1374,book2::cornell_box::two_boxes,2,True,75,20,alvin's hot juicebox,720x1280
-1375,book2::cornell_box::two_boxes,2,True,75,50,ASDF,720x1280
-1376,book2::cornell_box::two_boxes,4,False,25,20,ASDF,720x1280
-1377,book2::cornell_box::two_boxes,4,False,25,35,alvin's hot juicebox,720x1280
-1378,book2::cornell_box::two_boxes,4,False,25,50,ASDF,720x1280
-1379,book2::cornell_box::two_boxes,4,False,50,20,ASDF,1280x720
-1380,book2::cornell_box::two_boxes,4,False,50,20,alvin's hot juicebox,720x720
-1381,book2::cornell_box::two_boxes,4,False,50,35,ASDF,720x1280
-1382,book2::cornell_box::two_boxes,4,False,50,35,alvin's hot juicebox,720x1280
-1383,book2::cornell_box::two_boxes,4,False,75,20,9001,1280x720
-1384,book2::cornell_box::two_boxes,4,False,75,20,alvin's hot juicebox,720x720
-1385,book2::cornell_box::two_boxes,4,False,75,35,9001,720x1280
-1386,book2::cornell_box::two_boxes,4,False,75,35,9001,720x720
-1387,book2::cornell_box::two_boxes,4,False,75,35,ASDF,720x720
-1388,book2::cornell_box::two_boxes,4,False,75,35,alvin's hot juicebox,720x1280
-1389,book2::cornell_box::two_boxes,4,True,25,20,ASDF,720x1280
-1390,book2::cornell_box::two_boxes,4,True,25,35,ASDF,1280x720
-1391,book2::cornell_box::two_boxes,4,True,25,35,ASDF,720x720
-1392,book2::cornell_box::two_boxes,4,True,25,35,alvin's hot juicebox,1280x720
-1393,book2::cornell_box::two_boxes,4,True,50,20,9001,1280x720
-1394,book2::cornell_box::two_boxes,4,True,50,20,alvin's hot juicebox,720x1280
-1395,book2::cornell_box::two_boxes,4,True,50,20,alvin's hot juicebox,720x720
-1396,book2::cornell_box::two_boxes,4,True,50,35,9001,720x1280
-1397,book2::cornell_box::two_boxes,4,True,50,50,9001,720x1280
-1398,book2::cornell_box::two_boxes,4,True,75,20,9001,720x720
-1399,book2::cornell_box::two_boxes,4,True,75,35,alvin's hot juicebox,1280x720
-1400,book2::cornell_box::two_boxes,4,True,75,50,alvin's hot juicebox,720x720
-1401,book2::cornell_box::two_rotated_boxes,1,False,25,35,9001,1280x720
-1402,book2::cornell_box::two_rotated_boxes,1,False,25,50,9001,1280x720
-1403,book2::cornell_box::two_rotated_boxes,1,False,50,20,ASDF,720x720
-1404,book2::cornell_box::two_rotated_boxes,1,False,50,35,ASDF,720x1280
-1405,book2::cornell_box::two_rotated_boxes,1,False,75,20,9001,1280x720
-1406,book2::cornell_box::two_rotated_boxes,1,False,75,35,ASDF,720x720
-1407,book2::cornell_box::two_rotated_boxes,1,False,75,35,alvin's hot juicebox,720x720
-1408,book2::cornell_box::two_rotated_boxes,1,False,75,50,9001,1280x720
-1409,book2::cornell_box::two_rotated_boxes,1,True,25,20,alvin's hot juicebox,720x1280
-1410,book2::cornell_box::two_rotated_boxes,1,True,50,35,ASDF,1280x720
-1411,book2::cornell_box::two_rotated_boxes,1,True,50,50,9001,720x720
-1412,book2::cornell_box::two_rotated_boxes,1,True,75,20,alvin's hot juicebox,720x1280
-1413,book2::cornell_box::two_rotated_boxes,1,True,75,35,9001,1280x720
-1414,book2::cornell_box::two_rotated_boxes,1,True,75,35,ASDF,1280x720
-1415,book2::cornell_box::two_rotated_boxes,1,True,75,50,ASDF,1280x720
-1416,book2::cornell_box::two_rotated_boxes,2,False,25,35,ASDF,720x1280
-1417,book2::cornell_box::two_rotated_boxes,2,False,25,50,ASDF,720x1280
-1418,book2::cornell_box::two_rotated_boxes,2,False,50,35,ASDF,720x720
-1419,book2::cornell_box::two_rotated_boxes,2,False,50,50,alvin's hot juicebox,720x1280
-1420,book2::cornell_box::two_rotated_boxes,2,False,75,20,alvin's hot juicebox,1280x720
-1421,book2::cornell_box::two_rotated_boxes,2,True,25,35,ASDF,720x720
-1422,book2::cornell_box::two_rotated_boxes,2,True,25,50,ASDF,720x1280
-1423,book2::cornell_box::two_rotated_boxes,2,True,25,50,ASDF,720x720
-1424,book2::cornell_box::two_rotated_boxes,2,True,50,20,9001,720x1280
-1425,book2::cornell_box::two_rotated_boxes,2,True,50,20,ASDF,720x720
-1426,book2::cornell_box::two_rotated_boxes,2,True,75,20,9001,720x1280
-1427,book2::cornell_box::two_rotated_boxes,2,True,75,20,alvin's hot juicebox,720x720
-1428,book2::cornell_box::two_rotated_boxes,2,True,75,35,9001,1280x720
-1429,book2::cornell_box::two_rotated_boxes,4,False,25,20,9001,1280x720
-1430,book2::cornell_box::two_rotated_boxes,4,False,25,20,ASDF,720x1280
-1431,book2::cornell_box::two_rotated_boxes,4,False,25,20,ASDF,720x720
-1432,book2::cornell_box::two_rotated_boxes,4,False,25,35,ASDF,1280x720
-1433,book2::cornell_box::two_rotated_boxes,4,False,25,50,9001,1280x720
-1434,book2::cornell_box::two_rotated_boxes,4,False,50,35,9001,720x720
-1435,book2::cornell_box::two_rotated_boxes,4,False,50,50,9001,720x720
-1436,book2::cornell_box::two_rotated_boxes,4,False,50,50,ASDF,1280x720
-1437,book2::cornell_box::two_rotated_boxes,4,False,75,20,alvin's hot juicebox,1280x720
-1438,book2::cornell_box::two_rotated_boxes,4,False,75,20,alvin's hot juicebox,720x720
-1439,book2::cornell_box::two_rotated_boxes,4,False,75,35,9001,720x720
-1440,book2::cornell_box::two_rotated_boxes,4,False,75,35,alvin's hot juicebox,1280x720
-1441,book2::cornell_box::two_rotated_boxes,4,False,75,35,alvin's hot juicebox,720x720
-1442,book2::cornell_box::two_rotated_boxes,4,True,25,20,ASDF,720x720
-1443,book2::cornell_box::two_rotated_boxes,4,True,25,50,9001,720x1280
-1444,book2::cornell_box::two_rotated_boxes,4,True,25,50,ASDF,1280x720
-1445,book2::cornell_box::two_rotated_boxes,4,True,25,50,alvin's hot juicebox,720x1280
-1446,book2::cornell_box::two_rotated_boxes,4,True,50,20,9001,1280x720
-1447,book2::cornell_box::two_rotated_boxes,4,True,50,20,alvin's hot juicebox,720x720
-1448,book2::cornell_box::two_rotated_boxes,4,True,75,20,9001,720x720
-1449,book2::cornell_box::two_rotated_boxes,4,True,75,50,ASDF,720x1280
-1450,book2::cornell_box::two_rotated_boxes,4,True,75,50,alvin's hot juicebox,1280x720
-1451,book2::cornell_box::two_smoke_boxes,1,False,25,20,9001,720x1280
-1452,book2::cornell_box::two_smoke_boxes,1,False,25,20,alvin's hot juicebox,720x1280
-1453,book2::cornell_box::two_smoke_boxes,1,False,25,35,ASDF,1280x720
-1454,book2::cornell_box::two_smoke_boxes,1,False,25,50,9001,720x720
-1455,book2::cornell_box::two_smoke_boxes,1,False,50,20,alvin's hot juicebox,720x720
-1456,book2::cornell_box::two_smoke_boxes,1,False,50,50,9001,720x1280
-1457,book2::cornell_box::two_smoke_boxes,1,False,75,20,ASDF,720x1280
-1458,book2::cornell_box::two_smoke_boxes,1,False,75,35,9001,720x720
-1459,book2::cornell_box::two_smoke_boxes,1,False,75,50,alvin's hot juicebox,1280x720
-1460,book2::cornell_box::two_smoke_boxes,1,True,25,35,9001,720x1280
-1461,book2::cornell_box::two_smoke_boxes,1,True,25,35,9001,720x720
-1462,book2::cornell_box::two_smoke_boxes,1,True,25,35,alvin's hot juicebox,720x720
-1463,book2::cornell_box::two_smoke_boxes,1,True,25,50,9001,720x720
-1464,book2::cornell_box::two_smoke_boxes,1,True,50,20,9001,720x720
-1465,book2::cornell_box::two_smoke_boxes,1,True,50,50,9001,1280x720
-1466,book2::cornell_box::two_smoke_boxes,1,True,75,20,alvin's hot juicebox,1280x720
-1467,book2::cornell_box::two_smoke_boxes,1,True,75,20,alvin's hot juicebox,720x720
-1468,book2::cornell_box::two_smoke_boxes,2,False,25,20,alvin's hot juicebox,720x720
-1469,book2::cornell_box::two_smoke_boxes,2,False,25,50,9001,720x720
-1470,book2::cornell_box::two_smoke_boxes,2,False,25,50,ASDF,720x1280
-1471,book2::cornell_box::two_smoke_boxes,2,False,50,50,alvin's hot juicebox,720x1280
-1472,book2::cornell_box::two_smoke_boxes,2,False,75,20,9001,720x720
-1473,book2::cornell_box::two_smoke_boxes,2,False,75,20,alvin's hot juicebox,720x720
-1474,book2::cornell_box::two_smoke_boxes,2,False,75,35,9001,720x1280
-1475,book2::cornell_box::two_smoke_boxes,2,False,75,35,9001,720x720
-1476,book2::cornell_box::two_smoke_boxes,2,False,75,50,9001,1280x720
-1477,book2::cornell_box::two_smoke_boxes,2,False,75,50,9001,720x1280
-1478,book2::cornell_box::two_smoke_boxes,2,True,25,20,alvin's hot juicebox,720x720
-1479,book2::cornell_box::two_smoke_boxes,2,True,25,50,alvin's hot juicebox,1280x720
-1480,book2::cornell_box::two_smoke_boxes,2,True,50,20,ASDF,1280x720
-1481,book2::cornell_box::two_smoke_boxes,2,True,50,35,alvin's hot juicebox,1280x720
-1482,book2::cornell_box::two_smoke_boxes,2,True,50,50,9001,1280x720
-1483,book2::cornell_box::two_smoke_boxes,2,True,75,20,alvin's hot juicebox,1280x720
-1484,book2::cornell_box::two_smoke_boxes,4,False,25,20,9001,720x1280
-1485,book2::cornell_box::two_smoke_boxes,4,False,25,20,alvin's hot juicebox,720x720
-1486,book2::cornell_box::two_smoke_boxes,4,False,25,35,ASDF,720x1280
-1487,book2::cornell_box::two_smoke_boxes,4,False,25,35,alvin's hot juicebox,1280x720
-1488,book2::cornell_box::two_smoke_boxes,4,False,50,20,9001,720x720
-1489,book2::cornell_box::two_smoke_boxes,4,False,50,50,ASDF,1280x720
-1490,book2::cornell_box::two_smoke_boxes,4,False,75,20,9001,720x720
-1491,book2::cornell_box::two_smoke_boxes,4,False,75,35,9001,720x1280
-1492,book2::cornell_box::two_smoke_boxes,4,False,75,35,9001,720x720
-1493,book2::cornell_box::two_smoke_boxes,4,False,75,50,9001,720x1280
-1494,book2::cornell_box::two_smoke_boxes,4,True,25,20,alvin's hot juicebox,720x720
-1495,book2::cornell_box::two_smoke_boxes,4,True,25,50,ASDF,720x1280
-1496,book2::cornell_box::two_smoke_boxes,4,True,25,50,alvin's hot juicebox,720x1280
-1497,book2::cornell_box::two_smoke_boxes,4,True,50,35,ASDF,720x1280
-1498,book2::cornell_box::two_smoke_boxes,4,True,50,35,ASDF,720x720
-1499,book2::cornell_box::two_smoke_boxes,4,True,50,50,alvin's hot juicebox,720x1280
-1500,book2::cornell_box::two_smoke_boxes,4,True,75,50,alvin's hot juicebox,720x720
-1501,book2::final_scene,1,False,25,20,9001,1280x720
-1502,book2::final_scene,1,False,50,35,ASDF,1280x720
-1503,book2::final_scene,1,False,50,50,ASDF,1280x720
-1504,book2::final_scene,1,False,50,50,ASDF,720x1280
-1505,book2::final_scene,1,False,75,20,ASDF,1280x720
-1506,book2::final_scene,1,False,75,20,ASDF,720x1280
-1507,book2::final_scene,1,False,75,35,ASDF,720x720
-1508,book2::final_scene,1,False,75,50,alvin's hot juicebox,1280x720
-1509,book2::final_scene,1,True,25,20,9001,1280x720
-1510,book2::final_scene,1,True,25,50,9001,1280x720
-1511,book2::final_scene,1,True,50,35,ASDF,720x1280
-1512,book2::final_scene,1,True,50,35,alvin's hot juicebox,1280x720
-1513,book2::final_scene,1,True,50,50,ASDF,720x1280
-1514,book2::final_scene,1,True,50,50,alvin's hot juicebox,1280x720
-1515,book2::final_scene,1,True,75,35,alvin's hot juicebox,720x720
-1516,book2::final_scene,2,False,25,35,ASDF,720x1280
-1517,book2::final_scene,2,False,25,50,alvin's hot juicebox,1280x720
-1518,book2::final_scene,2,False,50,35,ASDF,1280x720
-1519,book2::final_scene,2,False,75,35,alvin's hot juicebox,720x720
-1520,book2::final_scene,2,False,75,50,alvin's hot juicebox,1280x720
-1521,book2::final_scene,2,True,25,35,ASDF,720x1280
-1522,book2::final_scene,2,True,25,50,9001,720x720
-1523,book2::final_scene,2,True,50,35,alvin's hot juicebox,720x720
-1524,book2::final_scene,2,True,50,50,9001,720x1280
-1525,book2::final_scene,2,True,50,50,9001,720x720
-1526,book2::final_scene,2,True,50,50,ASDF,720x1280
-1527,book2::final_scene,2,True,75,20,ASDF,720x1280
-1528,book2::final_scene,2,True,75,50,9001,720x720
-1529,book2::final_scene,4,False,25,35,9001,1280x720
-1530,book2::final_scene,4,False,25,35,alvin's hot juicebox,720x1280
-1531,book2::final_scene,4,False,50,20,alvin's hot juicebox,720x1280
-1532,book2::final_scene,4,False,50,35,9001,720x1280
-1533,book2::final_scene,4,False,50,35,alvin's hot juicebox,720x1280
-1534,book2::final_scene,4,False,75,20,alvin's hot juicebox,720x1280
-1535,book2::final_scene,4,False,75,20,alvin's hot juicebox,720x720
-1536,book2::final_scene,4,False,75,35,9001,1280x720
-1537,book2::final_scene,4,False,75,50,alvin's hot juicebox,1280x720
-1538,book2::final_scene,4,False,75,50,alvin's hot juicebox,720x720
-1539,book2::final_scene,4,True,25,20,9001,1280x720
-1540,book2::final_scene,4,True,25,20,9001,720x1280
-1541,book2::final_scene,4,True,25,20,ASDF,720x1280
-1542,book2::final_scene,4,True,25,35,ASDF,1280x720
-1543,book2::final_scene,4,True,25,35,ASDF,720x720
-1544,book2::final_scene,4,True,25,35,alvin's hot juicebox,1280x720
-1545,book2::final_scene,4,True,25,50,ASDF,720x1280
-1546,book2::final_scene,4,True,25,50,ASDF,720x720
-1547,book2::final_scene,4,True,50,50,alvin's hot juicebox,720x720
-1548,book2::final_scene,4,True,75,20,9001,1280x720
-1549,book2::final_scene,4,True,75,35,alvin's hot juicebox,1280x720
-1550,book2::final_scene,4,True,75,50,9001,720x720
-1551,book3::cornell_box::two_boxes,1,False,25,50,ASDF,720x1280
-1552,book3::cornell_box::two_boxes,1,False,50,35,alvin's hot juicebox,720x720
-1553,book3::cornell_box::two_boxes,1,False,75,20,alvin's hot juicebox,1280x720
-1554,book3::cornell_box::two_boxes,1,True,25,20,ASDF,720x720
-1555,book3::cornell_box::two_boxes,1,True,25,20,alvin's hot juicebox,720x720
-1556,book3::cornell_box::two_boxes,1,True,50,20,ASDF,720x1280
-1557,book3::cornell_box::two_boxes,1,True,50,20,ASDF,720x720
-1558,book3::cornell_box::two_boxes,1,True,50,50,9001,720x720
-1559,book3::cornell_box::two_boxes,1,True,75,20,alvin's hot juicebox,1280x720
-1560,book3::cornell_box::two_boxes,1,True,75,20,alvin's hot juicebox,720x1280
-1561,book3::cornell_box::two_boxes,1,True,75,35,9001,720x1280
-1562,book3::cornell_box::two_boxes,1,True,75,35,alvin's hot juicebox,1280x720
-1563,book3::cornell_box::two_boxes,1,True,75,50,9001,720x1280
-1564,book3::cornell_box::two_boxes,1,True,75,50,ASDF,720x1280
-1565,book3::cornell_box::two_boxes,1,True,75,50,alvin's hot juicebox,1280x720
-1566,book3::cornell_box::two_boxes,1,True,75,50,alvin's hot juicebox,720x720
-1567,book3::cornell_box::two_boxes,2,False,25,35,9001,1280x720
-1568,book3::cornell_box::two_boxes,2,False,25,50,9001,720x1280
-1569,book3::cornell_box::two_boxes,2,False,25,50,ASDF,720x720
-1570,book3::cornell_box::two_boxes,2,False,25,50,alvin's hot juicebox,720x1280
-1571,book3::cornell_box::two_boxes,2,False,50,50,alvin's hot juicebox,720x720
-1572,book3::cornell_box::two_boxes,2,False,75,20,9001,1280x720
-1573,book3::cornell_box::two_boxes,2,False,75,35,alvin's hot juicebox,720x720
-1574,book3::cornell_box::two_boxes,2,False,75,50,9001,1280x720
-1575,book3::cornell_box::two_boxes,2,False,75,50,alvin's hot juicebox,1280x720
-1576,book3::cornell_box::two_boxes,2,True,25,20,9001,1280x720
-1577,book3::cornell_box::two_boxes,2,True,25,20,alvin's hot juicebox,720x720
-1578,book3::cornell_box::two_boxes,2,True,25,50,9001,720x720
-1579,book3::cornell_box::two_boxes,2,True,50,35,alvin's hot juicebox,720x720
-1580,book3::cornell_box::two_boxes,2,True,75,35,9001,1280x720
-1581,book3::cornell_box::two_boxes,2,True,75,50,9001,720x1280
-1582,book3::cornell_box::two_boxes,4,False,25,20,9001,720x720
-1583,book3::cornell_box::two_boxes,4,False,25,20,ASDF,1280x720
-1584,book3::cornell_box::two_boxes,4,False,25,35,ASDF,720x720
-1585,book3::cornell_box::two_boxes,4,False,25,35,alvin's hot juicebox,1280x720
-1586,book3::cornell_box::two_boxes,4,False,25,50,alvin's hot juicebox,1280x720
-1587,book3::cornell_box::two_boxes,4,False,25,50,alvin's hot juicebox,720x1280
-1588,book3::cornell_box::two_boxes,4,False,50,35,9001,720x720
-1589,book3::cornell_box::two_boxes,4,False,50,50,9001,720x720
-1590,book3::cornell_box::two_boxes,4,False,50,50,alvin's hot juicebox,720x720
-1591,book3::cornell_box::two_boxes,4,False,75,35,ASDF,1280x720
-1592,book3::cornell_box::two_boxes,4,False,75,50,9001,1280x720
-1593,book3::cornell_box::two_boxes,4,True,25,35,ASDF,720x720
-1594,book3::cornell_box::two_boxes,4,True,25,35,alvin's hot juicebox,1280x720
-1595,book3::cornell_box::two_boxes,4,True,25,50,9001,1280x720
-1596,book3::cornell_box::two_boxes,4,True,25,50,ASDF,720x1280
-1597,book3::cornell_box::two_boxes,4,True,25,50,alvin's hot juicebox,720x720
-1598,book3::cornell_box::two_boxes,4,True,50,20,ASDF,720x720
-1599,book3::cornell_box::two_boxes,4,True,75,20,ASDF,720x720
-1600,book3::cornell_box::two_boxes,4,True,75,35,9001,720x720
-1601,book3::cornell_box::two_boxes_one_mirror,1,False,25,20,ASDF,720x1280
-1602,book3::cornell_box::two_boxes_one_mirror,1,False,25,20,alvin's hot juicebox,720x1280
-1603,book3::cornell_box::two_boxes_one_mirror,1,False,25,35,alvin's hot juicebox,720x1280
-1604,book3::cornell_box::two_boxes_one_mirror,1,False,25,50,ASDF,1280x720
-1605,book3::cornell_box::two_boxes_one_mirror,1,False,50,35,9001,720x1280
-1606,book3::cornell_box::two_boxes_one_mirror,1,False,50,50,9001,1280x720
-1607,book3::cornell_box::two_boxes_one_mirror,1,False,50,50,alvin's hot juicebox,720x720
-1608,book3::cornell_box::two_boxes_one_mirror,1,False,75,20,ASDF,720x720
-1609,book3::cornell_box::two_boxes_one_mirror,1,False,75,20,alvin's hot juicebox,720x720
-1610,book3::cornell_box::two_boxes_one_mirror,1,False,75,35,ASDF,1280x720
-1611,book3::cornell_box::two_boxes_one_mirror,1,False,75,35,ASDF,720x1280
-1612,book3::cornell_box::two_boxes_one_mirror,1,True,25,35,alvin's hot juicebox,720x720
-1613,book3::cornell_box::two_boxes_one_mirror,1,True,50,20,ASDF,1280x720
-1614,book3::cornell_box::two_boxes_one_mirror,1,True,50,35,alvin's hot juicebox,1280x720
-1615,book3::cornell_box::two_boxes_one_mirror,1,True,50,50,9001,1280x720
-1616,book3::cornell_box::two_boxes_one_mirror,1,True,75,20,ASDF,720x720
-1617,book3::cornell_box::two_boxes_one_mirror,1,True,75,20,alvin's hot juicebox,1280x720
-1618,book3::cornell_box::two_boxes_one_mirror,1,True,75,35,9001,720x720
-1619,book3::cornell_box::two_boxes_one_mirror,1,True,75,50,9001,1280x720
-1620,book3::cornell_box::two_boxes_one_mirror,1,True,75,50,alvin's hot juicebox,720x720
-1621,book3::cornell_box::two_boxes_one_mirror,2,False,25,20,ASDF,1280x720
-1622,book3::cornell_box::two_boxes_one_mirror,2,False,25,35,9001,720x720
-1623,book3::cornell_box::two_boxes_one_mirror,2,False,25,35,alvin's hot juicebox,720x720
-1624,book3::cornell_box::two_boxes_one_mirror,2,False,25,50,alvin's hot juicebox,720x720
-1625,book3::cornell_box::two_boxes_one_mirror,2,False,50,35,alvin's hot juicebox,720x1280
-1626,book3::cornell_box::two_boxes_one_mirror,2,False,50,50,alvin's hot juicebox,720x720
-1627,book3::cornell_box::two_boxes_one_mirror,2,False,75,20,ASDF,720x720
-1628,book3::cornell_box::two_boxes_one_mirror,2,False,75,35,9001,1280x720
-1629,book3::cornell_box::two_boxes_one_mirror,2,False,75,50,9001,720x720
-1630,book3::cornell_box::two_boxes_one_mirror,2,False,75,50,ASDF,1280x720
-1631,book3::cornell_box::two_boxes_one_mirror,2,True,50,20,9001,720x1280
-1632,book3::cornell_box::two_boxes_one_mirror,2,True,50,20,ASDF,1280x720
-1633,book3::cornell_box::two_boxes_one_mirror,2,True,75,20,alvin's hot juicebox,720x1280
-1634,book3::cornell_box::two_boxes_one_mirror,2,True,75,35,ASDF,720x1280
-1635,book3::cornell_box::two_boxes_one_mirror,4,False,25,20,9001,1280x720
-1636,book3::cornell_box::two_boxes_one_mirror,4,False,25,35,ASDF,720x720
-1637,book3::cornell_box::two_boxes_one_mirror,4,False,25,50,alvin's hot juicebox,1280x720
-1638,book3::cornell_box::two_boxes_one_mirror,4,False,50,50,9001,720x1280
-1639,book3::cornell_box::two_boxes_one_mirror,4,False,50,50,9001,720x720
-1640,book3::cornell_box::two_boxes_one_mirror,4,False,75,20,9001,720x1280
-1641,book3::cornell_box::two_boxes_one_mirror,4,False,75,35,9001,720x720
-1642,book3::cornell_box::two_boxes_one_mirror,4,False,75,50,ASDF,720x1280
-1643,book3::cornell_box::two_boxes_one_mirror,4,False,75,50,alvin's hot juicebox,1280x720
-1644,book3::cornell_box::two_boxes_one_mirror,4,True,25,35,9001,1280x720
-1645,book3::cornell_box::two_boxes_one_mirror,4,True,25,35,9001,720x720
-1646,book3::cornell_box::two_boxes_one_mirror,4,True,25,50,ASDF,720x1280
-1647,book3::cornell_box::two_boxes_one_mirror,4,True,50,20,ASDF,1280x720
-1648,book3::cornell_box::two_boxes_one_mirror,4,True,50,35,9001,1280x720
-1649,book3::cornell_box::two_boxes_one_mirror,4,True,75,35,9001,1280x720
-1650,book3::cornell_box::two_boxes_one_mirror,4,True,75,50,alvin's hot juicebox,1280x720
-1651,book3::cornell_box::one_box_one_glass_sphere,1,False,25,35,ASDF,1280x720
-1652,book3::cornell_box::one_box_one_glass_sphere,1,False,25,35,ASDF,720x720
-1653,book3::cornell_box::one_box_one_glass_sphere,1,False,50,20,9001,720x720
-1654,book3::cornell_box::one_box_one_glass_sphere,1,False,50,35,alvin's hot juicebox,720x1280
-1655,book3::cornell_box::one_box_one_glass_sphere,1,False,50,50,9001,720x720
-1656,book3::cornell_box::one_box_one_glass_sphere,1,False,50,50,ASDF,1280x720
-1657,book3::cornell_box::one_box_one_glass_sphere,1,False,50,50,alvin's hot juicebox,720x1280
-1658,book3::cornell_box::one_box_one_glass_sphere,1,False,75,20,9001,720x720
-1659,book3::cornell_box::one_box_one_glass_sphere,1,False,75,20,ASDF,720x1280
-1660,book3::cornell_box::one_box_one_glass_sphere,1,False,75,50,9001,1280x720
-1661,book3::cornell_box::one_box_one_glass_sphere,1,False,75,50,alvin's hot juicebox,1280x720
-1662,book3::cornell_box::one_box_one_glass_sphere,1,False,75,50,alvin's hot juicebox,720x1280
-1663,book3::cornell_box::one_box_one_glass_sphere,1,True,25,20,9001,1280x720
-1664,book3::cornell_box::one_box_one_glass_sphere,1,True,25,20,ASDF,720x1280
-1665,book3::cornell_box::one_box_one_glass_sphere,1,True,25,35,9001,720x720
-1666,book3::cornell_box::one_box_one_glass_sphere,1,True,25,50,9001,720x1280
-1667,book3::cornell_box::one_box_one_glass_sphere,1,True,25,50,ASDF,720x1280
-1668,book3::cornell_box::one_box_one_glass_sphere,1,True,50,35,9001,1280x720
-1669,book3::cornell_box::one_box_one_glass_sphere,1,True,50,35,9001,720x1280
-1670,book3::cornell_box::one_box_one_glass_sphere,1,True,50,50,alvin's hot juicebox,720x1280
-1671,book3::cornell_box::one_box_one_glass_sphere,1,True,50,50,alvin's hot juicebox,720x720
-1672,book3::cornell_box::one_box_one_glass_sphere,1,True,75,50,9001,720x1280
-1673,book3::cornell_box::one_box_one_glass_sphere,2,False,25,20,ASDF,720x1280
-1674,book3::cornell_box::one_box_one_glass_sphere,2,False,25,35,alvin's hot juicebox,720x720
-1675,book3::cornell_box::one_box_one_glass_sphere,2,False,75,35,alvin's hot juicebox,1280x720
-1676,book3::cornell_box::one_box_one_glass_sphere,2,False,75,50,ASDF,1280x720
-1677,book3::cornell_box::one_box_one_glass_sphere,2,False,75,50,ASDF,720x1280
-1678,book3::cornell_box::one_box_one_glass_sphere,2,False,75,50,ASDF,720x720
-1679,book3::cornell_box::one_box_one_glass_sphere,2,True,25,20,ASDF,720x720
-1680,book3::cornell_box::one_box_one_glass_sphere,2,True,25,35,9001,720x1280
-1681,book3::cornell_box::one_box_one_glass_sphere,2,True,50,35,ASDF,1280x720
-1682,book3::cornell_box::one_box_one_glass_sphere,2,True,75,35,9001,720x1280
-1683,book3::cornell_box::one_box_one_glass_sphere,2,True,75,35,9001,720x720
-1684,book3::cornell_box::one_box_one_glass_sphere,2,True,75,50,9001,720x1280
-1685,book3::cornell_box::one_box_one_glass_sphere,2,True,75,50,9001,720x720
-1686,book3::cornell_box::one_box_one_glass_sphere,4,False,25,20,9001,1280x720
-1687,book3::cornell_box::one_box_one_glass_sphere,4,False,25,35,ASDF,720x1280
-1688,book3::cornell_box::one_box_one_glass_sphere,4,False,25,50,9001,720x720
-1689,book3::cornell_box::one_box_one_glass_sphere,4,False,50,20,ASDF,720x720
-1690,book3::cornell_box::one_box_one_glass_sphere,4,False,50,35,9001,1280x720
-1691,book3::cornell_box::one_box_one_glass_sphere,4,False,50,50,9001,1280x720
-1692,book3::cornell_box::one_box_one_glass_sphere,4,False,75,20,alvin's hot juicebox,720x720
-1693,book3::cornell_box::one_box_one_glass_sphere,4,True,25,20,alvin's hot juicebox,720x1280
-1694,book3::cornell_box::one_box_one_glass_sphere,4,True,25,35,alvin's hot juicebox,720x720
-1695,book3::cornell_box::one_box_one_glass_sphere,4,True,50,20,9001,1280x720
-1696,book3::cornell_box::one_box_one_glass_sphere,4,True,50,50,ASDF,1280x720
-1697,book3::cornell_box::one_box_one_glass_sphere,4,True,75,20,ASDF,1280x720
-1698,book3::cornell_box::one_box_one_glass_sphere,4,True,75,20,ASDF,720x1280
-1699,book3::cornell_box::one_box_one_glass_sphere,4,True,75,20,alvin's hot juicebox,720x1280
-1700,book3::cornell_box::one_box_one_glass_sphere,4,True,75,35,alvin's hot juicebox,1280x720
-1701,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,50,20,alvin's hot juicebox,720x720
-1702,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,50,50,alvin's hot juicebox,1280x720
-1703,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,75,20,9001,720x1280
-1704,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,75,35,alvin's hot juicebox,720x1280
-1705,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,75,50,ASDF,720x720
-1706,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,75,50,alvin's hot juicebox,720x720
-1707,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,25,20,alvin's hot juicebox,1280x720
-1708,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,25,35,9001,1280x720
-1709,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,25,50,ASDF,720x1280
-1710,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,50,20,alvin's hot juicebox,1280x720
-1711,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,20,9001,720x720
-1712,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,35,ASDF,1280x720
-1713,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,35,ASDF,720x720
-1714,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,35,alvin's hot juicebox,720x1280
-1715,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,35,alvin's hot juicebox,720x720
-1716,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,50,9001,1280x720
-1717,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,50,alvin's hot juicebox,720x1280
-1718,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,25,35,ASDF,720x1280
-1719,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,25,50,alvin's hot juicebox,1280x720
-1720,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,50,35,9001,1280x720
-1721,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,50,50,ASDF,720x720
-1722,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,50,50,alvin's hot juicebox,720x720
-1723,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,75,20,ASDF,720x1280
-1724,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,75,20,alvin's hot juicebox,720x1280
-1725,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,75,35,9001,720x720
-1726,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,75,50,alvin's hot juicebox,720x1280
-1727,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,25,20,9001,1280x720
-1728,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,25,20,alvin's hot juicebox,720x720
-1729,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,25,35,9001,720x720
-1730,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,50,20,alvin's hot juicebox,720x1280
-1731,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,75,35,9001,720x720
-1732,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,75,35,alvin's hot juicebox,720x720
-1733,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,75,50,alvin's hot juicebox,720x1280
-1734,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,25,20,9001,1280x720
-1735,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,25,50,alvin's hot juicebox,720x1280
-1736,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,25,50,alvin's hot juicebox,720x720
-1737,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,50,20,9001,720x1280
-1738,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,50,50,alvin's hot juicebox,720x720
-1739,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,75,35,9001,1280x720
-1740,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,75,35,alvin's hot juicebox,1280x720
-1741,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,75,50,ASDF,720x1280
-1742,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,75,50,alvin's hot juicebox,720x720
-1743,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,25,20,ASDF,720x1280
-1744,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,25,35,ASDF,720x720
-1745,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,25,35,alvin's hot juicebox,1280x720
-1746,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,25,50,ASDF,720x720
-1747,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,50,20,9001,720x1280
-1748,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,75,20,ASDF,720x1280
-1749,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,75,20,alvin's hot juicebox,720x1280
-1750,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,75,35,9001,1280x720
-1751,fun::three_spheres,1,False,25,20,ASDF,1280x720
-1752,fun::three_spheres,1,False,25,35,ASDF,1280x720
-1753,fun::three_spheres,1,False,25,35,ASDF,720x720
-1754,fun::three_spheres,1,False,25,50,9001,720x1280
-1755,fun::three_spheres,1,False,50,20,alvin's hot juicebox,1280x720
-1756,fun::three_spheres,1,False,50,35,alvin's hot juicebox,720x720
-1757,fun::three_spheres,1,False,50,50,alvin's hot juicebox,720x1280
-1758,fun::three_spheres,1,False,50,50,alvin's hot juicebox,720x720
-1759,fun::three_spheres,1,False,75,20,ASDF,720x720
-1760,fun::three_spheres,1,False,75,35,9001,1280x720
-1761,fun::three_spheres,1,False,75,50,9001,720x1280
-1762,fun::three_spheres,1,False,75,50,9001,720x720
-1763,fun::three_spheres,1,True,50,50,alvin's hot juicebox,720x1280
-1764,fun::three_spheres,1,True,75,20,ASDF,1280x720
-1765,fun::three_spheres,1,True,75,35,ASDF,1280x720
-1766,fun::three_spheres,1,True,75,35,ASDF,720x1280
-1767,fun::three_spheres,1,True,75,35,alvin's hot juicebox,720x720
-1768,fun::three_spheres,2,False,25,35,ASDF,720x1280
-1769,fun::three_spheres,2,False,75,20,9001,720x1280
-1770,fun::three_spheres,2,False,75,20,ASDF,720x720
-1771,fun::three_spheres,2,False,75,35,9001,1280x720
-1772,fun::three_spheres,2,False,75,35,9001,720x1280
-1773,fun::three_spheres,2,False,75,50,9001,720x1280
-1774,fun::three_spheres,2,True,25,35,9001,720x720
-1775,fun::three_spheres,2,True,25,35,ASDF,720x720
-1776,fun::three_spheres,2,True,25,50,9001,1280x720
-1777,fun::three_spheres,2,True,25,50,ASDF,720x1280
-1778,fun::three_spheres,2,True,50,20,9001,1280x720
-1779,fun::three_spheres,2,True,50,20,ASDF,720x1280
-1780,fun::three_spheres,2,True,50,50,ASDF,1280x720
-1781,fun::three_spheres,2,True,75,20,ASDF,1280x720
-1782,fun::three_spheres,2,True,75,35,ASDF,720x720
-1783,fun::three_spheres,2,True,75,50,alvin's hot juicebox,1280x720
-1784,fun::three_spheres,4,False,25,20,ASDF,720x1280
-1785,fun::three_spheres,4,False,25,35,9001,720x720
-1786,fun::three_spheres,4,False,25,35,ASDF,720x720
-1787,fun::three_spheres,4,False,25,50,ASDF,720x1280
-1788,fun::three_spheres,4,False,25,50,ASDF,720x720
-1789,fun::three_spheres,4,False,25,50,alvin's hot juicebox,1280x720
-1790,fun::three_spheres,4,False,25,50,alvin's hot juicebox,720x720
-1791,fun::three_spheres,4,False,50,20,9001,720x720
-1792,fun::three_spheres,4,False,50,50,9001,720x1280
-1793,fun::three_spheres,4,False,75,20,9001,1280x720
-1794,fun::three_spheres,4,False,75,20,9001,720x720
-1795,fun::three_spheres,4,False,75,20,alvin's hot juicebox,1280x720
-1796,fun::three_spheres,4,False,75,50,ASDF,720x1280
-1797,fun::three_spheres,4,True,25,50,ASDF,1280x720
-1798,fun::three_spheres,4,True,50,35,9001,720x720
-1799,fun::three_spheres,4,True,50,35,alvin's hot juicebox,1280x720
-1800,fun::three_spheres,4,True,50,35,alvin's hot juicebox,720x720
-1801,fun::whitted_1980,1,False,25,20,9001,720x720
-1802,fun::whitted_1980,1,False,25,50,9001,1280x720
-1803,fun::whitted_1980,1,False,50,20,alvin's hot juicebox,1280x720
-1804,fun::whitted_1980,1,False,50,20,alvin's hot juicebox,720x1280
-1805,fun::whitted_1980,1,False,50,20,alvin's hot juicebox,720x720
-1806,fun::whitted_1980,1,False,50,35,9001,1280x720
-1807,fun::whitted_1980,1,False,50,35,alvin's hot juicebox,720x1280
-1808,fun::whitted_1980,1,False,50,50,ASDF,720x1280
-1809,fun::whitted_1980,1,False,75,20,9001,1280x720
-1810,fun::whitted_1980,1,False,75,20,ASDF,720x1280
-1811,fun::whitted_1980,1,False,75,35,ASDF,720x720
-1812,fun::whitted_1980,1,False,75,50,9001,720x720
-1813,fun::whitted_1980,1,False,75,50,alvin's hot juicebox,720x720
-1814,fun::whitted_1980,1,True,25,20,alvin's hot juicebox,720x1280
-1815,fun::whitted_1980,1,True,25,35,9001,1280x720
-1816,fun::whitted_1980,1,True,25,35,ASDF,720x720
-1817,fun::whitted_1980,1,True,25,50,ASDF,720x1280
-1818,fun::whitted_1980,1,True,50,20,alvin's hot juicebox,1280x720
-1819,fun::whitted_1980,1,True,50,35,ASDF,720x720
-1820,fun::whitted_1980,1,True,50,35,alvin's hot juicebox,1280x720
-1821,fun::whitted_1980,1,True,50,35,alvin's hot juicebox,720x1280
-1822,fun::whitted_1980,2,False,25,35,9001,720x1280
-1823,fun::whitted_1980,2,False,25,50,alvin's hot juicebox,1280x720
-1824,fun::whitted_1980,2,False,50,35,alvin's hot juicebox,1280x720
-1825,fun::whitted_1980,2,False,50,50,alvin's hot juicebox,720x720
-1826,fun::whitted_1980,2,False,75,20,alvin's hot juicebox,720x1280
-1827,fun::whitted_1980,2,False,75,35,alvin's hot juicebox,720x720
-1828,fun::whitted_1980,2,False,75,50,9001,720x1280
-1829,fun::whitted_1980,2,True,25,20,9001,720x1280
-1830,fun::whitted_1980,2,True,25,20,alvin's hot juicebox,720x1280
-1831,fun::whitted_1980,2,True,25,50,ASDF,720x1280
-1832,fun::whitted_1980,2,True,25,50,ASDF,720x720
-1833,fun::whitted_1980,2,True,50,20,ASDF,720x720
-1834,fun::whitted_1980,2,True,50,35,ASDF,720x1280
-1835,fun::whitted_1980,2,True,75,20,ASDF,1280x720
-1836,fun::whitted_1980,2,True,75,35,ASDF,720x1280
-1837,fun::whitted_1980,4,False,25,20,ASDF,720x720
-1838,fun::whitted_1980,4,False,25,20,alvin's hot juicebox,1280x720
-1839,fun::whitted_1980,4,False,25,50,ASDF,720x1280
-1840,fun::whitted_1980,4,False,50,20,9001,720x720
-1841,fun::whitted_1980,4,False,50,20,alvin's hot juicebox,1280x720
-1842,fun::whitted_1980,4,False,50,50,9001,1280x720
-1843,fun::whitted_1980,4,False,50,50,alvin's hot juicebox,720x720
-1844,fun::whitted_1980,4,False,75,50,9001,1280x720
-1845,fun::whitted_1980,4,True,25,20,alvin's hot juicebox,720x720
-1846,fun::whitted_1980,4,True,25,35,ASDF,720x1280
-1847,fun::whitted_1980,4,True,25,35,alvin's hot juicebox,720x1280
-1848,fun::whitted_1980,4,True,50,20,9001,720x1280
-1849,fun::whitted_1980,4,True,75,35,ASDF,720x720
-1850,fun::whitted_1980,4,True,75,50,ASDF,720x1280
-1851,fun::cornell_glass_boxes,1,False,25,20,9001,1280x720
-1852,fun::cornell_glass_boxes,1,False,25,50,ASDF,720x1280
-1853,fun::cornell_glass_boxes,1,False,50,20,ASDF,1280x720
-1854,fun::cornell_glass_boxes,1,False,50,20,ASDF,720x1280
-1855,fun::cornell_glass_boxes,1,False,50,35,alvin's hot juicebox,720x1280
-1856,fun::cornell_glass_boxes,1,False,50,50,9001,720x720
-1857,fun::cornell_glass_boxes,1,False,50,50,alvin's hot juicebox,720x720
-1858,fun::cornell_glass_boxes,1,False,75,35,ASDF,720x720
-1859,fun::cornell_glass_boxes,1,True,25,35,9001,720x1280
-1860,fun::cornell_glass_boxes,1,True,25,35,9001,720x720
-1861,fun::cornell_glass_boxes,1,True,50,20,9001,720x720
-1862,fun::cornell_glass_boxes,1,True,50,35,alvin's hot juicebox,1280x720
-1863,fun::cornell_glass_boxes,1,True,50,50,9001,720x720
-1864,fun::cornell_glass_boxes,1,True,75,20,alvin's hot juicebox,1280x720
-1865,fun::cornell_glass_boxes,1,True,75,20,alvin's hot juicebox,720x720
-1866,fun::cornell_glass_boxes,2,False,25,50,9001,720x720
-1867,fun::cornell_glass_boxes,2,False,25,50,ASDF,1280x720
-1868,fun::cornell_glass_boxes,2,False,25,50,ASDF,720x720
-1869,fun::cornell_glass_boxes,2,False,50,20,ASDF,720x720
-1870,fun::cornell_glass_boxes,2,False,50,20,alvin's hot juicebox,1280x720
-1871,fun::cornell_glass_boxes,2,False,50,35,9001,1280x720
-1872,fun::cornell_glass_boxes,2,False,50,35,9001,720x1280
-1873,fun::cornell_glass_boxes,2,False,75,20,9001,720x720
-1874,fun::cornell_glass_boxes,2,False,75,20,alvin's hot juicebox,1280x720
-1875,fun::cornell_glass_boxes,2,False,75,20,alvin's hot juicebox,720x1280
-1876,fun::cornell_glass_boxes,2,False,75,35,ASDF,1280x720
-1877,fun::cornell_glass_boxes,2,False,75,35,alvin's hot juicebox,720x1280
-1878,fun::cornell_glass_boxes,2,False,75,50,9001,720x1280
-1879,fun::cornell_glass_boxes,2,False,75,50,ASDF,720x720
-1880,fun::cornell_glass_boxes,2,True,25,20,ASDF,720x1280
-1881,fun::cornell_glass_boxes,2,True,25,50,ASDF,1280x720
-1882,fun::cornell_glass_boxes,2,True,50,20,ASDF,720x1280
-1883,fun::cornell_glass_boxes,2,True,50,35,9001,720x1280
-1884,fun::cornell_glass_boxes,2,True,50,35,ASDF,720x720
-1885,fun::cornell_glass_boxes,2,True,75,20,ASDF,720x720
-1886,fun::cornell_glass_boxes,4,False,25,50,9001,720x720
-1887,fun::cornell_glass_boxes,4,False,25,50,alvin's hot juicebox,720x720
-1888,fun::cornell_glass_boxes,4,False,50,20,alvin's hot juicebox,720x1280
-1889,fun::cornell_glass_boxes,4,False,50,20,alvin's hot juicebox,720x720
-1890,fun::cornell_glass_boxes,4,False,50,35,ASDF,1280x720
-1891,fun::cornell_glass_boxes,4,False,50,50,alvin's hot juicebox,1280x720
-1892,fun::cornell_glass_boxes,4,False,50,50,alvin's hot juicebox,720x1280
-1893,fun::cornell_glass_boxes,4,False,75,35,9001,720x1280
-1894,fun::cornell_glass_boxes,4,False,75,35,alvin's hot juicebox,720x1280
-1895,fun::cornell_glass_boxes,4,True,25,20,9001,720x720
-1896,fun::cornell_glass_boxes,4,True,25,50,9001,1280x720
-1897,fun::cornell_glass_boxes,4,True,25,50,ASDF,1280x720
-1898,fun::cornell_glass_boxes,4,True,50,20,9001,720x720
-1899,fun::cornell_glass_boxes,4,True,75,35,9001,720x1280
-1900,fun::cornell_glass_boxes,4,True,75,50,alvin's hot juicebox,720x720
-1901,fun::wave_of_spheres,1,False,25,20,ASDF,1280x720
-1902,fun::wave_of_spheres,1,False,25,35,ASDF,720x1280
-1903,fun::wave_of_spheres,1,False,25,50,ASDF,720x1280
-1904,fun::wave_of_spheres,1,False,50,20,ASDF,720x1280
-1905,fun::wave_of_spheres,1,False,50,20,ASDF,720x720
-1906,fun::wave_of_spheres,1,False,50,35,alvin's hot juicebox,720x1280
-1907,fun::wave_of_spheres,1,False,50,35,alvin's hot juicebox,720x720
-1908,fun::wave_of_spheres,1,False,50,50,ASDF,1280x720
-1909,fun::wave_of_spheres,1,False,75,50,9001,1280x720
-1910,fun::wave_of_spheres,1,True,25,35,9001,1280x720
-1911,fun::wave_of_spheres,1,True,25,35,9001,720x1280
-1912,fun::wave_of_spheres,1,True,25,35,alvin's hot juicebox,720x720
-1913,fun::wave_of_spheres,1,True,25,50,ASDF,720x1280
-1914,fun::wave_of_spheres,1,True,50,35,alvin's hot juicebox,1280x720
-1915,fun::wave_of_spheres,1,True,50,50,alvin's hot juicebox,1280x720
-1916,fun::wave_of_spheres,1,True,75,35,9001,720x720
-1917,fun::wave_of_spheres,1,True,75,35,alvin's hot juicebox,720x1280
-1918,fun::wave_of_spheres,2,False,25,35,ASDF,720x720
-1919,fun::wave_of_spheres,2,False,50,20,alvin's hot juicebox,720x1280
-1920,fun::wave_of_spheres,2,False,50,35,9001,1280x720
-1921,fun::wave_of_spheres,2,False,75,20,9001,720x1280
-1922,fun::wave_of_spheres,2,False,75,50,9001,720x720
-1923,fun::wave_of_spheres,2,True,25,50,9001,1280x720
-1924,fun::wave_of_spheres,2,True,25,50,ASDF,1280x720
-1925,fun::wave_of_spheres,2,True,75,20,ASDF,1280x720
-1926,fun::wave_of_spheres,2,True,75,20,alvin's hot juicebox,1280x720
-1927,fun::wave_of_spheres,2,True,75,50,alvin's hot juicebox,720x720
-1928,fun::wave_of_spheres,4,False,25,35,ASDF,1280x720
-1929,fun::wave_of_spheres,4,False,50,35,alvin's hot juicebox,720x720
-1930,fun::wave_of_spheres,4,False,50,50,ASDF,720x720
-1931,fun::wave_of_spheres,4,False,75,20,ASDF,720x1280
-1932,fun::wave_of_spheres,4,False,75,20,alvin's hot juicebox,1280x720
-1933,fun::wave_of_spheres,4,False,75,35,ASDF,720x1280
-1934,fun::wave_of_spheres,4,False,75,35,alvin's hot juicebox,720x1280
-1935,fun::wave_of_spheres,4,False,75,50,9001,720x720
-1936,fun::wave_of_spheres,4,False,75,50,alvin's hot juicebox,720x720
-1937,fun::wave_of_spheres,4,True,25,20,ASDF,720x1280
-1938,fun::wave_of_spheres,4,True,25,20,alvin's hot juicebox,1280x720
-1939,fun::wave_of_spheres,4,True,25,35,9001,1280x720
-1940,fun::wave_of_spheres,4,True,25,35,9001,720x1280
-1941,fun::wave_of_spheres,4,True,25,35,alvin's hot juicebox,1280x720
-1942,fun::wave_of_spheres,4,True,25,35,alvin's hot juicebox,720x1280
-1943,fun::wave_of_spheres,4,True,50,20,9001,1280x720
-1944,fun::wave_of_spheres,4,True,50,20,ASDF,720x720
-1945,fun::wave_of_spheres,4,True,50,35,ASDF,1280x720
-1946,fun::wave_of_spheres,4,True,50,50,ASDF,1280x720
-1947,fun::wave_of_spheres,4,True,50,50,ASDF,720x1280
-1948,fun::wave_of_spheres,4,True,75,20,alvin's hot juicebox,1280x720
-1949,fun::wave_of_spheres,4,True,75,35,9001,1280x720
-1950,fun::wave_of_spheres,4,True,75,50,alvin's hot juicebox,1280x720
+1151,book2::quads,1,False,25,50,alvin's hot juicebox,720x1280
+1152,book2::quads,1,False,50,20,alvin's hot juicebox,720x1280
+1153,book2::quads,1,False,50,50,alvin's hot juicebox,1280x720
+1154,book2::quads,1,False,75,20,ASDF,1280x720
+1155,book2::quads,1,False,75,20,alvin's hot juicebox,720x720
+1156,book2::quads,1,False,75,50,alvin's hot juicebox,720x1280
+1157,book2::quads,1,True,25,20,9001,720x1280
+1158,book2::quads,1,True,25,50,9001,1280x720
+1159,book2::quads,1,True,25,50,ASDF,720x1280
+1160,book2::quads,1,True,50,20,ASDF,1280x720
+1161,book2::quads,1,True,50,35,9001,1280x720
+1162,book2::quads,1,True,50,35,9001,720x720
+1163,book2::quads,1,True,50,35,alvin's hot juicebox,1280x720
+1164,book2::quads,1,True,50,50,ASDF,720x1280
+1165,book2::quads,1,True,50,50,alvin's hot juicebox,720x720
+1166,book2::quads,1,True,75,20,ASDF,1280x720
+1167,book2::quads,1,True,75,20,ASDF,720x720
+1168,book2::quads,1,True,75,20,alvin's hot juicebox,720x1280
+1169,book2::quads,1,True,75,35,ASDF,720x1280
+1170,book2::quads,2,False,25,35,9001,720x1280
+1171,book2::quads,2,False,50,20,9001,720x720
+1172,book2::quads,2,False,50,35,alvin's hot juicebox,720x1280
+1173,book2::quads,2,False,50,50,alvin's hot juicebox,720x1280
+1174,book2::quads,2,False,75,20,9001,1280x720
+1175,book2::quads,2,False,75,35,9001,720x720
+1176,book2::quads,2,False,75,50,9001,1280x720
+1177,book2::quads,2,True,25,20,alvin's hot juicebox,720x720
+1178,book2::quads,2,True,25,35,9001,720x1280
+1179,book2::quads,2,True,25,50,ASDF,720x1280
+1180,book2::quads,2,True,50,20,ASDF,1280x720
+1181,book2::quads,2,True,50,20,alvin's hot juicebox,720x720
+1182,book2::quads,2,True,50,50,ASDF,1280x720
+1183,book2::quads,2,True,50,50,alvin's hot juicebox,1280x720
+1184,book2::quads,2,True,75,20,alvin's hot juicebox,720x720
+1185,book2::quads,2,True,75,35,9001,1280x720
+1186,book2::quads,2,True,75,35,alvin's hot juicebox,1280x720
+1187,book2::quads,4,False,25,20,9001,720x1280
+1188,book2::quads,4,False,25,50,alvin's hot juicebox,720x720
+1189,book2::quads,4,False,50,35,ASDF,720x720
+1190,book2::quads,4,False,50,35,alvin's hot juicebox,1280x720
+1191,book2::quads,4,False,75,20,alvin's hot juicebox,1280x720
+1192,book2::quads,4,False,75,35,ASDF,1280x720
+1193,book2::quads,4,True,25,20,9001,1280x720
+1194,book2::quads,4,True,25,35,9001,720x1280
+1195,book2::quads,4,True,50,20,ASDF,720x1280
+1196,book2::quads,4,True,50,35,ASDF,720x720
+1197,book2::quads,4,True,50,35,alvin's hot juicebox,720x720
+1198,book2::quads,4,True,75,20,9001,1280x720
+1199,book2::quads,4,True,75,50,9001,720x1280
+1200,book2::quads,4,True,75,50,alvin's hot juicebox,720x720
+1201,book2::earth,1,False,25,35,9001,1280x720
+1202,book2::earth,1,False,25,50,ASDF,1280x720
+1203,book2::earth,1,False,25,50,alvin's hot juicebox,720x1280
+1204,book2::earth,1,False,50,50,alvin's hot juicebox,720x720
+1205,book2::earth,1,False,75,20,9001,1280x720
+1206,book2::earth,1,False,75,20,alvin's hot juicebox,720x1280
+1207,book2::earth,1,True,25,20,9001,720x1280
+1208,book2::earth,1,True,25,35,ASDF,720x1280
+1209,book2::earth,1,True,25,35,alvin's hot juicebox,720x1280
+1210,book2::earth,1,True,25,50,9001,720x1280
+1211,book2::earth,1,True,25,50,9001,720x720
+1212,book2::earth,1,True,75,20,9001,720x1280
+1213,book2::earth,1,True,75,50,alvin's hot juicebox,720x1280
+1214,book2::earth,2,False,25,20,alvin's hot juicebox,720x1280
+1215,book2::earth,2,False,25,50,ASDF,720x720
+1216,book2::earth,2,False,50,35,9001,1280x720
+1217,book2::earth,2,False,50,35,alvin's hot juicebox,720x1280
+1218,book2::earth,2,False,50,50,9001,1280x720
+1219,book2::earth,2,False,50,50,ASDF,1280x720
+1220,book2::earth,2,False,75,20,9001,720x1280
+1221,book2::earth,2,False,75,20,alvin's hot juicebox,720x720
+1222,book2::earth,2,False,75,35,ASDF,720x1280
+1223,book2::earth,2,False,75,35,alvin's hot juicebox,720x1280
+1224,book2::earth,2,False,75,50,alvin's hot juicebox,720x720
+1225,book2::earth,2,True,25,35,9001,1280x720
+1226,book2::earth,2,True,25,50,ASDF,1280x720
+1227,book2::earth,2,True,50,20,9001,1280x720
+1228,book2::earth,2,True,50,35,9001,1280x720
+1229,book2::earth,2,True,50,50,alvin's hot juicebox,720x720
+1230,book2::earth,2,True,75,20,alvin's hot juicebox,1280x720
+1231,book2::earth,2,True,75,35,9001,1280x720
+1232,book2::earth,2,True,75,35,ASDF,720x1280
+1233,book2::earth,2,True,75,35,alvin's hot juicebox,720x1280
+1234,book2::earth,2,True,75,50,9001,1280x720
+1235,book2::earth,2,True,75,50,ASDF,720x720
+1236,book2::earth,2,True,75,50,alvin's hot juicebox,1280x720
+1237,book2::earth,4,False,50,20,ASDF,1280x720
+1238,book2::earth,4,False,50,20,ASDF,720x1280
+1239,book2::earth,4,False,50,50,9001,1280x720
+1240,book2::earth,4,False,50,50,alvin's hot juicebox,1280x720
+1241,book2::earth,4,False,75,20,9001,720x720
+1242,book2::earth,4,False,75,35,ASDF,720x720
+1243,book2::earth,4,False,75,50,alvin's hot juicebox,720x720
+1244,book2::earth,4,True,25,20,9001,720x1280
+1245,book2::earth,4,True,25,50,9001,1280x720
+1246,book2::earth,4,True,25,50,alvin's hot juicebox,720x1280
+1247,book2::earth,4,True,50,20,9001,1280x720
+1248,book2::earth,4,True,50,50,alvin's hot juicebox,1280x720
+1249,book2::earth,4,True,75,35,alvin's hot juicebox,720x1280
+1250,book2::earth,4,True,75,50,alvin's hot juicebox,720x720
+1251,book2::simple_light,1,False,25,20,9001,1280x720
+1252,book2::simple_light,1,False,25,20,9001,720x1280
+1253,book2::simple_light,1,False,25,20,9001,720x720
+1254,book2::simple_light,1,False,25,50,alvin's hot juicebox,720x720
+1255,book2::simple_light,1,False,50,20,ASDF,720x720
+1256,book2::simple_light,1,False,50,35,ASDF,1280x720
+1257,book2::simple_light,1,False,50,50,alvin's hot juicebox,1280x720
+1258,book2::simple_light,1,False,75,20,9001,720x720
+1259,book2::simple_light,1,False,75,50,ASDF,720x720
+1260,book2::simple_light,1,False,75,50,alvin's hot juicebox,1280x720
+1261,book2::simple_light,1,False,75,50,alvin's hot juicebox,720x1280
+1262,book2::simple_light,1,True,25,35,alvin's hot juicebox,720x720
+1263,book2::simple_light,1,True,50,35,9001,720x720
+1264,book2::simple_light,1,True,50,35,alvin's hot juicebox,1280x720
+1265,book2::simple_light,1,True,50,35,alvin's hot juicebox,720x1280
+1266,book2::simple_light,1,True,50,50,9001,720x720
+1267,book2::simple_light,1,True,50,50,ASDF,1280x720
+1268,book2::simple_light,1,True,75,20,9001,720x1280
+1269,book2::simple_light,1,True,75,35,alvin's hot juicebox,1280x720
+1270,book2::simple_light,1,True,75,50,9001,720x720
+1271,book2::simple_light,1,True,75,50,ASDF,720x1280
+1272,book2::simple_light,2,False,25,20,9001,1280x720
+1273,book2::simple_light,2,False,25,20,ASDF,1280x720
+1274,book2::simple_light,2,False,25,35,9001,720x1280
+1275,book2::simple_light,2,False,25,50,ASDF,720x1280
+1276,book2::simple_light,2,False,25,50,alvin's hot juicebox,720x1280
+1277,book2::simple_light,2,False,50,20,ASDF,720x720
+1278,book2::simple_light,2,False,50,20,alvin's hot juicebox,1280x720
+1279,book2::simple_light,2,False,50,50,9001,720x1280
+1280,book2::simple_light,2,False,50,50,ASDF,720x720
+1281,book2::simple_light,2,False,50,50,alvin's hot juicebox,1280x720
+1282,book2::simple_light,2,True,50,50,9001,720x1280
+1283,book2::simple_light,2,True,50,50,alvin's hot juicebox,1280x720
+1284,book2::simple_light,2,True,50,50,alvin's hot juicebox,720x720
+1285,book2::simple_light,2,True,75,35,ASDF,720x1280
+1286,book2::simple_light,4,False,25,50,ASDF,720x720
+1287,book2::simple_light,4,False,50,20,9001,720x1280
+1288,book2::simple_light,4,False,50,20,9001,720x720
+1289,book2::simple_light,4,False,50,35,alvin's hot juicebox,720x1280
+1290,book2::simple_light,4,False,75,20,9001,1280x720
+1291,book2::simple_light,4,False,75,20,ASDF,720x720
+1292,book2::simple_light,4,False,75,35,9001,720x720
+1293,book2::simple_light,4,False,75,35,alvin's hot juicebox,720x1280
+1294,book2::simple_light,4,False,75,50,alvin's hot juicebox,1280x720
+1295,book2::simple_light,4,True,25,35,ASDF,1280x720
+1296,book2::simple_light,4,True,50,20,ASDF,1280x720
+1297,book2::simple_light,4,True,50,20,ASDF,720x720
+1298,book2::simple_light,4,True,50,50,9001,720x720
+1299,book2::simple_light,4,True,75,50,9001,1280x720
+1300,book2::simple_light,4,True,75,50,9001,720x720
+1301,book2::simple_light::with_overhead_light,1,False,25,20,ASDF,720x720
+1302,book2::simple_light::with_overhead_light,1,False,25,50,ASDF,720x1280
+1303,book2::simple_light::with_overhead_light,1,False,25,50,alvin's hot juicebox,720x1280
+1304,book2::simple_light::with_overhead_light,1,False,50,20,ASDF,1280x720
+1305,book2::simple_light::with_overhead_light,1,False,50,20,alvin's hot juicebox,1280x720
+1306,book2::simple_light::with_overhead_light,1,False,50,35,9001,1280x720
+1307,book2::simple_light::with_overhead_light,1,False,50,35,alvin's hot juicebox,1280x720
+1308,book2::simple_light::with_overhead_light,1,False,50,35,alvin's hot juicebox,720x1280
+1309,book2::simple_light::with_overhead_light,1,False,75,35,alvin's hot juicebox,720x720
+1310,book2::simple_light::with_overhead_light,1,False,75,50,alvin's hot juicebox,1280x720
+1311,book2::simple_light::with_overhead_light,1,True,25,20,9001,1280x720
+1312,book2::simple_light::with_overhead_light,1,True,25,50,ASDF,1280x720
+1313,book2::simple_light::with_overhead_light,1,True,25,50,ASDF,720x1280
+1314,book2::simple_light::with_overhead_light,1,True,50,35,ASDF,1280x720
+1315,book2::simple_light::with_overhead_light,1,True,50,35,ASDF,720x1280
+1316,book2::simple_light::with_overhead_light,1,True,50,35,alvin's hot juicebox,1280x720
+1317,book2::simple_light::with_overhead_light,1,True,50,50,alvin's hot juicebox,1280x720
+1318,book2::simple_light::with_overhead_light,1,True,50,50,alvin's hot juicebox,720x720
+1319,book2::simple_light::with_overhead_light,1,True,75,20,ASDF,1280x720
+1320,book2::simple_light::with_overhead_light,1,True,75,20,ASDF,720x1280
+1321,book2::simple_light::with_overhead_light,1,True,75,35,alvin's hot juicebox,720x1280
+1322,book2::simple_light::with_overhead_light,2,False,25,20,alvin's hot juicebox,1280x720
+1323,book2::simple_light::with_overhead_light,2,False,25,35,ASDF,720x720
+1324,book2::simple_light::with_overhead_light,2,False,25,50,ASDF,1280x720
+1325,book2::simple_light::with_overhead_light,2,False,50,35,alvin's hot juicebox,720x1280
+1326,book2::simple_light::with_overhead_light,2,False,75,20,9001,1280x720
+1327,book2::simple_light::with_overhead_light,2,False,75,20,alvin's hot juicebox,720x1280
+1328,book2::simple_light::with_overhead_light,2,False,75,50,ASDF,720x1280
+1329,book2::simple_light::with_overhead_light,2,True,25,20,ASDF,720x1280
+1330,book2::simple_light::with_overhead_light,2,True,25,50,ASDF,720x1280
+1331,book2::simple_light::with_overhead_light,2,True,50,35,ASDF,720x720
+1332,book2::simple_light::with_overhead_light,2,True,50,35,alvin's hot juicebox,720x1280
+1333,book2::simple_light::with_overhead_light,2,True,50,50,ASDF,720x720
+1334,book2::simple_light::with_overhead_light,2,True,75,20,alvin's hot juicebox,720x1280
+1335,book2::simple_light::with_overhead_light,2,True,75,50,alvin's hot juicebox,1280x720
+1336,book2::simple_light::with_overhead_light,4,False,25,20,alvin's hot juicebox,1280x720
+1337,book2::simple_light::with_overhead_light,4,False,25,35,ASDF,1280x720
+1338,book2::simple_light::with_overhead_light,4,False,25,50,9001,1280x720
+1339,book2::simple_light::with_overhead_light,4,False,50,20,ASDF,720x1280
+1340,book2::simple_light::with_overhead_light,4,False,50,35,ASDF,1280x720
+1341,book2::simple_light::with_overhead_light,4,False,75,20,alvin's hot juicebox,720x1280
+1342,book2::simple_light::with_overhead_light,4,False,75,35,alvin's hot juicebox,1280x720
+1343,book2::simple_light::with_overhead_light,4,True,25,20,ASDF,720x720
+1344,book2::simple_light::with_overhead_light,4,True,25,50,ASDF,1280x720
+1345,book2::simple_light::with_overhead_light,4,True,25,50,ASDF,720x1280
+1346,book2::simple_light::with_overhead_light,4,True,50,20,ASDF,1280x720
+1347,book2::simple_light::with_overhead_light,4,True,50,35,ASDF,720x1280
+1348,book2::simple_light::with_overhead_light,4,True,50,50,9001,720x720
+1349,book2::simple_light::with_overhead_light,4,True,50,50,ASDF,720x720
+1350,book2::simple_light::with_overhead_light,4,True,75,35,alvin's hot juicebox,1280x720
+1351,book2::cornell_box::empty,1,False,25,20,alvin's hot juicebox,1280x720
+1352,book2::cornell_box::empty,1,False,50,20,ASDF,720x720
+1353,book2::cornell_box::empty,1,False,50,20,alvin's hot juicebox,1280x720
+1354,book2::cornell_box::empty,1,False,50,35,9001,720x720
+1355,book2::cornell_box::empty,1,False,50,35,ASDF,720x720
+1356,book2::cornell_box::empty,1,False,50,50,9001,1280x720
+1357,book2::cornell_box::empty,1,True,25,20,9001,720x720
+1358,book2::cornell_box::empty,1,True,25,50,9001,720x720
+1359,book2::cornell_box::empty,1,True,50,20,9001,1280x720
+1360,book2::cornell_box::empty,1,True,50,20,ASDF,1280x720
+1361,book2::cornell_box::empty,1,True,50,20,ASDF,720x720
+1362,book2::cornell_box::empty,1,True,50,50,9001,720x1280
+1363,book2::cornell_box::empty,1,True,50,50,9001,720x720
+1364,book2::cornell_box::empty,1,True,50,50,alvin's hot juicebox,720x1280
+1365,book2::cornell_box::empty,1,True,75,20,ASDF,720x720
+1366,book2::cornell_box::empty,1,True,75,35,9001,1280x720
+1367,book2::cornell_box::empty,1,True,75,35,alvin's hot juicebox,720x1280
+1368,book2::cornell_box::empty,2,False,25,20,ASDF,1280x720
+1369,book2::cornell_box::empty,2,False,25,20,alvin's hot juicebox,720x720
+1370,book2::cornell_box::empty,2,False,25,35,alvin's hot juicebox,720x720
+1371,book2::cornell_box::empty,2,False,25,50,alvin's hot juicebox,1280x720
+1372,book2::cornell_box::empty,2,False,50,20,9001,720x1280
+1373,book2::cornell_box::empty,2,False,50,20,ASDF,720x1280
+1374,book2::cornell_box::empty,2,False,75,20,ASDF,720x720
+1375,book2::cornell_box::empty,2,False,75,50,alvin's hot juicebox,1280x720
+1376,book2::cornell_box::empty,2,True,25,20,9001,1280x720
+1377,book2::cornell_box::empty,2,True,50,20,ASDF,1280x720
+1378,book2::cornell_box::empty,2,True,50,20,ASDF,720x720
+1379,book2::cornell_box::empty,2,True,50,20,alvin's hot juicebox,720x720
+1380,book2::cornell_box::empty,2,True,50,50,alvin's hot juicebox,1280x720
+1381,book2::cornell_box::empty,2,True,75,20,9001,1280x720
+1382,book2::cornell_box::empty,2,True,75,35,9001,1280x720
+1383,book2::cornell_box::empty,2,True,75,35,ASDF,1280x720
+1384,book2::cornell_box::empty,4,False,25,20,ASDF,720x1280
+1385,book2::cornell_box::empty,4,False,25,20,alvin's hot juicebox,1280x720
+1386,book2::cornell_box::empty,4,False,25,50,9001,720x1280
+1387,book2::cornell_box::empty,4,False,75,35,9001,720x1280
+1388,book2::cornell_box::empty,4,False,75,35,alvin's hot juicebox,1280x720
+1389,book2::cornell_box::empty,4,True,25,20,alvin's hot juicebox,720x720
+1390,book2::cornell_box::empty,4,True,25,50,alvin's hot juicebox,1280x720
+1391,book2::cornell_box::empty,4,True,50,20,9001,720x720
+1392,book2::cornell_box::empty,4,True,50,20,ASDF,1280x720
+1393,book2::cornell_box::empty,4,True,50,50,ASDF,1280x720
+1394,book2::cornell_box::empty,4,True,50,50,ASDF,720x1280
+1395,book2::cornell_box::empty,4,True,75,20,ASDF,1280x720
+1396,book2::cornell_box::empty,4,True,75,20,alvin's hot juicebox,1280x720
+1397,book2::cornell_box::empty,4,True,75,20,alvin's hot juicebox,720x1280
+1398,book2::cornell_box::empty,4,True,75,35,9001,720x720
+1399,book2::cornell_box::empty,4,True,75,35,ASDF,720x720
+1400,book2::cornell_box::empty,4,True,75,35,alvin's hot juicebox,720x720
+1401,book2::cornell_box::two_boxes,1,False,25,50,9001,720x720
+1402,book2::cornell_box::two_boxes,1,False,50,35,ASDF,720x1280
+1403,book2::cornell_box::two_boxes,1,False,50,50,9001,1280x720
+1404,book2::cornell_box::two_boxes,1,False,75,20,9001,1280x720
+1405,book2::cornell_box::two_boxes,1,False,75,35,9001,720x720
+1406,book2::cornell_box::two_boxes,1,False,75,35,alvin's hot juicebox,1280x720
+1407,book2::cornell_box::two_boxes,1,False,75,50,alvin's hot juicebox,1280x720
+1408,book2::cornell_box::two_boxes,1,True,50,20,9001,720x720
+1409,book2::cornell_box::two_boxes,1,True,50,20,alvin's hot juicebox,720x720
+1410,book2::cornell_box::two_boxes,1,True,75,20,9001,720x1280
+1411,book2::cornell_box::two_boxes,2,False,25,50,ASDF,720x1280
+1412,book2::cornell_box::two_boxes,2,False,50,50,alvin's hot juicebox,720x1280
+1413,book2::cornell_box::two_boxes,2,False,75,35,ASDF,1280x720
+1414,book2::cornell_box::two_boxes,2,False,75,50,9001,720x1280
+1415,book2::cornell_box::two_boxes,2,False,75,50,9001,720x720
+1416,book2::cornell_box::two_boxes,2,False,75,50,alvin's hot juicebox,720x720
+1417,book2::cornell_box::two_boxes,2,True,25,35,ASDF,1280x720
+1418,book2::cornell_box::two_boxes,2,True,25,35,ASDF,720x1280
+1419,book2::cornell_box::two_boxes,2,True,50,20,9001,720x720
+1420,book2::cornell_box::two_boxes,2,True,50,20,alvin's hot juicebox,720x1280
+1421,book2::cornell_box::two_boxes,2,True,50,35,ASDF,720x720
+1422,book2::cornell_box::two_boxes,2,True,50,50,9001,720x720
+1423,book2::cornell_box::two_boxes,2,True,75,20,9001,720x1280
+1424,book2::cornell_box::two_boxes,2,True,75,20,alvin's hot juicebox,720x1280
+1425,book2::cornell_box::two_boxes,2,True,75,50,ASDF,720x1280
+1426,book2::cornell_box::two_boxes,4,False,25,20,ASDF,720x1280
+1427,book2::cornell_box::two_boxes,4,False,25,35,alvin's hot juicebox,720x1280
+1428,book2::cornell_box::two_boxes,4,False,25,50,ASDF,720x1280
+1429,book2::cornell_box::two_boxes,4,False,50,20,ASDF,1280x720
+1430,book2::cornell_box::two_boxes,4,False,50,20,alvin's hot juicebox,720x720
+1431,book2::cornell_box::two_boxes,4,False,50,35,ASDF,720x1280
+1432,book2::cornell_box::two_boxes,4,False,50,35,alvin's hot juicebox,720x1280
+1433,book2::cornell_box::two_boxes,4,False,75,20,9001,1280x720
+1434,book2::cornell_box::two_boxes,4,False,75,20,alvin's hot juicebox,720x720
+1435,book2::cornell_box::two_boxes,4,False,75,35,9001,720x1280
+1436,book2::cornell_box::two_boxes,4,False,75,35,9001,720x720
+1437,book2::cornell_box::two_boxes,4,False,75,35,ASDF,720x720
+1438,book2::cornell_box::two_boxes,4,False,75,35,alvin's hot juicebox,720x1280
+1439,book2::cornell_box::two_boxes,4,True,25,20,ASDF,720x1280
+1440,book2::cornell_box::two_boxes,4,True,25,35,ASDF,1280x720
+1441,book2::cornell_box::two_boxes,4,True,25,35,ASDF,720x720
+1442,book2::cornell_box::two_boxes,4,True,25,35,alvin's hot juicebox,1280x720
+1443,book2::cornell_box::two_boxes,4,True,50,20,9001,1280x720
+1444,book2::cornell_box::two_boxes,4,True,50,20,alvin's hot juicebox,720x1280
+1445,book2::cornell_box::two_boxes,4,True,50,20,alvin's hot juicebox,720x720
+1446,book2::cornell_box::two_boxes,4,True,50,35,9001,720x1280
+1447,book2::cornell_box::two_boxes,4,True,50,50,9001,720x1280
+1448,book2::cornell_box::two_boxes,4,True,75,20,9001,720x720
+1449,book2::cornell_box::two_boxes,4,True,75,35,alvin's hot juicebox,1280x720
+1450,book2::cornell_box::two_boxes,4,True,75,50,alvin's hot juicebox,720x720
+1451,book2::cornell_box::two_rotated_boxes,1,False,25,35,9001,1280x720
+1452,book2::cornell_box::two_rotated_boxes,1,False,25,50,9001,1280x720
+1453,book2::cornell_box::two_rotated_boxes,1,False,50,20,ASDF,720x720
+1454,book2::cornell_box::two_rotated_boxes,1,False,50,35,ASDF,720x1280
+1455,book2::cornell_box::two_rotated_boxes,1,False,75,20,9001,1280x720
+1456,book2::cornell_box::two_rotated_boxes,1,False,75,35,ASDF,720x720
+1457,book2::cornell_box::two_rotated_boxes,1,False,75,35,alvin's hot juicebox,720x720
+1458,book2::cornell_box::two_rotated_boxes,1,False,75,50,9001,1280x720
+1459,book2::cornell_box::two_rotated_boxes,1,True,25,20,alvin's hot juicebox,720x1280
+1460,book2::cornell_box::two_rotated_boxes,1,True,50,35,ASDF,1280x720
+1461,book2::cornell_box::two_rotated_boxes,1,True,50,50,9001,720x720
+1462,book2::cornell_box::two_rotated_boxes,1,True,75,20,alvin's hot juicebox,720x1280
+1463,book2::cornell_box::two_rotated_boxes,1,True,75,35,9001,1280x720
+1464,book2::cornell_box::two_rotated_boxes,1,True,75,35,ASDF,1280x720
+1465,book2::cornell_box::two_rotated_boxes,1,True,75,50,ASDF,1280x720
+1466,book2::cornell_box::two_rotated_boxes,2,False,25,35,ASDF,720x1280
+1467,book2::cornell_box::two_rotated_boxes,2,False,25,50,ASDF,720x1280
+1468,book2::cornell_box::two_rotated_boxes,2,False,50,35,ASDF,720x720
+1469,book2::cornell_box::two_rotated_boxes,2,False,50,50,alvin's hot juicebox,720x1280
+1470,book2::cornell_box::two_rotated_boxes,2,False,75,20,alvin's hot juicebox,1280x720
+1471,book2::cornell_box::two_rotated_boxes,2,True,25,35,ASDF,720x720
+1472,book2::cornell_box::two_rotated_boxes,2,True,25,50,ASDF,720x1280
+1473,book2::cornell_box::two_rotated_boxes,2,True,25,50,ASDF,720x720
+1474,book2::cornell_box::two_rotated_boxes,2,True,50,20,9001,720x1280
+1475,book2::cornell_box::two_rotated_boxes,2,True,50,20,ASDF,720x720
+1476,book2::cornell_box::two_rotated_boxes,2,True,75,20,9001,720x1280
+1477,book2::cornell_box::two_rotated_boxes,2,True,75,20,alvin's hot juicebox,720x720
+1478,book2::cornell_box::two_rotated_boxes,2,True,75,35,9001,1280x720
+1479,book2::cornell_box::two_rotated_boxes,4,False,25,20,9001,1280x720
+1480,book2::cornell_box::two_rotated_boxes,4,False,25,20,ASDF,720x1280
+1481,book2::cornell_box::two_rotated_boxes,4,False,25,20,ASDF,720x720
+1482,book2::cornell_box::two_rotated_boxes,4,False,25,35,ASDF,1280x720
+1483,book2::cornell_box::two_rotated_boxes,4,False,25,50,9001,1280x720
+1484,book2::cornell_box::two_rotated_boxes,4,False,50,35,9001,720x720
+1485,book2::cornell_box::two_rotated_boxes,4,False,50,50,9001,720x720
+1486,book2::cornell_box::two_rotated_boxes,4,False,50,50,ASDF,1280x720
+1487,book2::cornell_box::two_rotated_boxes,4,False,75,20,alvin's hot juicebox,1280x720
+1488,book2::cornell_box::two_rotated_boxes,4,False,75,20,alvin's hot juicebox,720x720
+1489,book2::cornell_box::two_rotated_boxes,4,False,75,35,9001,720x720
+1490,book2::cornell_box::two_rotated_boxes,4,False,75,35,alvin's hot juicebox,1280x720
+1491,book2::cornell_box::two_rotated_boxes,4,False,75,35,alvin's hot juicebox,720x720
+1492,book2::cornell_box::two_rotated_boxes,4,True,25,20,ASDF,720x720
+1493,book2::cornell_box::two_rotated_boxes,4,True,25,50,9001,720x1280
+1494,book2::cornell_box::two_rotated_boxes,4,True,25,50,ASDF,1280x720
+1495,book2::cornell_box::two_rotated_boxes,4,True,25,50,alvin's hot juicebox,720x1280
+1496,book2::cornell_box::two_rotated_boxes,4,True,50,20,9001,1280x720
+1497,book2::cornell_box::two_rotated_boxes,4,True,50,20,alvin's hot juicebox,720x720
+1498,book2::cornell_box::two_rotated_boxes,4,True,75,20,9001,720x720
+1499,book2::cornell_box::two_rotated_boxes,4,True,75,50,ASDF,720x1280
+1500,book2::cornell_box::two_rotated_boxes,4,True,75,50,alvin's hot juicebox,1280x720
+1501,book2::cornell_box::two_smoke_boxes,1,False,25,20,9001,720x1280
+1502,book2::cornell_box::two_smoke_boxes,1,False,25,20,alvin's hot juicebox,720x1280
+1503,book2::cornell_box::two_smoke_boxes,1,False,25,35,ASDF,1280x720
+1504,book2::cornell_box::two_smoke_boxes,1,False,25,50,9001,720x720
+1505,book2::cornell_box::two_smoke_boxes,1,False,50,20,alvin's hot juicebox,720x720
+1506,book2::cornell_box::two_smoke_boxes,1,False,50,50,9001,720x1280
+1507,book2::cornell_box::two_smoke_boxes,1,False,75,20,ASDF,720x1280
+1508,book2::cornell_box::two_smoke_boxes,1,False,75,35,9001,720x720
+1509,book2::cornell_box::two_smoke_boxes,1,False,75,50,alvin's hot juicebox,1280x720
+1510,book2::cornell_box::two_smoke_boxes,1,True,25,35,9001,720x1280
+1511,book2::cornell_box::two_smoke_boxes,1,True,25,35,9001,720x720
+1512,book2::cornell_box::two_smoke_boxes,1,True,25,35,alvin's hot juicebox,720x720
+1513,book2::cornell_box::two_smoke_boxes,1,True,25,50,9001,720x720
+1514,book2::cornell_box::two_smoke_boxes,1,True,50,20,9001,720x720
+1515,book2::cornell_box::two_smoke_boxes,1,True,50,50,9001,1280x720
+1516,book2::cornell_box::two_smoke_boxes,1,True,75,20,alvin's hot juicebox,1280x720
+1517,book2::cornell_box::two_smoke_boxes,1,True,75,20,alvin's hot juicebox,720x720
+1518,book2::cornell_box::two_smoke_boxes,2,False,25,20,alvin's hot juicebox,720x720
+1519,book2::cornell_box::two_smoke_boxes,2,False,25,50,9001,720x720
+1520,book2::cornell_box::two_smoke_boxes,2,False,25,50,ASDF,720x1280
+1521,book2::cornell_box::two_smoke_boxes,2,False,50,50,alvin's hot juicebox,720x1280
+1522,book2::cornell_box::two_smoke_boxes,2,False,75,20,9001,720x720
+1523,book2::cornell_box::two_smoke_boxes,2,False,75,20,alvin's hot juicebox,720x720
+1524,book2::cornell_box::two_smoke_boxes,2,False,75,35,9001,720x1280
+1525,book2::cornell_box::two_smoke_boxes,2,False,75,35,9001,720x720
+1526,book2::cornell_box::two_smoke_boxes,2,False,75,50,9001,1280x720
+1527,book2::cornell_box::two_smoke_boxes,2,False,75,50,9001,720x1280
+1528,book2::cornell_box::two_smoke_boxes,2,True,25,20,alvin's hot juicebox,720x720
+1529,book2::cornell_box::two_smoke_boxes,2,True,25,50,alvin's hot juicebox,1280x720
+1530,book2::cornell_box::two_smoke_boxes,2,True,50,20,ASDF,1280x720
+1531,book2::cornell_box::two_smoke_boxes,2,True,50,35,alvin's hot juicebox,1280x720
+1532,book2::cornell_box::two_smoke_boxes,2,True,50,50,9001,1280x720
+1533,book2::cornell_box::two_smoke_boxes,2,True,75,20,alvin's hot juicebox,1280x720
+1534,book2::cornell_box::two_smoke_boxes,4,False,25,20,9001,720x1280
+1535,book2::cornell_box::two_smoke_boxes,4,False,25,20,alvin's hot juicebox,720x720
+1536,book2::cornell_box::two_smoke_boxes,4,False,25,35,ASDF,720x1280
+1537,book2::cornell_box::two_smoke_boxes,4,False,25,35,alvin's hot juicebox,1280x720
+1538,book2::cornell_box::two_smoke_boxes,4,False,50,20,9001,720x720
+1539,book2::cornell_box::two_smoke_boxes,4,False,50,50,ASDF,1280x720
+1540,book2::cornell_box::two_smoke_boxes,4,False,75,20,9001,720x720
+1541,book2::cornell_box::two_smoke_boxes,4,False,75,35,9001,720x1280
+1542,book2::cornell_box::two_smoke_boxes,4,False,75,35,9001,720x720
+1543,book2::cornell_box::two_smoke_boxes,4,False,75,50,9001,720x1280
+1544,book2::cornell_box::two_smoke_boxes,4,True,25,20,alvin's hot juicebox,720x720
+1545,book2::cornell_box::two_smoke_boxes,4,True,25,50,ASDF,720x1280
+1546,book2::cornell_box::two_smoke_boxes,4,True,25,50,alvin's hot juicebox,720x1280
+1547,book2::cornell_box::two_smoke_boxes,4,True,50,35,ASDF,720x1280
+1548,book2::cornell_box::two_smoke_boxes,4,True,50,35,ASDF,720x720
+1549,book2::cornell_box::two_smoke_boxes,4,True,50,50,alvin's hot juicebox,720x1280
+1550,book2::cornell_box::two_smoke_boxes,4,True,75,50,alvin's hot juicebox,720x720
+1551,book2::final_scene,1,False,25,20,9001,1280x720
+1552,book2::final_scene,1,False,50,35,ASDF,1280x720
+1553,book2::final_scene,1,False,50,50,ASDF,1280x720
+1554,book2::final_scene,1,False,50,50,ASDF,720x1280
+1555,book2::final_scene,1,False,75,20,ASDF,1280x720
+1556,book2::final_scene,1,False,75,20,ASDF,720x1280
+1557,book2::final_scene,1,False,75,35,ASDF,720x720
+1558,book2::final_scene,1,False,75,50,alvin's hot juicebox,1280x720
+1559,book2::final_scene,1,True,25,20,9001,1280x720
+1560,book2::final_scene,1,True,25,50,9001,1280x720
+1561,book2::final_scene,1,True,50,35,ASDF,720x1280
+1562,book2::final_scene,1,True,50,35,alvin's hot juicebox,1280x720
+1563,book2::final_scene,1,True,50,50,ASDF,720x1280
+1564,book2::final_scene,1,True,50,50,alvin's hot juicebox,1280x720
+1565,book2::final_scene,1,True,75,35,alvin's hot juicebox,720x720
+1566,book2::final_scene,2,False,25,35,ASDF,720x1280
+1567,book2::final_scene,2,False,25,50,alvin's hot juicebox,1280x720
+1568,book2::final_scene,2,False,50,35,ASDF,1280x720
+1569,book2::final_scene,2,False,75,35,alvin's hot juicebox,720x720
+1570,book2::final_scene,2,False,75,50,alvin's hot juicebox,1280x720
+1571,book2::final_scene,2,True,25,35,ASDF,720x1280
+1572,book2::final_scene,2,True,25,50,9001,720x720
+1573,book2::final_scene,2,True,50,35,alvin's hot juicebox,720x720
+1574,book2::final_scene,2,True,50,50,9001,720x1280
+1575,book2::final_scene,2,True,50,50,9001,720x720
+1576,book2::final_scene,2,True,50,50,ASDF,720x1280
+1577,book2::final_scene,2,True,75,20,ASDF,720x1280
+1578,book2::final_scene,2,True,75,50,9001,720x720
+1579,book2::final_scene,4,False,25,35,9001,1280x720
+1580,book2::final_scene,4,False,25,35,alvin's hot juicebox,720x1280
+1581,book2::final_scene,4,False,50,20,alvin's hot juicebox,720x1280
+1582,book2::final_scene,4,False,50,35,9001,720x1280
+1583,book2::final_scene,4,False,50,35,alvin's hot juicebox,720x1280
+1584,book2::final_scene,4,False,75,20,alvin's hot juicebox,720x1280
+1585,book2::final_scene,4,False,75,20,alvin's hot juicebox,720x720
+1586,book2::final_scene,4,False,75,35,9001,1280x720
+1587,book2::final_scene,4,False,75,50,alvin's hot juicebox,1280x720
+1588,book2::final_scene,4,False,75,50,alvin's hot juicebox,720x720
+1589,book2::final_scene,4,True,25,20,9001,1280x720
+1590,book2::final_scene,4,True,25,20,9001,720x1280
+1591,book2::final_scene,4,True,25,20,ASDF,720x1280
+1592,book2::final_scene,4,True,25,35,ASDF,1280x720
+1593,book2::final_scene,4,True,25,35,ASDF,720x720
+1594,book2::final_scene,4,True,25,35,alvin's hot juicebox,1280x720
+1595,book2::final_scene,4,True,25,50,ASDF,720x1280
+1596,book2::final_scene,4,True,25,50,ASDF,720x720
+1597,book2::final_scene,4,True,50,50,alvin's hot juicebox,720x720
+1598,book2::final_scene,4,True,75,20,9001,1280x720
+1599,book2::final_scene,4,True,75,35,alvin's hot juicebox,1280x720
+1600,book2::final_scene,4,True,75,50,9001,720x720
+1601,book3::cornell_box::two_boxes,1,False,25,50,ASDF,720x1280
+1602,book3::cornell_box::two_boxes,1,False,50,35,alvin's hot juicebox,720x720
+1603,book3::cornell_box::two_boxes,1,False,75,20,alvin's hot juicebox,1280x720
+1604,book3::cornell_box::two_boxes,1,True,25,20,ASDF,720x720
+1605,book3::cornell_box::two_boxes,1,True,25,20,alvin's hot juicebox,720x720
+1606,book3::cornell_box::two_boxes,1,True,50,20,ASDF,720x1280
+1607,book3::cornell_box::two_boxes,1,True,50,20,ASDF,720x720
+1608,book3::cornell_box::two_boxes,1,True,50,50,9001,720x720
+1609,book3::cornell_box::two_boxes,1,True,75,20,alvin's hot juicebox,1280x720
+1610,book3::cornell_box::two_boxes,1,True,75,20,alvin's hot juicebox,720x1280
+1611,book3::cornell_box::two_boxes,1,True,75,35,9001,720x1280
+1612,book3::cornell_box::two_boxes,1,True,75,35,alvin's hot juicebox,1280x720
+1613,book3::cornell_box::two_boxes,1,True,75,50,9001,720x1280
+1614,book3::cornell_box::two_boxes,1,True,75,50,ASDF,720x1280
+1615,book3::cornell_box::two_boxes,1,True,75,50,alvin's hot juicebox,1280x720
+1616,book3::cornell_box::two_boxes,1,True,75,50,alvin's hot juicebox,720x720
+1617,book3::cornell_box::two_boxes,2,False,25,35,9001,1280x720
+1618,book3::cornell_box::two_boxes,2,False,25,50,9001,720x1280
+1619,book3::cornell_box::two_boxes,2,False,25,50,ASDF,720x720
+1620,book3::cornell_box::two_boxes,2,False,25,50,alvin's hot juicebox,720x1280
+1621,book3::cornell_box::two_boxes,2,False,50,50,alvin's hot juicebox,720x720
+1622,book3::cornell_box::two_boxes,2,False,75,20,9001,1280x720
+1623,book3::cornell_box::two_boxes,2,False,75,35,alvin's hot juicebox,720x720
+1624,book3::cornell_box::two_boxes,2,False,75,50,9001,1280x720
+1625,book3::cornell_box::two_boxes,2,False,75,50,alvin's hot juicebox,1280x720
+1626,book3::cornell_box::two_boxes,2,True,25,20,9001,1280x720
+1627,book3::cornell_box::two_boxes,2,True,25,20,alvin's hot juicebox,720x720
+1628,book3::cornell_box::two_boxes,2,True,25,50,9001,720x720
+1629,book3::cornell_box::two_boxes,2,True,50,35,alvin's hot juicebox,720x720
+1630,book3::cornell_box::two_boxes,2,True,75,35,9001,1280x720
+1631,book3::cornell_box::two_boxes,2,True,75,50,9001,720x1280
+1632,book3::cornell_box::two_boxes,4,False,25,20,9001,720x720
+1633,book3::cornell_box::two_boxes,4,False,25,20,ASDF,1280x720
+1634,book3::cornell_box::two_boxes,4,False,25,35,ASDF,720x720
+1635,book3::cornell_box::two_boxes,4,False,25,35,alvin's hot juicebox,1280x720
+1636,book3::cornell_box::two_boxes,4,False,25,50,alvin's hot juicebox,1280x720
+1637,book3::cornell_box::two_boxes,4,False,25,50,alvin's hot juicebox,720x1280
+1638,book3::cornell_box::two_boxes,4,False,50,35,9001,720x720
+1639,book3::cornell_box::two_boxes,4,False,50,50,9001,720x720
+1640,book3::cornell_box::two_boxes,4,False,50,50,alvin's hot juicebox,720x720
+1641,book3::cornell_box::two_boxes,4,False,75,35,ASDF,1280x720
+1642,book3::cornell_box::two_boxes,4,False,75,50,9001,1280x720
+1643,book3::cornell_box::two_boxes,4,True,25,35,ASDF,720x720
+1644,book3::cornell_box::two_boxes,4,True,25,35,alvin's hot juicebox,1280x720
+1645,book3::cornell_box::two_boxes,4,True,25,50,9001,1280x720
+1646,book3::cornell_box::two_boxes,4,True,25,50,ASDF,720x1280
+1647,book3::cornell_box::two_boxes,4,True,25,50,alvin's hot juicebox,720x720
+1648,book3::cornell_box::two_boxes,4,True,50,20,ASDF,720x720
+1649,book3::cornell_box::two_boxes,4,True,75,20,ASDF,720x720
+1650,book3::cornell_box::two_boxes,4,True,75,35,9001,720x720
+1651,book3::cornell_box::two_boxes_one_mirror,1,False,25,20,ASDF,720x1280
+1652,book3::cornell_box::two_boxes_one_mirror,1,False,25,20,alvin's hot juicebox,720x1280
+1653,book3::cornell_box::two_boxes_one_mirror,1,False,25,35,alvin's hot juicebox,720x1280
+1654,book3::cornell_box::two_boxes_one_mirror,1,False,25,50,ASDF,1280x720
+1655,book3::cornell_box::two_boxes_one_mirror,1,False,50,35,9001,720x1280
+1656,book3::cornell_box::two_boxes_one_mirror,1,False,50,50,9001,1280x720
+1657,book3::cornell_box::two_boxes_one_mirror,1,False,50,50,alvin's hot juicebox,720x720
+1658,book3::cornell_box::two_boxes_one_mirror,1,False,75,20,ASDF,720x720
+1659,book3::cornell_box::two_boxes_one_mirror,1,False,75,20,alvin's hot juicebox,720x720
+1660,book3::cornell_box::two_boxes_one_mirror,1,False,75,35,ASDF,1280x720
+1661,book3::cornell_box::two_boxes_one_mirror,1,False,75,35,ASDF,720x1280
+1662,book3::cornell_box::two_boxes_one_mirror,1,True,25,35,alvin's hot juicebox,720x720
+1663,book3::cornell_box::two_boxes_one_mirror,1,True,50,20,ASDF,1280x720
+1664,book3::cornell_box::two_boxes_one_mirror,1,True,50,35,alvin's hot juicebox,1280x720
+1665,book3::cornell_box::two_boxes_one_mirror,1,True,50,50,9001,1280x720
+1666,book3::cornell_box::two_boxes_one_mirror,1,True,75,20,ASDF,720x720
+1667,book3::cornell_box::two_boxes_one_mirror,1,True,75,20,alvin's hot juicebox,1280x720
+1668,book3::cornell_box::two_boxes_one_mirror,1,True,75,35,9001,720x720
+1669,book3::cornell_box::two_boxes_one_mirror,1,True,75,50,9001,1280x720
+1670,book3::cornell_box::two_boxes_one_mirror,1,True,75,50,alvin's hot juicebox,720x720
+1671,book3::cornell_box::two_boxes_one_mirror,2,False,25,20,ASDF,1280x720
+1672,book3::cornell_box::two_boxes_one_mirror,2,False,25,35,9001,720x720
+1673,book3::cornell_box::two_boxes_one_mirror,2,False,25,35,alvin's hot juicebox,720x720
+1674,book3::cornell_box::two_boxes_one_mirror,2,False,25,50,alvin's hot juicebox,720x720
+1675,book3::cornell_box::two_boxes_one_mirror,2,False,50,35,alvin's hot juicebox,720x1280
+1676,book3::cornell_box::two_boxes_one_mirror,2,False,50,50,alvin's hot juicebox,720x720
+1677,book3::cornell_box::two_boxes_one_mirror,2,False,75,20,ASDF,720x720
+1678,book3::cornell_box::two_boxes_one_mirror,2,False,75,35,9001,1280x720
+1679,book3::cornell_box::two_boxes_one_mirror,2,False,75,50,9001,720x720
+1680,book3::cornell_box::two_boxes_one_mirror,2,False,75,50,ASDF,1280x720
+1681,book3::cornell_box::two_boxes_one_mirror,2,True,50,20,9001,720x1280
+1682,book3::cornell_box::two_boxes_one_mirror,2,True,50,20,ASDF,1280x720
+1683,book3::cornell_box::two_boxes_one_mirror,2,True,75,20,alvin's hot juicebox,720x1280
+1684,book3::cornell_box::two_boxes_one_mirror,2,True,75,35,ASDF,720x1280
+1685,book3::cornell_box::two_boxes_one_mirror,4,False,25,20,9001,1280x720
+1686,book3::cornell_box::two_boxes_one_mirror,4,False,25,35,ASDF,720x720
+1687,book3::cornell_box::two_boxes_one_mirror,4,False,25,50,alvin's hot juicebox,1280x720
+1688,book3::cornell_box::two_boxes_one_mirror,4,False,50,50,9001,720x1280
+1689,book3::cornell_box::two_boxes_one_mirror,4,False,50,50,9001,720x720
+1690,book3::cornell_box::two_boxes_one_mirror,4,False,75,20,9001,720x1280
+1691,book3::cornell_box::two_boxes_one_mirror,4,False,75,35,9001,720x720
+1692,book3::cornell_box::two_boxes_one_mirror,4,False,75,50,ASDF,720x1280
+1693,book3::cornell_box::two_boxes_one_mirror,4,False,75,50,alvin's hot juicebox,1280x720
+1694,book3::cornell_box::two_boxes_one_mirror,4,True,25,35,9001,1280x720
+1695,book3::cornell_box::two_boxes_one_mirror,4,True,25,35,9001,720x720
+1696,book3::cornell_box::two_boxes_one_mirror,4,True,25,50,ASDF,720x1280
+1697,book3::cornell_box::two_boxes_one_mirror,4,True,50,20,ASDF,1280x720
+1698,book3::cornell_box::two_boxes_one_mirror,4,True,50,35,9001,1280x720
+1699,book3::cornell_box::two_boxes_one_mirror,4,True,75,35,9001,1280x720
+1700,book3::cornell_box::two_boxes_one_mirror,4,True,75,50,alvin's hot juicebox,1280x720
+1701,book3::cornell_box::one_box_one_glass_sphere,1,False,25,35,ASDF,1280x720
+1702,book3::cornell_box::one_box_one_glass_sphere,1,False,25,35,ASDF,720x720
+1703,book3::cornell_box::one_box_one_glass_sphere,1,False,50,20,9001,720x720
+1704,book3::cornell_box::one_box_one_glass_sphere,1,False,50,35,alvin's hot juicebox,720x1280
+1705,book3::cornell_box::one_box_one_glass_sphere,1,False,50,50,9001,720x720
+1706,book3::cornell_box::one_box_one_glass_sphere,1,False,50,50,ASDF,1280x720
+1707,book3::cornell_box::one_box_one_glass_sphere,1,False,50,50,alvin's hot juicebox,720x1280
+1708,book3::cornell_box::one_box_one_glass_sphere,1,False,75,20,9001,720x720
+1709,book3::cornell_box::one_box_one_glass_sphere,1,False,75,20,ASDF,720x1280
+1710,book3::cornell_box::one_box_one_glass_sphere,1,False,75,50,9001,1280x720
+1711,book3::cornell_box::one_box_one_glass_sphere,1,False,75,50,alvin's hot juicebox,1280x720
+1712,book3::cornell_box::one_box_one_glass_sphere,1,False,75,50,alvin's hot juicebox,720x1280
+1713,book3::cornell_box::one_box_one_glass_sphere,1,True,25,20,9001,1280x720
+1714,book3::cornell_box::one_box_one_glass_sphere,1,True,25,20,ASDF,720x1280
+1715,book3::cornell_box::one_box_one_glass_sphere,1,True,25,35,9001,720x720
+1716,book3::cornell_box::one_box_one_glass_sphere,1,True,25,50,9001,720x1280
+1717,book3::cornell_box::one_box_one_glass_sphere,1,True,25,50,ASDF,720x1280
+1718,book3::cornell_box::one_box_one_glass_sphere,1,True,50,35,9001,1280x720
+1719,book3::cornell_box::one_box_one_glass_sphere,1,True,50,35,9001,720x1280
+1720,book3::cornell_box::one_box_one_glass_sphere,1,True,50,50,alvin's hot juicebox,720x1280
+1721,book3::cornell_box::one_box_one_glass_sphere,1,True,50,50,alvin's hot juicebox,720x720
+1722,book3::cornell_box::one_box_one_glass_sphere,1,True,75,50,9001,720x1280
+1723,book3::cornell_box::one_box_one_glass_sphere,2,False,25,20,ASDF,720x1280
+1724,book3::cornell_box::one_box_one_glass_sphere,2,False,25,35,alvin's hot juicebox,720x720
+1725,book3::cornell_box::one_box_one_glass_sphere,2,False,75,35,alvin's hot juicebox,1280x720
+1726,book3::cornell_box::one_box_one_glass_sphere,2,False,75,50,ASDF,1280x720
+1727,book3::cornell_box::one_box_one_glass_sphere,2,False,75,50,ASDF,720x1280
+1728,book3::cornell_box::one_box_one_glass_sphere,2,False,75,50,ASDF,720x720
+1729,book3::cornell_box::one_box_one_glass_sphere,2,True,25,20,ASDF,720x720
+1730,book3::cornell_box::one_box_one_glass_sphere,2,True,25,35,9001,720x1280
+1731,book3::cornell_box::one_box_one_glass_sphere,2,True,50,35,ASDF,1280x720
+1732,book3::cornell_box::one_box_one_glass_sphere,2,True,75,35,9001,720x1280
+1733,book3::cornell_box::one_box_one_glass_sphere,2,True,75,35,9001,720x720
+1734,book3::cornell_box::one_box_one_glass_sphere,2,True,75,50,9001,720x1280
+1735,book3::cornell_box::one_box_one_glass_sphere,2,True,75,50,9001,720x720
+1736,book3::cornell_box::one_box_one_glass_sphere,4,False,25,20,9001,1280x720
+1737,book3::cornell_box::one_box_one_glass_sphere,4,False,25,35,ASDF,720x1280
+1738,book3::cornell_box::one_box_one_glass_sphere,4,False,25,50,9001,720x720
+1739,book3::cornell_box::one_box_one_glass_sphere,4,False,50,20,ASDF,720x720
+1740,book3::cornell_box::one_box_one_glass_sphere,4,False,50,35,9001,1280x720
+1741,book3::cornell_box::one_box_one_glass_sphere,4,False,50,50,9001,1280x720
+1742,book3::cornell_box::one_box_one_glass_sphere,4,False,75,20,alvin's hot juicebox,720x720
+1743,book3::cornell_box::one_box_one_glass_sphere,4,True,25,20,alvin's hot juicebox,720x1280
+1744,book3::cornell_box::one_box_one_glass_sphere,4,True,25,35,alvin's hot juicebox,720x720
+1745,book3::cornell_box::one_box_one_glass_sphere,4,True,50,20,9001,1280x720
+1746,book3::cornell_box::one_box_one_glass_sphere,4,True,50,50,ASDF,1280x720
+1747,book3::cornell_box::one_box_one_glass_sphere,4,True,75,20,ASDF,1280x720
+1748,book3::cornell_box::one_box_one_glass_sphere,4,True,75,20,ASDF,720x1280
+1749,book3::cornell_box::one_box_one_glass_sphere,4,True,75,20,alvin's hot juicebox,720x1280
+1750,book3::cornell_box::one_box_one_glass_sphere,4,True,75,35,alvin's hot juicebox,1280x720
+1751,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,50,20,alvin's hot juicebox,720x720
+1752,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,50,50,alvin's hot juicebox,1280x720
+1753,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,75,20,9001,720x1280
+1754,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,75,35,alvin's hot juicebox,720x1280
+1755,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,75,50,ASDF,720x720
+1756,book3::cornell_box::one_mirror_box_one_glass_sphere,1,False,75,50,alvin's hot juicebox,720x720
+1757,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,25,20,alvin's hot juicebox,1280x720
+1758,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,25,35,9001,1280x720
+1759,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,25,50,ASDF,720x1280
+1760,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,50,20,alvin's hot juicebox,1280x720
+1761,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,20,9001,720x720
+1762,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,35,ASDF,1280x720
+1763,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,35,ASDF,720x720
+1764,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,35,alvin's hot juicebox,720x1280
+1765,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,35,alvin's hot juicebox,720x720
+1766,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,50,9001,1280x720
+1767,book3::cornell_box::one_mirror_box_one_glass_sphere,1,True,75,50,alvin's hot juicebox,720x1280
+1768,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,25,35,ASDF,720x1280
+1769,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,25,50,alvin's hot juicebox,1280x720
+1770,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,50,35,9001,1280x720
+1771,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,50,50,ASDF,720x720
+1772,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,50,50,alvin's hot juicebox,720x720
+1773,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,75,20,ASDF,720x1280
+1774,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,75,20,alvin's hot juicebox,720x1280
+1775,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,75,35,9001,720x720
+1776,book3::cornell_box::one_mirror_box_one_glass_sphere,2,False,75,50,alvin's hot juicebox,720x1280
+1777,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,25,20,9001,1280x720
+1778,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,25,20,alvin's hot juicebox,720x720
+1779,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,25,35,9001,720x720
+1780,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,50,20,alvin's hot juicebox,720x1280
+1781,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,75,35,9001,720x720
+1782,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,75,35,alvin's hot juicebox,720x720
+1783,book3::cornell_box::one_mirror_box_one_glass_sphere,2,True,75,50,alvin's hot juicebox,720x1280
+1784,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,25,20,9001,1280x720
+1785,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,25,50,alvin's hot juicebox,720x1280
+1786,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,25,50,alvin's hot juicebox,720x720
+1787,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,50,20,9001,720x1280
+1788,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,50,50,alvin's hot juicebox,720x720
+1789,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,75,35,9001,1280x720
+1790,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,75,35,alvin's hot juicebox,1280x720
+1791,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,75,50,ASDF,720x1280
+1792,book3::cornell_box::one_mirror_box_one_glass_sphere,4,False,75,50,alvin's hot juicebox,720x720
+1793,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,25,20,ASDF,720x1280
+1794,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,25,35,ASDF,720x720
+1795,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,25,35,alvin's hot juicebox,1280x720
+1796,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,25,50,ASDF,720x720
+1797,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,50,20,9001,720x1280
+1798,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,75,20,ASDF,720x1280
+1799,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,75,20,alvin's hot juicebox,720x1280
+1800,book3::cornell_box::one_mirror_box_one_glass_sphere,4,True,75,35,9001,1280x720
+1801,fun::three_spheres,1,False,25,20,ASDF,1280x720
+1802,fun::three_spheres,1,False,25,35,ASDF,1280x720
+1803,fun::three_spheres,1,False,25,35,ASDF,720x720
+1804,fun::three_spheres,1,False,25,50,9001,720x1280
+1805,fun::three_spheres,1,False,50,20,alvin's hot juicebox,1280x720
+1806,fun::three_spheres,1,False,50,35,alvin's hot juicebox,720x720
+1807,fun::three_spheres,1,False,50,50,alvin's hot juicebox,720x1280
+1808,fun::three_spheres,1,False,50,50,alvin's hot juicebox,720x720
+1809,fun::three_spheres,1,False,75,20,ASDF,720x720
+1810,fun::three_spheres,1,False,75,35,9001,1280x720
+1811,fun::three_spheres,1,False,75,50,9001,720x1280
+1812,fun::three_spheres,1,False,75,50,9001,720x720
+1813,fun::three_spheres,1,True,50,50,alvin's hot juicebox,720x1280
+1814,fun::three_spheres,1,True,75,20,ASDF,1280x720
+1815,fun::three_spheres,1,True,75,35,ASDF,1280x720
+1816,fun::three_spheres,1,True,75,35,ASDF,720x1280
+1817,fun::three_spheres,1,True,75,35,alvin's hot juicebox,720x720
+1818,fun::three_spheres,2,False,25,35,ASDF,720x1280
+1819,fun::three_spheres,2,False,75,20,9001,720x1280
+1820,fun::three_spheres,2,False,75,20,ASDF,720x720
+1821,fun::three_spheres,2,False,75,35,9001,1280x720
+1822,fun::three_spheres,2,False,75,35,9001,720x1280
+1823,fun::three_spheres,2,False,75,50,9001,720x1280
+1824,fun::three_spheres,2,True,25,35,9001,720x720
+1825,fun::three_spheres,2,True,25,35,ASDF,720x720
+1826,fun::three_spheres,2,True,25,50,9001,1280x720
+1827,fun::three_spheres,2,True,25,50,ASDF,720x1280
+1828,fun::three_spheres,2,True,50,20,9001,1280x720
+1829,fun::three_spheres,2,True,50,20,ASDF,720x1280
+1830,fun::three_spheres,2,True,50,50,ASDF,1280x720
+1831,fun::three_spheres,2,True,75,20,ASDF,1280x720
+1832,fun::three_spheres,2,True,75,35,ASDF,720x720
+1833,fun::three_spheres,2,True,75,50,alvin's hot juicebox,1280x720
+1834,fun::three_spheres,4,False,25,20,ASDF,720x1280
+1835,fun::three_spheres,4,False,25,35,9001,720x720
+1836,fun::three_spheres,4,False,25,35,ASDF,720x720
+1837,fun::three_spheres,4,False,25,50,ASDF,720x1280
+1838,fun::three_spheres,4,False,25,50,ASDF,720x720
+1839,fun::three_spheres,4,False,25,50,alvin's hot juicebox,1280x720
+1840,fun::three_spheres,4,False,25,50,alvin's hot juicebox,720x720
+1841,fun::three_spheres,4,False,50,20,9001,720x720
+1842,fun::three_spheres,4,False,50,50,9001,720x1280
+1843,fun::three_spheres,4,False,75,20,9001,1280x720
+1844,fun::three_spheres,4,False,75,20,9001,720x720
+1845,fun::three_spheres,4,False,75,20,alvin's hot juicebox,1280x720
+1846,fun::three_spheres,4,False,75,50,ASDF,720x1280
+1847,fun::three_spheres,4,True,25,50,ASDF,1280x720
+1848,fun::three_spheres,4,True,50,35,9001,720x720
+1849,fun::three_spheres,4,True,50,35,alvin's hot juicebox,1280x720
+1850,fun::three_spheres,4,True,50,35,alvin's hot juicebox,720x720
+1851,fun::whitted_1980,1,False,25,20,9001,720x720
+1852,fun::whitted_1980,1,False,25,50,9001,1280x720
+1853,fun::whitted_1980,1,False,50,20,alvin's hot juicebox,1280x720
+1854,fun::whitted_1980,1,False,50,20,alvin's hot juicebox,720x1280
+1855,fun::whitted_1980,1,False,50,20,alvin's hot juicebox,720x720
+1856,fun::whitted_1980,1,False,50,35,9001,1280x720
+1857,fun::whitted_1980,1,False,50,35,alvin's hot juicebox,720x1280
+1858,fun::whitted_1980,1,False,50,50,ASDF,720x1280
+1859,fun::whitted_1980,1,False,75,20,9001,1280x720
+1860,fun::whitted_1980,1,False,75,20,ASDF,720x1280
+1861,fun::whitted_1980,1,False,75,35,ASDF,720x720
+1862,fun::whitted_1980,1,False,75,50,9001,720x720
+1863,fun::whitted_1980,1,False,75,50,alvin's hot juicebox,720x720
+1864,fun::whitted_1980,1,True,25,20,alvin's hot juicebox,720x1280
+1865,fun::whitted_1980,1,True,25,35,9001,1280x720
+1866,fun::whitted_1980,1,True,25,35,ASDF,720x720
+1867,fun::whitted_1980,1,True,25,50,ASDF,720x1280
+1868,fun::whitted_1980,1,True,50,20,alvin's hot juicebox,1280x720
+1869,fun::whitted_1980,1,True,50,35,ASDF,720x720
+1870,fun::whitted_1980,1,True,50,35,alvin's hot juicebox,1280x720
+1871,fun::whitted_1980,1,True,50,35,alvin's hot juicebox,720x1280
+1872,fun::whitted_1980,2,False,25,35,9001,720x1280
+1873,fun::whitted_1980,2,False,25,50,alvin's hot juicebox,1280x720
+1874,fun::whitted_1980,2,False,50,35,alvin's hot juicebox,1280x720
+1875,fun::whitted_1980,2,False,50,50,alvin's hot juicebox,720x720
+1876,fun::whitted_1980,2,False,75,20,alvin's hot juicebox,720x1280
+1877,fun::whitted_1980,2,False,75,35,alvin's hot juicebox,720x720
+1878,fun::whitted_1980,2,False,75,50,9001,720x1280
+1879,fun::whitted_1980,2,True,25,20,9001,720x1280
+1880,fun::whitted_1980,2,True,25,20,alvin's hot juicebox,720x1280
+1881,fun::whitted_1980,2,True,25,50,ASDF,720x1280
+1882,fun::whitted_1980,2,True,25,50,ASDF,720x720
+1883,fun::whitted_1980,2,True,50,20,ASDF,720x720
+1884,fun::whitted_1980,2,True,50,35,ASDF,720x1280
+1885,fun::whitted_1980,2,True,75,20,ASDF,1280x720
+1886,fun::whitted_1980,2,True,75,35,ASDF,720x1280
+1887,fun::whitted_1980,4,False,25,20,ASDF,720x720
+1888,fun::whitted_1980,4,False,25,20,alvin's hot juicebox,1280x720
+1889,fun::whitted_1980,4,False,25,50,ASDF,720x1280
+1890,fun::whitted_1980,4,False,50,20,9001,720x720
+1891,fun::whitted_1980,4,False,50,20,alvin's hot juicebox,1280x720
+1892,fun::whitted_1980,4,False,50,50,9001,1280x720
+1893,fun::whitted_1980,4,False,50,50,alvin's hot juicebox,720x720
+1894,fun::whitted_1980,4,False,75,50,9001,1280x720
+1895,fun::whitted_1980,4,True,25,20,alvin's hot juicebox,720x720
+1896,fun::whitted_1980,4,True,25,35,ASDF,720x1280
+1897,fun::whitted_1980,4,True,25,35,alvin's hot juicebox,720x1280
+1898,fun::whitted_1980,4,True,50,20,9001,720x1280
+1899,fun::whitted_1980,4,True,75,35,ASDF,720x720
+1900,fun::whitted_1980,4,True,75,50,ASDF,720x1280
+1901,fun::cornell_glass_boxes,1,False,25,20,9001,1280x720
+1902,fun::cornell_glass_boxes,1,False,25,50,ASDF,720x1280
+1903,fun::cornell_glass_boxes,1,False,50,20,ASDF,1280x720
+1904,fun::cornell_glass_boxes,1,False,50,20,ASDF,720x1280
+1905,fun::cornell_glass_boxes,1,False,50,35,alvin's hot juicebox,720x1280
+1906,fun::cornell_glass_boxes,1,False,50,50,9001,720x720
+1907,fun::cornell_glass_boxes,1,False,50,50,alvin's hot juicebox,720x720
+1908,fun::cornell_glass_boxes,1,False,75,35,ASDF,720x720
+1909,fun::cornell_glass_boxes,1,True,25,35,9001,720x1280
+1910,fun::cornell_glass_boxes,1,True,25,35,9001,720x720
+1911,fun::cornell_glass_boxes,1,True,50,20,9001,720x720
+1912,fun::cornell_glass_boxes,1,True,50,35,alvin's hot juicebox,1280x720
+1913,fun::cornell_glass_boxes,1,True,50,50,9001,720x720
+1914,fun::cornell_glass_boxes,1,True,75,20,alvin's hot juicebox,1280x720
+1915,fun::cornell_glass_boxes,1,True,75,20,alvin's hot juicebox,720x720
+1916,fun::cornell_glass_boxes,2,False,25,50,9001,720x720
+1917,fun::cornell_glass_boxes,2,False,25,50,ASDF,1280x720
+1918,fun::cornell_glass_boxes,2,False,25,50,ASDF,720x720
+1919,fun::cornell_glass_boxes,2,False,50,20,ASDF,720x720
+1920,fun::cornell_glass_boxes,2,False,50,20,alvin's hot juicebox,1280x720
+1921,fun::cornell_glass_boxes,2,False,50,35,9001,1280x720
+1922,fun::cornell_glass_boxes,2,False,50,35,9001,720x1280
+1923,fun::cornell_glass_boxes,2,False,75,20,9001,720x720
+1924,fun::cornell_glass_boxes,2,False,75,20,alvin's hot juicebox,1280x720
+1925,fun::cornell_glass_boxes,2,False,75,20,alvin's hot juicebox,720x1280
+1926,fun::cornell_glass_boxes,2,False,75,35,ASDF,1280x720
+1927,fun::cornell_glass_boxes,2,False,75,35,alvin's hot juicebox,720x1280
+1928,fun::cornell_glass_boxes,2,False,75,50,9001,720x1280
+1929,fun::cornell_glass_boxes,2,False,75,50,ASDF,720x720
+1930,fun::cornell_glass_boxes,2,True,25,20,ASDF,720x1280
+1931,fun::cornell_glass_boxes,2,True,25,50,ASDF,1280x720
+1932,fun::cornell_glass_boxes,2,True,50,20,ASDF,720x1280
+1933,fun::cornell_glass_boxes,2,True,50,35,9001,720x1280
+1934,fun::cornell_glass_boxes,2,True,50,35,ASDF,720x720
+1935,fun::cornell_glass_boxes,2,True,75,20,ASDF,720x720
+1936,fun::cornell_glass_boxes,4,False,25,50,9001,720x720
+1937,fun::cornell_glass_boxes,4,False,25,50,alvin's hot juicebox,720x720
+1938,fun::cornell_glass_boxes,4,False,50,20,alvin's hot juicebox,720x1280
+1939,fun::cornell_glass_boxes,4,False,50,20,alvin's hot juicebox,720x720
+1940,fun::cornell_glass_boxes,4,False,50,35,ASDF,1280x720
+1941,fun::cornell_glass_boxes,4,False,50,50,alvin's hot juicebox,1280x720
+1942,fun::cornell_glass_boxes,4,False,50,50,alvin's hot juicebox,720x1280
+1943,fun::cornell_glass_boxes,4,False,75,35,9001,720x1280
+1944,fun::cornell_glass_boxes,4,False,75,35,alvin's hot juicebox,720x1280
+1945,fun::cornell_glass_boxes,4,True,25,20,9001,720x720
+1946,fun::cornell_glass_boxes,4,True,25,50,9001,1280x720
+1947,fun::cornell_glass_boxes,4,True,25,50,ASDF,1280x720
+1948,fun::cornell_glass_boxes,4,True,50,20,9001,720x720
+1949,fun::cornell_glass_boxes,4,True,75,35,9001,720x1280
+1950,fun::cornell_glass_boxes,4,True,75,50,alvin's hot juicebox,720x720
+1951,fun::wave_of_spheres,1,False,25,20,ASDF,1280x720
+1952,fun::wave_of_spheres,1,False,25,35,ASDF,720x1280
+1953,fun::wave_of_spheres,1,False,25,50,ASDF,720x1280
+1954,fun::wave_of_spheres,1,False,50,20,ASDF,720x1280
+1955,fun::wave_of_spheres,1,False,50,20,ASDF,720x720
+1956,fun::wave_of_spheres,1,False,50,35,alvin's hot juicebox,720x1280
+1957,fun::wave_of_spheres,1,False,50,35,alvin's hot juicebox,720x720
+1958,fun::wave_of_spheres,1,False,50,50,ASDF,1280x720
+1959,fun::wave_of_spheres,1,False,75,50,9001,1280x720
+1960,fun::wave_of_spheres,1,True,25,35,9001,1280x720
+1961,fun::wave_of_spheres,1,True,25,35,9001,720x1280
+1962,fun::wave_of_spheres,1,True,25,35,alvin's hot juicebox,720x720
+1963,fun::wave_of_spheres,1,True,25,50,ASDF,720x1280
+1964,fun::wave_of_spheres,1,True,50,35,alvin's hot juicebox,1280x720
+1965,fun::wave_of_spheres,1,True,50,50,alvin's hot juicebox,1280x720
+1966,fun::wave_of_spheres,1,True,75,35,9001,720x720
+1967,fun::wave_of_spheres,1,True,75,35,alvin's hot juicebox,720x1280
+1968,fun::wave_of_spheres,2,False,25,35,ASDF,720x720
+1969,fun::wave_of_spheres,2,False,50,20,alvin's hot juicebox,720x1280
+1970,fun::wave_of_spheres,2,False,50,35,9001,1280x720
+1971,fun::wave_of_spheres,2,False,75,20,9001,720x1280
+1972,fun::wave_of_spheres,2,False,75,50,9001,720x720
+1973,fun::wave_of_spheres,2,True,25,50,9001,1280x720
+1974,fun::wave_of_spheres,2,True,25,50,ASDF,1280x720
+1975,fun::wave_of_spheres,2,True,75,20,ASDF,1280x720
+1976,fun::wave_of_spheres,2,True,75,20,alvin's hot juicebox,1280x720
+1977,fun::wave_of_spheres,2,True,75,50,alvin's hot juicebox,720x720
+1978,fun::wave_of_spheres,4,False,25,35,ASDF,1280x720
+1979,fun::wave_of_spheres,4,False,50,35,alvin's hot juicebox,720x720
+1980,fun::wave_of_spheres,4,False,50,50,ASDF,720x720
+1981,fun::wave_of_spheres,4,False,75,20,ASDF,720x1280
+1982,fun::wave_of_spheres,4,False,75,20,alvin's hot juicebox,1280x720
+1983,fun::wave_of_spheres,4,False,75,35,ASDF,720x1280
+1984,fun::wave_of_spheres,4,False,75,35,alvin's hot juicebox,720x1280
+1985,fun::wave_of_spheres,4,False,75,50,9001,720x720
+1986,fun::wave_of_spheres,4,False,75,50,alvin's hot juicebox,720x720
+1987,fun::wave_of_spheres,4,True,25,20,ASDF,720x1280
+1988,fun::wave_of_spheres,4,True,25,20,alvin's hot juicebox,1280x720
+1989,fun::wave_of_spheres,4,True,25,35,9001,1280x720
+1990,fun::wave_of_spheres,4,True,25,35,9001,720x1280
+1991,fun::wave_of_spheres,4,True,25,35,alvin's hot juicebox,1280x720
+1992,fun::wave_of_spheres,4,True,25,35,alvin's hot juicebox,720x1280
+1993,fun::wave_of_spheres,4,True,50,20,9001,1280x720
+1994,fun::wave_of_spheres,4,True,50,20,ASDF,720x720
+1995,fun::wave_of_spheres,4,True,50,35,ASDF,1280x720
+1996,fun::wave_of_spheres,4,True,50,50,ASDF,1280x720
+1997,fun::wave_of_spheres,4,True,50,50,ASDF,720x1280
+1998,fun::wave_of_spheres,4,True,75,20,alvin's hot juicebox,1280x720
+1999,fun::wave_of_spheres,4,True,75,35,9001,1280x720
+2000,fun::wave_of_spheres,4,True,75,50,alvin's hot juicebox,1280x720
