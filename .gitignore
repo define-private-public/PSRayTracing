@@ -1,4 +1,5 @@
 build*
+multi_build
 .vscode
 CMakeLists.txt.user
 .DS_Store
