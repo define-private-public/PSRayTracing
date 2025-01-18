@@ -6,15 +6,15 @@
 import sys
 
 
-def get_ns(line: str) -> int:
+def get_ms(line: str) -> int:
     # Gets the nanoseconds a test case took
     return int(line.split(',')[8])
 
 
 def get_best_row(row_a: str, row_b: str) -> str:
     # Compares two (raw string) rows and gets the best runtime
-    runtime_a = get_ns(row_a)
-    runtime_b = get_ns(row_b)
+    runtime_a = get_ms(row_a)
+    runtime_b = get_ms(row_b)
 
     if (runtime_a < runtime_b):
         return row_a
@@ -48,16 +48,16 @@ def make_file_with_best_runtimes(filename_a: str, filename_b: str, results_filen
 
     # Get the best
     lines_best = [get_best_row(a, b) for (a, b) in paired]
-    best_runtimes = [get_ns(x) for x in lines_best]
+    best_runtimes = [get_ms(x) for x in lines_best]
     lines_best = [f'{line}\n' for line in lines_best]           # Append newline
-    total_runtime_ns = sum(best_runtimes)
+    total_runtime_ms = sum(best_runtimes)
 
     # write result
     with open(results_filename, 'w') as file:
         file.write(f'{header}\n')
         file.writelines(lines_best)
 
-    print(f'Total Runtime (ns): {total_runtime_ns}')
+    print(f'Total Runtime (ms): {total_runtime_ms}')
 
 
 def main():

@@ -66,8 +66,9 @@ public:
         );
     }
 
-    inline Vec3 get_in_unit_sphere() NOEXCEPT {
-        // BOOK CODE: (loop, with brancing, super bad... but it's acutely faster)
+    Vec3 get_in_unit_sphere() NOEXCEPT {
+#ifdef USE_BOOK_RNG_UNIT_SAMPLING
+        // Rejection method (loop, with branching, super bad... but it's acutely faster)
         while (true) {
             const Vec3 p = get_vec3(-1, 1);
             if (p.length_squared() >= 1)
@@ -75,24 +76,27 @@ public:
 
             return p;
         }
+#else
+        // The analytical way of getting a random point within a sphere
+        //   This is adapted from https://karthikkaranth.me/blog/generating-random-points-in-a-sphere/
+        //   It was an attempt to generate the points in a more performant method, but turned out to
+        //   be slightly slower than rejection sampling (when -O3 is turned on)
+        const rreal r = std::cbrt(get_real(0, 1));
+        const rreal theta = get_real(0, TwoPi);
+        const rreal phi = std::acos(get_real(-1, 1));   // Note: Original code was `acos(2x - 1); x=[0, 2]`, but we can just generate a random number between [-1, 1] and save us a minus instruction
+                                                            // TODO test this atomic benchmark
 
-//        // This is adapted from https://karthikkaranth.me/blog/generating-random-points-in-a-sphere/
-//        //   It was an attempt to generate the points in a more performant maner, but turned out to
-//        //   be slightly slower, and a little different too.
-//        const rreal r = std::cbrt(get_real(0, 1));
-//        const rreal theta = get_real(0, TwoPi);
-//        const rreal phi = /* std::acos(get_real(0, 2) - 1); */ HalfPi - util::asin(get_real(0, 2) - 1);       // Use our asin approximation with the acos trig identity
-//
-//        const rreal sin_theta = util::sin(theta);
-//        const rreal cos_theta = util::cos(theta);
-//        const rreal sin_phi = util::sin(phi);
-//        const rreal cos_phi = util::cos(phi);
-//
-//        const rreal x = r * sin_phi * cos_theta;
-//        const rreal y = r * sin_phi * sin_theta;
-//        const rreal z = r * cos_phi;
-//
-//        return Vec3(x, y, z);
+        const rreal sin_theta = util::sin(theta);
+        const rreal cos_theta = util::cos(theta);
+        const rreal sin_phi = util::sin(phi);
+        const rreal cos_phi = util::cos(phi);
+
+        const rreal x = r * sin_phi * cos_theta;
+        const rreal y = r * sin_phi * sin_theta;
+        const rreal z = r * cos_phi;
+
+        return Vec3(x, y, z);
+#endif // USE_BOOK_RNG_UNIT_SAMPLING
     }
 
     inline Vec3 get_in_unit_hemisphere(const Vec3 &normal) NOEXCEPT {
@@ -100,24 +104,27 @@ public:
         return (in_unit_sphere.dot(normal) > 0) ? in_unit_sphere : -in_unit_sphere;
     }
 
-    inline Vec3 get_in_unit_disk() NOEXCEPT {
-        // BOOK CODE: (loop, with branching, super bad... but it's acutely faster)
+    Vec3 get_in_unit_disk() NOEXCEPT {
+#ifdef USE_BOOK_RNG_UNIT_SAMPLING
+        // Rejection method (loop, with branching, super bad... but it's acutely faster)
         while (true) {
             const Vec3 p(get_real(-1, 1), get_real(-1, 1), 0);
-            if (p.length_squared() >= 1)
+            if (p.xy_length_squared() >= 1)
                 continue;
 
             return p;
         }
+#else
+        // The analytical method of getting a random point within a disk
+        //   (oddly slower than rejection sampling)
+        const rreal r = util::sqrt(get_real(0, 1));
+        const rreal theta = get_real(0, TwoPi);
 
-//        // This is polar, it's slightly slower (by 0.8%) for some odd reason...
-//        const rreal r = util::sqrt(get_real(0, 1));
-//        const rreal theta = get_real(0, TwoPi);
-//
-//        const rreal x = r * util::cos(theta);
-//        const rreal y = r * util::sin(theta);
-//
-//        return Vec3(x, y, 0);
+        const rreal x = r * util::cos(theta);
+        const rreal y = r * util::sin(theta);
+
+        return Vec3(x, y, 0);
+#endif // USE_BOOK_RNG_UNIT_SAMPLING
     }
 
     inline Vec3 get_unit_vector() NOEXCEPT {
