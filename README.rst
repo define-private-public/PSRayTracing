@@ -323,7 +323,13 @@ Trig functions are necessary for almost anything math.  Though, they can also ge
 compute.  But in some cases, such as graphics, we can get away with doing a faster approximation of the
 functions.  In our case, we use the functions ``sin()``, ``cos()``, ``asin()``, and ``atan2()``.
 
-Sine, cosine, and arcsine use a taylor series approximation.  It's fairly easy enough to implement.
+Update Feb 15th, 2026: After some more investigating, I noticed that the built in ``std::sin()`` (and
+``std::cos()``) are now indistinguishable (in term of performance) from their Taylor series approximations.
+When I started this project on older hardware I recall seeing a performance increase with approximations.
+But after some more testing on newer hardware I'm not seeing much of anything.  So because of this I've
+now switched back on use of ``std::sin()`` (and ``std::cos()``) by default.
+
+Sine, cosine, and arcsine use a Taylor series approximation.  It's fairly easy enough to implement.
 ``atan2()`` as a bit more tricky and required bitwidling magic.  My method was taken from
 `this page <https://www.dsprelated.com/showarticle/1052.php>`_.  I'd really recommend reading through it if
 you want to know the details of how it worked.
