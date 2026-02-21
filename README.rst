@@ -323,6 +323,12 @@ Trig functions are necessary for almost anything math.  Though, they can also ge
 compute.  But in some cases, such as graphics, we can get away with doing a faster approximation of the
 functions.  In our case, we use the functions ``sin()``, ``cos()``, ``asin()``, and ``atan2()``.
 
+Update Feb 21th, 2026: There was an even faster (and more correct) ``asin()`` approximation that was hiding
+in plain sight.  `NVIDIA's older Cg Toolkit API reference (from 2012) <https://developer.download.nvidia.com/cg/asin.html>`_ ,
+which itself is an adaptation of `a formula laid out in a calculus textbook from the 60's <https://personal.math.ubc.ca/~cbm/aands/page_81.htm>`_ .
+After implementing it I saw about a 10% performance gain when rendering book 2's final scene.  It is about
+5% more performant than my ``asin()`` approximation laid out below.
+
 Update Feb 15th, 2026: After some more investigating, I noticed that the built in ``std::sin()`` (and
 ``std::cos()``) are now indistinguishable (in term of performance) from their Taylor series approximations.
 When I started this project on older hardware I recall seeing a performance increase with approximations.
