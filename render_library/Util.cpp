@@ -74,33 +74,70 @@ rreal _atan2_approx_private(const rreal y, const rreal x) NOEXCEPT {
 
 
 #ifndef USE_BOOK_ASIN
+
+
+// Handbook of Mathematical Functions
+// M. Abramowitz and I.A. Stegun, Ed.
+//   https://personal.math.ubc.ca/~cbm/aands/page_81.htm
+// Adapted from: https://developer.download.nvidia.com/cg/asin.html
+rreal _fast_asin_cg(const rreal x)
+{
+    // Original Minimax coefficients
+    constexpr rreal a0 =  1.5707288;
+    constexpr rreal a1 = -0.2121144;
+    constexpr rreal a2 =  0.0742610;
+    constexpr rreal a3 = -0.0187293;
+    constexpr rreal a4 =  0.0074261;
+
+    // Strip sign
+    const rreal abs_x = fabs(x);
+
+    // Evaluate polynomial using Horner's method
+    rreal p = a4;
+    p = p * abs_x + a3;
+    p = p * abs_x + a2;
+    p = p * abs_x + a1;
+    p = p * abs_x + a0;
+
+    // Apply sqrt term and pi/2 offset
+    const auto x_diff = static_cast<rreal>(sqrt(1.0 - abs_x));
+    const rreal result = HalfPi - (x_diff * p);
+
+    // Restore sign
+    return copysign(result, x);
+}
+
 /*!
  * This uses a taylor series approximation (with error correction) to compute the arcsine
  * a bit faster.
  */
-rreal _asin_approx_private(const rreal x) NOEXCEPT {
-    // This uses a talor series approximation.
-    // See: http://mathforum.org/library/drmath/view/54137.html
+rreal _asin_approx_private(const rreal x) NOEXCEPT
+{
+    return _fast_asin_cg(x);
 
-    // In the case where x=[-1, -0.8) or (0.8, 1.0] there is unfortunately a lot of
-    // error compared to actual arcsine, so for this case we actually use the function
-    constexpr rreal lim = 0.8;
-    if ((x < static_cast<rreal>(-lim)) || (static_cast<rreal>(lim) < x))
-        return std::asin(x);
-
-    // The taylor series approximation
-    // TODO [correctess] Could we add another layer of depth without a performance hit?
-    constexpr auto a = static_cast<rreal>(0.5);
-    constexpr auto b = static_cast<rreal>(a * 0.75);
-    constexpr auto c = static_cast<rreal>(b * (5.0 / 6.0));
-    constexpr auto d = static_cast<rreal>(c * (7.0 / 8.0));
-
-    const auto aa = static_cast<rreal>((x * x * x) / 3.0);
-    const auto bb = static_cast<rreal>((x * x * x * x * x) / 5.0);
-    const auto cc = static_cast<rreal>((x * x * x * x * x * x * x) / 7.0);
-    const auto dd = static_cast<rreal>((x * x * x * x * x * x * x * x * x) / 9.0);
-
-    return x + (a * aa) + (b * bb) + (c * cc) + (d * dd);
+    /*== This is old and outdated ==*/
+//    // This uses a talor series approximation.
+//    // See: http://mathforum.org/library/drmath/view/54137.html
+//    //
+//    // In the case where x=[-1, -0.8) or (0.8, 1.0] there is unfortunately a lot of
+//    // error compared to actual arcsine, so for this case we actually use the function
+//    constexpr rreal lim = 0.85;
+//    if ((x < static_cast<rreal>(-lim)) || (static_cast<rreal>(lim) < x))
+//        return std::asin(x);
+//
+//    // The taylor series approximation
+//    // TODO [correctess] Could we add another layer of depth without a performance hit?
+//    constexpr auto a = static_cast<rreal>(0.5);
+//    constexpr auto b = static_cast<rreal>(a * 0.75);
+//    constexpr auto c = static_cast<rreal>(b * (5.0 / 6.0));
+//    constexpr auto d = static_cast<rreal>(c * (7.0 / 8.0));
+//
+//    const auto aa = static_cast<rreal>((x * x * x) / 3.0);
+//    const auto bb = static_cast<rreal>((x * x * x * x * x) / 5.0);
+//    const auto cc = static_cast<rreal>((x * x * x * x * x * x * x) / 7.0);
+//    const auto dd = static_cast<rreal>((x * x * x * x * x * x * x * x * x) / 9.0);
+//
+//    return x + (a * aa) + (b * bb) + (c * cc) + (d * dd);
 }
 #endif  // !USE_BOOK_ASIN
 
