@@ -87,15 +87,12 @@ rreal _fast_asin_cg(const rreal x)
     constexpr rreal a1 = -0.2121144;
     constexpr rreal a2 =  0.0742610;
     constexpr rreal a3 = -0.0187293;
-    constexpr rreal a4 =  0.0074261;
 
     // Strip sign
     const rreal abs_x = fabs(x);
 
     // Evaluate polynomial using Horner's method
-    rreal p = a4;
-    p = p * abs_x + a3;
-    p = p * abs_x + a2;
+    rreal p = a3 * abs_x + a2;
     p = p * abs_x + a1;
     p = p * abs_x + a0;
 
