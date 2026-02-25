@@ -1,0 +1,20 @@
+Microsoft (R) C/C++ Optimizing Compiler Version 19.39.33523 for x64
+
+C:\Users\Benjamin\Projects\PSRayTracing\experiments\asin_cg_approx>test_msvc_O2.exe ASDF 100 10000000
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:  12458.1 ms
+asin_cg() time:     6562.1 ms
+Verification sums:
+  std::asin():  -34549.5
+  asin_cg():    -34551.1
+  Difference:   1.60886
+  Error:        -0.00465669 %
+Speedup: 1.8985x faster
+
+
+C:\Users\Benjamin\Projects\PSRayTracing\experiments\asin_cg_approx>cl --version
+Microsoft (R) C/C++ Optimizing Compiler Version 19.39.33523 for x64
+Copyright (C) Microsoft Corporation.  All rights reserved.

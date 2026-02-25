@@ -1,0 +1,41 @@
+ben@Benjamins-Mac-mini asin_cg_approx % make -f Makefile_benchmark run_tests_unix
+g++-15 --version
+g++-15 (Homebrew GCC 15.1.0) 15.1.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+clang++ --version
+Apple clang version 17.0.0 (clang-1700.0.13.5)
+Target: arm64-apple-darwin24.6.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+
+./test_gcc_O3 "ASDF" "100" "10000000"
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:  5094.63 ms
+asin_cg() time:     789.35 ms
+Verification sums:
+  std::asin():  -34549.5
+  asin_cg():    -34551.1
+  Difference:   1.60886
+  Error:        -0.00465669 %
+Speedup: 6.4542x faster
+
+./test_clang_O3 "ASDF" "100" "10000000"
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:  5137.56 ms
+asin_cg() time:     534.97 ms
+Verification sums:
+  std::asin():  -34549.5
+  asin_cg():    -34551.1
+  Difference:   1.60886
+  Error:        -0.00465669 %
+Speedup: 9.60348x faster
