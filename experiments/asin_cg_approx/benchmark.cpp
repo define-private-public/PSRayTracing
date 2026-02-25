@@ -2,7 +2,6 @@
 #include <chrono>
 #include <cmath>
 #include <random>
-#include <vector>
 #include "pcg_random.hpp"
 using namespace std;
 
@@ -80,34 +79,32 @@ int main(int argc, char *argv[])
     // Perform `n` runs of the benchmark, using a different RNG each time
     for (size_t run = 0; run < num_runs; run++)
     {
-        // Generate random values using the adapted RNG class
         RNG rng(rng_seed + to_string(run));
-        vector<double> values(num_samples);
-        for (size_t i = 0; i < num_samples; i++)
-        {
-            values[i] = rng.num();
-        }
 
-        // Benchmark std::asin()
-        const auto start_std = chrono::steady_clock::now();
         for (size_t i = 0; i < num_samples; i++)
         {
-            sum_std += asin(values[i]);
-        }
-        const auto end_std = chrono::steady_clock::now();
-        total_duration_std += (end_std - start_std);
+            const double x = rng.num();
 
-        // Benchmark asin_cg()
-        const auto start_cg = chrono::steady_clock::now();
-        for (size_t i = 0; i < num_samples; i++)
-        {
-            sum_cg += asin_cg(values[i]);
+            // Benchmark std::asin()
+            const auto start_std = chrono::steady_clock::now();
+            const double as_std = std::asin(x);
+            const auto end_std = chrono::steady_clock::now();
+
+            // Benchmark asin_cg()
+            const auto start_cg = chrono::steady_clock::now();
+            const double as_cg = asin_cg(x);
+            const auto end_cg = chrono::steady_clock::now();
+
+            // Accumulate
+            sum_std += as_std;
+            sum_cg += as_cg;
+            total_duration_std += (end_std - start_std);
+            total_duration_cg += (end_cg - start_cg);
         }
-        const auto end_cg = chrono::steady_clock::now();
-        total_duration_cg += (end_cg - start_cg);
 
         cout << "." << flush;
     }
+
     cout << endl;
 
     // Print Results
