@@ -1,0 +1,45 @@
+GCC 14.2 was obtained via w64devkit 
+MSVC is from Visual Studio 2022
+
+./test_gcc_O3 "ASDF" "100" "10000000"
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:          54477.2 ms
+asin_cg() time:            49066 ms
+asin_cg_const() time:      47881.5 ms
+asin_cg_const_fma() time:  56579.6 ms
+asin_cg_estrin() time:     48591.6 ms
+Verification sums:
+  std::asin():          -34549.5
+  asin_cg():            -34551.1 (Err: -0.00465669 %)
+  asin_cg_const():      -34551.1 (Err: -0.00465669 %)
+  asin_cg_const_fma():  -34551.1 (Err: -0.00465669 %)
+  asin_cg_estrin():     -34551.1 (Err: -0.00465669 %)
+Speedup asin_cg:            1.11028x faster
+Speedup asin_cg_const:      1.13775x faster
+Speedup asin_cg_const_fma:  0.962842x faster
+Speedup asin_cg_estrin:     1.12112x faster
+
+test_msvc_O2.exe "ASDF" "100" "10000000"
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:          51482.5 ms
+asin_cg() time:            38686.8 ms
+asin_cg_const() time:      35015.6 ms
+asin_cg_const_fma() time:  56292.6 ms
+asin_cg_estrin() time:     37738 ms
+Verification sums:
+  std::asin():          -34549.5
+  asin_cg():            -34551.1 (Err: -0.00465669 %)
+  asin_cg_const():      -34551.1 (Err: -0.00465669 %)
+  asin_cg_const_fma():  -34551.1 (Err: -0.00465669 %)
+  asin_cg_estrin():     -34551.1 (Err: -0.00465669 %)
+Speedup asin_cg:            1.33075x faster
+Speedup asin_cg_const:      1.47027x faster
+Speedup asin_cg_const_fma:  0.914552x faster
+Speedup asin_cg_estrin:     1.36421x faster
+

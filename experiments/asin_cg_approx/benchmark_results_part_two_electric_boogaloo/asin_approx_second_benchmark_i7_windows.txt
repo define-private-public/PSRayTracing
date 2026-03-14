@@ -1,0 +1,52 @@
+GCC 14.2 was obtained via w64devkit 
+MSVC is from Visual Studio 2022
+
+g++ --version
+g++ (GCC) 14.1.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+""
+./test_gcc_O3 "ASDF" "100" "10000000"
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:          46399.6 ms
+asin_cg() time:            36344.7 ms
+asin_cg_const() time:      34914.5 ms
+asin_cg_const_fma() time:  47966.7 ms
+asin_cg_estrin() time:     36464.6 ms
+Verification sums:
+  std::asin():          -34549.5
+  asin_cg():            -34551.1 (Err: -0.00465669 %)
+  asin_cg_const():      -34551.1 (Err: -0.00465669 %)
+  asin_cg_const_fma():  -34551.1 (Err: -0.00465669 %)
+  asin_cg_estrin():     -34551.1 (Err: -0.00465669 %)
+Speedup asin_cg:            1.27666x faster
+Speedup asin_cg_const:      1.32895x faster
+Speedup asin_cg_const_fma:  0.967331x faster
+Speedup asin_cg_estrin:     1.27246x faster
+
+test_msvc_O2.exe "ASDF" "100" "10000000"
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:          33822.1 ms
+asin_cg() time:            21608.4 ms
+asin_cg_const() time:      16809.7 ms
+asin_cg_const_fma() time:  27962 ms
+asin_cg_estrin() time:     18517.9 ms
+Verification sums:
+  std::asin():          -34549.5
+  asin_cg():            -34551.1 (Err: -0.00465669 %)
+  asin_cg_const():      -34551.1 (Err: -0.00465669 %)
+  asin_cg_const_fma():  -34551.1 (Err: -0.00465669 %)
+  asin_cg_estrin():     -34551.1 (Err: -0.00465669 %)
+Speedup asin_cg:            1.56523x faster
+Speedup asin_cg_const:      2.01206x faster
+Speedup asin_cg_const_fma:  1.20957x faster
+Speedup asin_cg_estrin:     1.82646x faster
+

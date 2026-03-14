@@ -1,0 +1,55 @@
+g++-14 --version
+g++-14 (Ubuntu 14.2.0-4ubuntu2~24.04.1) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+clang++-19 --version
+Ubuntu clang version 19.1.1 (1ubuntu1~24.04.2)
+Target: x86_64-pc-linux-gnu
+Thread model: posix
+InstalledDir: /usr/lib/llvm-19/bin
+
+./test_gcc_O3 "ASDF" "100" "10000000"
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:          29438.9 ms
+asin_cg() time:            19152.4 ms
+asin_cg_const() time:      13974.7 ms
+asin_cg_const_fma() time:  16688.5 ms
+asin_cg_estrin() time:     16546.4 ms
+Verification sums:
+  std::asin():          -34549.5
+  asin_cg():            -34551.1 (Err: -0.00465669 %)
+  asin_cg_const():      -34551.1 (Err: -0.00465669 %)
+  asin_cg_const_fma():  -34551.1 (Err: -0.00465669 %)
+  asin_cg_estrin():     -34551.1 (Err: -0.00465669 %)
+Speedup asin_cg:            1.53708x faster
+Speedup asin_cg_const:      2.10658x faster
+Speedup asin_cg_const_fma:  1.76402x faster
+Speedup asin_cg_estrin:     1.77917x faster
+
+./test_clang_O3 "ASDF" "100" "10000000"
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:          29613.1 ms
+asin_cg() time:            17433.7 ms
+asin_cg_const() time:      14177.9 ms
+asin_cg_const_fma() time:  17617.3 ms
+asin_cg_estrin() time:     16516.6 ms
+Verification sums:
+  std::asin():          -34549.5
+  asin_cg():            -34551.1 (Err: -0.00465669 %)
+  asin_cg_const():      -34551.1 (Err: -0.00465669 %)
+  asin_cg_const_fma():  -34551.1 (Err: -0.00465669 %)
+  asin_cg_estrin():     -34551.1 (Err: -0.00465669 %)
+Speedup asin_cg:            1.69861x faster
+Speedup asin_cg_const:      2.08868x faster
+Speedup asin_cg_const_fma:  1.68091x faster
+Speedup asin_cg_estrin:     1.79293x faster
+
