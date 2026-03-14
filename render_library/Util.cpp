@@ -80,47 +80,46 @@ rreal _atan2_approx_private(const rreal y, const rreal x) NOEXCEPT {
 // M. Abramowitz and I.A. Stegun, Ed.
 //   https://personal.math.ubc.ca/~cbm/aands/page_81.htm
 // Adapted from: https://developer.download.nvidia.com/cg/asin.html
-rreal _fast_asin_cg(const rreal x)
+rreal asin_cg(const rreal x)
 {
     // Original Minimax coefficients
-    constexpr rreal a0 =  1.5707288;
+    constexpr rreal a0 = 1.5707288;
     constexpr rreal a1 = -0.2121144;
-    constexpr rreal a2 =  0.0742610;
+    constexpr rreal a2 = 0.0742610;
     constexpr rreal a3 = -0.0187293;
 
     // Strip sign
-    const rreal abs_x = fabs(x);
+    const rreal abs_x = std::abs(x);
 
     // Evaluate polynomial using Horner's method
-    rreal p = a3 * abs_x + a2;
-    p = p * abs_x + a1;
-    p = p * abs_x + a0;
+    const rreal p = ((a3 * abs_x + a2) * abs_x + a1) * abs_x + a0;
 
     // Apply sqrt term and pi/2 offset
-    const auto x_diff = static_cast<rreal>(sqrt(1.0 - abs_x));
+    const rreal x_diff = std::sqrt(1.0 - abs_x);
     const rreal result = HalfPi - (x_diff * p);
 
-    // Restore sign
-    return copysign(result, x);
+    // Restore sign natively
+    return std::copysign(result, x);
 }
 
-double asin_cg_const(const double x)
+rreal asin_cg_estrin_fma(const rreal x)
 {
     // Original Minimax coefficients
-    constexpr double a0 = 1.5707288;
-    constexpr double a1 = -0.2121144;
-    constexpr double a2 = 0.0742610;
-    constexpr double a3 = -0.0187293;
+    constexpr rreal a0 = 1.5707288;
+    constexpr rreal a1 = -0.2121144;
+    constexpr rreal a2 = 0.0742610;
+    constexpr rreal a3 = -0.0187293;
 
     // Strip sign
-    const double abs_x = std::abs(x);
+    const rreal abs_x = std::abs(x);
+    const rreal x2 = abs_x * abs_x;
 
-    // Evaluate polynomial using Horner's method (all const)
-    const double p = ((a3 * abs_x + a2) * abs_x + a1) * abs_x + a0;
+    // Estrin's scheme using FMA
+    const rreal p = std::fma(std::fma(a3, abs_x, a2), x2, std::fma(a1, abs_x, a0));
 
     // Apply sqrt term and pi/2 offset
-    const double x_diff = std::sqrt(1.0 - abs_x);
-    const double result = HalfPi - (x_diff * p);
+    const rreal x_diff = std::sqrt(1.0 - abs_x);
+    const rreal result = HalfPi - (x_diff * p);
 
     // Restore sign natively
     return std::copysign(result, x);
@@ -132,8 +131,8 @@ double asin_cg_const(const double x)
  */
 rreal _asin_approx_private(const rreal x) NOEXCEPT
 {
-    return asin_cg_const(x);
-//    return _fast_asin_cg(x);
+    return asin_cg(x);
+//    return asin_cg_estrin_fma(x);
 
     /*== This is old and outdated ==*/
 //    // This uses a talor series approximation.
