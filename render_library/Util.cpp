@@ -104,13 +104,36 @@ rreal _fast_asin_cg(const rreal x)
     return copysign(result, x);
 }
 
+double asin_cg_const(const double x)
+{
+    // Original Minimax coefficients
+    constexpr double a0 = 1.5707288;
+    constexpr double a1 = -0.2121144;
+    constexpr double a2 = 0.0742610;
+    constexpr double a3 = -0.0187293;
+
+    // Strip sign
+    const double abs_x = std::abs(x);
+
+    // Evaluate polynomial using Horner's method (all const)
+    const double p = ((a3 * abs_x + a2) * abs_x + a1) * abs_x + a0;
+
+    // Apply sqrt term and pi/2 offset
+    const double x_diff = std::sqrt(1.0 - abs_x);
+    const double result = HalfPi - (x_diff * p);
+
+    // Restore sign natively
+    return std::copysign(result, x);
+}
+
 /*!
  * This uses a taylor series approximation (with error correction) to compute the arcsine
  * a bit faster.
  */
 rreal _asin_approx_private(const rreal x) NOEXCEPT
 {
-    return _fast_asin_cg(x);
+    return asin_cg_const(x);
+//    return _fast_asin_cg(x);
 
     /*== This is old and outdated ==*/
 //    // This uses a talor series approximation.
