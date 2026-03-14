@@ -14,14 +14,6 @@ if (ANDROID OR IOS)
   set(IS_MOBILE TRUE)
 endif()
 
-# Make a flag if we are compiling with Microsoft's compiler
-set(COMPILING_WITH_MSVC FALSE)
-if (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
-  set(COMPILING_WITH_MSVC TRUE)
-endif()
-
-
-
 # Configurable options
 option(BUILD_QT_UI "Build the Qt UI as well (requires Qt 6)" ${IS_MOBILE})
 
