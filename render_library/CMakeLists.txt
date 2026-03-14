@@ -140,10 +140,9 @@ file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/../assets" DESTINATION ${CMAKE_BINARY_DIR
 add_library(PSRayTracing_StaticLibrary STATIC ${sources} ${third_party_sources})
 target_include_directories(PSRayTracing_StaticLibrary PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})    # Enable includes relative to the root
 
-
-
 # Configurable options
 option(WITH_SINGLE_PRECISION_REAL "Use `float` for `rreal type`" OFF)
+option(WITH_FMA "Enable FMA (Fused Multiply-Add) instructions" ON)
 option(WITH_BOOK_CLAMP "Use Book's method for `clamp()` (slow)" OFF)
 option(WITH_BOOK_RNG "Use Book's method (meresenne twister) for the random number generator (slow)" OFF)
 option(WITH_BOOK_RNG_UNIT_SAMPLING "Use Book's method (rejection sampling) to get random points within a unit disk and unit sphere" ON)
@@ -173,6 +172,16 @@ if (WITH_SINGLE_PRECISION_REAL)
   target_compile_definitions(PSRayTracing_StaticLibrary PUBLIC USE_SINGLE_PRECISION_REAL)
 else()
   message(STATUS "Using `double` for `rreal`")
+endif()
+
+if (WITH_FMA)
+  if (MSVC)
+    target_compile_options(PSRayTracing_StaticLibrary PUBLIC /arch:AVX2)
+    message(STATUS "FMA instructions enabled (using /arch:AVX2)")
+  else()
+    target_compile_options(PSRayTracing_StaticLibrary PUBLIC -mfma)
+    message(STATUS "FMA instructions enabled (using -mfma)")
+  endif()
 endif()
 
 if (WITH_BOOK_CLAMP)
@@ -298,7 +307,7 @@ endif()
 
 
 # Build it!
-if (NOT COMPILING_WITH_MSVC)
+if (NOT MSVC)
   # Turn on extra warnings (or supress them) for GCC & clang
   target_compile_options(PSRayTracing_StaticLibrary PRIVATE -Wall -Wextra -Wconversion -Wsign-conversion -Wmismatched-tags -Wno-overlength-strings -pedantic)
   set_source_files_properties(${third_party_sources} PROPERTIES COMPILE_FLAGS -w)
