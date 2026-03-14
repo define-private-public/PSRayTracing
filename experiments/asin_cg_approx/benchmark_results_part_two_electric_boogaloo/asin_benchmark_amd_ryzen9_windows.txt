@@ -1,0 +1,44 @@
+--- MSVC (No FMA) ---
+test_msvc_O2_no_fma.exe "ASDF" "100" "10000000"
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:              49838.5 ms
+asin_cg() time:                38342.9 ms
+asin_cg_fma() time:            53028 ms
+asin_cg_estrin() time:         37010.2 ms
+asin_cg_estrin_fma() time:     53075.4 ms
+Verification sums:
+  std::asin():              -34549.5
+  asin_cg():                -34551.1 (Err: -0.00465669 %)
+  asin_cg_fma():            -34551.1 (Err: -0.00465669 %)
+  asin_cg_estrin():         -34551.1 (Err: -0.00465669 %)
+  asin_cg_estrin_fma():     -34551.1 (Err: -0.00465669 %)
+Speedup asin_cg:                1.29981x faster
+Speedup asin_cg_fma:            0.939852x faster
+Speedup asin_cg_estrin:         1.34662x faster
+Speedup asin_cg_estrin_fma:     0.939013x faster
+
+--- MSVC (FMA) ---
+test_msvc_O2_fma.exe "ASDF" "100" "10000000"
+RNG Seed: ASDF
+Number of Runs: 100
+Number of Samples: 10000000
+....................................................................................................
+std::asin() time:              49623 ms
+asin_cg() time:                37904.3 ms
+asin_cg_fma() time:            35183.9 ms
+asin_cg_estrin() time:         37251.2 ms
+asin_cg_estrin_fma() time:     36965.9 ms
+Verification sums:
+  std::asin():              -34549.5
+  asin_cg():                -34551.1 (Err: -0.00465669 %)
+  asin_cg_fma():            -34551.1 (Err: -0.00465669 %)
+  asin_cg_estrin():         -34551.1 (Err: -0.00465669 %)
+  asin_cg_estrin_fma():     -34551.1 (Err: -0.00465669 %)
+Speedup asin_cg:                1.30916x faster
+Speedup asin_cg_fma:            1.41039x faster
+Speedup asin_cg_estrin:         1.33212x faster
+Speedup asin_cg_estrin_fma:     1.3424x faster
+
