@@ -1,9 +1,8 @@
-g++-15 --version
-g++-15 (Homebrew GCC 15.1.0) 15.1.0
-Copyright (C) 2025 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
+g++ --version
+Apple clang version 17.0.0 (clang-1700.0.13.5)
+Target: arm64-apple-darwin24.6.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 
 clang++ --version
 Apple clang version 17.0.0 (clang-1700.0.13.5)
@@ -11,47 +10,35 @@ Target: arm64-apple-darwin24.6.0
 Thread model: posix
 InstalledDir: /Library/Developer/CommandLineTools/usr/bin
 
---- GCC (No FMA) ---
-./test_gcc_O3_no_fma "ASDF" "100" "10000000"
+--- GCC ---
+./test_gcc_O3 "ASDF" "250" "10000000"
 RNG Seed: ASDF
-Number of Runs: 100
+Number of Runs: 250
 Number of Samples: 10000000
-....................................................................................................
-std::asin() time:              10553.6 ms
-asin_cg() time:                10517.7 ms
-asin_cg_fma() time:            9934.88 ms
-asin_cg_estrin() time:         9830.85 ms
-asin_cg_estrin_fma() time:     10531.6 ms
+..........................................................................................................................................................................................................................................................
+std::asin() time:              33874.3 ms
+asin_cg() time:                32813.5 ms
+asin_cg_estrin() time:         30252.3 ms
 Verification sums:
-  std::asin():              -34549.5
-  asin_cg():                -34551.1 (Err: -0.00465669 %)
-  asin_cg_fma():            -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin():         -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin_fma():     -34551.1 (Err: -0.00465669 %)
-Speedup asin_cg:                1.00341x faster
-Speedup asin_cg_fma:            1.06228x faster
-Speedup asin_cg_estrin:         1.07352x faster
-Speedup asin_cg_estrin_fma:     1.00209x faster
+  std::asin():              -44923.9
+  asin_cg():                -44924.8 (Err: -0.00215615 %)
+  asin_cg_estrin():         -44924.8 (Err: -0.00215615 %)
+Speedup asin_cg:                1.03233x faster
+Speedup asin_cg_estrin:         1.11973x faster
 
---- Clang (No FMA) ---
-./test_clang_O3_no_fma "ASDF" "100" "10000000"
+--- Clang ---
+./test_clang_O3 "ASDF" "250" "10000000"
 RNG Seed: ASDF
-Number of Runs: 100
+Number of Runs: 250
 Number of Samples: 10000000
-....................................................................................................
-std::asin() time:              13296.2 ms
-asin_cg() time:                12745.7 ms
-asin_cg_fma() time:            12911.8 ms
-asin_cg_estrin() time:         12075.3 ms
-asin_cg_estrin_fma() time:     12315.8 ms
+..........................................................................................................................................................................................................................................................
+std::asin() time:              33968.3 ms
+asin_cg() time:                33107 ms
+asin_cg_estrin() time:         30339.4 ms
 Verification sums:
-  std::asin():              -34549.5
-  asin_cg():                -34551.1 (Err: -0.00465669 %)
-  asin_cg_fma():            -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin():         -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin_fma():     -34551.1 (Err: -0.00465669 %)
-Speedup asin_cg:                1.04319x faster
-Speedup asin_cg_fma:            1.02977x faster
-Speedup asin_cg_estrin:         1.10111x faster
-Speedup asin_cg_estrin_fma:     1.07961x faster
+  std::asin():              -44923.9
+  asin_cg():                -44924.8 (Err: -0.00215615 %)
+  asin_cg_estrin():         -44924.8 (Err: -0.00215615 %)
+Speedup asin_cg:                1.02602x faster
+Speedup asin_cg_estrin:         1.11961x faster
 

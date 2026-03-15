@@ -11,91 +11,35 @@ Target: x86_64-pc-linux-gnu
 Thread model: posix
 InstalledDir: /usr/lib/llvm-20/bin
 
---- GCC (No FMA) ---
-./test_gcc_O3_no_fma "ASDF" "100" "10000000"
+--- GCC ---
+./test_gcc_O3 "ASDF" "250" "10000000"
 RNG Seed: ASDF
-Number of Runs: 100
+Number of Runs: 250
 Number of Samples: 10000000
-....................................................................................................
-std::asin() time:              29408.3 ms
-asin_cg() time:                19369.8 ms
-asin_cg_fma() time:            17066.1 ms
-asin_cg_estrin() time:         16653.8 ms
-asin_cg_estrin_fma() time:     16485.1 ms
+..........................................................................................................................................................................................................................................................
+std::asin() time:              74385.5 ms
+asin_cg() time:                48374 ms
+asin_cg_estrin() time:         41388 ms
 Verification sums:
-  std::asin():              -34549.5
-  asin_cg():                -34551.1 (Err: -0.00465669 %)
-  asin_cg_fma():            -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin():         -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin_fma():     -34551.1 (Err: -0.00465669 %)
-Speedup asin_cg:                1.51826x faster
-Speedup asin_cg_fma:            1.7232x faster
-Speedup asin_cg_estrin:         1.76586x faster
-Speedup asin_cg_estrin_fma:     1.78393x faster
+  std::asin():              -44923.9
+  asin_cg():                -44924.8 (Err: -0.00215615 %)
+  asin_cg_estrin():         -44924.8 (Err: -0.00215615 %)
+Speedup asin_cg:                1.53772x faster
+Speedup asin_cg_estrin:         1.79727x faster
 
---- GCC (FMA) ---
-./test_gcc_O3_fma "ASDF" "100" "10000000"
+--- Clang ---
+./test_clang_O3 "ASDF" "250" "10000000"
 RNG Seed: ASDF
-Number of Runs: 100
+Number of Runs: 250
 Number of Samples: 10000000
-....................................................................................................
-std::asin() time:              30546 ms
-asin_cg() time:                19269.1 ms
-asin_cg_fma() time:            16770.5 ms
-asin_cg_estrin() time:         15800.4 ms
-asin_cg_estrin_fma() time:     15071.2 ms
+..........................................................................................................................................................................................................................................................
+std::asin() time:              73504.4 ms
+asin_cg() time:                47210.6 ms
+asin_cg_estrin() time:         41349.5 ms
 Verification sums:
-  std::asin():              -34549.5
-  asin_cg():                -34551.1 (Err: -0.00465669 %)
-  asin_cg_fma():            -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin():         -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin_fma():     -34551.1 (Err: -0.00465669 %)
-Speedup asin_cg:                1.58523x faster
-Speedup asin_cg_fma:            1.82141x faster
-Speedup asin_cg_estrin:         1.93324x faster
-Speedup asin_cg_estrin_fma:     2.02678x faster
-
---- Clang (No FMA) ---
-./test_clang_O3_no_fma "ASDF" "100" "10000000"
-RNG Seed: ASDF
-Number of Runs: 100
-Number of Samples: 10000000
-....................................................................................................
-std::asin() time:              30128.7 ms
-asin_cg() time:                17690.5 ms
-asin_cg_fma() time:            17210.2 ms
-asin_cg_estrin() time:         17108.4 ms
-asin_cg_estrin_fma() time:     16369.2 ms
-Verification sums:
-  std::asin():              -34549.5
-  asin_cg():                -34551.1 (Err: -0.00465669 %)
-  asin_cg_fma():            -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin():         -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin_fma():     -34551.1 (Err: -0.00465669 %)
-Speedup asin_cg:                1.7031x faster
-Speedup asin_cg_fma:            1.75063x faster
-Speedup asin_cg_estrin:         1.76105x faster
-Speedup asin_cg_estrin_fma:     1.84057x faster
-
---- Clang (FMA) ---
-./test_clang_O3_fma "ASDF" "100" "10000000"
-RNG Seed: ASDF
-Number of Runs: 100
-Number of Samples: 10000000
-....................................................................................................
-std::asin() time:              29997 ms
-asin_cg() time:                18000 ms
-asin_cg_fma() time:            16826.4 ms
-asin_cg_estrin() time:         16459.6 ms
-asin_cg_estrin_fma() time:     17756.9 ms
-Verification sums:
-  std::asin():              -34549.5
-  asin_cg():                -34551.1 (Err: -0.00465669 %)
-  asin_cg_fma():            -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin():         -34551.1 (Err: -0.00465669 %)
-  asin_cg_estrin_fma():     -34551.1 (Err: -0.00465669 %)
-Speedup asin_cg:                1.66649x faster
-Speedup asin_cg_fma:            1.78274x faster
-Speedup asin_cg_estrin:         1.82246x faster
-Speedup asin_cg_estrin_fma:     1.68931x faster
+  std::asin():              -44923.9
+  asin_cg():                -44924.8 (Err: -0.00215615 %)
+  asin_cg_estrin():         -44924.8 (Err: -0.00215615 %)
+Speedup asin_cg:                1.55695x faster
+Speedup asin_cg_estrin:         1.77764x faster
 
