@@ -28,7 +28,7 @@ build_msvc: $(SRC)
 
 # Running the tests
 SEED = "ASDF"
-NUM_RUNS = "100"
+NUM_RUNS = "250"
 NUM_VECTORS = "10000000"
 
 run_tests_unix:
