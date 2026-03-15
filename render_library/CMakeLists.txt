@@ -142,7 +142,6 @@ target_include_directories(PSRayTracing_StaticLibrary PRIVATE ${CMAKE_CURRENT_SO
 
 # Configurable options
 option(WITH_SINGLE_PRECISION_REAL "Use `float` for `rreal type`" OFF)
-option(WITH_FMA "Enable FMA (Fused Multiply-Add) instructions" ON)
 option(WITH_BOOK_CLAMP "Use Book's method for `clamp()` (slow)" OFF)
 option(WITH_BOOK_RNG "Use Book's method (meresenne twister) for the random number generator (slow)" OFF)
 option(WITH_BOOK_RNG_UNIT_SAMPLING "Use Book's method (rejection sampling) to get random points within a unit disk and unit sphere" ON)
@@ -172,20 +171,6 @@ if (WITH_SINGLE_PRECISION_REAL)
   target_compile_definitions(PSRayTracing_StaticLibrary PUBLIC USE_SINGLE_PRECISION_REAL)
 else()
   message(STATUS "Using `double` for `rreal`")
-endif()
-
-if (WITH_FMA)
-  if (CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64|AMD64")
-    if (MSVC)
-      target_compile_options(PSRayTracing_StaticLibrary PUBLIC /arch:AVX2)
-      message(STATUS "FMA instructions enabled (using /arch:AVX2)")
-    else()
-      target_compile_options(PSRayTracing_StaticLibrary PUBLIC -mfma)
-      message(STATUS "FMA instructions enabled (using -mfma)")
-    endif()
-  else()
-    message(STATUS "FMA is not available on ${CMAKE_SYSTEM_PROCESSOR} and will be ignored.")
-  endif()
 endif()
 
 if (WITH_BOOK_CLAMP)
