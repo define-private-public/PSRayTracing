@@ -16,18 +16,15 @@ clean:
 	rm -f test_*
 
 build_gcc: $(SRC)
-	$(GCC_CXX) $(SRC) -O3 -o test_gcc_O3_no_fma
-	$(GCC_CXX) $(SRC) -O3 -o test_gcc_O3_fma -mfma
+	$(GCC_CXX) $(SRC) -O3 -o test_gcc_O3
 
 build_clang: $(SRC)
-	$(CLANG_CXX) $(SRC) -O3 -o test_clang_O3_no_fma
-	$(CLANG_CXX) $(SRC) -O3 -o test_clang_O3_fma -mfma
+	$(CLANG_CXX) $(SRC) -O3 -o test_clang_O3
 
 build_unix: build_gcc build_clang
 
 build_msvc: $(SRC)
-	$(MSVC_CXX) $(SRC) /O2 /Fetest_msvc_O2_no_fma.exe /std:c++20
-	$(MSVC_CXX) $(SRC) /O2 /arch:AVX2 /Fetest_msvc_O2_fma.exe /std:c++20
+	$(MSVC_CXX) $(SRC) /O2 /Fetest_msvc_O2.exe /std:c++20
 
 # Running the tests
 SEED = "ASDF"
@@ -40,22 +37,13 @@ run_tests_unix:
 	$(CLANG_CXX) --version
 	@echo ""
 
-	@echo "--- GCC (No FMA) ---"
-	./test_gcc_O3_no_fma $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
-	@echo "--- GCC (FMA) ---"
-	./test_gcc_O3_fma $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
-	@echo "--- Clang (No FMA) ---"
-	./test_clang_O3_no_fma $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
-	@echo "--- Clang (FMA) ---"
-	./test_clang_O3_fma $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
+	@echo "--- GCC ---"
+	./test_gcc_O3 $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
+	@echo "--- Clang ---"
+	./test_clang_O3 $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
 
 run_tests_windows:
-	# Windows can have GCC too (via w64devkit)
-	@echo "--- GCC (No FMA) ---"
-	./test_gcc_O3_no_fma $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
-	@echo "--- GCC (FMA) ---"
-	./test_gcc_O3_fma $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
-	@echo "--- MSVC (No FMA) ---"
-	test_msvc_O2_no_fma.exe $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
-	@echo "--- MSVC (FMA) ---"
-	test_msvc_O2_fma.exe $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
+	@echo "--- GCC ---"
+	test_gcc_O3 $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
+	@echo "--- MSVC ---"
+	test_msvc_O2.exe $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
