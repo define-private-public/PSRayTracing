@@ -50,6 +50,11 @@ run_tests_unix:
 	./test_clang_O3_fma $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
 
 run_tests_windows:
+	# Windows can have GCC too (via w64devkit)
+	@echo "--- GCC (No FMA) ---"
+	./test_gcc_O3_no_fma $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
+	@echo "--- GCC (FMA) ---"
+	./test_gcc_O3_fma $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
 	@echo "--- MSVC (No FMA) ---"
 	test_msvc_O2_no_fma.exe $(SEED) $(NUM_RUNS) $(NUM_VECTORS)
 	@echo "--- MSVC (FMA) ---"
