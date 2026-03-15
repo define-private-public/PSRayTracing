@@ -131,8 +131,8 @@ rreal asin_cg_estrin(const rreal x)
  */
 rreal _asin_approx_private(const rreal x) NOEXCEPT
 {
-    return asin_cg(x);
-//    return asin_cg_estrin(x);
+//    return asin_cg(x);
+    return asin_cg_estrin(x);
 
     /*== This is old and outdated ==*/
 //    // This uses a talor series approximation.
