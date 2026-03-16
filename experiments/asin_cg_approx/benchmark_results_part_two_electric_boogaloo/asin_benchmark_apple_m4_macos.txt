@@ -1,8 +1,9 @@
-g++ --version
-Apple clang version 17.0.0 (clang-1700.0.13.5)
-Target: arm64-apple-darwin24.6.0
-Thread model: posix
-InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+g++-15 --version
+g++-15 (Homebrew GCC 15.1.0) 15.1.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
 
 clang++ --version
 Apple clang version 17.0.0 (clang-1700.0.13.5)
@@ -16,15 +17,15 @@ RNG Seed: ASDF
 Number of Runs: 250
 Number of Samples: 10000000
 ..........................................................................................................................................................................................................................................................
-std::asin() time:              33874.3 ms
-asin_cg() time:                32813.5 ms
-asin_cg_estrin() time:         30252.3 ms
+std::asin() time:              26175.6 ms
+asin_cg() time:                25763.6 ms
+asin_cg_estrin() time:         25667.8 ms
 Verification sums:
   std::asin():              -44923.9
   asin_cg():                -44924.8 (Err: -0.00215615 %)
   asin_cg_estrin():         -44924.8 (Err: -0.00215615 %)
-Speedup asin_cg:                1.03233x faster
-Speedup asin_cg_estrin:         1.11973x faster
+Speedup asin_cg:                1.01599x faster
+Speedup asin_cg_estrin:         1.01978x faster
 
 --- Clang ---
 ./test_clang_O3 "ASDF" "250" "10000000"
@@ -32,13 +33,13 @@ RNG Seed: ASDF
 Number of Runs: 250
 Number of Samples: 10000000
 ..........................................................................................................................................................................................................................................................
-std::asin() time:              33968.3 ms
-asin_cg() time:                33107 ms
-asin_cg_estrin() time:         30339.4 ms
+std::asin() time:              33626.1 ms
+asin_cg() time:                32754.5 ms
+asin_cg_estrin() time:         30244.6 ms
 Verification sums:
   std::asin():              -44923.9
   asin_cg():                -44924.8 (Err: -0.00215615 %)
   asin_cg_estrin():         -44924.8 (Err: -0.00215615 %)
-Speedup asin_cg:                1.02602x faster
-Speedup asin_cg_estrin:         1.11961x faster
+Speedup asin_cg:                1.02661x faster
+Speedup asin_cg_estrin:         1.11181x faster
 
