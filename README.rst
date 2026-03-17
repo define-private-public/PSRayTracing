@@ -88,6 +88,10 @@ Care to read a little more about this project?  Check out these:
 
 * `Investigating the Performance of random sampling methods <https://16bpp.net/blog/post/when-greedy-algorithms-can-be-faster/>`_
 
+* `Finding a faster (and better) approximation for arcsine <https://16bpp.net/blog/post/faster-asin-was-hiding-in-plain-sight/>`_
+
+  * `And then making it even quicker <https://16bpp.net/blog/post/even-faster-asin-was-staring-right-at-me/>`_
+
 
 
 
