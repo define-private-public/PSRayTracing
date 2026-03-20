@@ -253,19 +253,21 @@ Item {
 
       onPinchUpdated: function(pinch) {
         // Zoom only works if `pan_zoom_enabled=true`
-        if (!root.pan_zoom_enabled)
+        if (!root.pan_zoom_enabled) {
           return;
+        }
 
-        // TODO should there be a "treshold value" (e.g. 5%) that needs to be met before zooming
-        //      in/out?  Some users may not like this, other times, it ensures that there are no
-        //      accidental zooms
+        // Capture previous state BEFORE the zoom change
+        var zoom_previous = root.zoom;
+        var content_x_previous = flicker.contentX;
+        var content_y_previous = flicker.contentY;
+        var zoom_focus = mapToItem(flicker, pinch.center);
 
         // Set the new zoom, based on the scale of the pinch event
-        var zoom_previous = root.zoom;
         root.set_zoom(pinch.scale * pa._zoom_at_pinch_start);
         var zoom_current = root.zoom;
 
-        pa.better_viewport_zoom_fix(zoom_previous, zoom_current, pinch.center);
+        pa.better_viewport_zoom_fix(zoom_previous, zoom_current, zoom_focus, content_x_previous, content_y_previous);
       }
 
       onPinchFinished: function(pinch) {
@@ -291,8 +293,9 @@ Item {
 
         onWheel: function(wheel) {
           // Zoom only works if `pan_zoom_enabled=true`
-          if (!root.pan_zoom_enabled)
+          if (!root.pan_zoom_enabled) {
             return;
+          }
 
           // Scroll down (-) => zoom out , scroll up {+) => zoom in
           // If you read the docs for this `angleDelta` thing, you'll find out this works in steps where `120=15 deg`
@@ -301,12 +304,17 @@ Item {
           var steps = wheel.angleDelta.y / 120;
           var inc = 0.25 * steps;
 
-          // Set zoom (and record changes)
+          // Capture previous state BEFORE the zoom change
           var zoom_previous = root.zoom;
+          var content_x_previous = flicker.contentX;
+          var content_y_previous = flicker.contentY;
+          var zoom_focus = mapToItem(flicker, Qt.point(wheel.x, wheel.y));
+
+          // Set zoom
           root.set_zoom(root.zoom + inc);
           var zoom_current = root.zoom;
 
-          pa.better_viewport_zoom_fix(zoom_previous, zoom_current, Qt.point(wheel.x, wheel.y));
+          pa.better_viewport_zoom_fix(zoom_previous, zoom_current, zoom_focus, content_x_previous, content_y_previous);
 
           // Mark that we're zooming in/out with the wheel (and kick off the reset timer)
           mouse_wheel_handler._zooming = true;
@@ -321,15 +329,15 @@ Item {
       }
 
       // this will do a better viewport zoom in/out with a focal point
-      function better_viewport_zoom_fix(zoom_previous, zoom_current, focal_point)
+      function better_viewport_zoom_fix(zoom_previous, zoom_current, zoom_focus, content_x_previous, content_y_previous)
       {
         // If we're zoomed in (to where the viewport doesn't contain the entire image), we do some special handling to make sure the zoom feels more natural
         var too_big = (flicker.contentWidth > flicker.width) || (flicker.contentHeight > flicker.height);
         if (too_big)
         {
           // Compute the viewport rect we'll use to reset the view (so everyhing is nice and centered)
-          var viewport_rect = Qt.rect(flicker.contentX, flicker.contentY, flicker.contentWidth, flicker.contentHeight);
-          var zoom_focus = mapToItem(flicker, focal_point);
+          // We use the actual viewport width/height, and the content offset from before the zoom
+          var viewport_rect = Qt.rect(content_x_previous, content_y_previous, flicker.width, flicker.height);
           var r = g_ui_math_helper.compute_viewport_for_zoom(viewport_rect, zoom_focus, zoom_previous, zoom_current);
 
           // Use the top-left (origin) point to set the flicker
