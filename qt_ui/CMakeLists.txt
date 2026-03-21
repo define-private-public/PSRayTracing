@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(PSRayTracing_QtUI VERSION 1.3)
+project(PSRayTracing_QtUI VERSION 1.4)
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
