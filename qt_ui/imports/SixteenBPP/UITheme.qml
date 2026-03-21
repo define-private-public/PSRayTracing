@@ -11,8 +11,6 @@ import QtQuick.Window
 QtObject {
   id: root
 
-  readonly property real _scaling_factor: Math.min(1.8, Screen.devicePixelRatio)
-
   readonly property string settings_icon:   'qrc:/settings_icon'
   readonly property string start_icon:      'qrc:/start_icon'
   readonly property string stop_icon:       'qrc:/stop_icon'
@@ -24,8 +22,8 @@ QtObject {
   readonly property color pan_zoom_controls_background_color:  '#222222'
   readonly property color pan_zoom_controls_border_color:      '#CCCCCC'
 
-  readonly property real title_font_size_pt: _scaling_factor * 18
-  readonly property real about_font_size_pt: _scaling_factor * _about_font_size_base
+  readonly property real title_font_size_pt: 18
+  readonly property real about_font_size_pt: _about_font_size_base
 
   // TODO document better
   // This is for smartphone's and small screen, If they have a screen width less than this
