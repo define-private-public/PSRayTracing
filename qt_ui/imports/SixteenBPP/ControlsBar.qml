@@ -69,13 +69,7 @@ Item {
       icon.source: UITheme.settings_icon
       icon.width:  24
       icon.height: 24
-
-      contentItem: Image {
-        source: settings_button.icon.source
-        sourceSize: Qt.size(settings_button.icon.width * Screen.devicePixelRatio, settings_button.icon.height * Screen.devicePixelRatio)
-        fillMode: Image.PreserveAspectFit
-        smooth: true
-      }
+      icon.color: UITheme.main_text_color
 
       onClicked: root.open_render_settings_clicked()
     }
@@ -150,28 +144,8 @@ Item {
       icon.source: UITheme.start_icon
       icon.width:  24
       icon.height: 24
-
-      contentItem: Row {
-        spacing: 10
-        anchors.centerIn: parent
-
-        Image {
-          source: render_button.icon.source
-          sourceSize: Qt.size(render_button.icon.width * Screen.devicePixelRatio, render_button.icon.height * Screen.devicePixelRatio)
-          width: render_button.icon.width
-          height: render_button.icon.height
-          anchors.verticalCenter: parent.verticalCenter
-          fillMode: Image.PreserveAspectFit
-          smooth: true
-        }
-
-        Label {
-          text: render_button.text
-          font: render_button.font
-          color: UITheme.main_text_color
-          anchors.verticalCenter: parent.verticalCenter
-        }
-      }
+      icon.color: UITheme.main_text_color
+      display: AbstractButton.TextBesideIcon
 
       onClicked: root.render_button_clicked()
     }
