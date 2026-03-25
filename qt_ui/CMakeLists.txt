@@ -43,9 +43,17 @@ set(SOURCES
   qtquickcontrols2.conf
 )
 
+# Tell the QML scanner and Qt Creator where to find our custom modules
+set(QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/imports" CACHE STRING "Extra QML import paths" FORCE)
+
 qt_add_executable(PSRayTracing_QtUI
   MANUAL_FINALIZATION
   ${SOURCES}
+)
+
+# Set the QML import path for the target so qt_finalize_executable/qmlscanner can find the modules
+set_target_properties(PSRayTracing_QtUI PROPERTIES
+    QT_QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/imports"
 )
 set_property(TARGET PSRayTracing_QtUI APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/android)
 
