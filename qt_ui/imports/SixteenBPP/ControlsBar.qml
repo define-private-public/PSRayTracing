@@ -181,8 +181,8 @@ Item {
         AnchorChanges { target: render_info_layout;     anchors.left:  settings_button.right; }
         AnchorChanges { target: render_button;          anchors.top:   scene_select_dropdown.bottom; }
 
-        PropertyChanges { target: scene_label;            anchors.leftMargin: undefined; }
-        PropertyChanges { target: scene_select_dropdown;  width: undefined; }
+        PropertyChanges { target: scene_label;            anchors.leftMargin: UITheme.screen_padding; }
+        PropertyChanges { target: scene_select_dropdown;  width: undefined; anchors.rightMargin: UITheme.screen_padding; }
       }
     ]
   }
