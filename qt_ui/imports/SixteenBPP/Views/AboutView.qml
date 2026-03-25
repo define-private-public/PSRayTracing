@@ -40,18 +40,19 @@ Item {
   Text {
     id: title
 
-    anchors.margins: __p.padding_amount
+    anchors.margins: UITheme.screen_padding
     anchors.horizontalCenter: parent.horizontalCenter
     anchors.top: parent.top
 
     text: Messages.about_ps_raytracing
     font.pointSize: UITheme.title_font_size_pt
+    color: UITheme.main_text_color
   }
 
   ScrollView {
     id: scroller
 
-    anchors.margins: __p.padding_amount
+    anchors.margins: UITheme.screen_padding
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.top: title.bottom
@@ -71,7 +72,7 @@ Item {
       ColumnLayout {
         id: layout
 
-        width: Math.min(UITheme.min_width_threshold, root.width) - (2 * __p.padding_amount);
+        width: Math.min(UITheme.min_width_threshold, root.width) - (2 * UITheme.screen_padding);
         anchors.horizontalCenter: parent.horizontalCenter
 
         // Main body of the about page
@@ -81,6 +82,7 @@ Item {
           text: Messages.about_contents
           wrapMode: Text.WordWrap
           font.pointSize: UITheme.about_font_size_pt
+          color: UITheme.main_text_color
 
           // Opens the hyperlinks when pressed
           onLinkActivated: (link) => Qt.openUrlExternally(link)
@@ -103,6 +105,7 @@ Item {
           text: Messages.info_contents
           wrapMode: Text.WordWrap
           font.pointSize: UITheme.about_font_size_pt
+          color: UITheme.main_text_color
         }
       }
     }
@@ -116,8 +119,8 @@ Item {
 
     text: Messages.close
 
-    anchors.margins: __p.padding_amount
-    anchors.rightMargin: (__p.place_close_button_bellow_scroller ? 0 : __p.padding_amount)
+    anchors.margins: UITheme.screen_padding
+    anchors.rightMargin: (__p.place_close_button_bellow_scroller ? 0 : UITheme.screen_padding)
     anchors.right: (__p.place_close_button_bellow_scroller ? scroller.right : parent.right);
     anchors.bottom: parent.bottom
   }

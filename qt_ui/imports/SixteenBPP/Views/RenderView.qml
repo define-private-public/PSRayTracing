@@ -36,7 +36,7 @@ Item {
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.bottom: parent.bottom
-    anchors.margins: 10
+    anchors.margins: UITheme.screen_padding
 
     onOpen_render_settings_clicked: render_settings_popup.open()
 
@@ -52,10 +52,17 @@ Item {
   Drawer {
     id: render_settings_popup
 
-    readonly property real padding_amount: 25
+    readonly property real padding_amount: UITheme.screen_padding
 
     width: parent.width
     height: root.height - (2 * render_settings_popup.padding_amount)
+
+    // Apply Material primary for background
+    background: Rectangle {
+        color: UITheme.secondary_background_color
+        radius: 12
+        clip: true
+    }
 
     // We want this popup to be modal.
     // The user must press the "OK" button (int the content item) to close it

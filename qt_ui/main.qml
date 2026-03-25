@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Controls.Material
 import QtQuick.Window
 import QtQuick.Layouts
 import SixteenBPP
@@ -9,6 +10,11 @@ import SixteenBPP.Views
 Window {
   id: root
 
+  // Apply Material theme settings
+  Material.theme: UITheme.material_theme
+  Material.accent: UITheme.material_accent
+  Material.primary: UITheme.material_primary
+
   // TODO reset after done with dev
   minimumWidth: 350//640
   minimumHeight: 200//480
@@ -16,6 +22,9 @@ Window {
   height: 540
   visible: true
   title: Messages.app_window_title
+
+  // Ensure the window background matches the theme
+  color: UITheme.main_background_color
 
   // This is neededed: On Android when the user pressed the Back button, Qml
   // will close the app.  Instead, we'd like it to go back to the previous view.

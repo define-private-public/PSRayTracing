@@ -42,6 +42,17 @@ Item {
 
     anchors.fill: parent
 
+    // Background for the bar to make it distinct from the rendering area
+    Rectangle {
+        anchors.fill: parent
+        color: UITheme.secondary_background_color
+        radius: 8
+        opacity: 0.95
+        border.color: UITheme.divider_color
+        border.width: 1
+        z: -1
+    }
+
     // These are used for determinine the height for this layout
     //   It actually needs to bubble up to the main container (yes, I know this is a tad bit odd)
     readonly property real height_for_root: (state == 'normal_width') ? _normal_height : _small_width_height
@@ -76,6 +87,7 @@ Item {
       anchors.verticalCenter: scene_select_dropdown.verticalCenter
 
       text: Messages.scene_label
+      color: UITheme.main_text_color
     }
 
     // Drop down the select the scene
@@ -123,6 +135,7 @@ Item {
         verticalAlignment: Text.AlignVCenter
 
         text: Messages.total_render_time_fmt.arg(g_renderer.render_time_str)
+        color: UITheme.main_text_color
       }
     }
 
@@ -155,7 +168,7 @@ Item {
         Label {
           text: render_button.text
           font: render_button.font
-          color: render_button.palette.buttonText
+          color: UITheme.main_text_color
           anchors.verticalCenter: parent.verticalCenter
         }
       }
