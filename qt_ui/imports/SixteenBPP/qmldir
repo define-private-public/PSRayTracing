@@ -6,6 +6,4 @@ singleton UITheme UITheme.qml
 
 # Controls/UI things
 ControlsBar ControlsBar.qml
-IntegerOnlyTextField IntegerOnlyTextField.qml
-RenderDisplay RenderDisplay.qml
 RenderSettingsForm RenderSettingsForm.qml

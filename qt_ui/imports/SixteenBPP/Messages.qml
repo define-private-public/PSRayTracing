@@ -5,8 +5,8 @@ import QtQuick
 
 // User facing strings
 QtObject {
-  readonly property string _render_library_version:   'r9'
-  readonly property string _qt_ui_version:            '1.3'
+  readonly property string _render_library_version:   'r9.8'
+  readonly property string _qt_ui_version:            '1.4'
 
   // Render View
   readonly property string app_window_title:        qsTr('PSRayTracing (GUI Edition)')
@@ -46,11 +46,11 @@ QtObject {
   readonly property string close:           qsTr('Close')
   readonly property string about_contents:  qsTr(
 '<p>\
-  PSRayTracing is an implementation of <a href="https://twitter.com/Peter_shirley">Peter Shirley\'s</a> <a href="https://raytracing.github.io/">Ray Racing in one\
+  PSRayTracing is an implementation of <a href="https://twitter.com/Peter_shirley">Peter Shirley\'s</a> <a href="https://raytracing.github.io/">Ray Tracing in one\
   Weekend book series.</a>  While keeping the same architectural structure of the rendering logic, it has alterations and improvements to its project layout,\
   algorithms, and portability; all while being done in vanilla C++ 17.  On average, it can render in 1/4 of the time as the reference code from the book.  It was\
   an exercise too in how the ordering of code can affect the compiled output assembly and the performance of a program.  The CMake build system also features the\
-  ability to toggle on (and off) the changes from the book\s code, as to see the performance impact.\
+  ability to toggle on (and off) the changes from the book\'s code, as to see the performance impact.\
 </p>\
 <br>\
 <p>\
@@ -69,6 +69,13 @@ QtObject {
     <li><a href="https://16bpp.net/blog/post/psraytracing-a-revisit-of-the-peter-shirley-minibooks-4-years-later/">PSRayTracing, A revisit of the Peter Shirley Minibooks 4 years later</a></li>\
     <li><a href="https://16bpp.net/blog/post/automated-testing-of-a-ray-tracer/">Automated Testing of a Ray Tracer</a></li>\
     <li><a href="https://16bpp.net/blog/post/making-a-cross-platform-mobile-desktop-app-with-qt-62/">Making A Cross Platform Mobile & Desktop App with Qt 6.2</a></li>\
+    <li><a href="https://16bpp.net/blog/post/localizing-a-qt-app-or-anything-else-for-that-matter/">Localizing the GUI app into Japanese and German</a></li>\
+    <li><a href="https://16bpp.net/blog/post/the-performance-impact-of-cpp-final-keyword/">The performance impact of the final keyword</a></li>\
+    <li><a href="https://16bpp.net/blog/post/noexcept-can-sometimes-help-or-hurt-performance/">When noexcept helps performance (and when it doesn\'t)</a></li>\
+    <li><a href="https://cppcast.com/benchmarking_language_keywords/">Interview on CppCast episode 389</a></li>\
+    <li><a href="https://16bpp.net/blog/post/when-greedy-algorithms-can-be-faster/">Investigating the Performance of random sampling methods</a></li>\
+    <li><a href="https://16bpp.net/blog/post/faster-asin-was-hiding-in-plain-sight/">Finding a faster (and better) approximation for arcsine</a></li>\
+    <li><a href="https://16bpp.net/blog/post/even-faster-asin-was-staring-right-at-me/">Making arcsine even quicker</a></li>\
     <li><a href="https://16bpp.net/blog/post/ray-tracing-book-series-review-nim-first-impressions/">Ray Tracing in Nim</a></li>\
   </ul>\
 </p>\
@@ -77,6 +84,10 @@ QtObject {
   <ul>\
     <li>Peter Shirley</li>\
     <li>Yining Karl Li</li>\
+    <li>Matt Godbolt</li>\
+    <li>Nic Taylor</li>\
+    <li>Roman Wiche</li>\
+    <li>Tyler Morgan-Wall</li>\
     <li><a href="https://github.com/define-private-public/PSRayTracing#thanks">&amp; more</a></li>\
   </ul>\
 </p>\

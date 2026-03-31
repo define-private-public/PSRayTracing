@@ -50,7 +50,8 @@ Rectangle {
 
         text: Messages.instructions
         horizontalAlignment: Text.AlignHCenter
-        font.pointSize: 14
+        font.pointSize: (Qt.platform.os === 'android' ? 18 : 14)
+        color: UITheme.main_text_color
       }
     }
 

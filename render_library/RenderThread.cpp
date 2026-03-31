@@ -39,10 +39,10 @@ RenderThread::RenderThread(const RenderContext &render_context) NOEXCEPT :
 }
 
 RenderThread::RenderThread(RenderThread &&other) NOEXCEPT :
-    _r_ctx(move(other._r_ctx)),
-    _thread(move(other._thread)),
-    _task_queue(move(other._task_queue)),
-    _result_queue(move(other._result_queue))
+    _r_ctx(std::move(other._r_ctx)),
+    _thread(std::move(other._thread)),
+    _task_queue(std::move(other._task_queue)),
+    _result_queue(std::move(other._result_queue))
 {
     // Can't move the atmoics
     _running.store(other._running.load());

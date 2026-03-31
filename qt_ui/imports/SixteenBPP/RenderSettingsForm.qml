@@ -70,6 +70,7 @@ Item {
 
     text: Messages.render_settings
     font.pointSize: UITheme.title_font_size_pt
+    color: UITheme.main_text_color
   }
 
   ScrollView {
@@ -111,6 +112,7 @@ Item {
 
         Label {
           text: Messages.render_size
+          color: UITheme.main_text_color
 
           // This is done so that the label aligns better with the column field below
           Layout.alignment: Qt.AlignTop
@@ -148,6 +150,7 @@ Item {
               id: x_text
 
               text: 'x'
+              color: UITheme.main_text_color
             }
 
             IntegerOnlyTextField {
@@ -186,7 +189,7 @@ Item {
           }
         }
 
-        Label { text: Messages.samples_per_pixel }
+        Label { text: Messages.samples_per_pixel; color: UITheme.main_text_color }
         IntegerOnlyTextField {
           id: samples_per_pixel_field
 
@@ -202,7 +205,7 @@ Item {
           Keys.onReturnPressed: Qt.inputMethod.hide();
         }
 
-        Label { text: Messages.max_ray_depth }
+        Label { text: Messages.max_ray_depth; color: UITheme.main_text_color }
         IntegerOnlyTextField {
           id: max_depth_field
 
@@ -224,6 +227,7 @@ Item {
           Layout.topMargin: 10
 
           text: Messages.number_of_threads
+          color: UITheme.main_text_color
         }
         ColumnLayout {
           Layout.fillWidth: true
@@ -253,7 +257,7 @@ Item {
           }
         }
 
-        Label { text: Messages.random_seed }
+        Label { text: Messages.random_seed; color: UITheme.main_text_color }
         TextField {
           id: seed_str_field
 
@@ -265,7 +269,7 @@ Item {
           Keys.onReturnPressed: Qt.inputMethod.hide();
         }
 
-        Label { text: Messages.deep_copy_per_thread }
+        Label { text: Messages.deep_copy_per_thread; color: UITheme.main_text_color }
         Switch {
           id: deep_copy_per_thread_field
 
@@ -275,7 +279,7 @@ Item {
           checked: true
         }
 
-        Label { text: "" }    // Empty spacer
+        Label { text: ""; color: UITheme.main_text_color }    // Empty spacer
         Button {
           // Button to reset the render settings back to their default values
           id: reset_to_default_button

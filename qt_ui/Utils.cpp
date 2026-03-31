@@ -17,14 +17,19 @@
             "net/sixteenbpp/psraytracing/AndroidUtils",
             "get_device_resolution_in_pixels",
             "(Landroid/content/Context;)Landroid/graphics/Point;",
-            QNativeInterface::QAndroidApplication::context()
+            QNativeInterface::QAndroidApplication::context().object<jobject>()
         );
     
         // Get the result
-        return QSize(
-            dim.getField<jint>("x"),
-            dim.getField<jint>("y")
-        );
+        const bool is_valid = dim.isValid();
+        if (is_valid) {
+            return QSize(
+                dim.getField<jint>("x"),
+                dim.getField<jint>("y")
+            );
+        }
+
+        return QSize(0, 0);
     }
 #endif
 
