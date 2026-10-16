@@ -26,7 +26,7 @@ using namespace std;
 
 
 // Are we to use the book's BVH node, or our more performant one?
-#if WITH_BOOK_BVH_NODE
+#ifdef USE_BOOK_BVH_NODE
     #include "Objects/BVHNode.hpp"
     using BVHNode_Implementation = BVHNode;
 #else
