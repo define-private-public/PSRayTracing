@@ -10,7 +10,7 @@ have a GUI application that could be readily downloaded either from GitLab/GitHu
 using Qt.
 
 This supports Windows, macOS, and Linux for Desktop.  Android & iOS are supported for mobile/tablet platforms.  It is
-currently available in Google Play.  It's not on the Apple App store, but will be eventually.
+available in Google Play and the Apple App Store; see the main README for download links.
 
 |PSRayTracingGooglePlay|_
 
