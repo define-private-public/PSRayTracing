@@ -46,7 +46,7 @@ code to work alongside that of books 1 & 2 did required adjusting some of the ar
 my too much.
 
 I've decided to license this implementation under the ``Apache License (2.0)``.  The full text is in the
-file ``LICENSE.txt``.  The only exception to this is ``src/third_party``, as those are externally provided
+file ``LICENSE.txt``.  The only exception to this is ``third_party/``, as those are externally provided
 projects.  Check those files for their licenses.  Note that the books (and the book code) is under
 ``CC0 1.0 Universal``.  If you end up using any of this, a shout out would be appreciated (and telling me
 too).
@@ -146,7 +146,7 @@ available, as well as their defaults.  Here are some of the more important ones:
 
 * ``--scene <scene_id_string>``, scene from book(s) to render (default is ``book2::final_scene``).
 
-* ``-n <integer>``, number of samples per pixel (default is ``25``)
+* ``-n <integer>``, number of samples per pixel (default is ``10``)
 
 * ``-j <integer>``, how many cores/threads to render with (default is ``1``)
 
@@ -158,9 +158,9 @@ available, as well as their defaults.  Here are some of the more important ones:
 If you want to see what scenes are available to render, supply ``--list-scenes`` as an argument and it should
 show you all that are implemented.  They should be in order as they were presented in the book.
 
-So for example, If you do ``./PSRayTracing`` by itself, it will render Book 2's final scene, with 25 samples
+So for example, If you do ``./PSRayTracing`` by itself, it will render Book 2's final scene, with 10 samples
 per pixel, on a single core, saving it to ``render.png`` with a resolution of 540p.  Though if you do
-``./PSRayTracing -n 250 -j 4 -s 1920x1080 --scene book1::normal_sphere``, you'll get that sphere using it's
+``./PSRayTracing -n 250 -j 4 -s 1920x1080 --scene book1::surface_normal_sphere``, you'll get that sphere using it's
 surface normal (to shade it), with 250 samples/pixel, rendering on four cores at 1080p; also saving to
 ``render.png``.
 
@@ -191,7 +191,7 @@ Structural/Architectural
    of mine
 
 2. Classes like ``material`` have become strict abstract base classes, ``IMaterial`` for instance; take a
-   look at ``src/Interfaces/`` to see more
+   look at ``render_library/Interfaces/`` to see more
 
 3. Instead of rendering to PPM files (via standard output), ``stb_image_write`` is used to write directly
    to PNGs; A file format that you're not ashamed to take back home and introduce to Mom.
@@ -270,7 +270,7 @@ This was my first time implementing a thread pool in C++.  If someone knows how 
 code, please send a PR my way.  I think there is some pointer chasing going on that is hampering perf. too.
 
 My code is structured differently, so it's very likely there were perf. benefits from that as well.  If you
-look at the CMake build file (``src/CMakeLists.txt``), you should see that there are a lot of added ``ON/OFF``
+look at the CMake build file (``render_library/CMakeLists.txt``), you should see that there are a lot of added ``ON/OFF``
 options, that all begin with ``WITH_*`` (e.g. ``WITH_BOOK_PERLIN``, ``WITH_BOOK_SQRT``, etc).  These are
 changes that differ from the book code.  I made them toggleable on/off so you can better see the effects they
 have on render time (some even have effects on the final image).  Using a CMake GUI application (like ``ccmake``)
@@ -576,7 +576,8 @@ to go into the gory details of how it works.  If you want to see, look at the co
 This one had a much more minor speedup.  On some newer hardware, I only saw about a 1-2% performance boost.  When it came
 an older machine, it was more in the range of 5-9% (which is more on the significant side).  This one didn't seem to be
 as significant as other changes.  Not to mention it was hard to reproduce results that saw a constant performance boost
-accross different hardware.  It is on by default though; it can be toggled on/off via a CMake configuration variable.
+accross different hardware.  It is off by default; set ``WITH_BOOK_BVH_NODE=OFF`` at CMake configuration time
+to use this alternative implementation.
 
 The tree construction and hit algorithms are the same as the book's BVH node (depth first).  It's very likely that
 alterative construction and hit algorithms could produce more performant results.
