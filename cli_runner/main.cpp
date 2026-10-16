@@ -146,7 +146,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Grab the render and save it
-    stbi_write_png(
+    const int image_saved = stbi_write_png(
         output_filename.c_str(),
         static_cast<int>(result.render_width),
         static_cast<int>(result.render_height),
@@ -154,6 +154,11 @@ int main(int argc, char *argv[]) {
         result.image_data.data(),
         0
     );
+    if (!image_saved)
+    {
+        cerr << "Failed to save render to: " << output_filename << endl;
+        return 1;
+    }
 
     return 0;
 }
