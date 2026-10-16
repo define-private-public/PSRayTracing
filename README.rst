@@ -576,7 +576,8 @@ to go into the gory details of how it works.  If you want to see, look at the co
 This one had a much more minor speedup.  On some newer hardware, I only saw about a 1-2% performance boost.  When it came
 an older machine, it was more in the range of 5-9% (which is more on the significant side).  This one didn't seem to be
 as significant as other changes.  Not to mention it was hard to reproduce results that saw a constant performance boost
-accross different hardware.  It is on by default though; it can be toggled on/off via a CMake configuration variable.
+accross different hardware.  It is off by default; set ``WITH_BOOK_BVH_NODE=OFF`` at CMake configuration time
+to use this alternative implementation.
 
 The tree construction and hit algorithms are the same as the book's BVH node (depth first).  It's very likely that
 alterative construction and hit algorithms could produce more performant results.
